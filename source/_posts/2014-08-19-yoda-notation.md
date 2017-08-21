@@ -7,7 +7,7 @@ tags: [c++, coding convention]
 ---
 {% img center /images/yoda1.jpg %}
 
-지난번에 [구글 C++ 스타일 가이드](http://leafbird.github.io/devnote/blog/2014/07/google-c-plus-plus-style-guide/)에 대해서 한참 수다를 떨었는데, 
+지난번에 {% post_link google-c-plus-plus-style-guide %} 에 대해서 한참 수다를 떨었는데, 
 요즘에도 비슷한 주제의 책을 읽고 있습니다. 임백준씨가 번역하신 ['읽기 좋은 코드가 좋은 코드다'](http://www.yes24.com/24/goods/6692314?scode=032&OzSrank=1) 인데요,
  이것도 가볍게 읽을 수 있는 내용이어서 빌드 시간 중간에 띄엄띄엄 읽고 있어요.  
 

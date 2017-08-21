@@ -1,11 +1,11 @@
----
+﻿---
 layout: post
 title: "C++ 코드 정리 자동화 - 2. 불필요한 #include 찾기 下"
 date: 2014-09-17 20:30:24 +0900
 comments: true
 tags: c++
 ---
-[이전 포스트 'C++ 코드 정리 자동화 - 1. 불필요한 #include 찾기 上']({% post_url 2014-09-12-claenup-cpp-project-1st %})에서 이어진다.
+이전 포스트 '{% post_link claenup-cpp-project-1st %}' 에서 이어진다.
 
 ## 지워도 되는 인클루드를 찾아냈다
 
