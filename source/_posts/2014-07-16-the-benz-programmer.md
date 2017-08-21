@@ -3,6 +3,7 @@ layout: post
 title: "벤츠타는 프로그래머"
 date: 2014-07-16 20:20:38 +0900
 comments: true
+tags: book
 ---
 
 {% img center /images/140708_00.png 300 %}

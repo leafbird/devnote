@@ -3,7 +3,7 @@ layout: post
 title: "Octopress Tips on windows"
 date: 2014-07-21 16:44:48 +0900
 comments: true
-tags: [octopress, windows, tip]
+tags: [octopress, windows]
 ---
 
 개인적으로 Octopress를 윈도우에서 사용하도록 구성하면서 도움이 되었던 팁들을 몇가지 정리해 보려고 합니다. 

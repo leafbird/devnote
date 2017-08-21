@@ -3,7 +3,7 @@ layout: post
 title: "google c++ style guide"
 date: 2014-07-19 11:12:37 +0900
 comments: true
-tags: [coding convention, 코딩 컨벤션, c++, 번역] 
+tags: [coding convention, c++] 
 ---
 
 지금 참여중인 프로젝트에서 얼마전에 코딩 컨벤션을 통일하는 작업이 있었습니다. 

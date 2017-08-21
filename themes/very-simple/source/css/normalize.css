@@ -1,4 +1,5 @@
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
 /**
  * 1. Set default font family to sans-serif.
@@ -7,7 +8,7 @@
  */
 
 html {
-  font-family: sans-serif; /* 1 */
+  font-family: 'Nanum Gothic', sans-serif; /* 1 */
   -ms-text-size-adjust: 100%; /* 2 */
   -webkit-text-size-adjust: 100%; /* 2 */
 }
