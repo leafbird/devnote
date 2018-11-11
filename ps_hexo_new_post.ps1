@@ -1,6 +1,3 @@
-# 환경변수 BLOG_PATH에 설정된 블로그 root 경로로 이동
-cd $env:blogpath
-
 #input으로 새 글의 제목을 받는다. 
 $title = Read-Host 'Enter Title'
 
