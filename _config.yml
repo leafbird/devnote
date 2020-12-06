@@ -13,7 +13,7 @@ timezone: 'Asia/Seoul'
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
-url: http://leafbird.github.io
+url: http://leafbird.github.io/devnote
 root: /devnote/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
