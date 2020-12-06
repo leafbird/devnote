@@ -1,13 +1,22 @@
-#inputÀ¸·Î »õ ±ÛÀÇ Á¦¸ñÀ» ¹Ş´Â´Ù. 
+ï»¿function Get-ScriptDirectory {
+    if ($psise) {
+        Split-Path $psise.CurrentFile.FullPath
+    }
+    else {
+        $global:PSScriptRoot
+    }
+}
+
+Get-ScriptDirectory | Set-Location
+
+#inputìœ¼ë¡œ ìƒˆ ê¸€ì˜ ì œëª©ì„ ë°›ëŠ”ë‹¤. 
 $title = Read-Host 'Enter Title'
 
-# ½ÇÇà : hexo new draft 'Á¦¸ñ'
-$command = [string]::Format('hexo new draft "{0}"', $title)
-$out = Invoke-Expression $command
+# ì‹¤í–‰ : hexo new draft 'ì œëª©'
+hexo new draft "$title"
 
-# »ı¼ºµÈ ÆÄÀÏÀÇ ÀÌ¸§°ú °æ·Î¸¦ ÃßÃâÇÑ´Ù.
-$out = $out.Replace("INFO  Created: ", "")
-
-# »ı¼ºµÈ ÆÄÀÏÀ» gvimÀ¸·Î ¿ÀÇÂ!
-$new_file_path = [System.IO.Path]::Combine($PSScriptRoot, $out)
-gvim.exe $new_file_path
+$fileName = $title.Replace(' ', '-')
+# ìƒì„±ëœ íŒŒì¼ì„ gvimìœ¼ë¡œ ì˜¤í”ˆ
+$newFilePath = Join-Path .\source\_drafts "$fileName.md"
+Write-Output "Open gvim $newFilePath"
+gvim.exe $newFilePath
