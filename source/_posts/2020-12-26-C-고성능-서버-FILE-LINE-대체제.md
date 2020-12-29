@@ -1,7 +1,7 @@
 ---
 title: 'C# 고성능 서버 - __FILE__, __LINE__ 대체제'
 date: 2020-12-26 11:11:05
-tags: c#, 고성능, 게임서버, 메모리, string interning
+tags: [c#, 고성능, 게임서버, 메모리, string interning]
 ---
 
 
