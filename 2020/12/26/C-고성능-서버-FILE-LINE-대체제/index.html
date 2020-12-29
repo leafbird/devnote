@@ -31,9 +31,13 @@
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="http://leafbird.github.io/devnote/2020/12/26/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-FILE-LINE-%EB%8C%80%EC%B2%B4%EC%A0%9C/00.jpg">
 <meta property="article:published_time" content="2020-12-26T02:11:05.000Z">
-<meta property="article:modified_time" content="2020-12-26T16:19:46.128Z">
+<meta property="article:modified_time" content="2020-12-29T13:51:18.295Z">
 <meta property="article:author" content="leafbird">
-<meta property="article:tag" content="c#, 고성능, 게임서버, 메모리, string interning">
+<meta property="article:tag" content="c#">
+<meta property="article:tag" content="고성능">
+<meta property="article:tag" content="게임서버">
+<meta property="article:tag" content="메모리">
+<meta property="article:tag" content="string interning">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://leafbird.github.io/devnote/2020/12/26/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-FILE-LINE-%EB%8C%80%EC%B2%B4%EC%A0%9C/00.jpg">
 
@@ -171,12 +175,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/devnote/archives">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">태그</span>
       </div>
   </nav>
@@ -255,7 +259,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Updated at: 2020-12-27 01:19:46" itemprop="dateModified" datetime="2020-12-27T01:19:46+09:00">2020-12-27</time>
+        <time title="Updated at: 2020-12-29 22:51:18" itemprop="dateModified" datetime="2020-12-29T22:51:18+09:00">2020-12-29</time>
       </span>
 
   
@@ -285,7 +289,7 @@
 <p>함수 인자에 기본값이 있기 때문에 작업자가 함수를 호출할 때 값을 전달하지는 않지만, 그래도 보이지 않게 뒤쪽 인자를 통해 호출자의 파일명, 라인수 등이 넘어가는 방식이다. 인자에 붙어있는 attribute로 인해 함수 호출 위치에 맞는 값들이 <code>런타임에</code> 채워진다.</p>
 <p>과거의 오래된 프레임워크를 지원할 수 없다는 점이 거꾸로 단점이 될텐데, 사실 NLog같이 누구나 어디서나 사용해야할 로그모듈을 만들게 아니고, 게임서버처럼 특정 비즈니스 프로젝트로 사용처를 한정한다면 오래된 프레임워크 미지원은 그렇게 큰 단점은 아니다. </p>
 <h4 id="CompilerServices-장점-가볍고-빠르다"><a href="#CompilerServices-장점-가볍고-빠르다" class="headerlink" title="CompilerServices 장점 : 가볍고 빠르다."></a>CompilerServices 장점 : 가볍고 빠르다.</h4><p>위에서 언급했던 StackFramek 클래스를 사용하는 방식보다 훨씬 빠르다. C++의 <code>__FILE__, __LINE__</code> 은 매크로니까 이미 컴파일 타임에 문자열과 숫자로 치환되어 코드에 포함된다. CompilerServices 사용 방식은 런타임에 함수의 인자로 넘어가는 방식이니까 이것만큼 optimal할 수는 없지만, 콜스택을 긁어오는 것보다는 훨씬 빠르다.</p>
-<h4 id="CompilerService-단점-가변인자-인터페이스-사용이-불가능-해진다"><a href="#CompilerService-단점-가변인자-인터페이스-사용이-불가능-해진다" class="headerlink" title="CompilerService 단점 : 가변인자 인터페이스 사용이 불가능 해진다."></a>CompilerService 단점 : 가변인자 인터페이스 사용이 불가능 해진다.</h4> <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DoProcessing</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	WriteLog(<span class="string">&quot;invalid value:&#123;0&#125;&quot;</span>, <span class="keyword">value</span>); <span class="comment">// 불가능합니다.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">WriteLog</span>(<span class="params"><span class="built_in">string</span> format,</span></span></span><br><span class="line"><span class="function"><span class="params">  <span class="keyword">params</span> <span class="built_in">object</span>[] list,</span></span></span><br><span class="line"><span class="function"><span class="params">  [CallerFilePath] <span class="built_in">string</span> sourceFilePath = <span class="string">&quot;&quot;</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">  [CallerLineNumber] <span class="built_in">int</span> sourceLineNumber = <span class="number">0</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="CompilerService-단점-가변인자-인터페이스-사용이-불가능-해진다"><a href="#CompilerService-단점-가변인자-인터페이스-사용이-불가능-해진다" class="headerlink" title="CompilerService 단점 : 가변인자 인터페이스 사용이 불가능 해진다."></a>CompilerService 단점 : 가변인자 인터페이스 사용이 불가능 해진다.</h4> <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DoProcessing</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  WriteLog(<span class="string">&quot;invalid value:&#123;0&#125;&quot;</span>, <span class="keyword">value</span>); <span class="comment">// 불가능합니다.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">WriteLog</span>(<span class="params"><span class="built_in">string</span> format,</span></span></span><br><span class="line"><span class="function"><span class="params">  <span class="keyword">params</span> <span class="built_in">object</span>[] list,</span></span></span><br><span class="line"><span class="function"><span class="params">  [CallerFilePath] <span class="built_in">string</span> sourceFilePath = <span class="string">&quot;&quot;</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">  [CallerLineNumber] <span class="built_in">int</span> sourceLineNumber = <span class="number">0</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>함수의 뒷부분 인자를 사용하게 되니까, 위와 같은 사용이 불가능하다. 예시처럼 formatting이 될 문자열을 처음에 받고 두번째부터 가변 인자를 받는 방법은  C++에서 로그 인터페이스를 만드는 가장 익숙한 방식이다. </p>
 <p>하지만 C#은 나름대로의 해결법이 있다. <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ko-kr/dotnet/csharp/language-reference/tokens/interpolated">보간 문자열</a>을 이용해 문자열을 포매팅하면 된다. .NET Framework 4.6 과 함께 C# 문법이 6.0으로 올라갔고 이 때부터 보간 문자열이 사용 가능해졌다. 최신의 C#에서는 String.Format보다 보간 문자열의 사용이 더 권장된다. - Effective C#, 빌 와그너. Chapter 1.4 <code>string.Format()을 보간 문자열로 대체하라</code> </p>
@@ -329,7 +333,11 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/devnote/tags/c-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EA%B2%8C%EC%9E%84%EC%84%9C%EB%B2%84-%EB%A9%94%EB%AA%A8%EB%A6%AC-string-interning/" rel="tag"># c#, 고성능, 게임서버, 메모리, string interning</a>
+              <a href="/devnote/tags/c/" rel="tag"># c#</a>
+              <a href="/devnote/tags/%EA%B3%A0%EC%84%B1%EB%8A%A5/" rel="tag"># 고성능</a>
+              <a href="/devnote/tags/%EA%B2%8C%EC%9E%84%EC%84%9C%EB%B2%84/" rel="tag"># 게임서버</a>
+              <a href="/devnote/tags/%EB%A9%94%EB%AA%A8%EB%A6%AC/" rel="tag"># 메모리</a>
+              <a href="/devnote/tags/string-interning/" rel="tag"># string interning</a>
           </div>
 
         
@@ -341,6 +349,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/" rel="next" title="C# 고성능 서버 - System.IO.Pipeline 도입 후기">
+                  C# 고성능 서버 - System.IO.Pipeline 도입 후기 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
