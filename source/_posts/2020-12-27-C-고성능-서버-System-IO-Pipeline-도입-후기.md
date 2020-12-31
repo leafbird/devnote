@@ -13,7 +13,7 @@ tags: [c#, 고성능, 게임서버, Network, Socket, Pipeline]
 
 하지만 C#에도 고성능 IO를 위한 새로운 API가 추가되었다. [Pipeline](https://docs.microsoft.com/ko-kr/dotnet/standard/io/pipelines) 이다.
 
-
+<!-- more -->
 
 ## System.IO.Pipeline 소개.
 

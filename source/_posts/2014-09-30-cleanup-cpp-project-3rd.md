@@ -10,9 +10,47 @@ tags: c++
 
 팀에서 만지는 코드에서는, 290Mb에 육박하는 pch파일을 본 적이 있다(...) 그 땐 코드를 정리하면서 pch 사이즈 변화를 자주 확인해봐야 했는데, 탐색기나 커맨드 창에서 매번 사이즈를 조회하기가 불편했던 기억이 있어서 pch 사이즈 확인하는 걸 만들어봤다.
 
+
+
+<!--more-->
+
 MSBuild로 단일 cpp 파일을 컴파일하면 이런 메시지가 나오는데,
 
-`C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\amd64\CL.exe /c /ID:\Dev\uni\External\ /ID:\Dev\uni\Test\ /ID:\Dev\uni\ /Zi /nologo /W4 /WX /sdl /Od /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"x64\Debug\unittest.pch" /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:queue stdafx.cpp`
+```
+C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\amd64\CL.exe 
+/c 
+/ID:\Dev\uni\External\ 
+/ID:\Dev\uni\Test\ 
+/ID:\Dev\uni\ 
+/Zi 
+/nologo 
+/W4 
+/WX 
+/sdl 
+/Od 
+/D WIN32 
+/D _DEBUG 
+/D _CONSOLE 
+/D _LIB 
+/D _UNICODE 
+/D UNICODE 
+/Gm 
+/EHsc 
+/RTC1 
+/MDd 
+/GS 
+/fp:precise 
+/Zc:wchar_t 
+/Zc:forScope 
+/Yc"stdafx.h" 
+/Fp"x64\Debug\unittest.pch" 
+/Fo"x64\Debug\\" 
+/Fd"x64\Debug\vc120.pdb" 
+/Gd 
+/TP 
+/errorReport:queue 
+stdafx.cpp
+```
 
 여기 `cl.exe`로 들어가는 인자 중에 `/Fp"x64\Debug\unittest.pch"` 요 부분에 pch 경로가 있음. 그러니까 결국 툴에서 pch사이즈를 구하려면
 
