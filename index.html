@@ -163,12 +163,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/devnote/archives">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">태그</span>
       </div>
   </nav>
@@ -215,6 +215,86 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2021/01/01/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-Thread-Local-Storage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/devnote/2021/01/01/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-Thread-Local-Storage/" class="post-title-link" itemprop="url">C# 고성능 서버 - Thread Local Storage</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+
+      <time title="Post created: 2021-01-01 16:00:49" itemprop="dateCreated datePublished" datetime="2021-01-01T16:00:49+09:00">2021-01-01</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Updated at: 2021-01-03 01:50:33" itemprop="dateModified" datetime="2021-01-03T01:50:33+09:00">2021-01-03</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>프로그래밍에서 각 스레드별로 고유한 상태를 설정할 수 있는 공간을 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Thread-local_storage">Thread Local Storage</a> (이하 TLS. transport layer security 아님) 라고 한다. VC++에서는 <code>__declspec(thread)</code> 키워드를 이용해서 tls 변수를 선언할 수 있다. </p>
+<p>C#에도 <code>ThreadLocal&lt;T&gt;</code> 라는 클래스를 이용해 tls를 사용할 수 있지만, 막상 실제로 사용해보면 C++에서 했던 것처럼 쉽게 해결되지 않을것이다. C# 5.0부터 들어온 async / await 문법을 이용해 비동기 프로그래밍을 구현했다면, await 대기 시점 이전과 이후에 스레드가 달라지기 때문이다. </p>
+<p>이를 해결하는 방법과 주의해야 할 사항을 정리해본다. </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/devnote/2021/01/01/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-Thread-Local-Storage/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -246,7 +326,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Updated at: 2020-12-31 11:09:04" itemprop="dateModified" datetime="2020-12-31T11:09:04+09:00">2020-12-31</time>
+        <time title="Updated at: 2021-01-01 16:31:51" itemprop="dateModified" datetime="2021-01-01T16:31:51+09:00">2021-01-01</time>
       </span>
 
   
@@ -261,7 +341,7 @@
     <div class="post-body" itemprop="articleBody">
           <img src="/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/00.jpg" class="">
 
-<h2 id="들어가며"><a href="#들어가며" class="headerlink" title="들어가며"></a>들어가며</h2><p>2018년에 네트워크 레이어 성능을 끌어올리기 위해 도입했던 System.IO.Pipeline을 간단히 소개하고, 도입 후기를 적어본다. </p>
+<p>2018년에 네트워크 레이어 성능을 끌어올리기 위해 도입했던 System.IO.Pipeline을 간단히 소개하고, 도입 후기를 적어본다. </p>
 <p>윈도우 OS에서 고성능을 내기 위한 소켓 프로그래밍을 할 때 IOCP 의 사용은 오래도록 변하지 않는 정답의 자리를 유지하고 있다. 여기에서 좀 더 성능에 욕심을 내고자 한다면 Windows Server 2012부터 등장한 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh997032(v=ws.11)">Registerd IO</a> 라는 새로운 선택지가 있다. 하지만 API가 C++ 로만 열려 있어서, C# 구현에서는 사용하기가 쉽지 않다. </p>
 <p>하지만 C#에도 고성능 IO를 위한 새로운 API가 추가되었다. <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ko-kr/dotnet/standard/io/pipelines">Pipeline</a> 이다.</p>
           <!--noindex-->
@@ -328,7 +408,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Updated at: 2020-12-31 11:09:15" itemprop="dateModified" datetime="2020-12-31T11:09:15+09:00">2020-12-31</time>
+        <time title="Updated at: 2021-01-01 23:58:12" itemprop="dateModified" datetime="2021-01-01T23:58:12+09:00">2021-01-01</time>
       </span>
 
   
@@ -341,7 +421,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="들어가며"><a href="#들어가며" class="headerlink" title="들어가며"></a>들어가며</h2><p>C++에서 가장 기본적으로 사용했던 <code>__FILE__, __LINE__, __FUNCTION__</code> 등의 매크로와 유사한 효과를 내는 방법에 대해 적어본다. 이와 함께 나에게는 생소했던 string interning 개념에 대해서도 살짝 소개해본다. 자바 같은 managed 언어를 깊이 다뤄본 적이 없는 네이티브 개발자에게는 생소한 개념일 것이다.<br>UI가 없는 서버에서 동작의 내용을 확인하는 가장 기본적인 방법은 file로 남기는 log다. 정상 동작이나 오류상황에 대한 상세한 로그가 남아야 문제가 생겼을 때 파악하기가 쉽기 때문에, 간단한 동작이지만 아주 빈번하게 호출되는 부분이다. 로그 출력에서 성능을 많이 빼앗기지 않도록 기반을 다져놓으면 비즈니스 로직 구현을 위해 더 많은 H/W 리소스를 배분할 수 있다.</p>
+          <p>C++에서 가장 기본적으로 사용했던 <code>__FILE__, __LINE__, __FUNCTION__</code> 등의 매크로와 유사한 효과를 내는 방법에 대해 적어본다. 이와 함께 나에게는 생소했던 string interning 개념에 대해서도 살짝 소개해본다. 자바 같은 managed 언어를 깊이 다뤄본 적이 없는 네이티브 개발자에게는 생소한 개념일 것이다.<br>UI가 없는 서버에서 동작의 내용을 확인하는 가장 기본적인 방법은 file로 남기는 log다. 정상 동작이나 오류상황에 대한 상세한 로그가 남아야 문제가 생겼을 때 파악하기가 쉽기 때문에, 간단한 동작이지만 아주 빈번하게 호출되는 부분이다. 로그 출력에서 성능을 많이 빼앗기지 않도록 기반을 다져놓으면 비즈니스 로직 구현을 위해 더 많은 H/W 리소스를 배분할 수 있다.</p>
 <p>성능을 굳이 신경쓰지 않는다면 아래 있는 내용을 끝까지 모두 적용할 필요는 없다. </p>
           <!--noindex-->
             <div class="post-button">
@@ -927,87 +1007,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2014/07/16/the-benz-programmer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/devnote/images/avatar.gif">
-      <meta itemprop="name" content="leafbird">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leafbird/devnote">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/devnote/2014/07/16/the-benz-programmer/" class="post-title-link" itemprop="url">벤츠타는 프로그래머</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">작성일</span>
-
-      <time title="Post created: 2014-07-16 20:20:38" itemprop="dateCreated datePublished" datetime="2014-07-16T20:20:38+09:00">2014-07-16</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Updated at: 2020-12-31 11:19:11" itemprop="dateModified" datetime="2020-12-31T11:19:11+09:00">2020-12-31</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <img src="/devnote/images/140708_00.png" class="center" width="300">
-
-<p>요 며칠간 이 책을 읽었습니다. 회사 도서관에 갔다가 제목이 끌려서 한 번 읽어봤어요.<br>누가 정한건지 모르겠지만 책 제목 참 멋지게 지었습니다. 주변에서 제가 이 책 읽는 것 보면 모두들 제목에 대해 관심을 보이더군요 ㅎ</p>
-<p>진로를 고민중인 학생이나 일을 시작한지 얼마 되지 않는 신입 개발자들을 주 대상으로 삼은 책입니다. 다소 주관적이긴 하지만 선배 개발자 입장에서 들려주는 이런 저런 이야기들이 적혀 있어요.<br>저자는 자기관리를 잘 하는 분이신 듯 합니다. 구체적인 개인 목표를 세우고 달성을 위해 노력하는 점이라든지, 꾸준한 자기계발에 관심을 두는 점 같은 좋은 습관을 많이 만들어두신 것 같네요. </p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/devnote/2014/07/16/the-benz-programmer/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/devnote/page/2/">2</a><a class="extend next" rel="next" href="/devnote/page/2/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
   </nav>
@@ -1043,7 +1042,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
