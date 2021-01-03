@@ -111,8 +111,19 @@ deploy:
 google_analytics: UA-52787243-1
 
 feed:
-  type: atom
-  path: atom.xml
+  type: rss2
+  path: rss2.xml
   limit: 20
   hub:
   content: true
+
+sitemap:
+  path: sitemap.xml   #생성될 경로
+  tag: false          #sitemap에 tag 포함 여부
+  category: false     #sitemap에 category 포함 여부
+
+robotstxt:
+  useragent: "*"
+  allow:
+    - /
+  sitemap: https://leafbird.github.io/devnote/sitemap.xml
