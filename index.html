@@ -246,7 +246,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Updated at: 2021-01-03 01:50:33" itemprop="dateModified" datetime="2021-01-03T01:50:33+09:00">2021-01-03</time>
+        <time title="Updated at: 2021-01-04 22:28:44" itemprop="dateModified" datetime="2021-01-04T22:28:44+09:00">2021-01-04</time>
       </span>
 
   
@@ -260,7 +260,7 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>프로그래밍에서 각 스레드별로 고유한 상태를 설정할 수 있는 공간을 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Thread-local_storage">Thread Local Storage</a> (이하 TLS. transport layer security 아님) 라고 한다. VC++에서는 <code>__declspec(thread)</code> 키워드를 이용해서 tls 변수를 선언할 수 있다. </p>
-<p>C#에도 <code>ThreadLocal&lt;T&gt;</code> 라는 클래스를 이용해 tls를 사용할 수 있지만, 막상 실제로 사용해보면 C++에서 했던 것처럼 쉽게 해결되지 않을것이다. C# 5.0부터 들어온 async / await 문법을 이용해 비동기 프로그래밍을 구현했다면, await 대기 시점 이전과 이후에 스레드가 달라지기 때문이다. </p>
+<p>C#에도 <code>ThreadLocal&lt;T&gt;</code> 라는 클래스를 이용해 tls를 사용할 수 있지만, 막상 실제로 사용해보면 C++에서는 존재하지 않았던 큰 차이점이 있다. C# 5.0부터 들어온 async / await 문법을 이용해 비동기 프로그래밍을 구현했다면, await 대기 시점 이전과 이후에 스레드가 달라지기 때문이다. </p>
 <p>이를 해결하는 방법과 주의해야 할 사항을 정리해본다. </p>
           <!--noindex-->
             <div class="post-button">
