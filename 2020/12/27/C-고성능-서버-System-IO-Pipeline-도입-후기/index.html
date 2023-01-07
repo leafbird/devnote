@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/devnote/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/devnote/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/devnote/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/devnote/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/devnote/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CNoto+Sans+KR:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js"></script>
+
+    <meta name="description" content="2018년에 네트워크 레이어 성능을 끌어올리기 위해 도입했던 System.IO.Pipeline을 간단히 소개하고, 도입 후기를 적어본다.  윈도우 OS에서 고성능을 내기 위한 소켓 프로그래밍을 할 때 IOCP 의 사용은 오래도록 변하지 않는 정답의 자리를 유지하고 있다. 여기에서 좀 더 성능에 욕심을 내고자 한다면 Windows Server 2012부터">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C# 고성능 서버 - System.IO.Pipeline 도입 후기">
+<meta property="og:url" content="http://leafbird.github.io/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/index.html">
+<meta property="og:site_name" content="leafbird&#x2F;devnote">
+<meta property="og:description" content="2018년에 네트워크 레이어 성능을 끌어올리기 위해 도입했던 System.IO.Pipeline을 간단히 소개하고, 도입 후기를 적어본다.  윈도우 OS에서 고성능을 내기 위한 소켓 프로그래밍을 할 때 IOCP 의 사용은 오래도록 변하지 않는 정답의 자리를 유지하고 있다. 여기에서 좀 더 성능에 욕심을 내고자 한다면 Windows Server 2012부터">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://leafbird.github.io/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/00.jpg">
+<meta property="og:image" content="http://leafbird.github.io/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/01.png">
+<meta property="og:image" content="http://leafbird.github.io/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/02.png">
+<meta property="og:image" content="http://leafbird.github.io/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/03.png">
+<meta property="article:published_time" content="2020-12-27T08:34:58.000Z">
+<meta property="article:modified_time" content="2023-01-07T02:18:49.830Z">
+<meta property="article:author" content="leafbird">
+<meta property="article:tag" content="c#">
+<meta property="article:tag" content="고성능">
+<meta property="article:tag" content="게임서버">
+<meta property="article:tag" content="Network">
+<meta property="article:tag" content="Socket">
+<meta property="article:tag" content="Pipeline">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://leafbird.github.io/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/00.jpg">
+
+
+<link rel="canonical" href="http://leafbird.github.io/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"http://leafbird.github.io/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/","path":"2020/12/27/C-고성능-서버-System-IO-Pipeline-도입-후기/","title":"C# 고성능 서버 - System.IO.Pipeline 도입 후기"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>C# 고성능 서버 - System.IO.Pipeline 도입 후기 | leafbird/devnote</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54KKVRTET0"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false}</script>
+  <script src="/devnote/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/devnote/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/devnote/rss2.xml" title="leafbird/devnote" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/devnote/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">leafbird/devnote</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="검색" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#System-IO-Pipeline-%EC%86%8C%EA%B0%9C"><span class="nav-number">1.</span> <span class="nav-text">System.IO.Pipeline 소개.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%9E%A5%EC%A0%90-%EB%B6%88%ED%95%84%EC%9A%94%ED%95%9C-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%B3%B5%EC%82%AC%EB%A5%BC-%EC%97%86%EC%95%A4%EB%8B%A4"><span class="nav-number">2.</span> <span class="nav-text">장점 : 불필요한 메모리 복사를 없앤다.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%9E%A5%EC%A0%90-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EB%B2%84%ED%8D%BC%EC%9D%98-%EA%B3%A0%EC%A0%95%EA%B8%B8%EC%9D%B4-%EC%A0%9C%EC%95%BD%EC%9D%84-%EC%97%86%EC%95%A0%EC%A4%80%EB%8B%A4"><span class="nav-number">3.</span> <span class="nav-text">장점 : 네트워크 버퍼의 고정길이 제약을 없애준다.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%8B%A8%EC%A0%90-%EB%84%88%EB%AC%B4-%EB%A7%8E%EC%9D%80-Task%EB%A5%BC-%EC%83%9D%EC%84%B1%ED%95%9C%EB%8B%A4"><span class="nav-number">4.</span> <span class="nav-text">단점 : 너무 많은 Task를 생성한다.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%9D%98%EB%AC%B8-Kestrel%EC%9D%80-Pipeline-%EB%95%8C%EB%AC%B8%EC%97%90-%EC%97%84%EC%B2%AD-%EB%B9%A8%EB%9D%BC%EC%A1%8C%EB%8A%94%EB%8D%B0"><span class="nav-number">5.</span> <span class="nav-text">의문 : Kestrel은 Pipeline 때문에 엄청 빨라졌는데?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%8C%80%EC%95%88-%EB%B6%88%ED%95%84%EC%9A%94%ED%95%9C-%EB%B3%B5%EC%82%AC%EA%B0%80-%EC%97%86%EB%8A%94-%EA%B0%80%EB%B3%80%EB%B2%84%ED%8D%BC%EB%A5%BC-%EC%A7%81%EC%A0%91-%EB%A7%8C%EB%93%A4%EC%9E%90"><span class="nav-number">6.</span> <span class="nav-text">대안 : 불필요한 복사가 없는 가변버퍼를 직접 만들자.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%A7%88%EC%B9%98%EB%A9%B4%EC%84%9C"><span class="nav-number">7.</span> <span class="nav-text">마치면서</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">leafbird</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/devnote/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">태그</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/leafbird" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leafbird" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/leafbird_tw" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;leafbird_tw" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="C# 고성능 서버 - System.IO.Pipeline 도입 후기 | leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C# 고성능 서버 - System.IO.Pipeline 도입 후기
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+
+      <time title="Post created: 2020-12-27 17:34:58" itemprop="dateCreated datePublished" datetime="2020-12-27T17:34:58+09:00">2020-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Updated at: 2023-01-07 11:18:49" itemprop="dateModified" datetime="2023-01-07T11:18:49+09:00">2023-01-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <img src="/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/00.jpg" class="">
+
+<p>2018년에 네트워크 레이어 성능을 끌어올리기 위해 도입했던 System.IO.Pipeline을 간단히 소개하고, 도입 후기를 적어본다. </p>
+<p>윈도우 OS에서 고성능을 내기 위한 소켓 프로그래밍을 할 때 IOCP 의 사용은 오래도록 변하지 않는 정답의 자리를 유지하고 있다. 여기에서 좀 더 성능에 욕심을 내고자 한다면 Windows Server 2012부터 등장한 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh997032(v=ws.11)">Registerd IO</a> 라는 새로운 선택지가 있다. 하지만 API가 C++ 로만 열려 있어서, C# 구현에서는 사용하기가 쉽지 않다. </p>
+<p>하지만 C#에도 고성능 IO를 위한 새로운 API가 추가되었다. <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ko-kr/dotnet/standard/io/pipelines">Pipeline</a> 이다.</p>
+<a id="more"></a>
+
+<h2 id="System-IO-Pipeline-소개"><a href="#System-IO-Pipeline-소개" class="headerlink" title="System.IO.Pipeline 소개."></a>System.IO.Pipeline 소개.</h2><p>pipeline을 처음 들었을 때는 IOCP의 뒤를 잇는 새로운 소켓 API인줄 알았다. C++의 RIO가 iocp를 완전히 대체할 수 있는 것처럼.</p>
+<p>RIO는 가장 핵심 요소인 <code>등록된 버퍼(registered buffer)</code> 외에, IO 요청 및 완료 통지 방식도 함께 제공하기 때문에 iocp를 완전히 드러내고 대신 사용할 수 있다. 반면 Pipeline은 RIO보다는 커버하는 범위가 좁아서, IOCP를 완전히 대체하는 물건이 될 수는 없다. 이벤트 통지는 기존의 방법들을 이용하면서, 메모리 버퍼의 운용만을 담당하는 라이브러리 이기 때문에 IOCP와 반드시 함께 사용해야 한다.</p>
+<p>Pipeline이라는 이름을 굉장히 잘 지었다. 이름처럼 <strong>메모리 버퍼를 끝없이 연결된 긴 파이프라인처럼 쓸 수 있게 해주는 라이브러리</strong> 이기 때문이다. 단위길이 만큼의 버퍼를 계속 이어붙여서 무한하게 이어진 가상의 버퍼를 만드는데, 이걸 너네가 만들면 시간도 오래 걸리고 버그도 넘나 많을테니 우리가 미리 만들었어. 그냥 가져다 쓰렴. 하고 내놓은 것이 Pipeline이다.</p>
+<img src="/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/01.png" class="">
+
+<p>(이미지 출처 : <a target="_blank" rel="noopener" href="https://devblogs.microsoft.com/dotnet/system-io-pipelines-high-performance-io-in-net/">devblogs.microsoft.com</a>)</p>
+<p>이미지의 초록색 부분은 <code>class Pipe</code> 의 내부 구조를 도식화한다. 일정한 크기의 작은 버퍼들이 링크드 리스트로 연결 되어있다. 내부 구조는 안에 숨겨져있고 외부로는 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ko-kr/dotnet/api/system.buffers.readonlysequence-1?view=net-5.0">ReadOnlySequence<T></a> 타입을 이용해 버퍼간 이음매가 드러나지 않는 seamless한 인터페이스만을 제공한다. 이것이 Pipeline의 핵심이다.</p>
+<p>이 외의 디테일한 부분은 Pipeline을 이해하기 쉽게 잘 설명한 <a target="_blank" rel="noopener" href="https://devblogs.microsoft.com/dotnet/system-io-pipelines-high-performance-io-in-net/">MS 블로그의 포스팅</a>이 있어 이것으로 대신한다.</p>
+<h2 id="장점-불필요한-메모리-복사를-없앤다"><a href="#장점-불필요한-메모리-복사를-없앤다" class="headerlink" title="장점 : 불필요한 메모리 복사를 없앤다."></a>장점 : 불필요한 메모리 복사를 없앤다.</h2><p>고성능 소켓 IO 구현에 관심이 있는 C++ 프로그래머라면 google protobuf의 <a target="_blank" rel="noopener" href="https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.io.zero_copy_stream">ZeroCopyStream</a> 을 이미 접해봤을지 모른다. 그렇다면 Pipeline의 중요한 장점을 쉽게 이해할 것이다. Pipeline의 버퍼 운용 아이디어는 프로토콜 버퍼의 ZeroCopyStream과 유사하기 때문이다. 소켓으로 데이터를 주고 받는 과정에서 발생하는 불필요한 버퍼간 메모리 복사를 최소한으로 줄여주어 성능향상을 꾀한다는 점에서 두 라이브러리가 추구하는 방향은 동일하다. </p>
+<p>프로그래밍에 미숙한 개발자가 만든 서버일수록 버퍼간 복사 발생이 빈번하게 발생한다. 커널모드 아래에서 일어나는 소켓버퍼와 NIC 버퍼간의 복사까지는 일단 관두더라도, 최소한 유저모드 위에서의 불필요한 버퍼 복사는 없어야 한다. </p>
+<p> 전송할 데이터 타입을 버퍼로 직렬화 하면서 한 번 복사하고, 이걸 소켓에다가 send 요청을 하자니 OVERLAPPED에 연결된 버퍼에다가 넣어줘야 해서 추가로 또 복사하고… send 완료 통지 받고 나면 transferred bytes 뒤에 줄서있을 미전송 데이터들을 다시 앞으로 당겨주느라 또 한번 복사가 발생하기 쉽다. recv 받은 뒤에도 메시지 단위 하나 분량 만큼만 읽어 fetching하고 나면 뒤에 남은 데이터들을 버퍼 맨 앞으로 당겨와야겠으니… 여기서 또 한 번 추가복사 하게 될것이다.</p>
+<p>서버가 감당할 통신량이 많아질수록 불필요한 복사들이 누적되어 쓸데없이 cpu power를 낭비하게 될텐데, Pipeline의 도입은 이런 부분을 쉽게 해결해 준다. msdn 블로그에서는 Pipeline을 사용하면 복잡한 버퍼 운용 구현을 대신 해결해주니까 프로그래머가 비즈니스 로직의 구현에 좀 더 집중할 수 있게 도와준다고 <del>약을 팔고</del> 설명하고 있다.</p>
+<h2 id="장점-네트워크-버퍼의-고정길이-제약을-없애준다"><a href="#장점-네트워크-버퍼의-고정길이-제약을-없애준다" class="headerlink" title="장점 : 네트워크 버퍼의 고정길이 제약을 없애준다."></a>장점 : 네트워크 버퍼의 고정길이 제약을 없애준다.</h2><p>가장 단순하게 소켓 레이어를 구현하면 송/수신용 고정 사이즈 <code>byte[]</code> 버퍼를 각각 하나씩 붙여서 만들게 될 것이다. 대략 구현중인 게임이 어느 정도 사이즈의 패킷을 주고 받는지를 <strong>귀납적</strong>으로 파악해서 (주로 게임 서버는 작은 사이즈 패킷을 많이 받고, 큰 사이즈 패킷을 많이 보낸다. 로그인할때, 캐릭터 선택할 때 보내는 패킷이 통상 제일 크다) 버퍼의 크기를 눈치껏 결정해서 <code>상수로 고정한다</code>. 버퍼를 거거익선으로 크게크게 잡으면 좋겠지만 대량의 동접을 처리해야 할때 메모리 사용량이 높아져서 부담이 된다. 그러니 적당히 오가는 패킷 사이즈를 봐서 터지지만 않을 정도의 고정길이 버퍼를 걸어두는 식으로 만들게 된다.</p>
+<p>이렇게 만들면 불안하다. 컨텐츠를 점점 추가하다가 언젠가 한 두번은 네트워크 버퍼 overflow가 발생해 버퍼 크기를 늘려잡고 다시 빌드해야 하기 일쑤다. 아니면 버퍼를 넘치게 만든 문제 패킷의 구조를 변경하거나 두 개의 패킷으로 쪼개는 등 다이어트를 시켜서 해결할 수도 있겠다. 어느쪽이든 고성능 서버의 네트워크 레이어 구현으로는 적당하지 않은 솔루션이다. 메모리를 더 써서 해결하거나, 개발에 제약(패킷의 최대 크기)을 두어 해결하거나. 모두 석연치 않다.</p>
+<p>Pipeline과 ZeroCopyStream 의 무한버퍼 컨셉은 이러한 고정길이 버퍼의 단점을 해결해준다. 처음엔 작은 크기의 버퍼만 가지고 있다가, 공간이 모자라면 추가로 더 할당받아 링크드 리스트 뒤에 붙이기만 하면 된다. 각각의 peer(= single socket)가 실제 사용하는 메모리 공간은 주고받는 데이터의 크기에 따라서 늘어나거나 줄어드는 유연성이 생긴다. 메모리를 효율적으로 사용하면서도 단일 메시지의 사이즈 제약도 없어진다.</p>
+<h2 id="단점-너무-많은-Task를-생성한다"><a href="#단점-너무-많은-Task를-생성한다" class="headerlink" title="단점 : 너무 많은 Task를 생성한다."></a>단점 : 너무 많은 Task를 생성한다.</h2><p>위의 두가지 장점만으로 Pipeline의 도입을 시도해볼 가치는 충분했다. 그래서 우리는 게임서버의 수신 버퍼를 Pipeline으로 대체하고, MS Azure 에서 F8s 급 인스턴스 수십대를 동원해 10만 동접 스트레스 테스트를 진행해 보았다. </p>
+<p>결과는 기대와 완전히 달랐는데.. <strong>Pipeline 도입 전보다 영 더 못한 성능을 보여줬다</strong>. 이건 뭐… cpu 사용량이 높고 낮아지는 것이 문제가 아니라, 동접이 일정수치 이상 오르면 서버가 아무 일도 처리하지 않고 멈춰버렸다. 반응없는 프로세스에서 덤프를 떠서 디버거로 살펴보면… 대기상태인 스레드가 잔뜩 생겨있고, 일해야 할 스레드가 부족해서 추가 스레드를 계속해서 만들어내고 있는 것처럼 보였다.</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// msdn 블로그에 소개된 코드 일부 발췌. Pipe를 하나 만들면 읽기/쓰기 Task를 2개 만든다.</span></span><br><span class="line"><span class="function"><span class="keyword">async</span> Task <span class="title">ProcessLinesAsync</span>(<span class="params">Socket socket</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> pipe = <span class="keyword">new</span> Pipe();</span><br><span class="line">    Task writing = FillPipeAsync(socket, pipe.Writer);</span><br><span class="line">    Task reading = ReadPipeAsync(pipe.Reader);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Task.WhenAll(reading, writing);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>원인은 Pipeline과 함께 사용하는 task (System.Threading.Tasks.Task) 들이었다.  <code>class Pipe</code> 인스턴스 하나를 쓸 때마다 파이프라인에 ‘읽기’와 ‘쓰기’를 담당하는 <code>class Task</code> 객체 두 개를 사용하게 된다. 수신버퍼에만 Pipe를 달면 소켓의 2배, 송수신 버퍼에 모두 달면 소켓의 4배수 만큼의 task가 생성 되어야 하기 때문이다. 게임서버 프로세스당 5,000 명의 동접을 받는다고 하면 최대 20,000개의 task가 생성되고, 이 중 상당수는 waiting 상태로 IO 이벤트를 기다리게 된다.</p>
+<p>task가 아무리 가볍다고 해도 네트워크 레이어에만 몇 만개의 task를 만드는 것은 그리 효율적이지 않다. TPL에 대한 이야기를 시작하면 해야 할 말이 아주 많기 때문에 별도의 포스팅으로 분리해야 할 것이다. 과감히 한 줄로 정리해보면, task는 상대적으로 OS의 커널오브젝트인 스레드보다 가볍다는 것이지 수천 수만개를 만들만큼 깃털같은 물건은 아닌 것이다.</p>
+<p>스레드가 코드를 한 단계씩 수행하다가 아직 완료되지 않은 task를 await 하는 구문을 만나면 호출 스택을 한 단계씩 거꾸로 올라가면서 동기 로직의 수행을 재개한다. 하지만 완료되지 않은 task를 만났다고 해서 그 즉시 task의 완료 및 반환값 획득을 포기하고 호출스택을 거슬러 올라가는 것은 아니다. 혹시 금방 task가 완료되지 않을까 하는 기대감으로 조금 대기하다가 완료될 기미가 보이지 않으면 그 제서야 태세를 전환하게 된다. 이 전략은 task가 동시성을 매끄럽게 처리하기 위해서는 바람직한 모습이지만, 아주 많은 개수의 task를 장시간(게임서버에서 다음 패킷을 받을 때까지의 평균 시간) 동안 대기시켜야 하는 네트워크 모델에 사용하기에는 적합하지 않다. 스레드들은 각 pipeline의 write task가 RecvComplete 통지를 받고 깨어나기를 기다리면서 수십만 cpu clock을 낭비하게 된다.</p>
+<h2 id="의문-Kestrel은-Pipeline-때문에-엄청-빨라졌는데"><a href="#의문-Kestrel은-Pipeline-때문에-엄청-빨라졌는데" class="headerlink" title="의문 : Kestrel은 Pipeline 때문에 엄청 빨라졌는데?"></a>의문 : Kestrel은 Pipeline 때문에 엄청 빨라졌는데?</h2><img src="/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/02.png" class="">
+
+<p>(이미지 출처 : <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/34440649/iis-vs-kestrel-performance-comparison">stackoverflow.com</a>)</p>
+<p>ASP.NET Core는 Pipeline으로 구현한 kestrel 웹서버에서 실행할 때 기존의 iis 기반보다 훨씬 더 향상된 퍼포먼스를 보여준다. Pipeline의 버퍼 운용 효율성으로 인한 이득을 제대로 누리고 있는 것이다. kestrel의 뛰어난 성능 결과를 보여주는 여러 벤치마크 결과들 덕분에 나도 기대를 가득 안고 서둘러 Pipeline을 도입하고 테스트 해보았으나.. 결과는 좋지 않았다.</p>
+<p>그럼 우리 게임서버에 도입한 테스트 결과는 왜 이리 처참한 것인가? ms 형들이 잘못 만들었을 리는 없으니 내가 가져다 붙이는 과정에 문제가 있었던 것인가? </p>
+<p>차이가 생기는 원인은 <strong>Kestrel은 http 통신을 하는 웹서버이고, 우리의 게임서버는 연결을 유지하고 있는 TCP 서버이기 때문</strong>이다. Kestrel은 통신량의 거의 전부가 socket이 열린 채로 길게 대기할 필요가 없기 때문에, task을 소켓의 2배수나 4배수만큼 오래도록 유지하고 있을 이유 자체가 없다. 그래서 단점으로 지적한 waiting task가 kestrel에서는 발생하지 않는다. 상술했던 단점을 다시 표현해 보자면 <strong>Pipeline의 사용시 기본적으로 task 대기가 발생하는 것을 성능 하락의 원인으로 볼 수 있지만, 이 task들의 수명 혹은 대기시간이 상당히 길다는 점과 함께 만나면 성능을 더욱 악화시키는 원인이 된다</strong>. Kestrel의 단명하는(?) 소켓들과 task들은 Pipeline와 함께 사용되면서 충분히 좋은 성능을 가져다 줄 것이다. 수많은 벤치마킹 결과들이 증명하듯이.</p>
+<h2 id="대안-불필요한-복사가-없는-가변버퍼를-직접-만들자"><a href="#대안-불필요한-복사가-없는-가변버퍼를-직접-만들자" class="headerlink" title="대안 : 불필요한 복사가 없는 가변버퍼를 직접 만들자."></a>대안 : 불필요한 복사가 없는 가변버퍼를 직접 만들자.</h2><p>우리는 게임서버에서 Pipeline을 다시 드러냈다. http와 유사하게 single pair request/response 통신 후 소켓을 닫아도 되는 경우가 아니면 Pipeline으로 성능상의 혜택을 보기는 힘들다고 판단했기 때문이다. 그래도 불필요한 메모리복사는 만들고 싶지 않으니 메모리 버퍼 운용하는 부분만 직접 구현해 사용하기로 했다.</p>
+<img src="/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/03.png" class="">
+
+<p>클래스 이름이 Pipeline과 protobuf를 모두 가져다 섞어놓은 느낌이 들겠지만 착각일 뿐이다. 두 api를 모두 사용해본 경험의 영향을 받긴 했지만… *Stream.cs 클래스들은 실제로 <code>System.IO.Stream</code>을 상속받아서 이름이 좀 비슷해졌다. 이 Stream 구현들이 단위버퍼들간의 연결을 seamless하게 쓸 수 있게해주는 역할을 한다. 주요 구현을 담고 있으나 사용계층에 노출될 필요는 없기 때문에 Detail 아래로 숨겨두었다. 사용자는 부모타입인 Stream 추상 클래스만 보게 된다.</p>
+<p>인터페이스로 <code>ReadOnlySequence&lt;T&gt;</code>를 사용하지 않은 이유는 이 구현을 Unity3D로 만든 클라이언트에서도 똑같이 사용하기 위해서였다. 현시점 유니티의 mono framework가 지원하는 C# 문법 버전이 낮아서 <code>ReadOnlySequence&lt;T&gt;</code>를 지원하지 않기 때문이다. 그런데 Stream 을 이용해도 어렵지 않게 seamless 를 구현할 수 있었고, 실제 사용하기에도 스트림 형태가 훨씬 익숙하고 편해서 결과적으로는 더 만족스러운 선택이었다. <code>ReadOnlySequence&lt;T&gt;</code> 가 뭔지 모르는 프로그래머도 Stream은 알고 있을 것이다.</p>
+<p>실제 사용 계층으로 노출하는 클래스는 아래의 세 클래스 만으로 정리했다. </p>
+<ul>
+<li><code>MemoryPipe</code> : 소켓 수신버퍼 처리 전용. System.IO.Pipeline과 유사하다.</li>
+<li><code>SendBuffer</code> : 소켓 송신버퍼 처리 전용. </li>
+<li><code>ZeroCopyBuffer</code> : 네트워크 버퍼가 아닌 범용적인 용도의 인터페이스.</li>
+</ul>
+<p>패킷을 보낼때는 데이터 타입을 버퍼로 직렬화 한 후, 이 버퍼를 메모리 복사 없이 소켓에 그대로 연결해주기 위한 추가 처리가 있어야 하는데, 이건 송신 버퍼에만 필요한 동작이라서 클래스를 별도로 나누었다. 각 용도에 특화된 메서드가 추가 구현 되어있을 뿐 코어는 모두 비슷하다. 모두 단위 버퍼를 줄줄이 비엔나처럼 연결해 들고 있는 역할을 한다.</p>
+<p>이들 중에 가장 기본이 되는 ZeroCopyBuffer 를 조금 보면 아래와 같다. </p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Cs.ServerEngine.Network.Buffer</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">class</span> <span class="title">ZeroCopyBuffer</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">readonly</span> <span class="title">Queue</span>&lt;<span class="title">LohSegment</span>&gt; segments</span> = <span class="keyword">new</span> Queue&lt;LohSegment&gt;();</span><br><span class="line">    <span class="keyword">private</span> LohSegment last;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> SegmentCount =&gt; <span class="keyword">this</span>.segments.Count;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">int</span> <span class="title">CalcTotalSize</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">      <span class="built_in">int</span> result = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">foreach</span> (<span class="keyword">var</span> data <span class="keyword">in</span> <span class="keyword">this</span>.segments)</span><br><span class="line">      &#123;</span><br><span class="line">        result += data.DataSize;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> BinaryWriter <span class="title">GetWriter</span>(<span class="params"></span>)</span> =&gt; <span class="keyword">new</span> BinaryWriter(<span class="keyword">new</span> ZeroCopyOutputStream(<span class="keyword">this</span>));</span><br><span class="line">    <span class="function"><span class="keyword">public</span> BinaryReader <span class="title">GetReader</span>(<span class="params"></span>)</span> =&gt; <span class="keyword">new</span> BinaryReader(<span class="keyword">new</span> ZeroCopyInputStream(<span class="keyword">this</span>));</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">internal</span> <span class="keyword">void</span> <span class="title">Write</span>(<span class="params"><span class="built_in">byte</span>[] buffer, <span class="built_in">int</span> offset, <span class="built_in">int</span> count</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">      <span class="keyword">while</span> (count &gt; <span class="number">0</span>)</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.last == <span class="literal">null</span> || <span class="keyword">this</span>.last.IsFull)</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="keyword">this</span>.last = LohSegment.Create(LohPool.SegmentSize.Size4k);</span><br><span class="line">          <span class="keyword">this</span>.segments.Enqueue(<span class="keyword">this</span>.last);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">int</span> copied = <span class="keyword">this</span>.last.AddData(buffer, offset, count);</span><br><span class="line"></span><br><span class="line">        offset += copied;</span><br><span class="line">        count -= copied;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">internal</span> LohSegment[] <span class="title">Move</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">      <span class="keyword">var</span> result = <span class="keyword">this</span>.segments.ToArray();</span><br><span class="line">      <span class="keyword">this</span>.segments.Clear();</span><br><span class="line">      <span class="keyword">this</span>.last = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">internal</span> LohSegment <span class="title">Peek</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.segments.Peek();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">internal</span> <span class="keyword">void</span> <span class="title">PopHeadSegment</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">      <span class="keyword">var</span> segment = <span class="keyword">this</span>.segments.Dequeue();</span><br><span class="line">      segment.ToRecycleBin();</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.segments.Count == <span class="number">0</span>)</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">this</span>.last = <span class="literal">null</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>본 주제와 관련한 인터페이스만 몇 개 간추려 보았다. <code>Queue&lt;LogSegment&gt;</code> 가 Pipeline 안에 있는 단위버퍼의 링크드 리스트 역할을 한다. Write()와 Move()는 메모리 복사 없이 데이터를 쓰는 인터페이스가 되고, Peek(), PopHeadSegment()는 데이터를 읽는 인터페이스가 되는데, internal 접근자니까 실제 사용계층에는 노출하지 않는다. Detail 하위의 *Stream 클래스를 위한 메서드들이다.</p>
+<p>조각난 버퍼를 하나의 가상버퍼처럼 추상화해주는 로직은 *Stream들이 담고있다. System.IO.Stream을 상속했기 때문에 사용 계층에서는 보통의 파일스트림, 메모리 스트림을 다루던 방식과 똑같이 값을 읽고 쓰면 된다. 사용한 segment들을 새지 않게 잘 pooling하고, 버퍼 오프셋 계산할때 오차없이 더하기 빼기 잘해주는 코드가 전부인지라 굳이 옮겨붙이지는 않는다. </p>
+<p>이렇게 하니 <code>ZeroCopyBuffer</code>는 가상의 무한 버퍼 역할을 하고, 사용 계층에는 Stream 형식의 인터페이스를 제공하는 <code>System.IO.Pipeline</code>의 유사품이 되었다. 제공되는 메서드 중에는 <code>async method</code> 가 하나도 없으니 cpu clock을 불필요하게 낭비할 일도 없다. 이렇게 디자인 하는것이 기존의 iocp 기반 소켓 구현에 익숙한 프로그래머에겐 더 친숙한 모델이면서, 성능상으로도 Pipeline보다 훨씬 낫고(tcp 기반 게임서버 한정), Unity3D처럼 최신의 Memory api가 지원 안되는 환경에서도 문제없이 사용할 수 있다.</p>
+<h2 id="마치면서"><a href="#마치면서" class="headerlink" title="마치면서"></a>마치면서</h2><p><code>System.IO.Pipeline</code>은 ASP.NET Core의 성능을 크게 끌어올린 네트워크 버퍼 운용 라이브러리다. 이를 적용하면 네트워크 버퍼구현의 여러가지 문제점들과 boilerplate한 구현들을 손쉽게 해결할 수 있으나, 최소 2 tasks/peer를 소켓의 수명만큼 열어두어야 하기 때문에 소켓을 긴 시간 유지하는 타입의 TCP서버라면 도입 전에 신중한 성능 테스트를 거쳐야 한다. </p>
+<p>사이즈가 무한인 가상의 버퍼라는 컨셉만을 가져와 직접 만들어 사용중인 <code>ZeroCopyBuffer</code> 모듈의 인터페이스도 간단하게 소개해 보았다. Unity3D 클라이언트 네트워크 모듈에도 함께 사용하기 위해 <code>ReadOnlySequence&lt;T&gt;</code> 대신 System.IO.Stream으로 추상화한 인터페이스를 제공했는데, 이렇게 하니 요구사항을 충분히 만족하면서도 사용 계층에게는 더 익숙한 형태의 인터페이스를 제공할 수 있어서 만족스러웠다.</p>
+<p>본 포스팅에는 단위버퍼로 이용한 구현체인 <code>LohSegment</code>에 대한 소개가 없었다. 글 분량 조절에 실패하여 일부로 언급하지 않았는데, 다음에 가비지 컬렉터를 주제로 포스팅하면서 추가로 다뤄볼 예정이다. </p>
+<p>참고:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.slideshare.net/sm9kr/windows-registered-io-rio">https://www.slideshare.net/sm9kr/windows-registered-io-rio</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ko-kr/dotnet/standard/io/pipelines">https://docs.microsoft.com/ko-kr/dotnet/standard/io/pipelines</a></li>
+<li><a target="_blank" rel="noopener" href="https://devblogs.microsoft.com/dotnet/system-io-pipelines-high-performance-io-in-net/">https://devblogs.microsoft.com/dotnet/system-io-pipelines-high-performance-io-in-net/</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/devnote/tags/c/" rel="tag"># c#</a>
+              <a href="/devnote/tags/%EA%B3%A0%EC%84%B1%EB%8A%A5/" rel="tag"># 고성능</a>
+              <a href="/devnote/tags/%EA%B2%8C%EC%9E%84%EC%84%9C%EB%B2%84/" rel="tag"># 게임서버</a>
+              <a href="/devnote/tags/Network/" rel="tag"># Network</a>
+              <a href="/devnote/tags/Socket/" rel="tag"># Socket</a>
+              <a href="/devnote/tags/Pipeline/" rel="tag"># Pipeline</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/devnote/2020/12/26/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-FILE-LINE-%EB%8C%80%EC%B2%B4%EC%A0%9C/" rel="prev" title="C# 고성능 서버 - __FILE__, __LINE__ 대체제">
+                  <i class="fa fa-chevron-left"></i> C# 고성능 서버 - __FILE__, __LINE__ 대체제
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/devnote/2021/01/01/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-Thread-Local-Storage/" rel="next" title="C# 고성능 서버 - Thread Local Storage">
+                  C# 고성능 서버 - Thread Local Storage <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">leafbird</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/devnote/js/comments.js"></script><script src="/devnote/js/utils.js"></script><script src="/devnote/js/schemes/muse.js"></script><script src="/devnote/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"leafbird","repo":"devnote","client_id":"27d8b6b6501ea8561848","client_secret":"86181a3464a298b3cbce1b1aadd362004ca5494f","admin_user":"leafbird","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"395f68d46b05947580bff2353aab5707"}</script>
+<script src="/devnote/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

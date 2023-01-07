@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/devnote/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/devnote/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/devnote/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/devnote/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/devnote/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CNoto+Sans+KR:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js"></script>
+
+    <meta name="description" content="지금 참여중인 프로젝트에서 얼마전에 코딩 컨벤션을 통일하는 작업이 있었습니다.본격적으로 컨벤션을 통일하고 이제 한 서너달? 정도 지난 것 같네요.  처음에는 팀원 대다수가 많이 혼란스러워 했지만 이제 어느 정도 시간이 지나고 나니 팀 내 프로그래머 모두가 거의 유사한 스타일의 코드를 작성하게 됐습니다. 이렇게 되니 전보다 코드 가독성이 좋아지고 협업을 할">
+<meta property="og:type" content="article">
+<meta property="og:title" content="google c++ style guide">
+<meta property="og:url" content="http://leafbird.github.io/devnote/2014/07/19/google-c-plus-plus-style-guide/index.html">
+<meta property="og:site_name" content="leafbird&#x2F;devnote">
+<meta property="og:description" content="지금 참여중인 프로젝트에서 얼마전에 코딩 컨벤션을 통일하는 작업이 있었습니다.본격적으로 컨벤션을 통일하고 이제 한 서너달? 정도 지난 것 같네요.  처음에는 팀원 대다수가 많이 혼란스러워 했지만 이제 어느 정도 시간이 지나고 나니 팀 내 프로그래머 모두가 거의 유사한 스타일의 코드를 작성하게 됐습니다. 이렇게 되니 전보다 코드 가독성이 좋아지고 협업을 할">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://leafbird.github.io/devnote/images/140719_00.png">
+<meta property="article:published_time" content="2014-07-19T02:12:37.000Z">
+<meta property="article:modified_time" content="2023-01-07T02:18:49.828Z">
+<meta property="article:author" content="leafbird">
+<meta property="article:tag" content="coding convention">
+<meta property="article:tag" content="c++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://leafbird.github.io/devnote/images/140719_00.png">
+
+
+<link rel="canonical" href="http://leafbird.github.io/devnote/2014/07/19/google-c-plus-plus-style-guide/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"http://leafbird.github.io/devnote/2014/07/19/google-c-plus-plus-style-guide/","path":"2014/07/19/google-c-plus-plus-style-guide/","title":"google c++ style guide"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>google c++ style guide | leafbird/devnote</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54KKVRTET0"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false}</script>
+  <script src="/devnote/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/devnote/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/devnote/rss2.xml" title="leafbird/devnote" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/devnote/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">leafbird/devnote</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="검색" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%8B%A4%EC%8B%9C-%ED%95%9C-%EB%B2%88-%EB%A7%81%ED%81%AC"><span class="nav-number">1.</span> <span class="nav-text">다시 한 번 링크 :</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%B3%B8%EA%B2%A9-%EC%BB%A8%EB%B2%A4%EC%85%98-%EC%A0%81%EC%9A%A9%EC%9D%84-%EC%9C%84%ED%95%9C-%ED%8C%81"><span class="nav-number">2.</span> <span class="nav-text">본격 컨벤션 적용을 위한 팁 :</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vs2013%EC%9D%98-%EC%84%9C%EC%8B%9D-%EC%84%A4%EC%A0%95-%EC%98%B5%EC%85%98-%ED%99%9C%EC%9A%A9"><span class="nav-number">2.1.</span> <span class="nav-text">vs2013의 서식 설정 옵션 활용</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%8F%AC%EB%A7%B7%ED%8C%85%EC%9D%84-%EC%9E%90%EB%8F%99%EC%9C%BC%EB%A1%9C-%EA%B3%A0%EC%B3%90%EC%A3%BC%EB%8A%94-AStyle-%ED%99%9C%EC%9A%A9"><span class="nav-number">2.2.</span> <span class="nav-text">포맷팅을 자동으로 고쳐주는 AStyle 활용</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">leafbird</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/devnote/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">태그</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/leafbird" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leafbird" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/leafbird_tw" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;leafbird_tw" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2014/07/19/google-c-plus-plus-style-guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="google c++ style guide | leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          google c++ style guide
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+
+      <time title="Post created: 2014-07-19 11:12:37" itemprop="dateCreated datePublished" datetime="2014-07-19T11:12:37+09:00">2014-07-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Updated at: 2023-01-07 11:18:49" itemprop="dateModified" datetime="2023-01-07T11:18:49+09:00">2023-01-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>지금 참여중인 프로젝트에서 얼마전에 코딩 컨벤션을 통일하는 작업이 있었습니다.<br>본격적으로 컨벤션을 통일하고 이제 한 서너달? 정도 지난 것 같네요. </p>
+<p>처음에는 팀원 대다수가 많이 혼란스러워 했지만 이제 어느 정도 시간이 지나고 나니 팀 내 프로그래머 모두가 거의 유사한 스타일의 코드를 작성하게 됐습니다. 이렇게 되니 전보다 코드 가독성이 좋아지고 협업을 할 때 이런 저런 많은 도움이 됩니다. </p>
+<a id="more"></a>
+
+<p>사실 컨벤션이 통일되면 좋다는 것은 아주 상식적인 말입니다만, 개개인이 선호하는 스타일이 다 다르기 때문에 통일을 하기가 쉽지 않다는 것이 문제입니다. 팀에서도 그동안 몇 차례 시도 했었지만 잘 안되었다가, 이번에서야 겨우 성공했어요. </p>
+<p>이번에 컨벤션의 통일을 성공한 주된 요인 중의 하나는 구글 내부에서 사용하는 컨벤션을 정리해서 공개한 <a target="_blank" rel="noopener" href="http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml">구글 C++ 스타일 가이드</a>라고 볼 수 있습니다. 이 문서의 내용을 가져와 몇 가지 사항만 프로젝트에 맞게 조정하여 적용 하였지요. 구글 컨벤션의 코드들은 처음 볼 땐 좀 낮설었지만 적응하고 나니 이젠 괜찮군요. </p>
+<p>팀에 도입하는 과정에서, 팀 내 능력자분들께서 원문을 <a target="_blank" rel="noopener" href="http://jongwook.github.io/google-styleguide/trunk/cppguide.xml">한글로 깔끔하게 번역 &amp; 정리</a>해 주셨습니다.<br><a target="_blank" rel="noopener" href="https://www.google.co.kr/search?q=google+c+++style+guide+%EB%B2%88%EC%97%AD&oq=gooel+c+++st&aqs=chrome.2.69i57j0l5.5908j0j4&sourceid=chrome&es_sm=93&ie=UTF-8">구글에서 검색해보니</a> 오래전에 번역되다가 말았던 문서들은 몇 개 보이는데 이번에 팀 내에서 번역한 문서는 아직 공유가 널리 안 된 것 같아서 다시 한 번 소개도 할 겸 포스팅 합니다. - 이 글의 목적입니다.</p>
+<p>일단 간단한 샘플을 한 번 볼까요? (제가 구글 컨벤션을 100% 체득(?)한 상황은 아니지만, 대략적으로 분위기만 한 번 둘러보죠.)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> &#123;</span></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  Test();</span><br><span class="line">  <span class="keyword">virtual</span> ~Test();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">some_value</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">set_some_value</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">    some_value_ = val;      <span class="comment">// 간단한 예제이니 inline으로 짜봅니다.</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">private</span>:</span><br><span class="line">  <span class="keyword">int</span> some_value_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>구글 컨벤션의 아주 일부 규칙들이 몇 개 적용된 클래스 선언입니다. </p>
+<ul>
+<li>opening brace을 아랫줄로 내리지 않고 바로 붙여쓰는 것이나, </li>
+<li>들여쓰기는 스페이스 2칸.</li>
+<li>클래스의 멤버변수는 c스타일처럼 <code>_</code>로 연결된 소문자 단어를 사용하고 <code>_</code>를 끝에 붙인다는 점</li>
+<li>getter는 멤버 변수의 이름과 같게, </li>
+<li>setter는 <code>set_변수명()</code>의 규칙을 지닌다. </li>
+<li>클래스 접근 권한 지정자(public, private)는 스페이스 1칸 들여쓰기.</li>
+</ul>
+<p>…정도가 보이네요. (변수명 선언 방식이 헝가리안 표기가 아니예요!)</p>
+<p>구글 컨벤션을 따르는 코드의 예제는 breakpad, protobuf같은 구글의 오픈소스 프로젝트에서 볼 수 있습니다. 구글 코드 이외에도 몇몇 오픈소스들을 보면 구글 컨벤션의 영향을 받은듯한 코드들이 제법 보입니다. 얼마전에 잠시 가지고 놀았던 <a target="_blank" rel="noopener" href="https://github.com/msgpack/msgpack-c">msgpack</a>도 어느정도 구글 컨벤션의 영향을 받은 듯한 모양새를 가지고 있더군요. </p>
+<p>구글 컨벤션은 위의 예제에서 보이는 단순한 들여쓰기, 줄바꿈 같은 형식 이야기 말고도 디자인 철학과 관련된 규약들이 많이 있어서, 평소 생각하지 못했던 여러가지 이슈들을 상기시켜줍니다. 문서 내용을 읽는 것만 해도 자신의 코딩 스타일에 대해 많은 점검(?)을 할 수 있어요.</p>
+<p>개인적으로는 팀에서 정해진 룰 때문에 먼저 좀 겪어보게 되었는데 나쁘지 않더군요. 아직까지 마음에 안 드는 조항들도 몇 가지 있지만, 앞으로는 팀 코드가 아닌 개인 작업을 할 때에도 구글 컨벤션을 지켜 코딩해볼 생각입니다. </p>
+<h2 id="다시-한-번-링크"><a href="#다시-한-번-링크" class="headerlink" title="다시 한 번 링크 :"></a>다시 한 번 링크 :</h2><ul>
+<li>원문 : <a target="_blank" rel="noopener" href="http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml">http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml</a></li>
+<li>번역문 : <a target="_blank" rel="noopener" href="http://jongwook.github.io/google-styleguide/trunk/cppguide.xml">http://jongwook.github.io/google-styleguide/trunk/cppguide.xml</a></li>
+</ul>
+<h2 id="본격-컨벤션-적용을-위한-팁"><a href="#본격-컨벤션-적용을-위한-팁" class="headerlink" title="본격 컨벤션 적용을 위한 팁 :"></a>본격 컨벤션 적용을 위한 팁 :</h2><h3 id="vs2013의-서식-설정-옵션-활용"><a href="#vs2013의-서식-설정-옵션-활용" class="headerlink" title="vs2013의 서식 설정 옵션 활용"></a>vs2013의 서식 설정 옵션 활용</h3><p>visual studio를 이용해 윈도우에서 개발하는 환경일 경우, IDE로 vs2013을 사용하면 많은 도움이 됩니다. 빌드는 예전 버전으로 하더라도 IDE만 vs2013을 사용할 수 있습니다. 2013에는 IDE의 자동 formatting 방식을 직접 설정할 수 있어요.</p>
+<img src="/devnote/images/140719_00.png" class="center">
+
+<p>게다가 vs2013 Update 2를 설치하면 설정 가능한 옵션이 좀 더 늘어납니다! Update 3는 아직 안나왔지만 나오면 설정이 더 늘어날지도!!</p>
+<h3 id="포맷팅을-자동으로-고쳐주는-AStyle-활용"><a href="#포맷팅을-자동으로-고쳐주는-AStyle-활용" class="headerlink" title="포맷팅을 자동으로 고쳐주는 AStyle 활용"></a>포맷팅을 자동으로 고쳐주는 AStyle 활용</h3><p><a target="_blank" rel="noopener" href="http://astyle.sourceforge.net/">AStyle</a>이란 멋진 프로그램이 있어요. 포맷팅을 자동으로 고쳐주는 프로그램인데, 오픈소스로 되어있어 직접 수정 &amp; 활용할 수 있습니다. 이걸 perforce 클라이언트인 p4v.exe pending changelist 창에서 일괄 적용하게 설정할 수도 있고, vs 플러그인으로 만들어서 코딩 중에도 실행해 볼 수 있어요. 포맷팅을 알아서 고쳐주니까 코딩중에는 들여쓰기가 어떻고 빈 칸이 어떤지 일일이 신경 쓸 필요 없으니 아주 편리합니다 -_-)b 강추예요.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/devnote/tags/coding-convention/" rel="tag"># coding convention</a>
+              <a href="/devnote/tags/c/" rel="tag"># c++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/devnote/2014/07/16/the-benz-programmer/" rel="prev" title="벤츠타는 프로그래머">
+                  <i class="fa fa-chevron-left"></i> 벤츠타는 프로그래머
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/devnote/2014/07/21/octopress-tips-on-windows/" rel="next" title="Octopress Tips on windows">
+                  Octopress Tips on windows <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">leafbird</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/devnote/js/comments.js"></script><script src="/devnote/js/utils.js"></script><script src="/devnote/js/schemes/muse.js"></script><script src="/devnote/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"leafbird","repo":"devnote","client_id":"27d8b6b6501ea8561848","client_secret":"86181a3464a298b3cbce1b1aadd362004ca5494f","admin_user":"leafbird","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"b5bfea9ba5aa90bafcf6aa55b5100723"}</script>
+<script src="/devnote/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

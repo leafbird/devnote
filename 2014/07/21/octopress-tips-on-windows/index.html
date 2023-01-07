@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/devnote/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/devnote/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/devnote/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/devnote/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/devnote/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CNoto+Sans+KR:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js"></script>
+
+    <meta name="description" content="개인적으로 Octopress를 윈도우에서 사용하도록 구성하면서 도움이 되었던 팁들을 몇가지 정리해 보려고 합니다.앞으로 계속 사용해 가면서 추가적인 팁이 생길 때에도 이 포스팅에 업데이트 할 생각이예요.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Octopress Tips on windows">
+<meta property="og:url" content="http://leafbird.github.io/devnote/2014/07/21/octopress-tips-on-windows/index.html">
+<meta property="og:site_name" content="leafbird&#x2F;devnote">
+<meta property="og:description" content="개인적으로 Octopress를 윈도우에서 사용하도록 구성하면서 도움이 되었던 팁들을 몇가지 정리해 보려고 합니다.앞으로 계속 사용해 가면서 추가적인 팁이 생길 때에도 이 포스팅에 업데이트 할 생각이예요.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://leafbird.github.io/devnote/images/140721_00.png">
+<meta property="og:image" content="http://leafbird.github.io/devnote/images/140721_01.PNG">
+<meta property="og:image" content="http://leafbird.github.io/devnote/images/140721_02.PNG">
+<meta property="article:published_time" content="2014-07-21T07:44:48.000Z">
+<meta property="article:modified_time" content="2023-01-07T02:18:49.828Z">
+<meta property="article:author" content="leafbird">
+<meta property="article:tag" content="octopress">
+<meta property="article:tag" content="windows">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://leafbird.github.io/devnote/images/140721_00.png">
+
+
+<link rel="canonical" href="http://leafbird.github.io/devnote/2014/07/21/octopress-tips-on-windows/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"http://leafbird.github.io/devnote/2014/07/21/octopress-tips-on-windows/","path":"2014/07/21/octopress-tips-on-windows/","title":"Octopress Tips on windows"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Octopress Tips on windows | leafbird/devnote</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54KKVRTET0"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false}</script>
+  <script src="/devnote/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/devnote/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/devnote/rss2.xml" title="leafbird/devnote" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/devnote/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">leafbird/devnote</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="검색" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%9C%88%EB%8F%84%EC%9A%B0-%EC%8B%A4%ED%96%89-Windows-R-%EC%B0%BD%EC%97%90%EC%84%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%8C%A8%EC%8A%A4%EB%A1%9C-%EB%B0%94%EB%A1%9C-%EC%9D%B4%EB%8F%99-%ED%95%98%EA%B8%B0"><span class="nav-number">1.</span> <span class="nav-text">윈도우 실행 (Windows + R) 창에서 블로그 패스로 바로 이동 하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#blogpath-%EC%9D%B4%EC%99%B8%EC%97%90-%EC%9E%90%EC%A3%BC-%EC%A0%91%EA%B7%BC%ED%95%98%EB%8A%94-%EA%B2%BD%EB%A1%9C%EB%8A%94-%EB%B0%94%EB%A1%9C%EA%B0%80%EA%B8%B0%EB%A5%BC-%EB%A7%8C%EB%93%A0%EB%8B%A4"><span class="nav-number">2.</span> <span class="nav-text">%blogpath% 이외에 자주 접근하는 경로는 바로가기를 만든다</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%9E%90%EC%A3%BC-%EC%93%B0%EB%8A%94-%EB%8F%99%EC%9E%91%EB%93%A4%EC%9D%80-%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EB%A1%9C-%EC%9E%90%EB%8F%99%ED%99%94%ED%95%9C%EB%8B%A4"><span class="nav-number">3.</span> <span class="nav-text">자주 쓰는 동작들은 스크립트로 자동화한다</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%9E%90%EB%8F%99%ED%99%94-%EC%98%88%EC%8B%9C-%EC%83%88%EA%B8%80-%EC%9E%91%EC%84%B1%EC%9D%84-%EA%B0%84%ED%8E%B8%ED%95%98%EA%B2%8C"><span class="nav-number">3.1.</span> <span class="nav-text">자동화 예시 : 새글 작성을 간편하게</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-conflict-%EC%97%AC%EB%9F%AC-%EB%A8%B8%EC%8B%A0%EC%97%90%EC%84%9C-%ED%95%98%EB%82%98%EC%9D%98-%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%97%90-%EB%B2%88%EA%B0%88%EC%95%84-%ED%8F%AC%EC%8A%A4%ED%8C%85-%ED%95%98%EB%8A%94-%EA%B2%BD%EC%9A%B0"><span class="nav-number">4.</span> <span class="nav-text">git conflict : 여러 머신에서 하나의 블로그에 번갈아 포스팅 하는 경우</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">leafbird</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/devnote/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">태그</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/leafbird" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leafbird" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/leafbird_tw" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;leafbird_tw" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2014/07/21/octopress-tips-on-windows/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Octopress Tips on windows | leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Octopress Tips on windows
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+
+      <time title="Post created: 2014-07-21 16:44:48" itemprop="dateCreated datePublished" datetime="2014-07-21T16:44:48+09:00">2014-07-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Updated at: 2023-01-07 11:18:49" itemprop="dateModified" datetime="2023-01-07T11:18:49+09:00">2023-01-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>개인적으로 Octopress를 윈도우에서 사용하도록 구성하면서 도움이 되었던 팁들을 몇가지 정리해 보려고 합니다.<br>앞으로 계속 사용해 가면서 추가적인 팁이 생길 때에도 이 포스팅에 업데이트 할 생각이예요. </p>
+<a id="more"></a>
+
+<h2 id="윈도우-실행-Windows-R-창에서-블로그-패스로-바로-이동-하기"><a href="#윈도우-실행-Windows-R-창에서-블로그-패스로-바로-이동-하기" class="headerlink" title="윈도우 실행 (Windows + R) 창에서 블로그 패스로 바로 이동 하기"></a>윈도우 실행 (Windows + R) 창에서 블로그 패스로 바로 이동 하기</h2><img src="/devnote/images/140721_00.png" class="center">
+
+<p>이거야 뭐… 환경변수에 블로그 경로를 넣어주면 된다. 이렇게 하면 실행 창에 <code>%변수이름%</code>만 입력하면 바로 탐색기를 열 수 있다.<br>환경 변수 설정을 해주는 PowerShell 스크립트를 만들어서 블로그 폴더의 루트에 놔두면 경로를 옮기거나 depot을 새로 받아도 편하게 셋팅할 수 있다. </p>
+<figure class="highlight powershell"><figcaption><span>ps_register_path.ps1</span><a target="_blank" rel="noopener" href="https://github.com/leafbird/devnote/blob/master/ps_register_path.ps1">code from github</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 현재 스크립트의 실행 경로를 얻는다.</span></span><br><span class="line"><span class="variable">$blog_path</span> = (<span class="built_in">Get-Item</span> <span class="literal">-Path</span> <span class="string">&quot;.\&quot;</span> <span class="literal">-Verbose</span>).FullName</span><br><span class="line"></span><br><span class="line"><span class="comment"># 경로 확인</span></span><br><span class="line"><span class="string">&quot;blog path : <span class="variable">$blog_path</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 실행 경로를 환경변수에 등록(유저 레벨)</span></span><br><span class="line">[<span class="type">Environment</span>]::SetEnvironmentVariable(<span class="string">&quot;blogpath&quot;</span>, <span class="variable">$blog_path</span>, <span class="string">&quot;User&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># output result</span></span><br><span class="line"><span class="string">&quot;Environment Variable update. &#123;0&#125; = &#123;1&#125;&quot;</span> <span class="operator">-f</span> <span class="string">&quot;blogpath&quot;</span>, <span class="variable">$blog_path</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># pause</span></span><br><span class="line"><span class="built_in">Write-Host</span> <span class="string">&quot;Press any key to continue ...&quot;</span></span><br><span class="line"><span class="variable">$x</span> = <span class="variable">$host</span>.UI.RawUI.ReadKey(<span class="string">&quot;NoEcho,IncludeKeyDown&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="blogpath-이외에-자주-접근하는-경로는-바로가기를-만든다"><a href="#blogpath-이외에-자주-접근하는-경로는-바로가기를-만든다" class="headerlink" title="%blogpath% 이외에 자주 접근하는 경로는 바로가기를 만든다"></a>%blogpath% 이외에 자주 접근하는 경로는 바로가기를 만든다</h2><img src="/devnote/images/140721_01.PNG" class="center">
+
+<p>octopress를 쓰면서 커맨드를 실행하는 주된 경로는 root path다. 이외에도 첨부파일 경로나 글 본문을 저장하는 <code>./source/_posts</code> 등이 흔히 쓰이는데, 이런 경로에 대한 .lnk 파일을 만들어두면 훨씬 편하다.<br>위 스샷처럼 바로가기를 만들어두고 <code>po</code>정도 타이핑하고 엔터하면 <code>./source/_posts</code>로 이동한다.</p>
+<p>나는 탐색기를 주로 이용하고자 이렇게 했지만 cmd창에서 바로가기 하고 싶다면 symbolic link를 만들면 될거다. </p>
+<p>웹페이지 바로가기도 만들어 두면 편하게 이동 가능. (웹 바로가기는 .url 확장자. 브라우저 주소창에서 슥 끌어다 놓으면 생김)</p>
+<h2 id="자주-쓰는-동작들은-스크립트로-자동화한다"><a href="#자주-쓰는-동작들은-스크립트로-자동화한다" class="headerlink" title="자주 쓰는 동작들은 스크립트로 자동화한다"></a>자주 쓰는 동작들은 스크립트로 자동화한다</h2><img src="/devnote/images/140721_02.PNG" class="center">
+
+<p><strong>Note : 이 항목이 이 포스팅의 핵심 입니다.</strong></p>
+<p>Octopress를 쓰면서 마음에 드는 점 중에 하나인데, 마음만 먹으면 조작 과정을 내맘대로 스크립팅할 수 있다는 점이다.<br>처음 octopress를 이용하려면 갖가지 명령어들을 일일이 숙지하고 사용하기가 불편한 것이 사실이지만,<br>batch파일과 PowerShell을 통해서 얼마든지 내 입맛대로 자동화 할 수 있다.<br>PowerShell을 한 번 다뤄보고 싶었지만 딱히 기회가 없었는데 이참에 다뤄보게 되어 재미있었다.<br>지금은 몇 개 안되긴 하지만 개인적으로 만들어 사용중인 스크립트들은 <a target="_blank" rel="noopener" href="http://github.com/leafbird/devnote/">http://github.com/leafbird/devnote/</a> 에서 확인할 수 있다. </p>
+<p>예제로 한 가지만 살펴보자.</p>
+<h3 id="자동화-예시-새글-작성을-간편하게"><a href="#자동화-예시-새글-작성을-간편하게" class="headerlink" title="자동화 예시 : 새글 작성을 간편하게"></a>자동화 예시 : 새글 작성을 간편하게</h3><p>ocotpress에서 새 글을 적으려면 아래의 순서대로 실행해야 한다. </p>
+<ol>
+<li>blog path로 이동.</li>
+<li>cmd창 오픈</li>
+<li><code>rake new_post[&#39;포스팅 제목&#39;]</code> 명령 실행</li>
+<li><code>./source/_posts</code>로 이동</li>
+<li>자동으로 생성된 .markdown 파일을 찾아서 오픈</li>
+<li>글 작성 시작</li>
+</ol>
+<p>이 절차를 아래처럼 PowerShell로 스크립팅한다.</p>
+<figure class="highlight powershell"><figcaption><span>ps_rake_new_post.ps1</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 환경변수 BLOG_PATH에 설정된 블로그 root 경로로 이동</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$env:blogpath</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#input으로 새 글의 제목을 받는다. </span></span><br><span class="line"><span class="variable">$title</span> = <span class="built_in">Read-Host</span> <span class="string">&#x27;Enter Title&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 실행 : rake new_post[&#x27;제목&#x27;]</span></span><br><span class="line"><span class="variable">$argument</span> = [<span class="built_in">string</span>]::Format(<span class="string">&quot;new_post[&#123;0&#125;]&quot;</span>, <span class="variable">$title</span>)</span><br><span class="line"><span class="variable">$out</span> = rake.bat <span class="variable">$argument</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 생성된 파일의 이름과 경로를 추출한다.</span></span><br><span class="line"><span class="variable">$out</span> = <span class="variable">$out</span>.Replace(<span class="string">&quot;Creating new post: &quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 생성된 파일을 gvim으로 오픈!</span></span><br><span class="line"><span class="variable">$new_file_path</span> = [<span class="type">System.IO.Path</span>]::Combine(<span class="variable">$PSScriptRoot</span>, <span class="variable">$out</span>)</span><br><span class="line">gvim.exe <span class="variable">$new_file_path</span></span><br></pre></td></tr></table></figure>
+
+<p>커맨드 창에 <code>PowerShell ./ps_rake_new_post.ps1</code> 입력하는 것도 귀찮으니 이것도 batch파일로 만들자.</p>
+<figure class="highlight bat"><figcaption><span>02_ps_rake_new_post.bat</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">powershell ./ps_rake_new_post.ps1</span><br></pre></td></tr></table></figure>
+
+<p>이제 이 batch를 실행해서 새 글 제목을 입력하면 에디터까지 자동으로 열린다. </p>
+<h2 id="git-conflict-여러-머신에서-하나의-블로그에-번갈아-포스팅-하는-경우"><a href="#git-conflict-여러-머신에서-하나의-블로그에-번갈아-포스팅-하는-경우" class="headerlink" title="git conflict : 여러 머신에서 하나의 블로그에 번갈아 포스팅 하는 경우"></a>git conflict : 여러 머신에서 하나의 블로그에 번갈아 포스팅 하는 경우</h2><p>git을 사용할 때 불편한 점 중의 하나가 머지(merge)다. 여러 머신을 사용할 경우엔 다른 곳에서 수정했던 사항을 미리 pull 받고 난 후 작업해야 하는데, 이걸 혹시나 깜박 잊고 새 글을 써서 generate했다면 conflict 대 참사가 일어난다. </p>
+<p>blog root경로는 보통의 git repository를 사용하는 것과 유사하기 때문에 큰 문제가 없는데 <code>_deploy</code>폴더가 문제다. 이 폴더는 블로그 엔진이 generate한 블로그 리소스를 배포하기 위해 사용하는데, 실제로는 <code>gh-pages</code> 브랜치의 clone이기 때문이다. 그래서 서로 다른 여러 개의 depot clone을 가지고 블로깅을 할 땐 blog root와 함께 <code>_deploy</code>도 함께 <code>git pull</code> 해주어야 문제가 없다. </p>
+<p>하지만 <code>_deploy</code>폴더는 굳이 동기화까지 받을 필요는 없다. 어차피 블로그 엔진이 배포하는 과정에서 새로 만들기 때문이다.<br>어떻게 활용하든 상관없지만 만약 <code>_deploy</code>폴더가 충돌이나서 html파일을 한땀 한땀 머지해야 하는 상황이 되었다면 주저없이 삭제해 버리고 새로 만들자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cd %blogpath%</span><br><span class="line">rmdir &#x2F;s &#x2F;q _deploy</span><br><span class="line">mkdir _deploy</span><br><span class="line">cd _deploy</span><br><span class="line">git init</span><br><span class="line">git remote add origin https:&#x2F;&#x2F;....</span><br><span class="line">git pull</span><br><span class="line">git check --track origin&#x2F;gh-pages</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/devnote/tags/octopress/" rel="tag"># octopress</a>
+              <a href="/devnote/tags/windows/" rel="tag"># windows</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/devnote/2014/07/19/google-c-plus-plus-style-guide/" rel="prev" title="google c++ style guide">
+                  <i class="fa fa-chevron-left"></i> google c++ style guide
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/devnote/2014/08/19/yoda-notation/" rel="next" title="Yoda Notation">
+                  Yoda Notation <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">leafbird</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/devnote/js/comments.js"></script><script src="/devnote/js/utils.js"></script><script src="/devnote/js/schemes/muse.js"></script><script src="/devnote/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"leafbird","repo":"devnote","client_id":"27d8b6b6501ea8561848","client_secret":"86181a3464a298b3cbce1b1aadd362004ca5494f","admin_user":"leafbird","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"70f3ff83f24d2c7ebf8d8bfe9a92d0dd"}</script>
+<script src="/devnote/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

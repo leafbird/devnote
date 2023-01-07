@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/devnote/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/devnote/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/devnote/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/devnote/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/devnote/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CNoto+Sans+KR:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js"></script>
+
+    <meta name="description" content="요 며칠간 이 책을 읽었습니다. 회사 도서관에 갔다가 제목이 끌려서 한 번 읽어봤어요.누가 정한건지 모르겠지만 책 제목 참 멋지게 지었습니다. 주변에서 제가 이 책 읽는 것 보면 모두들 제목에 대해 관심을 보이더군요 ㅎ 진로를 고민중인 학생이나 일을 시작한지 얼마 되지 않는 신입 개발자들을 주 대상으로 삼은 책입니다. 다소 주관적이긴 하지만 선배 개발자">
+<meta property="og:type" content="article">
+<meta property="og:title" content="벤츠타는 프로그래머">
+<meta property="og:url" content="http://leafbird.github.io/devnote/2014/07/16/the-benz-programmer/index.html">
+<meta property="og:site_name" content="leafbird&#x2F;devnote">
+<meta property="og:description" content="요 며칠간 이 책을 읽었습니다. 회사 도서관에 갔다가 제목이 끌려서 한 번 읽어봤어요.누가 정한건지 모르겠지만 책 제목 참 멋지게 지었습니다. 주변에서 제가 이 책 읽는 것 보면 모두들 제목에 대해 관심을 보이더군요 ㅎ 진로를 고민중인 학생이나 일을 시작한지 얼마 되지 않는 신입 개발자들을 주 대상으로 삼은 책입니다. 다소 주관적이긴 하지만 선배 개발자">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://leafbird.github.io/devnote/images/140708_00.png">
+<meta property="og:image" content="http://leafbird.github.io/devnote/images/140716_00.jpg">
+<meta property="article:published_time" content="2014-07-16T11:20:38.000Z">
+<meta property="article:modified_time" content="2023-01-07T02:18:49.828Z">
+<meta property="article:author" content="leafbird">
+<meta property="article:tag" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://leafbird.github.io/devnote/images/140708_00.png">
+
+
+<link rel="canonical" href="http://leafbird.github.io/devnote/2014/07/16/the-benz-programmer/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"http://leafbird.github.io/devnote/2014/07/16/the-benz-programmer/","path":"2014/07/16/the-benz-programmer/","title":"벤츠타는 프로그래머"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>벤츠타는 프로그래머 | leafbird/devnote</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54KKVRTET0"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false}</script>
+  <script src="/devnote/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/devnote/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/devnote/rss2.xml" title="leafbird/devnote" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/devnote/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">leafbird/devnote</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="검색" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">leafbird</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/devnote/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">태그</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/leafbird" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leafbird" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/leafbird_tw" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;leafbird_tw" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2014/07/16/the-benz-programmer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="벤츠타는 프로그래머 | leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          벤츠타는 프로그래머
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+
+      <time title="Post created: 2014-07-16 20:20:38" itemprop="dateCreated datePublished" datetime="2014-07-16T20:20:38+09:00">2014-07-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Updated at: 2023-01-07 11:18:49" itemprop="dateModified" datetime="2023-01-07T11:18:49+09:00">2023-01-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <img src="/devnote/images/140708_00.png" class="center" width="300">
+
+<p>요 며칠간 이 책을 읽었습니다. 회사 도서관에 갔다가 제목이 끌려서 한 번 읽어봤어요.<br>누가 정한건지 모르겠지만 책 제목 참 멋지게 지었습니다. 주변에서 제가 이 책 읽는 것 보면 모두들 제목에 대해 관심을 보이더군요 ㅎ</p>
+<p>진로를 고민중인 학생이나 일을 시작한지 얼마 되지 않는 신입 개발자들을 주 대상으로 삼은 책입니다. 다소 주관적이긴 하지만 선배 개발자 입장에서 들려주는 이런 저런 이야기들이 적혀 있어요.<br>저자는 자기관리를 잘 하는 분이신 듯 합니다. 구체적인 개인 목표를 세우고 달성을 위해 노력하는 점이라든지, 꾸준한 자기계발에 관심을 두는 점 같은 좋은 습관을 많이 만들어두신 것 같네요. </p>
+<a id="more"></a>
+
+<p>저는 작업 도중에 빌드 걸어놓고 잠깐씩 기다리는 동안에 주로 읽었습니다.<br>빌드시간에 조금 난이도가 있는 기술서적을 읽을 때는, 내용을 좀 따라가려다 보면 빌드가 끝나서 흐름이 끊기고, 이게 계속 반복되다보니 책에 제대로 집중할 수가 없었습니다.<br>그래서 빌드시간에 책읽는 것은 거의 포기를 하고 있었는데, 이런 책은 부담없이 읽을 수 있어서 빌드 중에 읽어도 괜찮더군요.<br>그래서 앞으로는 빌드하는 중에 이런 가벼운 책들 읽으면 되겠구나 하는 생각을 해봤습니다.</p>
+<p>저는 책을 읽다가 조금 엉뚱한 구절에 눈길이 확 쏠렸는데, </p>
+<blockquote><p>…결혼하고 아이들이 생긴 이후에는 집에서 어떤 일을 한다는 게 쉽지 않았다. 그래서 집중해서 집필하거나 공모전 참가 준비를 할 때는 주말마다 본가로 달려갔다. 본가에서는 식사 시간 이외에는 누구도 방해하는 사람이 없어서 원하는 일에 집중할 수 있었기 때문이다. </p>
+</blockquote>
+
+<p>이 부분입니다. 저도 아이가 생긴 후에는 개인 시간을 내기가 쉽지 않아서 적잖이 고민을 하고 있는데, 주말마다 본가에 가서 혼자만의 시간을 가질 수 있었다는 저 이야기는 정말 부럽기 짝이 없네요 ㅜㅠ…</p>
+<img src="/devnote/images/140716_00.jpg" class="center">
+
+<p>저는 집에 아이가 생기고 한동안은 개인 시간은 아예 포기하고 지냈습니다. 주말마다 즐겁게 참여하던 스터디도 못 나가게 되었고, 집에서 컴퓨터 앞에 앉아 코딩을 하는 것은 거의 꿈도 꾸질 못했어요. </p>
+<p>이제는 아이도 어느 정도 자랐고 하니 조금씩 개인 시간을 확보하고 다시 자기관리에 신경을 좀 써야겠다고 다짐했습니다. 이런 다짐을 한 것에는 최근에 이 책을 읽었던 것도 어느 정도 영향이 있었겠지요. 벤츠 타는 것도 난 바라지 않아요. 그냥 원하는 만큼 양껏 코딩하고 놀 수 있게만 됐으면 좋겠네요 ;ㅁ;)…</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/devnote/tags/book/" rel="tag"># book</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/devnote/2014/07/14/move-to-octopress/" rel="prev" title="move to octopress!">
+                  <i class="fa fa-chevron-left"></i> move to octopress!
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/devnote/2014/07/19/google-c-plus-plus-style-guide/" rel="next" title="google c++ style guide">
+                  google c++ style guide <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">leafbird</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/devnote/js/comments.js"></script><script src="/devnote/js/utils.js"></script><script src="/devnote/js/schemes/muse.js"></script><script src="/devnote/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"leafbird","repo":"devnote","client_id":"27d8b6b6501ea8561848","client_secret":"86181a3464a298b3cbce1b1aadd362004ca5494f","admin_user":"leafbird","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"d59958dec76db09b5b182cd0f71b90ff"}</script>
+<script src="/devnote/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

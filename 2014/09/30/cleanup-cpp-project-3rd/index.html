@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/devnote/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/devnote/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/devnote/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/devnote/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/devnote/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CNoto+Sans+KR:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js"></script>
+
+    <meta name="description" content="pch 파일 사이즈팀에서 만지는 코드에서는, 290Mb에 육박하는 pch파일을 본 적이 있다(…) 그 땐 코드를 정리하면서 pch 사이즈 변화를 자주 확인해봐야 했는데, 탐색기나 커맨드 창에서 매번 사이즈를 조회하기가 불편했던 기억이 있어서 pch 사이즈 확인하는 걸 만들어봤다.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 코드 정리 자동화 - 3. pch 사이즈 확인, #include 순서정리">
+<meta property="og:url" content="http://leafbird.github.io/devnote/2014/09/30/cleanup-cpp-project-3rd/index.html">
+<meta property="og:site_name" content="leafbird&#x2F;devnote">
+<meta property="og:description" content="pch 파일 사이즈팀에서 만지는 코드에서는, 290Mb에 육박하는 pch파일을 본 적이 있다(…) 그 땐 코드를 정리하면서 pch 사이즈 변화를 자주 확인해봐야 했는데, 탐색기나 커맨드 창에서 매번 사이즈를 조회하기가 불편했던 기억이 있어서 pch 사이즈 확인하는 걸 만들어봤다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2014-09-30T06:17:15.000Z">
+<meta property="article:modified_time" content="2023-01-07T02:18:49.829Z">
+<meta property="article:author" content="leafbird">
+<meta property="article:tag" content="c++">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://leafbird.github.io/devnote/2014/09/30/cleanup-cpp-project-3rd/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"http://leafbird.github.io/devnote/2014/09/30/cleanup-cpp-project-3rd/","path":"2014/09/30/cleanup-cpp-project-3rd/","title":"C++ 코드 정리 자동화 - 3. pch 사이즈 확인, #include 순서정리"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>C++ 코드 정리 자동화 - 3. pch 사이즈 확인, #include 순서정리 | leafbird/devnote</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54KKVRTET0"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false}</script>
+  <script src="/devnote/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/devnote/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/devnote/rss2.xml" title="leafbird/devnote" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/devnote/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">leafbird/devnote</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="검색" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#pch-%ED%8C%8C%EC%9D%BC-%EC%82%AC%EC%9D%B4%EC%A6%88"><span class="nav-number">1.</span> <span class="nav-text">pch 파일 사이즈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#include-%EC%88%9C%EC%84%9C-%EC%9E%90%EB%8F%99-%EC%A0%95%EB%A0%AC"><span class="nav-number">2.</span> <span class="nav-text">#include 순서 자동 정렬</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#epilog"><span class="nav-number">3.</span> <span class="nav-text">epilog</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EA%B7%B8%EB%A6%AC%EA%B3%A0-C"><span class="nav-number">3.1.</span> <span class="nav-text">그리고 C#.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Visual-Stuio-Online"><span class="nav-number">3.2.</span> <span class="nav-text">Visual Stuio Online</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">leafbird</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/devnote/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">태그</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/leafbird" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leafbird" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/leafbird_tw" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;leafbird_tw" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2014/09/30/cleanup-cpp-project-3rd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="C++ 코드 정리 자동화 - 3. pch 사이즈 확인, #include 순서정리 | leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C++ 코드 정리 자동화 - 3. pch 사이즈 확인, #include 순서정리
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+
+      <time title="Post created: 2014-09-30 15:17:15" itemprop="dateCreated datePublished" datetime="2014-09-30T15:17:15+09:00">2014-09-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Updated at: 2023-01-07 11:18:49" itemprop="dateModified" datetime="2023-01-07T11:18:49+09:00">2023-01-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="pch-파일-사이즈"><a href="#pch-파일-사이즈" class="headerlink" title="pch 파일 사이즈"></a>pch 파일 사이즈</h2><p>팀에서 만지는 코드에서는, 290Mb에 육박하는 pch파일을 본 적이 있다(…) 그 땐 코드를 정리하면서 pch 사이즈 변화를 자주 확인해봐야 했는데, 탐색기나 커맨드 창에서 매번 사이즈를 조회하기가 불편했던 기억이 있어서 pch 사이즈 확인하는 걸 만들어봤다.</p>
+<a id="more"></a>
+
+<p>MSBuild로 단일 cpp 파일을 컴파일하면 이런 메시지가 나오는데,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\amd64\CL.exe </span><br><span class="line">&#x2F;c </span><br><span class="line">&#x2F;ID:\Dev\uni\External\ </span><br><span class="line">&#x2F;ID:\Dev\uni\Test\ </span><br><span class="line">&#x2F;ID:\Dev\uni\ </span><br><span class="line">&#x2F;Zi </span><br><span class="line">&#x2F;nologo </span><br><span class="line">&#x2F;W4 </span><br><span class="line">&#x2F;WX </span><br><span class="line">&#x2F;sdl </span><br><span class="line">&#x2F;Od </span><br><span class="line">&#x2F;D WIN32 </span><br><span class="line">&#x2F;D _DEBUG </span><br><span class="line">&#x2F;D _CONSOLE </span><br><span class="line">&#x2F;D _LIB </span><br><span class="line">&#x2F;D _UNICODE </span><br><span class="line">&#x2F;D UNICODE </span><br><span class="line">&#x2F;Gm </span><br><span class="line">&#x2F;EHsc </span><br><span class="line">&#x2F;RTC1 </span><br><span class="line">&#x2F;MDd </span><br><span class="line">&#x2F;GS </span><br><span class="line">&#x2F;fp:precise </span><br><span class="line">&#x2F;Zc:wchar_t </span><br><span class="line">&#x2F;Zc:forScope </span><br><span class="line">&#x2F;Yc&quot;stdafx.h&quot; </span><br><span class="line">&#x2F;Fp&quot;x64\Debug\unittest.pch&quot; </span><br><span class="line">&#x2F;Fo&quot;x64\Debug\\&quot; </span><br><span class="line">&#x2F;Fd&quot;x64\Debug\vc120.pdb&quot; </span><br><span class="line">&#x2F;Gd </span><br><span class="line">&#x2F;TP </span><br><span class="line">&#x2F;errorReport:queue </span><br><span class="line">stdafx.cpp</span><br></pre></td></tr></table></figure>
+<p>여기 <code>cl.exe</code>로 들어가는 인자 중에 <code>/Fp&quot;x64\Debug\unittest.pch&quot;</code> 요 부분에 pch 경로가 있음. 그러니까 결국 툴에서 pch사이즈를 구하려면</p>
+<ol>
+<li>프로젝트 리빌드하고</li>
+<li>pch 생성 헤더를 cl.exe로 컴파일하면서 /Fp 스위치를 읽어 경로 파악.</li>
+<li>위에서 새로 생성된 pch파일의 사이즈를 확인.</li>
+</ol>
+<p>… 해주면 된다.</p>
+<h2 id="include-순서-자동-정렬"><a href="#include-순서-자동-정렬" class="headerlink" title="#include 순서 자동 정렬"></a>#include 순서 자동 정렬</h2><p>구글의 C++ 스타일 가이드 문서 중에 <a target="_blank" rel="noopener" href="http://jongwook.github.io/google-styleguide/trunk/cppguide.xml#include%EC%9D%98_%EC%9D%B4%EB%A6%84%EA%B3%BC_%EC%88%9C%EC%84%9C">include 의 이름과 순서</a> 항목에 보면 헤더 인클루드에 몇가지 카테고리와 순서를 정해 두었는데, </p>
+<blockquote><p>주된 목적이 dir2/foo2.h에 있는 것들을 구현하거나 테스트하기 위한 dir/foo.cc나 dir/foo_test.cc에서 include를 아래처럼 순서에 따라 배열하라.</p>
+<ol>
+<li>dir2/foo2.h (아래 설명 참조).</li>
+<li>C 시스템 파일</li>
+<li>C++ 시스템 파일</li>
+<li>다른 라이브러리의 .h 파일</li>
+<li>현재 프로젝트의 .h 파일</li>
+</ol>
+</blockquote>
+
+<p>팀에서 정한 컨벤션도 이 규칙을 그대로 따라야 해서.. 매번 코딩할 때마다 인클루드 순서에 신경쓰기 싫어서 자동화 처리를 작성. 더불어 경로 없이 파일명만 적은 경우나 상대경로를 사용한 인클루드도 지정된 path를 모두 적어주도록 컨버팅하는 처리도 만듦. 만드는 과정이야 대단한 건 없다. sln, vcxproj파일 파싱하는 것은 만들어 두었으니, 그냥 스트링 처리만 좀 더 해주면 금방 만들어진다. 툴로 sorting하고나면 아래처럼 만들어줌.</p>
+<figure class="highlight cpp"><figcaption><span>TestCode.cpp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;stdafx.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;TestAsset/ProjRoot/TestCode.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// system headers</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// other project&#x27;s headers</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;TestAsset/OuterProject.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;TestAsset/OuterProjectX.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// inner project&#x27;s headers</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;TestAsset/ProjRoot/InterProject.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;TestAsset/ProjRoot/InterProjectA.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;TestAsset/ProjRoot/InterProjectB.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;TestAsset/ProjRoot/InterProjectC.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="epilog"><a href="#epilog" class="headerlink" title="epilog"></a>epilog</h2><p>대충 이정도 돌아가는 툴을 만들어서 개인 pc에 셋팅해둔 jenkins에 물려놓고 사용중. 원래는 필요없는 include찾아주는 기능만 만들려다가 include sorting 기능은 그냥 한 번 추가나 해볼까 싶어 넣은건데, 아주 편하다. 코딩할 땐 순서 상관 없이 상대경로로 대충 넣어놓고 툴을 돌리면 컨벤션에 맞게 예쁘게 수정해준다.</p>
+<p>불필요 인클루드를 찾는 동작은 회사 코드 기준으로 컨텐츠 코드 전체 검색시 50분 정도 걸리는 듯. 이건 매일 새벽에 jenkins가 한 번씩 돌려놓게 해놓고, 매일 아침에 출근해서 확인한다.</p>
+<p>pch사이즈는 baseline 구축을 생각하고 만들어 본건데.. (박일, <a target="_blank" rel="noopener" href="http://www.slideshare.net/parkpd/in-ndc2010">사례로 살펴보는 디버깅</a> 참고) baseline을 만들려면 지표들을 좀 더 모아야 하고, db도 붙여야 하니 이건 제대로 만들려면 시간이 필요할 것 같다(..라고 쓰고 ‘더이상 업데이트 되지 않는다’ 라고 읽는다.)</p>
+<h3 id="그리고-C"><a href="#그리고-C" class="headerlink" title="그리고 C#."></a>그리고 C#.</h3><p>C#은 재미있다. 이번에 툴 만들때도 한참 빠져들어서 재미있게 만들었다. Attribute를 달아서 xml 파일을 자동으로 로딩하는 처리를 만들어 보았는데, cpp에서 하기 힘든 깔끔한 이런 가능성들이 마음에 든다. 규모 큰 프로젝트는 안해봐서 모르겠지만 개인적으로 가지고 놀기에는 제일 맘에 듬. 디버깅 하기 좋고 코드 짜기도 좋고.</p>
+<h3 id="Visual-Stuio-Online"><a href="#Visual-Stuio-Online" class="headerlink" title="Visual Stuio Online"></a>Visual Stuio Online</h3><p>코드 관리를 <a target="_blank" rel="noopener" href="http://www.visualstudio.com/en-us/products/what-is-visual-studio-online-vs.aspx">visual studio online</a>에서 해봤다. 비공개 코드는 주로 개인 Nas나 bitbucket에 올려놓는데, VS IDE에서 링크가 있길래 한 번 눌러봤다가 한 번 써봄.<br>bitbucket보다 좀 더 많은 기능이 있다. 빌드나 단위테스트를 돌려볼 수 있고(하지만 유료), backlog, splint관리용 보드가 좀 더 디테일하다. 개인 코딩 말고 팀을 꾸려서 작업을 한다면 한 번 제대로 사용해 보는 것을 고려해 볼 순 있겠으나… 왠지 그냥 마음이 안간다. 나같으면 그냥 github 유료 결제해서 쓸 거 같애 ‘ㅅ’)</p>
+<p>이제 이건 고마하고 다음 toy project로 넘어가야지.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/devnote/tags/c/" rel="tag"># c++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/devnote/2014/09/17/cleanup-cpp-project-2nd/" rel="prev" title="C++ 코드 정리 자동화 - 2. 불필요한 #include 찾기 下">
+                  <i class="fa fa-chevron-left"></i> C++ 코드 정리 자동화 - 2. 불필요한 #include 찾기 下
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/devnote/2018/11/12/%ED%85%8C%ED%81%AC%EB%8B%88%EC%BB%AC-%EB%A6%AC%EB%8D%94%EC%8B%AD-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/" rel="next" title="테크니컬 리더십: 시작하기">
+                  테크니컬 리더십: 시작하기 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">leafbird</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/devnote/js/comments.js"></script><script src="/devnote/js/utils.js"></script><script src="/devnote/js/schemes/muse.js"></script><script src="/devnote/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"leafbird","repo":"devnote","client_id":"27d8b6b6501ea8561848","client_secret":"86181a3464a298b3cbce1b1aadd362004ca5494f","admin_user":"leafbird","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"338a68236ad0bdf6124011aa8528984e"}</script>
+<script src="/devnote/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
