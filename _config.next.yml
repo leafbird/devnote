@@ -357,7 +357,7 @@ codeblock:
   # All available themes: https://theme-next.js.org/highlight/
   theme:
     light: default
-    dark: tomorrow-night
+    dark: a11y-dark
   prism:
     light: prism
     dark: prism-dark
