@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://leafbird.github.io/devnote/2023/10/12/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%B0%98%EC%9D%91%ED%98%95-%EB%94%94%EC%9E%90%EC%9D%B8%ED%95%98%EA%B8%B0/final_desktop.png">
 <meta property="og:image" content="http://leafbird.github.io/devnote/2023/10/12/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%B0%98%EC%9D%91%ED%98%95-%EB%94%94%EC%9E%90%EC%9D%B8%ED%95%98%EA%B8%B0/final_ios.png">
 <meta property="article:published_time" content="2023-10-12T04:19:34.000Z">
-<meta property="article:modified_time" content="2023-10-14T00:30:50.547Z">
+<meta property="article:modified_time" content="2023-10-14T00:38:07.611Z">
 <meta property="article:author" content="leafbird">
 <meta property="article:tag" content="bootstrap">
 <meta property="article:tag" content="html">
@@ -115,7 +115,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#meta-%ED%83%9C%EA%B7%B8%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-%ED%99%94%EB%A9%B4%EC%9D%B4-%EC%B6%95%EC%86%8C%EB%90%98%EC%A7%80-%EC%95%8A%EB%8F%84%EB%A1%9D-%EB%B6%99%EC%9E%A1%EC%95%84%EC%A4%80%EB%8B%A4"><span class="nav-number">1.</span> <span class="nav-text">meta 태그를 이용해 화면이 축소되지 않도록 붙잡아준다</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bootstrap%EC%9D%98-grid%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%98%EB%A9%B4-%EC%88%98%EC%9B%94%ED%95%98%EB%8B%A4"><span class="nav-number">2.</span> <span class="nav-text">bootstrap의 grid를 이용하면 수월하다</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#media-%ED%83%9C%EA%B7%B8%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4%EC%84%9C-%EC%B6%94%EA%B0%80%EB%A1%9C-%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83%EC%9D%84-%EB%8B%A4%EB%93%AC%EB%8A%94%EB%8B%A4"><span class="nav-number">3.</span> <span class="nav-text">@media 태그를 이용해서 추가로 레이아웃을 다듬는다</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%B5%9C%EC%A2%85-%EA%B2%B0%EA%B3%BC"><span class="nav-number">4.</span> <span class="nav-text">최종 결과</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#desktop%EC%97%90%EC%84%9C-%EB%B3%B8-%ED%99%94%EB%A9%B4-windows-chrome"><span class="nav-number">4.0.1.</span> <span class="nav-text">desktop에서 본 화면 (windows, chrome)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EB%82%B4-%ED%8F%B0%EC%97%90%EC%84%9C-%EB%B3%B8-%ED%99%94%EB%A9%B4-iPhone-13-mini"><span class="nav-number">4.0.2.</span> <span class="nav-text">내 폰에서 본 화면 (iPhone 13 mini)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%81%AC%EB%A1%AC%EC%97%90%EC%84%9C-%EC%9E%91%EC%97%85%ED%95%A0-%EA%B2%83%EC%9D%84-%EC%B6%94%EC%B2%9C"><span class="nav-number">5.</span> <span class="nav-text">크롬에서 작업할 것을 추천</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#meta-%ED%83%9C%EA%B7%B8%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-%ED%99%94%EB%A9%B4%EC%9D%B4-%EC%B6%95%EC%86%8C%EB%90%98%EC%A7%80-%EC%95%8A%EB%8F%84%EB%A1%9D-%EB%B6%99%EC%9E%A1%EC%95%84%EC%A4%80%EB%8B%A4"><span class="nav-number">1.</span> <span class="nav-text">meta 태그를 이용해 화면이 축소되지 않도록 붙잡아준다</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bootstrap%EC%9D%98-grid%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%98%EB%A9%B4-%EC%88%98%EC%9B%94%ED%95%98%EB%8B%A4"><span class="nav-number">2.</span> <span class="nav-text">bootstrap의 grid를 이용하면 수월하다</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#media-%ED%83%9C%EA%B7%B8%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4%EC%84%9C-%EC%B6%94%EA%B0%80%EB%A1%9C-%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83%EC%9D%84-%EB%8B%A4%EB%93%AC%EB%8A%94%EB%8B%A4"><span class="nav-number">3.</span> <span class="nav-text">@media 태그를 이용해서 추가로 레이아웃을 다듬는다</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%B5%9C%EC%A2%85-%EA%B2%B0%EA%B3%BC"><span class="nav-number">4.</span> <span class="nav-text">최종 결과</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%81%AC%EB%A1%AC%EC%97%90%EC%84%9C-%EC%9E%91%EC%97%85%ED%95%A0-%EA%B2%83%EC%9D%84-%EC%B6%94%EC%B2%9C"><span class="nav-number">5.</span> <span class="nav-text">크롬에서 작업할 것을 추천</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -204,7 +204,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2023-10-14 09:30:50" itemprop="dateModified" datetime="2023-10-14T09:30:50+09:00">2023-10-14</time>
+      <time title="Updated at: 2023-10-14 09:38:07" itemprop="dateModified" datetime="2023-10-14T09:38:07+09:00">2023-10-14</time>
     </span>
 
   
@@ -239,9 +239,15 @@
 <p>bootstrap의 grid도 사실은 <code>@media</code> 태그를 이용해 미리 정의된 디자인 세트일 뿐이다. viewport 사이즈에 따라 다른 디자인을 가능하게 만드는 핵심은 스타일 시트에서 <code>@media</code>를 이용해 각각 다른 디자인을 적용해 주는 것이다.</p>
 <p>처음엔 <code>@media</code>로 별도 제어하는 디자인을 많이 정의했다가, grid를 제대로 붙이고 나니 거의 다 사라지게 되었고 내가 별도로 처리할 만한 것이 많이 없었다. viewport가 필요 이상으로 넓을 때 컨텐츠가 너무 넓게 퍼지지는 않도록 최대 폭을 제한해 준다거나, 레이아웃이 바뀌면서 어색해지는 서로간의 간격 정도만 다듬어준다.</p>
 <p>media 태그 기능과 사용방법을 정리한 글은 구글링으로 아주 많이 찾을 수 있다. 내가 참고한 게 뭐였는지 다시 찾으려고 했는데 못찾을 많큼 많음. 나중에 필요하면 다시 구글링 하면서 써도 충분하기에 정리는 생략.</p>
-<h2 id="최종-결과"><a href="#최종-결과" class="headerlink" title="최종 결과"></a>최종 결과</h2><h4 id="desktop에서-본-화면-windows-chrome"><a href="#desktop에서-본-화면-windows-chrome" class="headerlink" title="desktop에서 본 화면 (windows, chrome)"></a>desktop에서 본 화면 (windows, chrome)</h4><img src="/devnote/2023/10/12/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%B0%98%EC%9D%91%ED%98%95-%EB%94%94%EC%9E%90%EC%9D%B8%ED%95%98%EA%B8%B0/final_desktop.png" class="">
+<h2 id="최종-결과"><a href="#최종-결과" class="headerlink" title="최종 결과"></a>최종 결과</h2><ul>
+<li>desktop에서 본 화면 (windows, chrome)</li>
+</ul>
+<img src="/devnote/2023/10/12/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%B0%98%EC%9D%91%ED%98%95-%EB%94%94%EC%9E%90%EC%9D%B8%ED%95%98%EA%B8%B0/final_desktop.png" class="">
 
-<h4 id="내-폰에서-본-화면-iPhone-13-mini"><a href="#내-폰에서-본-화면-iPhone-13-mini" class="headerlink" title="내 폰에서 본 화면 (iPhone 13 mini)"></a>내 폰에서 본 화면 (iPhone 13 mini)</h4><img src="/devnote/2023/10/12/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%B0%98%EC%9D%91%ED%98%95-%EB%94%94%EC%9E%90%EC%9D%B8%ED%95%98%EA%B8%B0/final_ios.png" class="">
+<ul>
+<li>내 폰에서 본 화면 (iPhone 13 mini)</li>
+</ul>
+<img src="/devnote/2023/10/12/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%B0%98%EC%9D%91%ED%98%95-%EB%94%94%EC%9E%90%EC%9D%B8%ED%95%98%EA%B8%B0/final_ios.png" class="">
 
 <h2 id="크롬에서-작업할-것을-추천"><a href="#크롬에서-작업할-것을-추천" class="headerlink" title="크롬에서 작업할 것을 추천"></a>크롬에서 작업할 것을 추천</h2><ul>
 <li>크롬의 기본 개발자 기능이 반응형 디자인을 확인하기 좀 더 수월하다.</li>
