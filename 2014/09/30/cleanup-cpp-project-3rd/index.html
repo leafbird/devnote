@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.3.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/devnote/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/devnote/images/favicon-32x32-next.png">
@@ -123,12 +123,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/devnote/archives/">
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">태그</span>
       </div>
   </nav>
@@ -213,10 +213,11 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="pch-파일-사이즈"><a href="#pch-파일-사이즈" class="headerlink" title="pch 파일 사이즈"></a>pch 파일 사이즈</h2><p>팀에서 만지는 코드에서는, 290Mb에 육박하는 pch파일을 본 적이 있다(…) 그 땐 코드를 정리하면서 pch 사이즈 변화를 자주 확인해봐야 했는데, 탐색기나 커맨드 창에서 매번 사이즈를 조회하기가 불편했던 기억이 있어서 pch 사이즈 확인하는 걸 만들어봤다.</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <p>MSBuild로 단일 cpp 파일을 컴파일하면 이런 메시지가 나오는데,</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\amd64\CL.exe </span><br><span class="line">&#x2F;c </span><br><span class="line">&#x2F;ID:\Dev\uni\External\ </span><br><span class="line">&#x2F;ID:\Dev\uni\Test\ </span><br><span class="line">&#x2F;ID:\Dev\uni\ </span><br><span class="line">&#x2F;Zi </span><br><span class="line">&#x2F;nologo </span><br><span class="line">&#x2F;W4 </span><br><span class="line">&#x2F;WX </span><br><span class="line">&#x2F;sdl </span><br><span class="line">&#x2F;Od </span><br><span class="line">&#x2F;D WIN32 </span><br><span class="line">&#x2F;D _DEBUG </span><br><span class="line">&#x2F;D _CONSOLE </span><br><span class="line">&#x2F;D _LIB </span><br><span class="line">&#x2F;D _UNICODE </span><br><span class="line">&#x2F;D UNICODE </span><br><span class="line">&#x2F;Gm </span><br><span class="line">&#x2F;EHsc </span><br><span class="line">&#x2F;RTC1 </span><br><span class="line">&#x2F;MDd </span><br><span class="line">&#x2F;GS </span><br><span class="line">&#x2F;fp:precise </span><br><span class="line">&#x2F;Zc:wchar_t </span><br><span class="line">&#x2F;Zc:forScope </span><br><span class="line">&#x2F;Yc&quot;stdafx.h&quot; </span><br><span class="line">&#x2F;Fp&quot;x64\Debug\unittest.pch&quot; </span><br><span class="line">&#x2F;Fo&quot;x64\Debug\\&quot; </span><br><span class="line">&#x2F;Fd&quot;x64\Debug\vc120.pdb&quot; </span><br><span class="line">&#x2F;Gd </span><br><span class="line">&#x2F;TP </span><br><span class="line">&#x2F;errorReport:queue </span><br><span class="line">stdafx.cpp</span><br></pre></td></tr></table></figure>
+
 <p>여기 <code>cl.exe</code>로 들어가는 인자 중에 <code>/Fp&quot;x64\Debug\unittest.pch&quot;</code> 요 부분에 pch 경로가 있음. 그러니까 결국 툴에서 pch사이즈를 구하려면</p>
 <ol>
 <li>프로젝트 리빌드하고</li>
@@ -237,6 +238,7 @@
 
 <p>팀에서 정한 컨벤션도 이 규칙을 그대로 따라야 해서.. 매번 코딩할 때마다 인클루드 순서에 신경쓰기 싫어서 자동화 처리를 작성. 더불어 경로 없이 파일명만 적은 경우나 상대경로를 사용한 인클루드도 지정된 path를 모두 적어주도록 컨버팅하는 처리도 만듦. 만드는 과정이야 대단한 건 없다. sln, vcxproj파일 파싱하는 것은 만들어 두었으니, 그냥 스트링 처리만 좀 더 해주면 금방 만들어진다. 툴로 sorting하고나면 아래처럼 만들어줌.</p>
 <figure class="highlight cpp"><figcaption><span>TestCode.cpp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;stdafx.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;TestAsset/ProjRoot/TestCode.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// system headers</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// other project&#x27;s headers</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;TestAsset/OuterProject.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;TestAsset/OuterProjectX.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// inner project&#x27;s headers</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;TestAsset/ProjRoot/InterProject.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;TestAsset/ProjRoot/InterProjectA.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;TestAsset/ProjRoot/InterProjectB.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;TestAsset/ProjRoot/InterProjectC.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h2 id="epilog"><a href="#epilog" class="headerlink" title="epilog"></a>epilog</h2><p>대충 이정도 돌아가는 툴을 만들어서 개인 pc에 셋팅해둔 jenkins에 물려놓고 사용중. 원래는 필요없는 include찾아주는 기능만 만들려다가 include sorting 기능은 그냥 한 번 추가나 해볼까 싶어 넣은건데, 아주 편하다. 코딩할 땐 순서 상관 없이 상대경로로 대충 넣어놓고 툴을 돌리면 컨벤션에 맞게 예쁘게 수정해준다.</p>
 <p>불필요 인클루드를 찾는 동작은 회사 코드 기준으로 컨텐츠 코드 전체 검색시 50분 정도 걸리는 듯. 이건 매일 새벽에 jenkins가 한 번씩 돌려놓게 해놓고, 매일 아침에 출근해서 확인한다.</p>
 <p>pch사이즈는 baseline 구축을 생각하고 만들어 본건데.. (박일, <a target="_blank" rel="noopener" href="http://www.slideshare.net/parkpd/in-ndc2010">사례로 살펴보는 디버깅</a> 참고) baseline을 만들려면 지표들을 좀 더 모아야 하고, db도 붙여야 하니 이건 제대로 만들려면 시간이 필요할 것 같다(..라고 쓰고 ‘더이상 업데이트 되지 않는다’ 라고 읽는다.)</p>

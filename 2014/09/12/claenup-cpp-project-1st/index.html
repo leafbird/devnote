@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.3.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/devnote/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/devnote/images/favicon-32x32-next.png">
@@ -125,12 +125,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/devnote/archives/">
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">태그</span>
       </div>
   </nav>
@@ -219,7 +219,7 @@
 <p>하지만 저런 솔루션들을 사용하기 이전에, 코드를 정리하는 것이 먼저 선행될 필요가 있다. cpp는 특성상 작업하다보면 소스파일에 불필요한 헤더파일의 #include가 남게되고, 이것들이 불필요한 dependency를 만들어내면서 늘어지는 빌드 시간을 무시할 수 없기 때문이다. </p>
 <p>그런데 문제는 그렇게 생긴 불필요 인클루드 구문이 무엇인지를 골라내기가 힘들다는 점이다. 프로젝트 규모가 커질수록 더욱 힘들다. c#같은 경우 불필요 using 구문을 아예 visual studio IDE가 자체적으로 정리해주기까지 하지만, cpp는 색출조차 힘들다 보니 이런 기능을 제공하는 3rd party tool도 없어 보인다. <a target="_blank" rel="noopener" href="http://www.wholetomato.com/downloads/spaghettiDownload.asp">Whole Tomato의 Spaghetti</a> 처럼 인클루드간의 관계를 그래프로 보여주는 툴은 몇 번 본 적 있다. 조낸 멋지게 그래프까지 보여주었지만 정작 불필요한 놈이 무언지 콕 짚어주는 녀석은 없음. 참으로 척박한 현실이다. </p>
 <p>그래서 한 번 직접 만들어보기로 했다. </p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h2 id="프로젝트-내의-cpp-파일을-개별-컴파일-하기"><a href="#프로젝트-내의-cpp-파일을-개별-컴파일-하기" class="headerlink" title="프로젝트 내의 cpp 파일을 개별 컴파일 하기"></a>프로젝트 내의 cpp 파일을 개별 컴파일 하기</h2><p>일단은 만들려는 툴에서, 입력으로 받은 vc 프로젝트에 포함된 cpp 파일을 개별로 컴파일 할 수 있어야 한다.<br>그렇게 되면 cpp 파일마다 돌면서 코드 안에 있는 #include를 직접 하나씩 제거해보면서 컴파일이 성공하는지를 확인할거다. 그러면 불필요할 것이라 예상되는 #include의 후보를 만들 수 있다. </p>
 <p>무식한 방법이다. cpu를 많이 먹을거고 시간도 오래 걸릴거다. 하지만 저렇게라도 알 수 있다면 새벽에 실행해서 리포트 뽑아놓도록 CI에 물려놓으면 그만이다.</p>

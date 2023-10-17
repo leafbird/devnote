@@ -41,14 +41,6 @@
     </url>
 
     <url>
-        <loc>http://leafbird.github.io/devnote/2014/09/30/cleanup-cpp-project-3rd/</loc>
-        <lastmod>2023-01-07T02:18:49.829Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://leafbird.github.io/devnote/2018/11/12/%ED%85%8C%ED%81%AC%EB%8B%88%EC%BB%AC-%EB%A6%AC%EB%8D%94%EC%8B%AD-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/</loc>
         <lastmod>2023-01-07T02:18:49.829Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -57,8 +49,8 @@
     </url>
 
     <url>
-        <loc>http://leafbird.github.io/devnote/2013/12/30/octopress-on-windows/</loc>
-        <lastmod>2023-01-07T02:18:49.828Z</lastmod>
+        <loc>http://leafbird.github.io/devnote/2014/09/30/cleanup-cpp-project-3rd/</loc>
+        <lastmod>2023-01-07T02:18:49.829Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -73,7 +65,7 @@
     </url>
 
     <url>
-        <loc>http://leafbird.github.io/devnote/2014/07/19/google-c-plus-plus-style-guide/</loc>
+        <loc>http://leafbird.github.io/devnote/2013/12/30/octopress-on-windows/</loc>
         <lastmod>2023-01-07T02:18:49.828Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -105,7 +97,7 @@
     </url>
 
     <url>
-        <loc>http://leafbird.github.io/devnote/2014/09/17/cleanup-cpp-project-2nd/</loc>
+        <loc>http://leafbird.github.io/devnote/2014/07/19/google-c-plus-plus-style-guide/</loc>
         <lastmod>2023-01-07T02:18:49.828Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -114,6 +106,14 @@
 
     <url>
         <loc>http://leafbird.github.io/devnote/2014/09/12/claenup-cpp-project-1st/</loc>
+        <lastmod>2023-01-07T02:18:49.828Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://leafbird.github.io/devnote/2014/09/17/cleanup-cpp-project-2nd/</loc>
         <lastmod>2023-01-07T02:18:49.828Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

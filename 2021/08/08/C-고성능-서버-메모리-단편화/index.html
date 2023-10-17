@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.3.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/devnote/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/devnote/images/favicon-32x32-next.png">
@@ -134,12 +134,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/devnote/archives/">
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">태그</span>
       </div>
   </nav>
@@ -227,7 +227,7 @@
 
 <p>이제 닷넷의 GC는 꽤나 쓸만하게 발전하여, 웬만한 경우는 프로그래머가 메모리 관리를 굳이 신경쓰지 않고 코딩할 수 있게 도와준다. 그리고 그것이 C++ 대신 C#을 선택하는 큰 이유이기도 하다. 하지만 C# 게임서버로도 성능에 욕심을 내고자 한다면, 짧은 순간 대량의 TPS를 낼 수 있는 네트워크 IO를 구현하려고 한다면 어느정도 메모리 운용에 대한 이해가 필요하다.</p>
 <p>이번 포스팅에서는 네트워크 IO의 부하가 가중될 때 겪을 수 있는 메모리 단편화 현상에 대해서 정리해본다. </p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h2 id="기본-용어-및-개념-정리"><a href="#기본-용어-및-개념-정리" class="headerlink" title="기본 용어 및 개념 정리"></a>기본 용어 및 개념 정리</h2><h3 id="SOH-LOH-POH"><a href="#SOH-LOH-POH" class="headerlink" title="SOH / LOH / POH"></a>SOH / LOH / POH</h3><p>가장 먼저 <code>관리 힙(managed heap)</code>의 구분부터 이야기 해야한다. 관리힙은 사용 메모리의 크기와 용도 등에 따라 <code>SOH</code>, <code>LOH</code>, <code>POH</code>로 나뉜다.</p>
 <ul>
@@ -273,8 +273,10 @@
 </ul>
 <p>이전 포스팅 <a href="https://leafbird.github.io/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/">C# 고성능 서버 - System.IO.Pipeline 도입 후기</a>에서 여러개의 단위버퍼를 이어붙여 가상의 스트림처럼 운용하는 <code>ZeroCopyBuffer</code>의 구현에 대해 간단히 소개했었다. 이 때 등장했던 단위버퍼 <code>LohSegment</code> 클래스가 바로 <code>LOH</code>에 할당한 커다란 청크의 일부분에 해당한다.</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Cs.ServerEngine.Netork.Buffer</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">class</span> <span class="title">ZeroCopyBuffer</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">readonly</span> <span class="title">Queue</span>&lt;<span class="title">LohSegment</span>&gt; segments</span> = <span class="keyword">new</span> Queue&lt;LohSegment&gt;();</span><br><span class="line">    <span class="keyword">private</span> LohSegment last;</span><br><span class="line">    <span class="comment">//       ^ 여기 얘네들이예요. </span></span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
 <p><code>LohSegment</code>를 생성, 풀링하고 관리하는 구현은 크게 대단할 것은 없다. 어차피 할당 크기가 85kb보다 크기만 하면 알아서 <code>LOH</code>에 할당될 것이고.. 청크를 다시 잘 쪼개서 <code>ConcurrentQueue&lt;&gt;</code>에 넣어뒀다가 잘 빌려주고 반납하고 관리만 해주면 된다.<br>조금 더 신경을 쓴다면 서비스 도중 메모리 청크를 추가할당 할 때의 처리 정도가 있겠다. Pool에 남아있는 버퍼의 개수가 좀 모자란다 싶을 때는 CAS 연산으로 소유권을 선점한 스레드 하나만 청크를 할당하게 만든다. 메모리는 추가만 할 뿐 해제는 하지 않을거니까 이렇게 하면 lock을 안 걸어도 되고, pool의 사용도 중단되지 않게 만들 수 있다. 해당 구현체의 멤버변수들만 붙여보면 아래와 같다.</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Cs.Memory</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">class</span> <span class="title">LohPool</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="built_in">int</span> ChunkSizeMb = <span class="number">100</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="built_in">int</span> LowSegmentNumberLimit = <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> <span class="built_in">int</span> segmentSizeKb;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> <span class="built_in">int</span> segmentSizeBytes;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">readonly</span> <span class="title">List</span>&lt;<span class="title">byte</span>[]&gt; chunks</span> = <span class="keyword">new</span> List&lt;<span class="built_in">byte</span>[]&gt;(capacity: <span class="number">10</span>);</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">readonly</span> <span class="title">ConcurrentQueue</span>&lt;<span class="title">ArraySegment</span>&lt;<span class="title">byte</span>&gt;&gt; segments</span> = <span class="keyword">new</span> ConcurrentQueue&lt;ArraySegment&lt;<span class="built_in">byte</span>&gt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> AtomicFlag producerLock = <span class="keyword">new</span> AtomicFlag(<span class="literal">false</span>);</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">int</span> totalSegmentCount;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h2 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h2><p>C++로만 만들던 게임서버를 C#으로 만든다고 했을 때 가장 신경쓰였던 것이 메모리 부분이었다. 초기구현과 서비스를 거치면서 메모리 누수, 관리힙 사이즈 증가등 많은 메모리 문제를 겪었다. 그 중에서 가장 크게 문제를 겪었던 단편화에 대해 정리해 보았다.<br>우리가 겪었던 메모리 단편화 가장 주된 요인은 네트워크 IO용 바이트 버퍼의 pinning 때문이었다. 적당한 수준의 부하로는 별 문제 없는데.. 부하를 세게 걸면 점유 메모리가 계속 증가하고 가라않질 않았다. 이건 C++도 마찬가지지만 외형적으로만 관측하면 메모리 누수처럼 보이기 때문에, 단편화가 원인일 것이라는 의심을 하기까지도 많은 검증의 시간이 필요했다.</p>
 <p><code>SOH</code>에서는 pinning되는 메모리가 많으면 GC 능력이 많이 저하되고 단편화가 심각해진다. 네트워크 버퍼로 사용할 객체들을 <code>LOH</code>에 할당하면 이런 문제를 해결할 수 있다.</p>
 <h2 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h2><ul>
@@ -313,6 +315,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/devnote/2023/10/09/iTerm2-%EC%97%86%EC%9D%B4-%EB%A7%A5-%EA%B8%B0%EB%B3%B8-%ED%84%B0%EB%AF%B8%EB%84%90-%EA%BE%B8%EB%AF%B8%EA%B8%B0/" rel="next" title="iTerm2 없이 맥 기본 터미널 꾸미기">
+                  iTerm2 없이 맥 기본 터미널 꾸미기 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
