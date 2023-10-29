@@ -1,8 +1,6 @@
 # devnote 
 
-<img src="https://img.shields.io/github/languages/code-size/leafbird/devnote" />
-<img src="https://img.shields.io/github/repo-size/leafbird/devnote" />
-<img src="https://img.shields.io/github/last-commit/leafbird/devnote" />
+<img src="https://img.shields.io/github/languages/code-size/leafbird/devnote" /> <img src="https://img.shields.io/github/repo-size/leafbird/devnote" /> <img src="https://img.shields.io/github/last-commit/leafbird/devnote" />
 
 ![Alt text](./screenshot/intro.png)
 
