@@ -9,8 +9,60 @@
     <atom:link href="http://leafbird.github.io/devnote/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Sun, 15 Oct 2023 01:14:03 GMT</pubDate>
+    <pubDate>Sun, 12 Nov 2023 01:00:58 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>처음으로 접한 깃헙 액션</title>
+      <link>http://leafbird.github.io/devnote/2023/11/09/%EC%B2%98%EC%9D%8C%EC%9C%BC%EB%A1%9C-%EC%A0%91%ED%95%9C-%EA%B9%83%ED%97%99-%EC%95%A1%EC%85%98/</link>
+      <guid>http://leafbird.github.io/devnote/2023/11/09/%EC%B2%98%EC%9D%8C%EC%9C%BC%EB%A1%9C-%EC%A0%91%ED%95%9C-%EA%B9%83%ED%97%99-%EC%95%A1%EC%85%98/</guid>
+      <pubDate>Thu, 09 Nov 2023 04:38:49 GMT</pubDate>
+      
+      <description>&lt;img src=&quot;/devnote/2023/11/09/%EC%B2%98%EC%9D%8C%EC%9C%BC%EB%A1%9C-%EC%A0%91%ED%95%9C-%EA%B9%83%ED%97%99-%EC%95%A1%EC%85%98/actions-graph.png&quot; class=&quot;&quot;&gt;
+
+&lt;p&gt;github actions 그거 뭐 별거냐고 대수롭지 않게 생각했었다.&lt;br&gt;근데 조금 들여다보니 자유도가 꽤나 높아서, 사람들이 정말 다양하게 활용하고 있다는 것을 알고는 흥미가 생겼다.&lt;/p&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<img src="/devnote/2023/11/09/%EC%B2%98%EC%9D%8C%EC%9C%BC%EB%A1%9C-%EC%A0%91%ED%95%9C-%EA%B9%83%ED%97%99-%EC%95%A1%EC%85%98/actions-graph.png" class=""><p>github actions 그거 뭐 별거냐고 대수롭지 않게 생각했었다.<br>근데 조금 들여다보니 자유도가 꽤나 높아서, 사람들이 정말 다양하게 활용하고 있다는 것을 알고는 흥미가 생겼다.</p><span id="more"></span><h2 id="MS-Developer-Korea에서-정리해둔-actions-소개-영상을-추천"><a href="#MS-Developer-Korea에서-정리해둔-actions-소개-영상을-추천" class="headerlink" title="MS Developer Korea에서 정리해둔 actions 소개 영상을 추천"></a>MS Developer Korea에서 정리해둔 actions 소개 영상을 추천</h2><blockquote><p>CI/CD 그거 알지. 나도 해봤어. 울 회사에도 있어. </p></blockquote><p>actions를 제대로 알아보기 전의 내가 딱 이 정도 생각이었다. 그냥 <code>깃헙이 원래 코드 저장소를 제공하니까, 코드 올려둔 김에 빌드도 같이 돌리라고 추가기능 제공하는구나</code> 하는 느낌. 지금 일단 업무적으로는 버전 관리를 git으로 하고 있지 않기 때문에 딱히 관심이 크지 않기도 했다.</p><p>최근에 토이 프로젝트를 다시 시작하면서 actions도 조금 알아보고 있다. 한국 ms에서 만든 youtube 영상에 기본 개념 설명이 아주 잘 되어있다. actions를 처음 알아보려는 사람이라면 정주행을 권한다. 영상을 보고 나면 <code>workflow</code>, <code>job</code>, <code>step</code>, <code>action</code> 각 단계별 구성을 빠르게 잡을 수 있고, 시리즈 후반부에는 actions를 빌드나 배포가 아닌 다른 용도로 활용하는 예제 2가지를 소개하고 있다.</p><p><a href="https://www.youtube.com/watch?v=MhGpFunlmMQ&list=PLDZRZwFT9Wkt19Ox35Ir2A7CyNIWG96Nm">MS Developer Korea : Github Actions로 개발 주기 자동화</a></p><img src="/devnote/2023/11/09/%EC%B2%98%EC%9D%8C%EC%9C%BC%EB%A1%9C-%EC%A0%91%ED%95%9C-%EA%B9%83%ED%97%99-%EC%95%A1%EC%85%98/intro.png" class=""><p>이 영상을 보고 나면</p><ul><li>main branch는 직접 commit하지 못하게 막아둔 채로 여러 사람이 협업할 때 github을 활용하는 방법을 볼 수 있다. </li><li>pull-request를 제출한 후, 다른 사람이 리뷰를 마치고 승인했을 때, actions를 이용해서 PR에 라벨을 붙이는 예제를 볼 수 있다. (4-2)</li><li>이슈가 많이 쌓여서 관리가 필요할 때, actions를 이용해서 (라벨을 붙이면) 댓글을 달고 이슈를 닫는 예제를 볼 수 있다. (4-3)</li></ul><p>첫 번째 bullet에 적은 것처럼 main branch에는 보호 정책을 걸어두고 <code>PR - review - Merge</code>하는 흐름으로 협업하는 과정을 볼 수 있는 것도 흥미로웠다. git은 주로 개인 작업할 때 혼자서만 작업하다 보니까, commit하고 push하는거 말고는 다른 기능을 사용할 기회가 거의 없다. rebase, cherry-pick도 사용할 필요가 없어. 이 영상을 보고 branch protection rule을 어떻게 쓰는 건지 감을 잡았다.</p><h2 id="workflow를-처음-적용하면서-헤맸던-삽질들"><a href="#workflow를-처음-적용하면서-헤맸던-삽질들" class="headerlink" title="workflow를 처음 적용하면서 헤맸던 삽질들"></a>workflow를 처음 적용하면서 헤맸던 삽질들</h2><p>workflow의 문법이나 개념을 소개하기에는 이미 잘 정리된 자료들이 많이 있어서 굳이 여기에 반복할 필요는 없어 보인다. 이번에 nuget 패키지를 만들어 배포하는 workflow를 만들면서 뻘짓했던 요소들 간단히 몇가지만 정리해본다. </p><h4 id="repository가-개인-계정의-것이-아니라-organization의-소유인-경우"><a href="#repository가-개인-계정의-것이-아니라-organization의-소유인-경우" class="headerlink" title="repository가 개인 계정의 것이 아니라 organization의 소유인 경우"></a>repository가 개인 계정의 것이 아니라 organization의 소유인 경우</h4><p>packages에 파일을 올리려면 접근 권한이 필요하다. 개인 계정의 repo라면 <code>developers settings &gt; personal access tokens &gt; tokens(classic)</code>에서 발급하는 토큰을 이용하면 되는데, organization의 구성원들이 같이 공유할 수 있는 토큰 같은 개념은 없는 것 같다. 그냥 해당 repo에 접근 권한이 있는 개인이 발급한 personal token을 secret으로 등록해두고 같이 사용하게 하면 workflow를 실행하는 데에는 문제가 없다.</p><h4 id="release를-만들려면-token-외에도-권한-지정이-필요하다"><a href="#release를-만들려면-token-외에도-권한-지정이-필요하다" class="headerlink" title="release를 만들려면 token 외에도 권한 지정이 필요하다"></a>release를 만들려면 token 외에도 권한 지정이 필요하다</h4><p><a href="https://github.com/marketplace?type=actions">마켓플레이스</a>에서 검색해보면 <code>create release</code>해주는 actions가 많이 있다. 내가 사용한 것은 <a href="https://github.com/ncipollo/release-action">ncipollo/release-action</a>이고 readme의 예시에도 설명된 내용이긴 한데, job 레벨에서 권한 지정을 해주어야 한다. </p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">jobs:</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">build:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">permissions:</span></span><br><span class="line">      <span class="attr">contents:</span> <span class="string">write</span> <span class="comment"># 이거 빼먹지 마세요... ㅜㅠ</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">uses:</span> <span class="string">actions/checkout@v3</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">uses:</span> <span class="string">ncipollo/release-action@v1</span></span><br><span class="line">      <span class="attr">with:</span></span><br><span class="line">        <span class="attr">artifacts:</span> <span class="string">&quot;release.tar.gz,foo/*.txt&quot;</span></span><br><span class="line">        <span class="attr">bodyFile:</span> <span class="string">&quot;body.md&quot;</span></span><br></pre></td></tr></table></figure><p>검색하다보면 permissions 설정이 없는 yml 예시도 많이 있는데, 왠지 권한 지정 문법은 나중에 추가된 것이 아닌가 싶다. 그 전에 만들어진 workflow들은 권한 지정 없이도 실행이 됐던 것 같고. 이거 빼먹고 issue 게시판에 글 올리는 사람이 나 말고도 많음.. </p><h2 id="추가로-공부할-것"><a href="#추가로-공부할-것" class="headerlink" title="추가로 공부할 것"></a>추가로 공부할 것</h2><p>지금은 <a href="https://github.com/StudioBside/Cs.Logging/blob/main/.github/workflows/nuget.yml">기본적인 nuget 패키지 배포</a> 정도 구성해봤는데, 좀 더 익숙해지려면 다른 활용을 몇가지 더 만들어봐야 할 듯 하다. actions를 미리 알았으면 지난달에 만들었던 <a href="https://github.com/leafbird/GameRankReader">모바일 게임 랭킹 순위 크롤러</a>도 깃헙에서 바로 실행/저장하게 만들었을텐데, 그걸 몰랐네. 이거 수정하면서 좀 더 다루어봐야겠다.</p><h2 id="See-Also"><a href="#See-Also" class="headerlink" title="See Also"></a>See Also</h2><ul><li><a href="https://github.com/stjeong/XmlCodeGenerator/blob/master/.github/workflows/git-releases.yml">https://github.com/stjeong/XmlCodeGenerator/blob/master/.github/workflows/git-releases.yml</a> - 정성태님 repo에 있는 workflow 많이 참고했습니다. </li><li><a href="https://github.com/korea-dev-list/korea-dev-list.github.io/blob/main/.github/workflows/runner.yml">https://github.com/korea-dev-list/korea-dev-list.github.io/blob/main/.github/workflows/runner.yml</a> - workflow 활용하는 다른 예시. 정해진 시각에 실행되어 개발 블로그들의 새 글을 수집해 repo에 commit하고, github pages에 반영한다.</li></ul>]]></content:encoded>
+      
+      
+      
+      <category domain="http://leafbird.github.io/devnote/tags/github/">github</category>
+      
+      <category domain="http://leafbird.github.io/devnote/tags/workflow/">workflow</category>
+      
+      <category domain="http://leafbird.github.io/devnote/tags/actions/">actions</category>
+      
+      
+      <comments>http://leafbird.github.io/devnote/2023/11/09/%EC%B2%98%EC%9D%8C%EC%9C%BC%EB%A1%9C-%EC%A0%91%ED%95%9C-%EA%B9%83%ED%97%99-%EC%95%A1%EC%85%98/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>oh-my-posh로 파워쉘 꾸미기</title>
+      <link>http://leafbird.github.io/devnote/2023/10/19/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/</link>
+      <guid>http://leafbird.github.io/devnote/2023/10/19/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/</guid>
+      <pubDate>Wed, 18 Oct 2023 23:54:03 GMT</pubDate>
+      
+      <description>&lt;img src=&quot;/devnote/2023/10/19/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/win_terminal.png&quot; class=&quot;&quot;&gt;
+
+&lt;p&gt;지난번에 zsh을 꾸미고 나니, pwsh이 너무 허접해 보였다. 이런 것을 역체감이라고 하나.&lt;br&gt;어쩔 수 없지. 파워쉘도 꾸며줄 수 밖에.&lt;/p&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<img src="/devnote/2023/10/19/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/win_terminal.png" class=""><p>지난번에 zsh을 꾸미고 나니, pwsh이 너무 허접해 보였다. 이런 것을 역체감이라고 하나.<br>어쩔 수 없지. 파워쉘도 꾸며줄 수 밖에.</p><span id="more"></span><h2 id="oh-my-posh-설치"><a href="#oh-my-posh-설치" class="headerlink" title="oh-my-posh 설치"></a>oh-my-posh 설치</h2><p>설치 자체는 어렵지 않고, 관련 정보도 검색으로 쉽게 찾을 수 있다. mac은 brew를 통해서, windows에서는 winget, choco, scoop등을 통해서 설치한다.<br>파워쉘 설정의 위치가 window와 macos가 서로 다르기 때문에 설치 스크립트에 약간 신경써줄 필요가 있음. 파워쉘의 <code>$PROFILE</code> 변수가 위치가 들어있으니까 파워쉘로 설치 동작을 작성해야 양쪽 os에 대응하기가 수월하다. </p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># dotfiles repository의 프로필 파일로 심볼릭 링크를 설정합니다.</span></span><br><span class="line"><span class="built_in">New-Item</span> <span class="literal">-Path</span> <span class="variable">$profile</span> <span class="literal">-ItemType</span> SymbolicLink <span class="literal">-Value</span> <span class="variable">$sourcePath</span> <span class="literal">-Force</span></span><br></pre></td></tr></table></figure><p>전체 스크립트 파일은 <a href="https://github.com/leafbird/dotfiles">dotfiles</a>에 올려두었다.</p><p>동일한 테마를 사용해 mac에서 설정해 주었는데도, 프롬프트의 모양이 다르다. os별로 각각 디자인이 되어 있는 듯. 지금 사용하는 테마는 <a href="https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/atomic.omp.json">atomic</a>이다.</p><img src="/devnote/2023/10/19/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/pwsh_in_macos.png" class=""><p>이미지에서 처음 프롬프트는 <code>agnoster</code> 테마를 쓰는 oh-my-zsh, 아래가 <code>atomic</code> mac 버전의 oh-my-posh이다.</p><h2 id="윈도우-로고-출력하기"><a href="#윈도우-로고-출력하기" class="headerlink" title="윈도우 로고 출력하기"></a>윈도우 로고 출력하기</h2><p>스크린샷에 있는 os 로고와 하드웨어 스펙 정보 출력을 위해 <code>neofetch</code>를 설치해 실행한다. 윈도우에서는 버전이 몇가지가 되는 듯 하고 각자 윈도우 로고 출력 모양이 다르다. 그 중에 scoop에서 설치하는 버전이 로고가 가장 예뻐서 이것으로 선택했다. 하지만 부팅 시간이 너무 오래 걸려서 평상시엔 비활성 해두었다. </p>]]></content:encoded>
+      
+      
+      
+      <category domain="http://leafbird.github.io/devnote/tags/pwsh/">pwsh</category>
+      
+      <category domain="http://leafbird.github.io/devnote/tags/oh-my-posh/">oh-my-posh</category>
+      
+      
+      <comments>http://leafbird.github.io/devnote/2023/10/19/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>웹페이지 반응형 디자인하기</title>

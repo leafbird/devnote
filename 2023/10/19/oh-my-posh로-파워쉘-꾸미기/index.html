@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/devnote/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/devnote/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/devnote/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/devnote/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/devnote/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CNoto+Sans+KR:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js"></script>
+
+    <meta name="description" content="지난번에 zsh을 꾸미고 나니, pwsh이 너무 허접해 보였다. 이런 것을 역체감이라고 하나.어쩔 수 없지. 파워쉘도 꾸며줄 수 밖에.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="oh-my-posh로 파워쉘 꾸미기">
+<meta property="og:url" content="http://leafbird.github.io/devnote/2023/10/19/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/index.html">
+<meta property="og:site_name" content="leafbird&#x2F;devnote">
+<meta property="og:description" content="지난번에 zsh을 꾸미고 나니, pwsh이 너무 허접해 보였다. 이런 것을 역체감이라고 하나.어쩔 수 없지. 파워쉘도 꾸며줄 수 밖에.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://leafbird.github.io/devnote/2023/10/19/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/win_terminal.png">
+<meta property="og:image" content="http://leafbird.github.io/devnote/2023/10/19/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/pwsh_in_macos.png">
+<meta property="article:published_time" content="2023-10-18T23:54:03.000Z">
+<meta property="article:modified_time" content="2023-10-21T08:42:59.424Z">
+<meta property="article:author" content="leafbird">
+<meta property="article:tag" content="pwsh">
+<meta property="article:tag" content="oh-my-posh">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://leafbird.github.io/devnote/2023/10/19/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/win_terminal.png">
+
+
+<link rel="canonical" href="http://leafbird.github.io/devnote/2023/10/19/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"http://leafbird.github.io/devnote/2023/10/19/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/","path":"2023/10/19/oh-my-posh로-파워쉘-꾸미기/","title":"oh-my-posh로 파워쉘 꾸미기"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>oh-my-posh로 파워쉘 꾸미기 | leafbird/devnote</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54KKVRTET0"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false}</script>
+  <script src="/devnote/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/devnote/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/devnote/rss2.xml" title="leafbird/devnote" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/devnote/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">leafbird/devnote</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="검색" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#oh-my-posh-%EC%84%A4%EC%B9%98"><span class="nav-number">1.</span> <span class="nav-text">oh-my-posh 설치</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%9C%88%EB%8F%84%EC%9A%B0-%EB%A1%9C%EA%B3%A0-%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0"><span class="nav-number">2.</span> <span class="nav-text">윈도우 로고 출력하기</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">leafbird</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/devnote/archives/">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">태그</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/leafbird" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leafbird" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/leafbird_tw" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;leafbird_tw" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2023/10/19/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="oh-my-posh로 파워쉘 꾸미기 | leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          oh-my-posh로 파워쉘 꾸미기
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+
+      <time title="Post created: 2023-10-19 08:54:03" itemprop="dateCreated datePublished" datetime="2023-10-19T08:54:03+09:00">2023-10-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Updated at: 2023-10-21 17:42:59" itemprop="dateModified" datetime="2023-10-21T17:42:59+09:00">2023-10-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <img src="/devnote/2023/10/19/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/win_terminal.png" class="">
+
+<p>지난번에 zsh을 꾸미고 나니, pwsh이 너무 허접해 보였다. 이런 것을 역체감이라고 하나.<br>어쩔 수 없지. 파워쉘도 꾸며줄 수 밖에.</p>
+<span id="more"></span>
+
+<h2 id="oh-my-posh-설치"><a href="#oh-my-posh-설치" class="headerlink" title="oh-my-posh 설치"></a>oh-my-posh 설치</h2><p>설치 자체는 어렵지 않고, 관련 정보도 검색으로 쉽게 찾을 수 있다. mac은 brew를 통해서, windows에서는 winget, choco, scoop등을 통해서 설치한다.<br>파워쉘 설정의 위치가 window와 macos가 서로 다르기 때문에 설치 스크립트에 약간 신경써줄 필요가 있음. 파워쉘의 <code>$PROFILE</code> 변수가 위치가 들어있으니까 파워쉘로 설치 동작을 작성해야 양쪽 os에 대응하기가 수월하다. </p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># dotfiles repository의 프로필 파일로 심볼릭 링크를 설정합니다.</span></span><br><span class="line"><span class="built_in">New-Item</span> <span class="literal">-Path</span> <span class="variable">$profile</span> <span class="literal">-ItemType</span> SymbolicLink <span class="literal">-Value</span> <span class="variable">$sourcePath</span> <span class="literal">-Force</span></span><br></pre></td></tr></table></figure>
+
+<p>전체 스크립트 파일은 <a target="_blank" rel="noopener" href="https://github.com/leafbird/dotfiles">dotfiles</a>에 올려두었다.</p>
+<p>동일한 테마를 사용해 mac에서 설정해 주었는데도, 프롬프트의 모양이 다르다. os별로 각각 디자인이 되어 있는 듯. 지금 사용하는 테마는 <a target="_blank" rel="noopener" href="https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/atomic.omp.json">atomic</a>이다.</p>
+<img src="/devnote/2023/10/19/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/pwsh_in_macos.png" class="">
+
+<p>이미지에서 처음 프롬프트는 <code>agnoster</code> 테마를 쓰는 oh-my-zsh, 아래가 <code>atomic</code> mac 버전의 oh-my-posh이다.</p>
+<h2 id="윈도우-로고-출력하기"><a href="#윈도우-로고-출력하기" class="headerlink" title="윈도우 로고 출력하기"></a>윈도우 로고 출력하기</h2><p>스크린샷에 있는 os 로고와 하드웨어 스펙 정보 출력을 위해 <code>neofetch</code>를 설치해 실행한다. 윈도우에서는 버전이 몇가지가 되는 듯 하고 각자 윈도우 로고 출력 모양이 다르다. 그 중에 scoop에서 설치하는 버전이 로고가 가장 예뻐서 이것으로 선택했다. 하지만 부팅 시간이 너무 오래 걸려서 평상시엔 비활성 해두었다. </p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/devnote/tags/pwsh/" rel="tag"># pwsh</a>
+              <a href="/devnote/tags/oh-my-posh/" rel="tag"># oh-my-posh</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/devnote/2023/10/12/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%B0%98%EC%9D%91%ED%98%95-%EB%94%94%EC%9E%90%EC%9D%B8%ED%95%98%EA%B8%B0/" rel="prev" title="웹페이지 반응형 디자인하기">
+                  <i class="fa fa-chevron-left"></i> 웹페이지 반응형 디자인하기
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/devnote/2023/11/09/%EC%B2%98%EC%9D%8C%EC%9C%BC%EB%A1%9C-%EC%A0%91%ED%95%9C-%EA%B9%83%ED%97%99-%EC%95%A1%EC%85%98/" rel="next" title="처음으로 접한 깃헙 액션">
+                  처음으로 접한 깃헙 액션 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">leafbird</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/devnote/js/comments.js"></script><script src="/devnote/js/utils.js"></script><script src="/devnote/js/schemes/muse.js"></script><script src="/devnote/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"leafbird","repo":"devnote","client_id":"27d8b6b6501ea8561848","client_secret":"86181a3464a298b3cbce1b1aadd362004ca5494f","admin_user":"leafbird","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"67412c20e55cb68502262cd70c6ae2d1"}</script>
+<script src="/devnote/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
