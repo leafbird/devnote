@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/devnote/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/devnote/images/favicon-32x32-next.png">
@@ -14,9 +14,9 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CNoto+Sans+KR:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.18.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js"></script>
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="leafbird&#x2F;devnote">
@@ -37,7 +37,7 @@
 <title>leafbird/devnote</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-54KKVRTET0"></script>
-  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false}</script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false,"measure_protocol_api_secret":null}</script>
   <script src="/devnote/js/third-party/analytics/google-analytics.js"></script>
 
 
@@ -115,12 +115,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/devnote/archives/">
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">35</span>
         <span class="site-state-item-name">태그</span>
       </div>
   </nav>
@@ -145,6 +145,262 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2014/09/30/cleanup-cpp-project-3rd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/devnote/2014/09/30/cleanup-cpp-project-3rd/" class="post-title-link" itemprop="url">C++ 코드 정리 자동화 - 3. pch 사이즈 확인, #include 순서정리</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+
+      <time title="Post created: 2014-09-30 15:17:15" itemprop="dateCreated datePublished" datetime="2014-09-30T15:17:15+09:00">2014-09-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Updated at: 2023-07-24 13:30:32" itemprop="dateModified" datetime="2023-07-24T13:30:32+09:00">2023-07-24</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="pch-파일-사이즈"><a href="#pch-파일-사이즈" class="headerlink" title="pch 파일 사이즈"></a>pch 파일 사이즈</h2><p>팀에서 만지는 코드에서는, 290Mb에 육박하는 pch파일을 본 적이 있다(…) 그 땐 코드를 정리하면서 pch 사이즈 변화를 자주 확인해봐야 했는데, 탐색기나 커맨드 창에서 매번 사이즈를 조회하기가 불편했던 기억이 있어서 pch 사이즈 확인하는 걸 만들어봤다.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/devnote/2014/09/30/cleanup-cpp-project-3rd/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2014/09/17/cleanup-cpp-project-2nd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/devnote/2014/09/17/cleanup-cpp-project-2nd/" class="post-title-link" itemprop="url">C++ 코드 정리 자동화 - 2. 불필요한 #include 찾기 下</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+
+      <time title="Post created: 2014-09-17 20:30:24" itemprop="dateCreated datePublished" datetime="2014-09-17T20:30:24+09:00">2014-09-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Updated at: 2023-07-24 13:30:32" itemprop="dateModified" datetime="2023-07-24T13:30:32+09:00">2023-07-24</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>이전 포스트 ‘<a href="/devnote/2014/09/12/claenup-cpp-project-1st/" title="C++ 코드 정리 자동화 - 1. 불필요한 #include 찾기 上">C++ 코드 정리 자동화 - 1. 불필요한 #include 찾기 上</a>‘ 에서 이어진다.</p>
+<h2 id="지워도-되는-인클루드를-찾아냈다"><a href="#지워도-되는-인클루드를-찾아냈다" class="headerlink" title="지워도 되는 인클루드를 찾아냈다"></a>지워도 되는 인클루드를 찾아냈다</h2><p>개별 파일 하나씩을 컴파일 할 수 있다면 이제 모든 인클루드를 하나씩 삭제하면서 컴파일 가능 여부를 확인해보면 된다. 이 부분은 간단한 file seeking과 string 처리 작업일 뿐이니 굳이 부연 설명은 필요 없다. 카페에서 여유롭게 음악을 들으며 즐겁게 툴을 만들자. 뚝딱뚝딱.</p>
+<p>이정도 하고 나니 이제 vcxproj파일 경로를 주면 해당 프로젝트에 들어있는 소스코드에서 불필요한 인클루드를 색출해 위치정보를 출력해주는 물건이 만들어졌다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">작업 대상으로 1개의 프로젝트가 입력 되었습니다.</span><br><span class="line">-------------------------------------------------</span><br><span class="line">Service : 프로젝트 정리.</span><br><span class="line">Service : PCH 생성.</span><br><span class="line">컴파일 : stdafx.cpp ... 성공. 걸린 시간 : 1.04초</span><br><span class="line">Client.cpp의 인클루드를 검사합니다.</span><br><span class="line"> - process #1 Client.cpp (1/2) ... X</span><br><span class="line"> - process #1 Client.cpp (2/2) ... X</span><br><span class="line">ClientAcceptor.cpp의 인클루드를 검사합니다.</span><br><span class="line"> - process #1 ClientAcceptor.cpp (1/2) ... 컴파일 가능!</span><br><span class="line"> - process #1 ClientAcceptor.cpp (2/2) ... X</span><br><span class="line">ClientConnection.cpp의 인클루드를 검사합니다.</span><br><span class="line"> - process #1 ClientConnection.cpp (1/3) ... X</span><br><span class="line"> - process #1 ClientConnection.cpp (2/3) ... X</span><br><span class="line"> - process #1 ClientConnection.cpp (3/3) ... X</span><br><span class="line">Start.cpp의 인클루드를 검사합니다.</span><br><span class="line"> - process #1 Start.cpp (1/4) ... X</span><br><span class="line"> - process #1 Start.cpp (2/4) ... X</span><br><span class="line"> - process #1 Start.cpp (3/4) ... X</span><br><span class="line"> - process #1 Start.cpp (4/4) ... X</span><br><span class="line">ThreadEntry.cpp의 인클루드를 검사합니다.</span><br><span class="line"> - process #1 ThreadEntry.cpp (1/1) ... X</span><br><span class="line">-------------------------------------------------</span><br><span class="line">Project : Service 모두 1개의 인클루드가 불필요한 것으로 의심됩니다.</span><br><span class="line">D:\Dev\uni\World\Service\ClientAcceptor.cpp</span><br><span class="line"> - 2 line : #include &quot;World/Service/Client.h&quot;</span><br><span class="line"></span><br><span class="line">총 소요 시간 : 13.289 sec</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/devnote/2014/09/17/cleanup-cpp-project-2nd/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2014/09/12/claenup-cpp-project-1st/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/devnote/2014/09/12/claenup-cpp-project-1st/" class="post-title-link" itemprop="url">C++ 코드 정리 자동화 - 1. 불필요한 #include 찾기 上</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+
+      <time title="Post created: 2014-09-12 20:26:14" itemprop="dateCreated datePublished" datetime="2014-09-12T20:26:14+09:00">2014-09-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Updated at: 2023-07-24 13:30:32" itemprop="dateModified" datetime="2023-07-24T13:30:32+09:00">2023-07-24</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="지워도-되는-헤더-인클루드를-색출하고-싶다"><a href="#지워도-되는-헤더-인클루드를-색출하고-싶다" class="headerlink" title="지워도 되는 헤더 인클루드를 색출하고 싶다"></a>지워도 되는 헤더 인클루드를 색출하고 싶다</h2><p>매우 느리게 찔끔찔끔 진행하는 토이 프로젝트가 있는데, 오늘 처음으로 무언가 그럴싸한 아웃풋이 나오게 되어 스냅샷을 하는 느낌으로 간단히 포스팅.</p>
+<p>cpp 프로젝트 규모가 점점 커지게 되면 빌드 시간 때문에 많은 고통을 겪는다. 이때문에 <a target="_blank" rel="noopener" href="https://www.incredibuild.com/">increadi build</a> 같은 분산 빌드 솔루션도 쓰는거고 <a target="_blank" rel="noopener" href="http://www.slideshare.net/devcatpublications/ndc2010-unity-build">unity build</a> 같은 꼼수도 사용하게 되는거다. </p>
+<p>하지만 저런 솔루션들을 사용하기 이전에, 코드를 정리하는 것이 먼저 선행될 필요가 있다. cpp는 특성상 작업하다보면 소스파일에 불필요한 헤더파일의 #include가 남게되고, 이것들이 불필요한 dependency를 만들어내면서 늘어지는 빌드 시간을 무시할 수 없기 때문이다. </p>
+<p>그런데 문제는 그렇게 생긴 불필요 인클루드 구문이 무엇인지를 골라내기가 힘들다는 점이다. 프로젝트 규모가 커질수록 더욱 힘들다. c#같은 경우 불필요 using 구문을 아예 visual studio IDE가 자체적으로 정리해주기까지 하지만, cpp는 색출조차 힘들다 보니 이런 기능을 제공하는 3rd party tool도 없어 보인다. <a target="_blank" rel="noopener" href="http://www.wholetomato.com/downloads/spaghettiDownload.asp">Whole Tomato의 Spaghetti</a> 처럼 인클루드간의 관계를 그래프로 보여주는 툴은 몇 번 본 적 있다. 조낸 멋지게 그래프까지 보여주었지만 정작 불필요한 놈이 무언지 콕 짚어주는 녀석은 없음. 참으로 척박한 현실이다. </p>
+<p>그래서 한 번 직접 만들어보기로 했다. </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/devnote/2014/09/12/claenup-cpp-project-1st/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -672,7 +928,7 @@
 
   <div class="copyright">
     &copy; 
-    <span itemprop="copyrightYear">2023</span>
+    <span itemprop="copyrightYear">2024</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
@@ -704,7 +960,7 @@
 
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/devnote/js/comments.js"></script><script src="/devnote/js/utils.js"></script><script src="/devnote/js/schemes/muse.js"></script><script src="/devnote/js/next-boot.js"></script>
+<script src="/devnote/js/comments.js"></script><script src="/devnote/js/utils.js"></script><script src="/devnote/js/schemes/muse.js"></script><script src="/devnote/js/sidebar.js"></script><script src="/devnote/js/next-boot.js"></script>
 
   
 

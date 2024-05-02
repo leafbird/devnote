@@ -75,6 +75,9 @@ NexT.utils = {
           box = document.createElement('div');
           box.className = 'code-container';
           container.wrap(box);
+
+          // add "notranslate" to prevent Google Translate from translating it, which also completely messes up the layout
+          box.classList.add('notranslate');
         }
         target = box;
       }
@@ -410,6 +413,19 @@ NexT.utils = {
     panelContainer.style.setProperty('--active-panel-height', `${panelHeights[index]}px`);
 
     sidebar.classList.replace(activeClassNames[1 - index], activeClassNames[index]);
+  },
+
+  updateFooterPosition: function() {
+    if (CONFIG.scheme === 'Pisces' || CONFIG.scheme === 'Gemini') return;
+    function updateFooterPosition() {
+      const footer = document.querySelector('.footer');
+      const containerHeight = document.querySelector('.main').offsetHeight + footer.offsetHeight;
+      footer.classList.toggle('footer-fixed', containerHeight <= window.innerHeight);
+    }
+
+    updateFooterPosition();
+    window.addEventListener('resize', updateFooterPosition);
+    window.addEventListener('scroll', updateFooterPosition, { passive: true });
   },
 
   getScript: function(src, options = {}, legacyCondition) {
