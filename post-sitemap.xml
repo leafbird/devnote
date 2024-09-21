@@ -1,124 +1,187 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+
+
     <url>
-        <loc>http://leafbird.github.io/devnote/</loc>
-        <changefreq>daily</changefreq>
+        <loc>http://leafbird.github.io/devnote/2024/09/21/%ED%95%9C-%EB%B2%88-%EB%8D%94-%EB%82%98%EC%97%90%EA%B2%8C-%EC%A7%88%ED%92%8D%EA%B0%99%EC%9D%80-%EC%9A%A9%EA%B8%B0%EB%A5%BC/</loc>
+        <lastmod>2024-09-21T11:02:22.111Z</lastmod>
+        <changefreq>always</changefreq>
         <priority>1</priority>
+    
+    
     </url>
 
+    <url>
+        <loc>http://leafbird.github.io/devnote/2024/05/02/hexo%EC%97%90-PR%EC%9D%84-%EB%B3%B4%EB%83%88%EC%8A%B5%EB%8B%88%EB%8B%A4/</loc>
+        <lastmod>2024-05-03T12:34:46.543Z</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
+    </url>
+
+    <url>
+        <loc>http://leafbird.github.io/devnote/2023/10/19/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/</loc>
+        <lastmod>2024-04-07T10:26:54.713Z</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
+    </url>
+
+    <url>
+        <loc>http://leafbird.github.io/devnote/2023/11/09/%EC%B2%98%EC%9D%8C%EC%9C%BC%EB%A1%9C-%EC%A0%91%ED%95%9C-%EA%B9%83%ED%97%99-%EC%95%A1%EC%85%98/</loc>
+        <lastmod>2023-11-12T01:04:52.563Z</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
+    </url>
+
+    <url>
+        <loc>http://leafbird.github.io/devnote/2023/10/09/iTerm2-%EC%97%86%EC%9D%B4-%EB%A7%A5-%EA%B8%B0%EB%B3%B8-%ED%84%B0%EB%AF%B8%EB%84%90-%EA%BE%B8%EB%AF%B8%EA%B8%B0/</loc>
+        <lastmod>2023-10-17T22:35:59.485Z</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
+    </url>
+
+    <url>
+        <loc>http://leafbird.github.io/devnote/2023/10/12/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%B0%98%EC%9D%91%ED%98%95-%EB%94%94%EC%9E%90%EC%9D%B8%ED%95%98%EA%B8%B0/</loc>
+        <lastmod>2023-10-15T01:14:03.514Z</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
+    </url>
 
     <url>
         <loc>http://leafbird.github.io/devnote/2021/08/08/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%8B%A8%ED%8E%B8%ED%99%94/</loc>
         <lastmod>2023-01-07T02:18:49.836Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
     </url>
 
     <url>
         <loc>http://leafbird.github.io/devnote/2021/01/01/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-Thread-Local-Storage/</loc>
         <lastmod>2023-01-07T02:18:49.832Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
     </url>
 
     <url>
         <loc>http://leafbird.github.io/devnote/2020/12/26/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-FILE-LINE-%EB%8C%80%EC%B2%B4%EC%A0%9C/</loc>
         <lastmod>2023-01-07T02:18:49.830Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
     </url>
 
     <url>
         <loc>http://leafbird.github.io/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/</loc>
         <lastmod>2023-01-07T02:18:49.830Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://leafbird.github.io/devnote/2018/11/12/%ED%85%8C%ED%81%AC%EB%8B%88%EC%BB%AC-%EB%A6%AC%EB%8D%94%EC%8B%AD-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/</loc>
-        <lastmod>2023-01-07T02:18:49.829Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
     </url>
 
     <url>
         <loc>http://leafbird.github.io/devnote/2014/09/30/cleanup-cpp-project-3rd/</loc>
         <lastmod>2023-01-07T02:18:49.829Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
+    </url>
 
+    <url>
+        <loc>http://leafbird.github.io/devnote/2018/11/12/%ED%85%8C%ED%81%AC%EB%8B%88%EC%BB%AC-%EB%A6%AC%EB%8D%94%EC%8B%AD-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/</loc>
+        <lastmod>2023-01-07T02:18:49.829Z</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
     </url>
 
     <url>
         <loc>http://leafbird.github.io/devnote/2014/07/14/move-to-octopress/</loc>
         <lastmod>2023-01-07T02:18:49.828Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://leafbird.github.io/devnote/2013/12/30/octopress-on-windows/</loc>
-        <lastmod>2023-01-07T02:18:49.828Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
     </url>
 
     <url>
         <loc>http://leafbird.github.io/devnote/2014/07/16/the-benz-programmer/</loc>
         <lastmod>2023-01-07T02:18:49.828Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://leafbird.github.io/devnote/2014/07/21/octopress-tips-on-windows/</loc>
-        <lastmod>2023-01-07T02:18:49.828Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://leafbird.github.io/devnote/2014/08/19/yoda-notation/</loc>
-        <lastmod>2023-01-07T02:18:49.828Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
     </url>
 
     <url>
         <loc>http://leafbird.github.io/devnote/2014/07/19/google-c-plus-plus-style-guide/</loc>
         <lastmod>2023-01-07T02:18:49.828Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
+    </url>
 
+    <url>
+        <loc>http://leafbird.github.io/devnote/2013/12/30/octopress-on-windows/</loc>
+        <lastmod>2023-01-07T02:18:49.828Z</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
+    </url>
+
+    <url>
+        <loc>http://leafbird.github.io/devnote/2014/07/21/octopress-tips-on-windows/</loc>
+        <lastmod>2023-01-07T02:18:49.828Z</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
     </url>
 
     <url>
         <loc>http://leafbird.github.io/devnote/2014/09/12/claenup-cpp-project-1st/</loc>
         <lastmod>2023-01-07T02:18:49.828Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
+    </url>
 
+    <url>
+        <loc>http://leafbird.github.io/devnote/2014/08/19/yoda-notation/</loc>
+        <lastmod>2023-01-07T02:18:49.828Z</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
     </url>
 
     <url>
         <loc>http://leafbird.github.io/devnote/2014/09/17/cleanup-cpp-project-2nd/</loc>
         <lastmod>2023-01-07T02:18:49.828Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
     </url>
 
 </urlset>
-<!-- XML Sitemap generated by Hexo SEO Friendly Sitemap Generator -->
+

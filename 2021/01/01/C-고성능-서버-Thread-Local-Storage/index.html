@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/devnote/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/devnote/images/favicon-32x32-next.png">
@@ -14,9 +14,9 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CNoto+Sans+KR:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js"></script>
 
     <meta name="description" content="프로그래밍에서 각 스레드별로 고유한 상태를 설정할 수 있는 공간을 Thread Local Storage (이하 TLS. transport layer security 아님) 라고 한다. VC++에서는 __declspec(thread) 키워드를 이용해서 tls 변수를 선언할 수 있다.  C#에도 ThreadLocal&lt;T&gt; 라는 클래스를 이용해 tls">
 <meta property="og:type" content="article">
@@ -50,7 +50,7 @@
 <title>C# 고성능 서버 - Thread Local Storage | leafbird/devnote</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-54KKVRTET0"></script>
-  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false}</script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false,"measure_protocol_api_secret":null}</script>
   <script src="/devnote/js/third-party/analytics/google-analytics.js"></script>
 
 
@@ -58,9 +58,7 @@
 
 
 
-  <script async defer data-website-id="" src=""></script>
 
-  <script defer data-domain="" src=""></script>
 
   <noscript>
     <link rel="stylesheet" href="/devnote/css/noscript.css">
@@ -131,12 +129,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/devnote/archives/">
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">태그</span>
       </div>
   </nav>
@@ -219,17 +217,16 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-        <p>프로그래밍에서 각 스레드별로 고유한 상태를 설정할 수 있는 공간을 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Thread-local_storage">Thread Local Storage</a> (이하 TLS. transport layer security 아님) 라고 한다. VC++에서는 <code>__declspec(thread)</code> 키워드를 이용해서 tls 변수를 선언할 수 있다. </p>
-<p>C#에도 <code>ThreadLocal&lt;T&gt;</code> 라는 클래스를 이용해 tls를 사용할 수 있지만, 막상 실제로 사용해보면 C++에서는 존재하지 않았던 큰 차이점이 있다. C# 5.0부터 들어온 async / await 문법을 이용해 비동기 프로그래밍을 구현했다면, await 대기 시점 이전과 이후에 스레드가 달라지기 때문이다. </p>
+    <div class="post-body" itemprop="articleBody"><p>프로그래밍에서 각 스레드별로 고유한 상태를 설정할 수 있는 공간을 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Thread-local_storage">Thread Local Storage</a> (이하 TLS. transport layer security 아님) 라고 한다. VC++에서는 <code>__declspec(thread)</code> 키워드를 이용해서 tls 변수를 선언할 수 있다. </p>
+<p>C#에도 <code>ThreadLocal&lt;T&gt;</code> 라는 클래스를 이용해 tls를 사용할 수 있지만, 막상 실제로 사용해보면 C++에서는 존재하지 않았던 큰 차이점이 있다. C# 5.0부터 들어온 async &#x2F; await 문법을 이용해 비동기 프로그래밍을 구현했다면, await 대기 시점 이전과 이후에 스레드가 달라지기 때문이다. </p>
 <p>이를 해결하는 방법과 주의해야 할 사항을 정리해본다. </p>
 <span id="more"></span>
 
-<blockquote><p>알림 : 이 글을 처음 포스팅한 후 받은 피드백을 통해 보다 명확한 원인과 해결방법을 추가 확인하게 되어 내용을 수정/보완 했습니다. 최초 버전의 글도 유지하려 했으나 글의 문맥이 복잡해지고 읽기가 어려워져 최종 버전만 남겼습니다.</p>
+<blockquote><p>알림 : 이 글을 처음 포스팅한 후 받은 피드백을 통해 보다 명확한 원인과 해결방법을 추가 확인하게 되어 내용을 수정&#x2F;보완 했습니다. 최초 버전의 글도 유지하려 했으나 글의 문맥이 복잡해지고 읽기가 어려워져 최종 버전만 남겼습니다.</p>
 <p>수정한 내용 요약 : 새로 깨어난 스레드인데도 <code>AsyncLocal&lt;T&gt;</code>에 값이 남아있던 이유는, 기존의 값이 지워지지 않았기 때문이 아니라, 네트워크 이벤트 콜백으로 깨어난 스레드에도 <code>AsyncLocal&lt;T&gt;</code>의 값을 복사하고 있었기 때문이었습니다.</p>
 </blockquote>
 
-<h2 id="async-await-을-절대-가볍게-접근하면-안된다"><a href="#async-await-을-절대-가볍게-접근하면-안된다" class="headerlink" title="async / await 을 절대 가볍게 접근하면 안된다"></a>async / await 을 절대 가볍게 접근하면 안된다</h2><p>주제와 약간 벗어날 수 있지만 서두에 미리 한 번 짚고 넘어갈 부분이 있다. <strong>절대로 async / await를 이용한 비동기 프로그래밍을 만만하게 보아서는 안된다</strong>는 것이다.</p>
+<h2 id="async-await-을-절대-가볍게-접근하면-안된다"><a href="#async-await-을-절대-가볍게-접근하면-안된다" class="headerlink" title="async &#x2F; await 을 절대 가볍게 접근하면 안된다"></a>async &#x2F; await 을 절대 가볍게 접근하면 안된다</h2><p>주제와 약간 벗어날 수 있지만 서두에 미리 한 번 짚고 넘어갈 부분이 있다. <strong>절대로 async &#x2F; await를 이용한 비동기 프로그래밍을 만만하게 보아서는 안된다</strong>는 것이다.</p>
 <p>나도 그랬지만 누구든지 제일 처음 비동기 메서드를 접했을 땐 이해하기 쉽고 간단한 기능이라는 첫인상을 가지게 될 것이다. 개인적으로는 비동기 메서드를 적용하고 난 후의 코드가 동기 프로그래밍과 너무 비슷해져 버리는 점이 착각을 유발하는 큰 원인이라고 생각한다 (MS: 얘는 뭐 좋게 해줘도 불만이 많네..) </p>
 <p>이전에 DB 쿼리나 네트워크 통신같은 IO 작업에서 비동기로 받는 결과값을 처리하기 위해서는 하나의 동일한 주제(single concern)를 위한 로직임에도 불구하고 비동기 요청 이전과 이후의 코드가 분절되어야 했다. 이를테면 비동기 요청 전의 코드와 응답 후의 코드를 서로 다른 메서드로 나누어서 짜야 했다는 뜻이다. 코드의 가독성에 대해 고민을 좀 해봤던 개발자라면 람다를 써서 어떻게든 읽기 좋고 관리하기 좋도록 애써 보았을 수도 있으나, 가독성에서 정도의 차이가 있을 뿐 명백하게 존재하는 코드상의 분절을 피할 수 없었다. </p>
 <p>비동기 메서드의 등장으로 이런 상황은 옛날 이야기가 되었다. 안간힘을 써보아도 완전하게 붙이기 힘들었던 분절된 코드들은 이제 하나의 async 함수 안에서 seamless하게 구현할 수 있게 되었다. 작성한 코드를 읽을 때에도 (신경써서 읽지 않는다면) 어디가 동기 처리이고, 어디가 비동기 처리인지도 잘 모르고 넘어갈만큼 술술 읽어내려가게 되었다. 좋게 해석하자면 어플리케이션 개발자가 좀 더 로직에만 집중 할 수 있는 환경이 되었다.</p>
@@ -237,10 +234,10 @@
 <p>이후 글에서 언급할 내용도 비동기 함수의 실행 시점차와 관련되어 있으므로, 비동기 메서드에 대한 어느 정도의 이해가 필요하다.</p>
 <h2 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h2><p>우선 잠깐 언급했던 <code>ThreadLocal&lt;T&gt;</code> 클래스를 간단히 알아보자. 이를 이용해 일반적인 tls 변수를 선언하고 사용할 수 있다. 이보다 전부터 있었던 <code>[ThreadStatic]</code> 어트리뷰트로도 똑같이 tls를 선언할 수 있지만, 변수의 초기화 처리에서 <code>ThreadLocal&lt;T&gt;</code> 가 좀 더 매끄러운 처리를 지원한다. 일반적인 tls가 필요할 때는 좀 더 최신의 방식인 <code>ThreadLocal&lt;T&gt;</code> 를 사용하면 된다.</p>
 <p>모든 tls 변수에 동일한 값의 복제본을 저장해 두려는 경우가 있다. 예를들어 스레드가 3개 있으면, 메모리 공간상에 각 스레드를 위한 변수 3개가 있고, 이들 모두에 같은 의미를 가지는 인스턴스를 하나씩 생성해 할당하는 경우를 말한다. <strong>서로 다른 스레드끼리 공유해야 할 자원이 있을 때, 해당 자원에 lock이 없이 접근하고 싶다면</strong> tls를 이용해 각 스레드마다 자원을 따로 만들어 각자 자기 리소스를 쓰게 하면 된다.</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Cs.Math</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">RandomGenerator</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">int</span> <span class="title">Next</span>(<span class="params"><span class="built_in">int</span> maxValue</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">      <span class="keyword">return</span> PerThreadRandom.Instance.Next(maxValue);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// ... 중략    </span></span><br><span class="line">    <span class="comment">// 사용 계층에 노출할 인터페이스를 이곳에 정의. 사용자는 tls에 대해 알지 못한다.</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// System.Random 객체는 멀티스레드 사용에 안전하지 않으므로 각 스레드마다 개별 생성.</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">PerThreadRandom</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> <span class="title">ThreadLocal</span>&lt;<span class="title">Random</span>&gt; Random</span> = <span class="keyword">new</span> ThreadLocal&lt;Random&gt;(() =&gt; <span class="keyword">new</span> Random());</span><br><span class="line"></span><br><span class="line">      <span class="keyword">internal</span> <span class="keyword">static</span> Random Instance =&gt; Random.Value;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Cs.Math</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">RandomGenerator</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">int</span> <span class="title">Next</span>(<span class="params"><span class="built_in">int</span> maxValue</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">return</span> PerThreadRandom.Instance.Next(maxValue);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// ... 중략    </span></span><br><span class="line">    <span class="comment">// 사용 계층에 노출할 인터페이스를 이곳에 정의. 사용자는 tls에 대해 알지 못한다.</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// System.Random 객체는 멀티스레드 사용에 안전하지 않으므로 각 스레드마다 개별 생성.</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">PerThreadRandom</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> ThreadLocal&lt;Random&gt; Random = <span class="keyword">new</span> ThreadLocal&lt;Random&gt;(() =&gt; <span class="keyword">new</span> Random());</span><br><span class="line"></span><br><span class="line">      <span class="keyword">internal</span> <span class="keyword">static</span> Random Instance =&gt; Random.Value;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>이런 경우는 비동기 메서드의 실행중 스레드의 교체가 발생하더라도 아무 문제가 되지 않는다. 어차피 어떤 스레드로 바뀌더라도 tls 변수가 하는 역할은 동일하기 때문이다. 0번 스레드가 불러다 쓰는 <code>Random</code> 객체가 어느순간 2번 스레드의 <code>Random</code> 객체로 바뀐다 해도 동작에 큰 영향이 없다. </p>
-<h2 id="AsyncLocal"><a href="#AsyncLocal" class="headerlink" title="AsyncLocal"></a>AsyncLocal</h2><p>문제는 스레드별로 tls의 상태가 서로 달라야 할 때 발생한다. 0번 스레드에는 tls에 “철수”가, 2번 스레드에는 “영희”가 적혀있어야 하고, 이를 사용해 스레드마다 다른 동작을 해야 하는 경우. 그런데 거기다 async/await를 이용한 비동기 프로그래밍을 함께 사용한 경우. 0번 철수 스레드가 코드 수행 도중 await 구문을 만나 task의 완료를 기다리고 있었지만, 대기가 풀렸을 때는 2번 스레드로 갈아타게 되면서 철수가 영희가 되버리는 경우다.</p>
+<h2 id="AsyncLocal"><a href="#AsyncLocal" class="headerlink" title="AsyncLocal"></a>AsyncLocal</h2><p>문제는 스레드별로 tls의 상태가 서로 달라야 할 때 발생한다. 0번 스레드에는 tls에 “철수”가, 2번 스레드에는 “영희”가 적혀있어야 하고, 이를 사용해 스레드마다 다른 동작을 해야 하는 경우. 그런데 거기다 async&#x2F;await를 이용한 비동기 프로그래밍을 함께 사용한 경우. 0번 철수 스레드가 코드 수행 도중 await 구문을 만나 task의 완료를 기다리고 있었지만, 대기가 풀렸을 때는 2번 스레드로 갈아타게 되면서 철수가 영희가 되버리는 경우다.</p>
 <img src="/devnote/2021/01/01/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-Thread-Local-Storage/00.png" class="">
 
 <p>스레드별로 서로 다른 상태값을 사용해야 하는 예를 구승모 교수님의 <a target="_blank" rel="noopener" href="https://github.com/zeliard/Dispatcher">Dispatcher</a> 구현에서 찾아볼 수 있다. (<a target="_blank" rel="noopener" href="https://github.com/zeliard/Dispatcher/blob/master/JobDispatcher/ThreadLocal.h">ThreadLocal.h</a>) Dispatcher는 고성능 멀티스레드 로직 수행을 위한 Actor 패턴 구현체다. 스레드에 lock을 걸지 않으면서도 서로 다른 스레드간 간섭 없이 순차실행을 가능하게 하기 위해, 스레드는 현재 자신의 수행상태 일부를 tls에 기록해 두어야 한다. </p>
@@ -259,23 +256,23 @@
 </li>
 <li><p>비동기 소켓의 IO 완료통지를 포함해, 네트워크 이벤트 콜백을 유발하는 메서드들</p>
 <ul>
-<li> Socket.ConnectAsync() - ConnectEx() in win32</li>
-<li> Socket.DisconnectAsync() - DisconnectEx() in win32</li>
-<li> Socket.AcceptAsync() - AcceptEx() in win32</li>
-<li> Socket.ReceiveAsync() - WSARecv() in win32</li>
-<li> Socket.SendAsync() - WSASend() in win32</li>
+<li>Socket.ConnectAsync() - ConnectEx() in win32</li>
+<li>Socket.DisconnectAsync() - DisconnectEx() in win32</li>
+<li>Socket.AcceptAsync() - AcceptEx() in win32</li>
+<li>Socket.ReceiveAsync() - WSARecv() in win32</li>
+<li>Socket.SendAsync() - WSASend() in win32</li>
 </ul>
 </li>
 </ol>
 <p>1번 백그라운드 작업 요청 메서드들은 스레드풀을 대상으로 하는 동작이니까 어느 정도 이해가 된다고 하지만, 2번 네트워크 콜백들은 tls를 복사한다는 점이 선뜻 연결이 잘 되지 않는다. managed 메서드의 이름이 낮설어 보일까 싶어 win32에 해당하는 함수명도 같이 적었는데, 그냥 OVERLAPPED 구조체를 이용해 IOCP에 통지를 요청하는 네트워크 api들 전체를 말한다. </p>
 <p>0번 스레드가 게임 로직을 열심히 수행하다가 클라이언트로 동기화 패킷을 보낼 상황이 되었다. 그래서 패킷을 만들어 소켓에 SendAsync()를 한 번 걸어놓고, 다시 또 다른 로직을 열심히 수행한다. 근데 0번 스레드가 걸었던 send 요청이 완료되어 새롭게 2번 스레드가 OnSendCompleted 메서드를 실행하려고 깨어났는데, 이 때 0번 스레드가 <code>AsyncLocal&lt;T&gt;</code>에 저장해두었던 tls 값들을 2번 스레드가 고대로 복사받아서 수행을 시작하는 것이다.</p>
 <p><code>AsyncLocal&lt;T&gt;</code>는 자신의 존재 목적과 취지에 충실하고자, 서로 다른 스레드들간에 조금이라도 관련이 있을라 치면 아주 얄짤없이 값을 복사해대는 것 같다. 하지만 win32에서 iocp에 비동기 작업의 완료 통지를 요청하고, 전혀 관련없는 다른 스레드로부터 이를 받아 처리해오던 고전적 처리방식에 익숙해서 그런지 이런 과도한 친절이 부담스럽다. 너 때문에 Dispatcher 동작이 다 깨지잖아. 조치가 필요하다.</p>
-<h2 id="원치-않는-AsyncLocal-복사는-꺼준다"><a href="#원치-않는-AsyncLocal-복사는-꺼준다" class="headerlink" title="원치 않는 AsyncLocal 복사는 꺼준다."></a>원치 않는 AsyncLocal 복사는 꺼준다.</h2><p>다행히 이 동작은 ExecutionContext.SuppressFlow / RestoreFlow 라는 메서드가 있어 쉽게 제어가 가능하다. 우선 스레드풀에 백그라운드 작업을 요청할 때는 <code>SuppressFlow()</code> 호출이 묶여있는 별도의 인터페이스를 만들고 이를 사용하게 한다.</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">BackgroundJob</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Execute</span>(<span class="params">Action action</span>)</span></span><br><span class="line"><span class="function"></span>  &#123;</span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">var</span> control = ExecutionContext.SuppressFlow();</span><br><span class="line">    ThreadPool.QueueUserWorkItem(_ =&gt; action());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">Program</span> </span><br><span class="line">&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Foo</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>  &#123;</span><br><span class="line">    <span class="built_in">int</span> a = <span class="number">10</span>;</span><br><span class="line">    <span class="built_in">int</span> b = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 백그라운드 작업이 필요할 때. Wrapping한 인터페이스를 사용한다. </span></span><br><span class="line">    BackgroundJob.Execute(() =&gt; </span><br><span class="line">    &#123;</span><br><span class="line">      Console.WriteLine(<span class="string">$&quot;a + b = <span class="subst">&#123;a+b&#125;</span>&quot;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="원치-않는-AsyncLocal-복사는-꺼준다"><a href="#원치-않는-AsyncLocal-복사는-꺼준다" class="headerlink" title="원치 않는 AsyncLocal 복사는 꺼준다."></a>원치 않는 AsyncLocal 복사는 꺼준다.</h2><p>다행히 이 동작은 ExecutionContext.SuppressFlow &#x2F; RestoreFlow 라는 메서드가 있어 쉽게 제어가 가능하다. 우선 스레드풀에 백그라운드 작업을 요청할 때는 <code>SuppressFlow()</code> 호출이 묶여있는 별도의 인터페이스를 만들고 이를 사용하게 한다.</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">BackgroundJob</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Execute</span>(<span class="params">Action action</span>)</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">var</span> control = ExecutionContext.SuppressFlow();</span><br><span class="line">    ThreadPool.QueueUserWorkItem(_ =&gt; action());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">Program</span> </span><br><span class="line">&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Foo</span>()</span> </span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">int</span> a = <span class="number">10</span>;</span><br><span class="line">    <span class="built_in">int</span> b = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 백그라운드 작업이 필요할 때. Wrapping한 인터페이스를 사용한다. </span></span><br><span class="line">    BackgroundJob.Execute(() =&gt; </span><br><span class="line">    &#123;</span><br><span class="line">      Console.WriteLine(<span class="string">$&quot;a + b = <span class="subst">&#123;a+b&#125;</span>&quot;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>작업 요청 후에는 <code>RestoreFlow</code> 를 불러 복구해주면 되는데, <code>SuppressFlow</code> 메서드가 IDisposable인  <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/api/system.threading.asyncflowcontrol?view=net-5.0">AsyncFlowControl</a> 객체를 반환하니까 예시처럼 using을 쓰면 좀 더 심플하게 처리할 수 있다.</p>
 <p>네트워크 구현부에도 수정이 필요하다. <code>SocketAsyncEventArgs</code> 객체를 사용해 비동기 요청을 수행하는 모든 곳에도 <code>RestoreFlow</code> 를 불러준다. (<code>SocketAsyncEventArgs</code>는 win32의 <code>OVERLAPPED</code> 구조체를 거의 그대로 랩핑해둔 클래스다.) 예시로 하나만 옮겨보면 아래처럼 된다. </p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">ConnectionBase</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ConnectAsync</span>(<span class="params">IPAddress ip, <span class="built_in">int</span> port</span>)</span></span><br><span class="line"><span class="function"></span>  &#123;</span><br><span class="line">    <span class="keyword">var</span> args = <span class="keyword">new</span> SocketAsyncEventArgs();</span><br><span class="line">    args.Completed += <span class="keyword">this</span>.OnConnectCompleted; <span class="comment">// 이 메서드가 새로운 스레드에서 불리게 될 것이다.</span></span><br><span class="line">    args.RemoteEndPoint = <span class="keyword">new</span> IPEndPoint(ip, port);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">var</span> control = ExecutionContext.SuppressFlow(); <span class="comment">// 이걸 넣어주어야 콜백 스레드로 AsyncLocal을 복사하지 않는다.</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.socket.ConnectAsync(args))</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">this</span>.OnConnectCompleted(<span class="keyword">this</span>.socket, args);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">ConnectionBase</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ConnectAsync</span>(<span class="params">IPAddress ip, <span class="built_in">int</span> port</span>)</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">var</span> args = <span class="keyword">new</span> SocketAsyncEventArgs();</span><br><span class="line">    args.Completed += <span class="keyword">this</span>.OnConnectCompleted; <span class="comment">// 이 메서드가 새로운 스레드에서 불리게 될 것이다.</span></span><br><span class="line">    args.RemoteEndPoint = <span class="keyword">new</span> IPEndPoint(ip, port);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">var</span> control = ExecutionContext.SuppressFlow(); <span class="comment">// 이걸 넣어주어야 콜백 스레드로 AsyncLocal을 복사하지 않는다.</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.socket.ConnectAsync(args))</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">this</span>.OnConnectCompleted(<span class="keyword">this</span>.socket, args);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>이런식으로 SendAsync, RecvAsync 등도 다 막아주어야 일반적인 iocp 콜백 사용 방식과 동일해진다. 다른 코드상에서 아무데도 <code>AsyncLocal&lt;T&gt;</code>을 사용중이지 않다면 굳이 SuppressFlow 호출이 없어도 동작에는 문제가 없다. 그래도 어차피 사용하지도 않을 암묵적인 실행 컨텍스트간 연결 동작은 그냥 끊어두는 것이 성능상 조금이라도 이득일 듯한 기분이 든다. </p>
 <h2 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h2><ul>
@@ -307,12 +304,12 @@
           <div class="post-nav">
             <div class="post-nav-item">
                 <a href="/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/" rel="prev" title="C# 고성능 서버 - System.IO.Pipeline 도입 후기">
-                  <i class="fa fa-chevron-left"></i> C# 고성능 서버 - System.IO.Pipeline 도입 후기
+                  <i class="fa fa-angle-left"></i> C# 고성능 서버 - System.IO.Pipeline 도입 후기
                 </a>
             </div>
             <div class="post-nav-item">
                 <a href="/devnote/2021/08/08/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%8B%A8%ED%8E%B8%ED%99%94/" rel="next" title="C# 고성능 서버 - 메모리 단편화">
-                  C# 고성능 서버 - 메모리 단편화 <i class="fa fa-chevron-right"></i>
+                  C# 고성능 서버 - 메모리 단편화 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -332,15 +329,14 @@
   <footer class="footer">
     <div class="footer-inner">
 
-
-<div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2023</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">leafbird</span>
-</div>
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">leafbird</span>
+  </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
 
@@ -367,9 +363,11 @@
 
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/devnote/js/comments.js"></script><script src="/devnote/js/utils.js"></script><script src="/devnote/js/schemes/muse.js"></script><script src="/devnote/js/next-boot.js"></script>
+<script src="/devnote/js/comments.js"></script><script src="/devnote/js/utils.js"></script><script src="/devnote/js/sidebar.js"></script><script src="/devnote/js/next-boot.js"></script>
 
   
+
+
 
 
 

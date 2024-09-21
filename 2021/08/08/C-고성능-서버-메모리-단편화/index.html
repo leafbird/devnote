@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/devnote/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/devnote/images/favicon-32x32-next.png">
@@ -14,9 +14,9 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CNoto+Sans+KR:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js"></script>
 
     <meta name="description" content="이제 닷넷의 GC는 꽤나 쓸만하게 발전하여, 웬만한 경우는 프로그래머가 메모리 관리를 굳이 신경쓰지 않고 코딩할 수 있게 도와준다. 그리고 그것이 C++ 대신 C#을 선택하는 큰 이유이기도 하다. 하지만 C# 게임서버로도 성능에 욕심을 내고자 한다면, 짧은 순간 대량의 TPS를 낼 수 있는 네트워크 IO를 구현하려고 한다면 어느정도 메모리 운용에 대한">
 <meta property="og:type" content="article">
@@ -53,7 +53,7 @@
 <title>C# 고성능 서버 - 메모리 단편화 | leafbird/devnote</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-54KKVRTET0"></script>
-  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false}</script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false,"measure_protocol_api_secret":null}</script>
   <script src="/devnote/js/third-party/analytics/google-analytics.js"></script>
 
 
@@ -61,9 +61,7 @@
 
 
 
-  <script async defer data-website-id="" src=""></script>
 
-  <script defer data-domain="" src=""></script>
 
   <noscript>
     <link rel="stylesheet" href="/devnote/css/noscript.css">
@@ -134,12 +132,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/devnote/archives/">
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">태그</span>
       </div>
   </nav>
@@ -222,16 +220,15 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-        <img src="/devnote/2021/08/08/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%8B%A8%ED%8E%B8%ED%99%94/00.jpg" class="">
+    <div class="post-body" itemprop="articleBody"><img src="/devnote/2021/08/08/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%8B%A8%ED%8E%B8%ED%99%94/00.jpg" class="">
 
 <p>이제 닷넷의 GC는 꽤나 쓸만하게 발전하여, 웬만한 경우는 프로그래머가 메모리 관리를 굳이 신경쓰지 않고 코딩할 수 있게 도와준다. 그리고 그것이 C++ 대신 C#을 선택하는 큰 이유이기도 하다. 하지만 C# 게임서버로도 성능에 욕심을 내고자 한다면, 짧은 순간 대량의 TPS를 낼 수 있는 네트워크 IO를 구현하려고 한다면 어느정도 메모리 운용에 대한 이해가 필요하다.</p>
 <p>이번 포스팅에서는 네트워크 IO의 부하가 가중될 때 겪을 수 있는 메모리 단편화 현상에 대해서 정리해본다. </p>
 <span id="more"></span>
 
-<h2 id="기본-용어-및-개념-정리"><a href="#기본-용어-및-개념-정리" class="headerlink" title="기본 용어 및 개념 정리"></a>기본 용어 및 개념 정리</h2><h3 id="SOH-LOH-POH"><a href="#SOH-LOH-POH" class="headerlink" title="SOH / LOH / POH"></a>SOH / LOH / POH</h3><p>가장 먼저 <code>관리 힙(managed heap)</code>의 구분부터 이야기 해야한다. 관리힙은 사용 메모리의 크기와 용도 등에 따라 <code>SOH</code>, <code>LOH</code>, <code>POH</code>로 나뉜다.</p>
+<h2 id="기본-용어-및-개념-정리"><a href="#기본-용어-및-개념-정리" class="headerlink" title="기본 용어 및 개념 정리"></a>기본 용어 및 개념 정리</h2><h3 id="SOH-LOH-POH"><a href="#SOH-LOH-POH" class="headerlink" title="SOH &#x2F; LOH &#x2F; POH"></a>SOH &#x2F; LOH &#x2F; POH</h3><p>가장 먼저 <code>관리 힙(managed heap)</code>의 구분부터 이야기 해야한다. 관리힙은 사용 메모리의 크기와 용도 등에 따라 <code>SOH</code>, <code>LOH</code>, <code>POH</code>로 나뉜다.</p>
 <ul>
-<li><code>SOH</code>는 Small Object Heap으로, 85kb보다 작은 사이즈의 메모리를 할당한다. 경우에 따라 차이는 있겠지만 대다수의 객체들이 주로 할당/해제 되는 공간이다. </li>
+<li><code>SOH</code>는 Small Object Heap으로, 85kb보다 작은 사이즈의 메모리를 할당한다. 경우에 따라 차이는 있겠지만 대다수의 객체들이 주로 할당&#x2F;해제 되는 공간이다. </li>
 <li><code>LOH</code>는 Large Object Heap으로, 85kb보다 큰 사이즈의 메모리를 할당한다. </li>
 <li><code>POH</code>는 Pinned Object Heap으로, pinning할 메모리를 위해 .Net 5부터 새롭게 추가된 공간이다.</li>
 </ul>
@@ -243,7 +240,7 @@
 <h3 id="Pinned-Memory"><a href="#Pinned-Memory" class="headerlink" title="Pinned Memory"></a>Pinned Memory</h3><p>하지만 메모리 압축이 이미 할당된 모든 객체들의 위치를 제멋대로 바꿀 수 있는 것은 아니며, 모든 법칙에 항상 예외는 존재한다. 매니지드 레벨은 결국 네이티브 레벨 위에서 돈다. 네이티브 영역과의 상호참조가 필요한 매니지드 메모리는 함부로 값을 옮겨다닐 수가 없다. 위에서 언급한 <code>C++로 만든 코드였다면 불가능</code>하다고 말한 이유와 크게 다르지 않은 상황이다.<br>네이티브 영역에서 매니지드 영역의 메모리를 참조할 일이 있을 때는 메모리를 이동이 발생하지 않는 안전한 공간에 복사(copying)하거나, 이동할 수 없도록 고정(pinning)해둬야 한다. 매니지드 메모리가 다른 주소로 이동하지 않도록 고정하는 것을 <code>Memory Pinning</code>, 이렇게 고정된 메모리를 <code>Pinned Memory</code>라고 부른다.</p>
 <img src="/devnote/2021/08/08/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%8B%A8%ED%8E%B8%ED%99%94/02.gif" class="">
 
-<p>데이터 마샬링(매니지트/네이티브 상호통신)의 입장에서 보면 pinning은 불필요한 복사를 줄여주는 효율적인 동작이다. 하지만 가비지 컬렉터 입장에서 보자면 엄청난 방해꾼임이 분명하다. pinned memory 는 gc의 압축 동작을 방해하기 때문이다</p>
+<p>데이터 마샬링(매니지트&#x2F;네이티브 상호통신)의 입장에서 보면 pinning은 불필요한 복사를 줄여주는 효율적인 동작이다. 하지만 가비지 컬렉터 입장에서 보자면 엄청난 방해꾼임이 분명하다. pinned memory 는 gc의 압축 동작을 방해하기 때문이다</p>
 <blockquote>
 <p>고정(Pinning)은 데이터를 현재 메모리 위치상에 임시로 잠그기 때문에, CLR의 가비지 수집기에 의한 재배치를 막아줍니다.<br>Pinning temporarily locks the data in its current memory location, thus keeping it from being relocated by the common language runtime’s garbage collector.<br>(<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/framework/interop/copying-and-pinning">https://docs.microsoft.com/en-us/dotnet/framework/interop/copying-and-pinning</a>)</p>
 </blockquote>
@@ -251,7 +248,7 @@
 <p>고정(Pinning)은 메모리의 단편화를 유발하고, 일반적으로 객체 압축 과정을 복잡하게 만들기 때문에 자체적인 비용 부담을 가집니다.<br>Pinning has its own costs, because it introduces fragmentation (and in general complicates object compaction a lot).<br>(<a target="_blank" rel="noopener" href="https://tooslowexception.com/pinned-object-heap-in-net-5/">https://tooslowexception.com/pinned-object-heap-in-net-5/</a>)</p>
 </blockquote>
 <h2 id="단편화-발생의-원인"><a href="#단편화-발생의-원인" class="headerlink" title="단편화 발생의 원인"></a>단편화 발생의 원인</h2><p>성능좀 끌어올려보겠다고 다짐한 C# 게임서버의 메모리 단편화는 어디서 발생하는가. </p>
-<p>핵심부터 말하자면 소켓의 send / receive에 걸어주는 바이트 배열 버퍼가 pinning되기 때문에, 가비지 컬렉터의 압축과정을 많이 방해하게 되면서 메모리 단편화를 유발한다. 이 부분이 메모리 단편화의 가장 주된 요인이다. 그런데다가 높은 TPS를 처리해내는 고성능 게임서버를 만들려고 한다면.. 소켓 IO의 수가 많아짐에 따라 네트워크 버퍼의 개수와 사용 빈도도 당연히 높아질 수밖에 없다. 때문에 대량의 네트워크 통신을 견딜 수 있도록 만드려면 네트워크 버퍼를 어떻게 운용할 것인지가 중요하다.</p>
+<p>핵심부터 말하자면 소켓의 send &#x2F; receive에 걸어주는 바이트 배열 버퍼가 pinning되기 때문에, 가비지 컬렉터의 압축과정을 많이 방해하게 되면서 메모리 단편화를 유발한다. 이 부분이 메모리 단편화의 가장 주된 요인이다. 그런데다가 높은 TPS를 처리해내는 고성능 게임서버를 만들려고 한다면.. 소켓 IO의 수가 많아짐에 따라 네트워크 버퍼의 개수와 사용 빈도도 당연히 높아질 수밖에 없다. 때문에 대량의 네트워크 통신을 견딜 수 있도록 만드려면 네트워크 버퍼를 어떻게 운용할 것인지가 중요하다.</p>
 <p>DB와 통신하기 위한 DBMS 클라이언트도 많은 수의 pinned handle을 만들어낸다. 현재 우리 프로젝트는 <code>System.Data.SqlClient</code> 네임스페이스 하위의 클래스들을 이용해 Azure SQL과 통신하고 있는데, 생각해보면 db client도 DBMS에 연결되어 쿼리와 데이터를 던지고 받는 통신모듈이니 당연한 이야기다. </p>
 <p>코드상에서 임의의 객체를 약참조 하기 위해 사용하는 <code>System.WeakReference</code>도 pinning handle을 사용하고 있어, 단편화 유발의 원인이 된다. 이건 참 아이러니한 일이다. 참조하는 대상이 쉽게 메모리 해제될 수 있도록 약참조하는 기능을 하지만, <code>WeakReference</code> 자신은 고정된 메모리를 만들면서 메모리 단편화를 가속시킨다. 처음 서버 기반을 만들 땐 <code>WeakReference</code>가 GC를 방해한다는 사실을 모르고 엄청시리 쓰고 있었는데, 비교적 근래에 실 서비스에서 메모리 문제들을 겪으면서 디버깅 하던 중 메모리가 고정되고 있음을 알게됐다. 현재는 약참조 사용이 꼭 필요한 일부를 제외하고는 모두 제거하였고, 가능하면 <code>WeakReference</code> 의 사용을 자제하고 있다.</p>
 <p>메모리 상의 고정된 핸들에 대한 정보는 windbg로 힙을 뒤져보면 알 수 있다. <code>sos.dll</code> 로딩된 상태에서 <code>!gchandles</code> 명령 쳐보면 현재 어떤 객체가 pinning되어있고, 몇개나 존재하는지 확인할 수 있다.</p>
@@ -272,10 +269,10 @@
 <li><a target="_blank" rel="noopener" href="https://github.com/dotnet/corert/blob/master/src/System.Private.CoreLib/shared/System/Buffers/TlsOverPerCoreLockedStacksArrayPool.cs">https://github.com/dotnet/corert/blob/master/src/System.Private.CoreLib/shared/System/Buffers/TlsOverPerCoreLockedStacksArrayPool.cs</a></li>
 </ul>
 <p>이전 포스팅 <a href="https://leafbird.github.io/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/">C# 고성능 서버 - System.IO.Pipeline 도입 후기</a>에서 여러개의 단위버퍼를 이어붙여 가상의 스트림처럼 운용하는 <code>ZeroCopyBuffer</code>의 구현에 대해 간단히 소개했었다. 이 때 등장했던 단위버퍼 <code>LohSegment</code> 클래스가 바로 <code>LOH</code>에 할당한 커다란 청크의 일부분에 해당한다.</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Cs.ServerEngine.Netork.Buffer</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">class</span> <span class="title">ZeroCopyBuffer</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">readonly</span> <span class="title">Queue</span>&lt;<span class="title">LohSegment</span>&gt; segments</span> = <span class="keyword">new</span> Queue&lt;LohSegment&gt;();</span><br><span class="line">    <span class="keyword">private</span> LohSegment last;</span><br><span class="line">    <span class="comment">//       ^ 여기 얘네들이예요. </span></span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Cs.ServerEngine.Netork.Buffer</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">class</span> <span class="title">ZeroCopyBuffer</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> Queue&lt;LohSegment&gt; segments = <span class="keyword">new</span> Queue&lt;LohSegment&gt;();</span><br><span class="line">    <span class="keyword">private</span> LohSegment last;</span><br><span class="line">    <span class="comment">//       ^ 여기 얘네들이예요. </span></span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
 
 <p><code>LohSegment</code>를 생성, 풀링하고 관리하는 구현은 크게 대단할 것은 없다. 어차피 할당 크기가 85kb보다 크기만 하면 알아서 <code>LOH</code>에 할당될 것이고.. 청크를 다시 잘 쪼개서 <code>ConcurrentQueue&lt;&gt;</code>에 넣어뒀다가 잘 빌려주고 반납하고 관리만 해주면 된다.<br>조금 더 신경을 쓴다면 서비스 도중 메모리 청크를 추가할당 할 때의 처리 정도가 있겠다. Pool에 남아있는 버퍼의 개수가 좀 모자란다 싶을 때는 CAS 연산으로 소유권을 선점한 스레드 하나만 청크를 할당하게 만든다. 메모리는 추가만 할 뿐 해제는 하지 않을거니까 이렇게 하면 lock을 안 걸어도 되고, pool의 사용도 중단되지 않게 만들 수 있다. 해당 구현체의 멤버변수들만 붙여보면 아래와 같다.</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Cs.Memory</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">class</span> <span class="title">LohPool</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="built_in">int</span> ChunkSizeMb = <span class="number">100</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="built_in">int</span> LowSegmentNumberLimit = <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> <span class="built_in">int</span> segmentSizeKb;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> <span class="built_in">int</span> segmentSizeBytes;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">readonly</span> <span class="title">List</span>&lt;<span class="title">byte</span>[]&gt; chunks</span> = <span class="keyword">new</span> List&lt;<span class="built_in">byte</span>[]&gt;(capacity: <span class="number">10</span>);</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">readonly</span> <span class="title">ConcurrentQueue</span>&lt;<span class="title">ArraySegment</span>&lt;<span class="title">byte</span>&gt;&gt; segments</span> = <span class="keyword">new</span> ConcurrentQueue&lt;ArraySegment&lt;<span class="built_in">byte</span>&gt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> AtomicFlag producerLock = <span class="keyword">new</span> AtomicFlag(<span class="literal">false</span>);</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">int</span> totalSegmentCount;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Cs.Memory</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">class</span> <span class="title">LohPool</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="built_in">int</span> ChunkSizeMb = <span class="number">100</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="built_in">int</span> LowSegmentNumberLimit = <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> <span class="built_in">int</span> segmentSizeKb;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> <span class="built_in">int</span> segmentSizeBytes;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> List&lt;<span class="built_in">byte</span>[]&gt; chunks = <span class="keyword">new</span> List&lt;<span class="built_in">byte</span>[]&gt;(capacity: <span class="number">10</span>);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> ConcurrentQueue&lt;ArraySegment&lt;<span class="built_in">byte</span>&gt;&gt; segments = <span class="keyword">new</span> ConcurrentQueue&lt;ArraySegment&lt;<span class="built_in">byte</span>&gt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> AtomicFlag producerLock = <span class="keyword">new</span> AtomicFlag(<span class="literal">false</span>);</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">int</span> totalSegmentCount;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h2><p>C++로만 만들던 게임서버를 C#으로 만든다고 했을 때 가장 신경쓰였던 것이 메모리 부분이었다. 초기구현과 서비스를 거치면서 메모리 누수, 관리힙 사이즈 증가등 많은 메모리 문제를 겪었다. 그 중에서 가장 크게 문제를 겪었던 단편화에 대해 정리해 보았다.<br>우리가 겪었던 메모리 단편화 가장 주된 요인은 네트워크 IO용 바이트 버퍼의 pinning 때문이었다. 적당한 수준의 부하로는 별 문제 없는데.. 부하를 세게 걸면 점유 메모리가 계속 증가하고 가라않질 않았다. 이건 C++도 마찬가지지만 외형적으로만 관측하면 메모리 누수처럼 보이기 때문에, 단편화가 원인일 것이라는 의심을 하기까지도 많은 검증의 시간이 필요했다.</p>
 <p><code>SOH</code>에서는 pinning되는 메모리가 많으면 GC 능력이 많이 저하되고 단편화가 심각해진다. 네트워크 버퍼로 사용할 객체들을 <code>LOH</code>에 할당하면 이런 문제를 해결할 수 있다.</p>
@@ -311,12 +308,12 @@
           <div class="post-nav">
             <div class="post-nav-item">
                 <a href="/devnote/2021/01/01/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-Thread-Local-Storage/" rel="prev" title="C# 고성능 서버 - Thread Local Storage">
-                  <i class="fa fa-chevron-left"></i> C# 고성능 서버 - Thread Local Storage
+                  <i class="fa fa-angle-left"></i> C# 고성능 서버 - Thread Local Storage
                 </a>
             </div>
             <div class="post-nav-item">
                 <a href="/devnote/2023/10/09/iTerm2-%EC%97%86%EC%9D%B4-%EB%A7%A5-%EA%B8%B0%EB%B3%B8-%ED%84%B0%EB%AF%B8%EB%84%90-%EA%BE%B8%EB%AF%B8%EA%B8%B0/" rel="next" title="iTerm2 없이 맥 기본 터미널 꾸미기">
-                  iTerm2 없이 맥 기본 터미널 꾸미기 <i class="fa fa-chevron-right"></i>
+                  iTerm2 없이 맥 기본 터미널 꾸미기 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -336,15 +333,14 @@
   <footer class="footer">
     <div class="footer-inner">
 
-
-<div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2023</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">leafbird</span>
-</div>
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">leafbird</span>
+  </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
 
@@ -371,9 +367,11 @@
 
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/devnote/js/comments.js"></script><script src="/devnote/js/utils.js"></script><script src="/devnote/js/schemes/muse.js"></script><script src="/devnote/js/next-boot.js"></script>
+<script src="/devnote/js/comments.js"></script><script src="/devnote/js/utils.js"></script><script src="/devnote/js/sidebar.js"></script><script src="/devnote/js/next-boot.js"></script>
 
   
+
+
 
 
 

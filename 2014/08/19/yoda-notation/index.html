@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/devnote/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/devnote/images/favicon-32x32-next.png">
@@ -14,9 +14,9 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CNoto+Sans+KR:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js"></script>
 
     <meta name="description" content="지난번에 google c++ style guide 에 대해서 한참 수다를 떨었는데,요즘에도 비슷한 주제의 책을 읽고 있습니다. 임백준씨가 번역하신 ‘읽기 좋은 코드가 좋은 코드다’ 인데요, 이것도 가볍게 읽을 수 있는 내용이어서 빌드 시간 중간에 띄엄띄엄 읽고 있어요.   이 책을 읽다가 ‘Yoda Notation’이란 표현을 처음 접했습니다. 표현이">
 <meta property="og:type" content="article">
@@ -45,7 +45,7 @@
 <title>Yoda Notation | leafbird/devnote</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-54KKVRTET0"></script>
-  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false}</script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false,"measure_protocol_api_secret":null}</script>
   <script src="/devnote/js/third-party/analytics/google-analytics.js"></script>
 
 
@@ -53,9 +53,7 @@
 
 
 
-  <script async defer data-website-id="" src=""></script>
 
-  <script defer data-domain="" src=""></script>
 
   <noscript>
     <link rel="stylesheet" href="/devnote/css/noscript.css">
@@ -125,12 +123,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/devnote/archives/">
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">태그</span>
       </div>
   </nav>
@@ -213,19 +211,18 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-        <img src="/devnote/images/yoda1.jpg" class="center">
+    <div class="post-body" itemprop="articleBody"><img src="/devnote/images/yoda1.jpg" class="center">
 
 <p>지난번에 <a href="/devnote/2014/07/19/google-c-plus-plus-style-guide/" title="google c++ style guide">google c++ style guide</a> 에 대해서 한참 수다를 떨었는데,<br>요즘에도 비슷한 주제의 책을 읽고 있습니다. 임백준씨가 번역하신 <a target="_blank" rel="noopener" href="http://www.yes24.com/24/goods/6692314?scode=032&OzSrank=1">‘읽기 좋은 코드가 좋은 코드다’</a> 인데요,<br> 이것도 가볍게 읽을 수 있는 내용이어서 빌드 시간 중간에 띄엄띄엄 읽고 있어요.  </p>
 <p>이 책을 읽다가 ‘Yoda Notation’이란 표현을 처음 접했습니다. 표현이 재미있어서 블로그에 한 번 적어봅니다. 구글링해보면 <a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Yoda_conditions">Yoda Conditions</a> 라고도 부르는 것 같네요. 프로그램 코드 상에서 조건문에 값 비교 구문을 적을 때 변수와 상수의 위치를 바꾸어 적는 것을 말합니다. </p>
-<figure class="highlight cpp"><figcaption><span>May the force be with you.</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> val = <span class="number">20</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="number">20</span> == val) &#123; <span class="comment">// &lt;- yoda notation here.</span></span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
+<figure class="highlight cpp"><figcaption><span>May the force be with you.</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> val = <span class="number">20</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="number">20</span> == val) &#123; <span class="comment">// &lt;- yoda notation here.</span></span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
 
 <span id="more"></span>
 
 <p>조건문을 <code>val == 20</code>으로 적는 것이 일반적인 언어 어순과 같아서 읽기가 좋지만<br>프로그래머의 실수로 <code>val = 20</code>과 같이 잘못된 코드가 만들어지고 컴파일 에러 없이 그대로 실행되는 것을 막기 위해서<br>일부러 변수와 상수의 위치를 서로 바꾸는 거죠. </p>
 <p>요다는 영화 스타워즈에서 영문권 사람들도 이해하기 어려울 정도로 꼬인 문법의 말을 사용합니다. 이를 빗대어 위와 같은 조건문 표기 방식을 Yoda Notation이라고 부르는군요. 재미있는 네이밍입니다 :)</p>
 <p>책에서는 요즘의 컴파일러들이 조건절 내에서의 할당에 대해 경고를 내주기 때문에, 요다 표기법은 ‘점차 불필요한 과거의 일이 되어가고 있다’ 고 말합니다.<br>저도 쉽게 읽히지 않는 이상한 순서 때문에 요다 표기법을 안 좋아하는데,<br>책에서도 저랑 같은 생각을 이야기 하고 있어서 반갑네요. 이 뿐만 아니라 이 책은 전반적으로 소스코드의 스타일에 대해 많은 부분 공감가는 방식들을 다수 소개하고 있습니다.</p>
-<p>예전에 함께 작업했던 어떤 프로그래머분이, 제가 올린 코드를 리뷰하고 나서 제가 추가한 코드의 조건절을 모두 요다 표기법으로 바꾸었던 적이 있습니다. 그거 참… 별 거 아닌데 기분이 나쁘더군요. 그 뒤로 요다 표기법이 싫어졌는지도 모르겠습니다. 하지만 어쨌든 이젠 옛날 이야기가 되어가고 있는겁니다. Visual Studio 2012 기준으로 /W4(경고 수준 4) 설정에 /WX(경고를 오류로 처리) 설정을 더하면 <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/ko-kr/library/7hw7c1he.aspx">C4706 경고</a>의 발생으로 인해 컴파일 시점에서 코딩 실수를 미리 잡아낼 수 있습니다. </p>
+<p>예전에 함께 작업했던 어떤 프로그래머분이, 제가 올린 코드를 리뷰하고 나서 제가 추가한 코드의 조건절을 모두 요다 표기법으로 바꾸었던 적이 있습니다. 그거 참… 별 거 아닌데 기분이 나쁘더군요. 그 뒤로 요다 표기법이 싫어졌는지도 모르겠습니다. 하지만 어쨌든 이젠 옛날 이야기가 되어가고 있는겁니다. Visual Studio 2012 기준으로 &#x2F;W4(경고 수준 4) 설정에 &#x2F;WX(경고를 오류로 처리) 설정을 더하면 <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/ko-kr/library/7hw7c1he.aspx">C4706 경고</a>의 발생으로 인해 컴파일 시점에서 코딩 실수를 미리 잡아낼 수 있습니다. </p>
 <p>에, 그러니까 내가 하고 싶었던 말은, <strong>이제 이런 거 필요 없다</strong> 이겁니다 :)</p>
 
     </div>
@@ -245,12 +242,12 @@
           <div class="post-nav">
             <div class="post-nav-item">
                 <a href="/devnote/2014/07/21/octopress-tips-on-windows/" rel="prev" title="Octopress Tips on windows">
-                  <i class="fa fa-chevron-left"></i> Octopress Tips on windows
+                  <i class="fa fa-angle-left"></i> Octopress Tips on windows
                 </a>
             </div>
             <div class="post-nav-item">
                 <a href="/devnote/2014/09/12/claenup-cpp-project-1st/" rel="next" title="C++ 코드 정리 자동화 - 1. 불필요한 #include 찾기 上">
-                  C++ 코드 정리 자동화 - 1. 불필요한 #include 찾기 上 <i class="fa fa-chevron-right"></i>
+                  C++ 코드 정리 자동화 - 1. 불필요한 #include 찾기 上 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -270,15 +267,14 @@
   <footer class="footer">
     <div class="footer-inner">
 
-
-<div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2023</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">leafbird</span>
-</div>
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">leafbird</span>
+  </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
 
@@ -305,9 +301,11 @@
 
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/devnote/js/comments.js"></script><script src="/devnote/js/utils.js"></script><script src="/devnote/js/schemes/muse.js"></script><script src="/devnote/js/next-boot.js"></script>
+<script src="/devnote/js/comments.js"></script><script src="/devnote/js/utils.js"></script><script src="/devnote/js/sidebar.js"></script><script src="/devnote/js/next-boot.js"></script>
 
   
+
+
 
 
 

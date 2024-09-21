@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/devnote/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/devnote/images/favicon-32x32-next.png">
@@ -14,9 +14,9 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CNoto+Sans+KR:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js"></script>
 
     <meta name="description" content="이전 포스트 ‘C++ 코드 정리 자동화 - 1. 불필요한 #include 찾기 上‘ 에서 이어진다. 지워도 되는 인클루드를 찾아냈다개별 파일 하나씩을 컴파일 할 수 있다면 이제 모든 인클루드를 하나씩 삭제하면서 컴파일 가능 여부를 확인해보면 된다. 이 부분은 간단한 file seeking과 string 처리 작업일 뿐이니 굳이 부연 설명은 필요 없다. 카페">
 <meta property="og:type" content="article">
@@ -44,7 +44,7 @@
 <title>C++ 코드 정리 자동화 - 2. 불필요한 #include 찾기 下 | leafbird/devnote</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-54KKVRTET0"></script>
-  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false}</script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false,"measure_protocol_api_secret":null}</script>
   <script src="/devnote/js/third-party/analytics/google-analytics.js"></script>
 
 
@@ -52,9 +52,7 @@
 
 
 
-  <script async defer data-website-id="" src=""></script>
 
-  <script defer data-domain="" src=""></script>
 
   <noscript>
     <link rel="stylesheet" href="/devnote/css/noscript.css">
@@ -125,12 +123,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/devnote/archives/">
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">태그</span>
       </div>
   </nav>
@@ -213,18 +211,17 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-        <p>이전 포스트 ‘<a href="/devnote/2014/09/12/claenup-cpp-project-1st/" title="C++ 코드 정리 자동화 - 1. 불필요한 #include 찾기 上">C++ 코드 정리 자동화 - 1. 불필요한 #include 찾기 上</a>‘ 에서 이어진다.</p>
+    <div class="post-body" itemprop="articleBody"><p>이전 포스트 ‘<a href="/devnote/2014/09/12/claenup-cpp-project-1st/" title="C++ 코드 정리 자동화 - 1. 불필요한 #include 찾기 上">C++ 코드 정리 자동화 - 1. 불필요한 #include 찾기 上</a>‘ 에서 이어진다.</p>
 <h2 id="지워도-되는-인클루드를-찾아냈다"><a href="#지워도-되는-인클루드를-찾아냈다" class="headerlink" title="지워도 되는 인클루드를 찾아냈다"></a>지워도 되는 인클루드를 찾아냈다</h2><p>개별 파일 하나씩을 컴파일 할 수 있다면 이제 모든 인클루드를 하나씩 삭제하면서 컴파일 가능 여부를 확인해보면 된다. 이 부분은 간단한 file seeking과 string 처리 작업일 뿐이니 굳이 부연 설명은 필요 없다. 카페에서 여유롭게 음악을 들으며 즐겁게 툴을 만들자. 뚝딱뚝딱.</p>
 <p>이정도 하고 나니 이제 vcxproj파일 경로를 주면 해당 프로젝트에 들어있는 소스코드에서 불필요한 인클루드를 색출해 위치정보를 출력해주는 물건이 만들어졌다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">작업 대상으로 1개의 프로젝트가 입력 되었습니다.</span><br><span class="line">-------------------------------------------------</span><br><span class="line">Service : 프로젝트 정리.</span><br><span class="line">Service : PCH 생성.</span><br><span class="line">컴파일 : stdafx.cpp ... 성공. 걸린 시간 : 1.04초</span><br><span class="line">Client.cpp의 인클루드를 검사합니다.</span><br><span class="line"> - process #1 Client.cpp (1&#x2F;2) ... X</span><br><span class="line"> - process #1 Client.cpp (2&#x2F;2) ... X</span><br><span class="line">ClientAcceptor.cpp의 인클루드를 검사합니다.</span><br><span class="line"> - process #1 ClientAcceptor.cpp (1&#x2F;2) ... 컴파일 가능!</span><br><span class="line"> - process #1 ClientAcceptor.cpp (2&#x2F;2) ... X</span><br><span class="line">ClientConnection.cpp의 인클루드를 검사합니다.</span><br><span class="line"> - process #1 ClientConnection.cpp (1&#x2F;3) ... X</span><br><span class="line"> - process #1 ClientConnection.cpp (2&#x2F;3) ... X</span><br><span class="line"> - process #1 ClientConnection.cpp (3&#x2F;3) ... X</span><br><span class="line">Start.cpp의 인클루드를 검사합니다.</span><br><span class="line"> - process #1 Start.cpp (1&#x2F;4) ... X</span><br><span class="line"> - process #1 Start.cpp (2&#x2F;4) ... X</span><br><span class="line"> - process #1 Start.cpp (3&#x2F;4) ... X</span><br><span class="line"> - process #1 Start.cpp (4&#x2F;4) ... X</span><br><span class="line">ThreadEntry.cpp의 인클루드를 검사합니다.</span><br><span class="line"> - process #1 ThreadEntry.cpp (1&#x2F;1) ... X</span><br><span class="line">-------------------------------------------------</span><br><span class="line">Project : Service 모두 1개의 인클루드가 불필요한 것으로 의심됩니다.</span><br><span class="line">D:\Dev\uni\World\Service\ClientAcceptor.cpp</span><br><span class="line"> - 2 line : #include &quot;World&#x2F;Service&#x2F;Client.h&quot;</span><br><span class="line"></span><br><span class="line">총 소요 시간 : 13.289 sec</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">작업 대상으로 1개의 프로젝트가 입력 되었습니다.</span><br><span class="line">-------------------------------------------------</span><br><span class="line">Service : 프로젝트 정리.</span><br><span class="line">Service : PCH 생성.</span><br><span class="line">컴파일 : stdafx.cpp ... 성공. 걸린 시간 : 1.04초</span><br><span class="line">Client.cpp의 인클루드를 검사합니다.</span><br><span class="line"> - process #1 Client.cpp (1/2) ... X</span><br><span class="line"> - process #1 Client.cpp (2/2) ... X</span><br><span class="line">ClientAcceptor.cpp의 인클루드를 검사합니다.</span><br><span class="line"> - process #1 ClientAcceptor.cpp (1/2) ... 컴파일 가능!</span><br><span class="line"> - process #1 ClientAcceptor.cpp (2/2) ... X</span><br><span class="line">ClientConnection.cpp의 인클루드를 검사합니다.</span><br><span class="line"> - process #1 ClientConnection.cpp (1/3) ... X</span><br><span class="line"> - process #1 ClientConnection.cpp (2/3) ... X</span><br><span class="line"> - process #1 ClientConnection.cpp (3/3) ... X</span><br><span class="line">Start.cpp의 인클루드를 검사합니다.</span><br><span class="line"> - process #1 Start.cpp (1/4) ... X</span><br><span class="line"> - process #1 Start.cpp (2/4) ... X</span><br><span class="line"> - process #1 Start.cpp (3/4) ... X</span><br><span class="line"> - process #1 Start.cpp (4/4) ... X</span><br><span class="line">ThreadEntry.cpp의 인클루드를 검사합니다.</span><br><span class="line"> - process #1 ThreadEntry.cpp (1/1) ... X</span><br><span class="line">-------------------------------------------------</span><br><span class="line">Project : Service 모두 1개의 인클루드가 불필요한 것으로 의심됩니다.</span><br><span class="line">D:\Dev\uni\World\Service\ClientAcceptor.cpp</span><br><span class="line"> - 2 line : #include &quot;World/Service/Client.h&quot;</span><br><span class="line"></span><br><span class="line">총 소요 시간 : 13.289 sec</span><br></pre></td></tr></table></figure>
 
 <span id="more"></span>
 
 <p>이 정도 만들어서 회사에서 만들고 있는 프로젝트에 조금 돌려 보았는데, <strong>덕분에 꽤나 많은 불필요 인클루드를 색출해 내었다.</strong> 회사 프로젝트는 덩치가 제법 크고, 아직 서비스 중이지 않은 코드여서 용감무쌍한 리팩토링이 자주 일어나기 때문에 관리가 잘 안되는 파일이 제법 있더라. 아무튼 덕을 톡톡히 보았다.</p>
 <h2 id="튜닝-솔루션-단위로-검사할-수-있게-만들자"><a href="#튜닝-솔루션-단위로-검사할-수-있게-만들자" class="headerlink" title="튜닝 : 솔루션 단위로 검사할 수 있게 만들자"></a>튜닝 : 솔루션 단위로 검사할 수 있게 만들자</h2><p>프로젝트 파일 단위로 어느 정도 돌아가니까, 솔루션 파일 단위로도 돌릴수 있게 확장했다. sln 파일을 파싱해서 프로젝트 리스트만 얻어오면 끝나는 일이다. </p>
 <p>하지만 sln 파일은 vcxproj 파일처럼 쉽게 파싱할 수는 없다. 이녀석은 xml 포맷이 아니라, 자체적인 포맷을 가지고 있다. 사실 sln 파일을 파싱해 본 게 이번이 처음이 아닌데, 예전에는 lua를 써서 직접 노가다 파싱을 했더니 별로 재미도 없고 잘 돌아가지도 않고 코딩하는 재미도 별로 없더라. </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;&#x2F; 솔루션 파일은 이렇게 생겼다. 왜죠...</span><br><span class="line"></span><br><span class="line">Microsoft Visual Studio Solution File, Format Version 12.00</span><br><span class="line"># Visual Studio 2013</span><br><span class="line">VisualStudioVersion &#x3D; 12.0.30723.0</span><br><span class="line">MinimumVisualStudioVersion &#x3D; 10.0.40219.1</span><br><span class="line">... 중략 ...</span><br><span class="line">Project(&quot;&#123;2150E333-8FDC-42A3-9474-1A3956D46DE8&#125;&quot;) &#x3D; &quot;External&quot;, &quot;External&quot;, &quot;&#123;F95C61E3-AF95-4CA9-8837-A203762B2B29&#125;&quot;</span><br><span class="line">EndProject</span><br><span class="line">Project(&quot;&#123;8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942&#125;&quot;) &#x3D; &quot;gtest&quot;, &quot;External\gtest\gtest.vcxproj&quot;, &quot;&#123;C7A81BFC-6E28-4859-A8B5-2FEA80E012B2&#125;&quot;</span><br><span class="line">EndProject</span><br><span class="line">Project(&quot;&#123;2150E333-8FDC-42A3-9474-1A3956D46DE8&#125;&quot;) &#x3D; &quot;Test&quot;, &quot;Test&quot;, &quot;&#123;042F2157-2118-44AA-8BB9-8B5DD01FA3A9&#125;&quot;</span><br><span class="line">EndProject</span><br><span class="line">Project(&quot;&#123;8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942&#125;&quot;) &#x3D; &quot;unittest&quot;, &quot;Test\unittest.vcxproj&quot;, &quot;&#123;24A57754-D332-4575-AEBF-2AFCBC0A7E4B&#125;&quot;</span><br><span class="line">EndProject</span><br><span class="line">... 후략 ...</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> // 솔루션 파일은 이렇게 생겼다. 왜죠...</span><br><span class="line"></span><br><span class="line">Microsoft Visual Studio Solution File, Format Version 12.00</span><br><span class="line"># Visual Studio 2013</span><br><span class="line">VisualStudioVersion = 12.0.30723.0</span><br><span class="line">MinimumVisualStudioVersion = 10.0.40219.1</span><br><span class="line">... 중략 ...</span><br><span class="line">Project(&quot;&#123;2150E333-8FDC-42A3-9474-1A3956D46DE8&#125;&quot;) = &quot;External&quot;, &quot;External&quot;, &quot;&#123;F95C61E3-AF95-4CA9-8837-A203762B2B29&#125;&quot;</span><br><span class="line">EndProject</span><br><span class="line">Project(&quot;&#123;8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942&#125;&quot;) = &quot;gtest&quot;, &quot;External\gtest\gtest.vcxproj&quot;, &quot;&#123;C7A81BFC-6E28-4859-A8B5-2FEA80E012B2&#125;&quot;</span><br><span class="line">EndProject</span><br><span class="line">Project(&quot;&#123;2150E333-8FDC-42A3-9474-1A3956D46DE8&#125;&quot;) = &quot;Test&quot;, &quot;Test&quot;, &quot;&#123;042F2157-2118-44AA-8BB9-8B5DD01FA3A9&#125;&quot;</span><br><span class="line">EndProject</span><br><span class="line">Project(&quot;&#123;8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942&#125;&quot;) = &quot;unittest&quot;, &quot;Test\unittest.vcxproj&quot;, &quot;&#123;24A57754-D332-4575-AEBF-2AFCBC0A7E4B&#125;&quot;</span><br><span class="line">EndProject</span><br><span class="line">... 후략 ...</span><br></pre></td></tr></table></figure>
 
 <p>C#으로 sln 파일을 파싱해주는 적당히 괜찮은 코드가 인터넷 어딘가에 돌아다닌다. <a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/707107/library-for-parsing-visual-studio-solution-files">이곳</a>에 있는 놈을 가져다 붙였다. build configuration 같은 걸 얻어올 순 없지만 프로젝트 리스트 얻는 데에는 충분하다.</p>
 <h2 id="튜닝-느리다-멀티-스레드로-돌리자"><a href="#튜닝-느리다-멀티-스레드로-돌리자" class="headerlink" title="튜닝 : 느리다. 멀티 스레드로 돌리자"></a>튜닝 : 느리다. 멀티 스레드로 돌리자</h2><p>한때는 툴을 만들때 lua도 써보고 python도 써봤지만 요즘은 C#만 쓰게된다. 디버깅 하기도 편하고, <strong>특히 멀티스레딩으로 돌리기가 너무 편하다.</strong> TPL, Concurrent Collection조금 갖다 끄적거리면 금방 병렬처리된다.</p>
@@ -253,12 +250,12 @@
           <div class="post-nav">
             <div class="post-nav-item">
                 <a href="/devnote/2014/09/12/claenup-cpp-project-1st/" rel="prev" title="C++ 코드 정리 자동화 - 1. 불필요한 #include 찾기 上">
-                  <i class="fa fa-chevron-left"></i> C++ 코드 정리 자동화 - 1. 불필요한 #include 찾기 上
+                  <i class="fa fa-angle-left"></i> C++ 코드 정리 자동화 - 1. 불필요한 #include 찾기 上
                 </a>
             </div>
             <div class="post-nav-item">
                 <a href="/devnote/2014/09/30/cleanup-cpp-project-3rd/" rel="next" title="C++ 코드 정리 자동화 - 3. pch 사이즈 확인, #include 순서정리">
-                  C++ 코드 정리 자동화 - 3. pch 사이즈 확인, #include 순서정리 <i class="fa fa-chevron-right"></i>
+                  C++ 코드 정리 자동화 - 3. pch 사이즈 확인, #include 순서정리 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -278,15 +275,14 @@
   <footer class="footer">
     <div class="footer-inner">
 
-
-<div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2023</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">leafbird</span>
-</div>
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">leafbird</span>
+  </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
 
@@ -313,9 +309,11 @@
 
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/devnote/js/comments.js"></script><script src="/devnote/js/utils.js"></script><script src="/devnote/js/schemes/muse.js"></script><script src="/devnote/js/next-boot.js"></script>
+<script src="/devnote/js/comments.js"></script><script src="/devnote/js/utils.js"></script><script src="/devnote/js/sidebar.js"></script><script src="/devnote/js/next-boot.js"></script>
 
   
+
+
 
 
 

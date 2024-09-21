@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/devnote/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/devnote/images/favicon-32x32-next.png">
@@ -14,9 +14,9 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CNoto+Sans+KR:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js"></script>
 
     <meta name="description" content="지금 참여중인 프로젝트에서 얼마전에 코딩 컨벤션을 통일하는 작업이 있었습니다.본격적으로 컨벤션을 통일하고 이제 한 서너달? 정도 지난 것 같네요.  처음에는 팀원 대다수가 많이 혼란스러워 했지만 이제 어느 정도 시간이 지나고 나니 팀 내 프로그래머 모두가 거의 유사한 스타일의 코드를 작성하게 됐습니다. 이렇게 되니 전보다 코드 가독성이 좋아지고 협업을 할">
 <meta property="og:type" content="article">
@@ -45,7 +45,7 @@
 <title>google c++ style guide | leafbird/devnote</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-54KKVRTET0"></script>
-  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false}</script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false,"measure_protocol_api_secret":null}</script>
   <script src="/devnote/js/third-party/analytics/google-analytics.js"></script>
 
 
@@ -53,9 +53,7 @@
 
 
 
-  <script async defer data-website-id="" src=""></script>
 
-  <script defer data-domain="" src=""></script>
 
   <noscript>
     <link rel="stylesheet" href="/devnote/css/noscript.css">
@@ -126,12 +124,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/devnote/archives/">
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">태그</span>
       </div>
   </nav>
@@ -214,8 +212,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-        <p>지금 참여중인 프로젝트에서 얼마전에 코딩 컨벤션을 통일하는 작업이 있었습니다.<br>본격적으로 컨벤션을 통일하고 이제 한 서너달? 정도 지난 것 같네요. </p>
+    <div class="post-body" itemprop="articleBody"><p>지금 참여중인 프로젝트에서 얼마전에 코딩 컨벤션을 통일하는 작업이 있었습니다.<br>본격적으로 컨벤션을 통일하고 이제 한 서너달? 정도 지난 것 같네요. </p>
 <p>처음에는 팀원 대다수가 많이 혼란스러워 했지만 이제 어느 정도 시간이 지나고 나니 팀 내 프로그래머 모두가 거의 유사한 스타일의 코드를 작성하게 됐습니다. 이렇게 되니 전보다 코드 가독성이 좋아지고 협업을 할 때 이런 저런 많은 도움이 됩니다. </p>
 <span id="more"></span>
 
@@ -223,7 +220,7 @@
 <p>이번에 컨벤션의 통일을 성공한 주된 요인 중의 하나는 구글 내부에서 사용하는 컨벤션을 정리해서 공개한 <a target="_blank" rel="noopener" href="http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml">구글 C++ 스타일 가이드</a>라고 볼 수 있습니다. 이 문서의 내용을 가져와 몇 가지 사항만 프로젝트에 맞게 조정하여 적용 하였지요. 구글 컨벤션의 코드들은 처음 볼 땐 좀 낮설었지만 적응하고 나니 이젠 괜찮군요. </p>
 <p>팀에 도입하는 과정에서, 팀 내 능력자분들께서 원문을 <a target="_blank" rel="noopener" href="http://jongwook.github.io/google-styleguide/trunk/cppguide.xml">한글로 깔끔하게 번역 &amp; 정리</a>해 주셨습니다.<br><a target="_blank" rel="noopener" href="https://www.google.co.kr/search?q=google+c+++style+guide+%EB%B2%88%EC%97%AD&oq=gooel+c+++st&aqs=chrome.2.69i57j0l5.5908j0j4&sourceid=chrome&es_sm=93&ie=UTF-8">구글에서 검색해보니</a> 오래전에 번역되다가 말았던 문서들은 몇 개 보이는데 이번에 팀 내에서 번역한 문서는 아직 공유가 널리 안 된 것 같아서 다시 한 번 소개도 할 겸 포스팅 합니다. - 이 글의 목적입니다.</p>
 <p>일단 간단한 샘플을 한 번 볼까요? (제가 구글 컨벤션을 100% 체득(?)한 상황은 아니지만, 대략적으로 분위기만 한 번 둘러보죠.)</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> &#123;</span></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  Test();</span><br><span class="line">  <span class="keyword">virtual</span> ~Test();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">some_value</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">set_some_value</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">    some_value_ = val;      <span class="comment">// 간단한 예제이니 inline으로 짜봅니다.</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">private</span>:</span><br><span class="line">  <span class="keyword">int</span> some_value_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">Test</span>();</span><br><span class="line">  <span class="keyword">virtual</span> ~<span class="built_in">Test</span>();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="type">int</span> <span class="title">some_value</span><span class="params">()</span> <span class="type">const</span></span>;</span><br><span class="line">  <span class="function"><span class="type">void</span> <span class="title">set_some_value</span><span class="params">(<span class="type">const</span> <span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">    some_value_ = val;      <span class="comment">// 간단한 예제이니 inline으로 짜봅니다.</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">private</span>:</span><br><span class="line">  <span class="type">int</span> some_value_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>구글 컨벤션의 아주 일부 규칙들이 몇 개 적용된 클래스 선언입니다. </p>
 <ul>
 <li>opening brace을 아랫줄로 내리지 않고 바로 붙여쓰는 것이나, </li>
@@ -264,12 +261,12 @@
           <div class="post-nav">
             <div class="post-nav-item">
                 <a href="/devnote/2014/07/16/the-benz-programmer/" rel="prev" title="벤츠타는 프로그래머">
-                  <i class="fa fa-chevron-left"></i> 벤츠타는 프로그래머
+                  <i class="fa fa-angle-left"></i> 벤츠타는 프로그래머
                 </a>
             </div>
             <div class="post-nav-item">
                 <a href="/devnote/2014/07/21/octopress-tips-on-windows/" rel="next" title="Octopress Tips on windows">
-                  Octopress Tips on windows <i class="fa fa-chevron-right"></i>
+                  Octopress Tips on windows <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -289,15 +286,14 @@
   <footer class="footer">
     <div class="footer-inner">
 
-
-<div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2023</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">leafbird</span>
-</div>
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">leafbird</span>
+  </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
 
@@ -324,9 +320,11 @@
 
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/devnote/js/comments.js"></script><script src="/devnote/js/utils.js"></script><script src="/devnote/js/schemes/muse.js"></script><script src="/devnote/js/next-boot.js"></script>
+<script src="/devnote/js/comments.js"></script><script src="/devnote/js/utils.js"></script><script src="/devnote/js/sidebar.js"></script><script src="/devnote/js/next-boot.js"></script>
 
   
+
+
 
 
 
