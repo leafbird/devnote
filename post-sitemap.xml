@@ -4,6 +4,15 @@
 
 
     <url>
+        <loc>http://leafbird.github.io/devnote/2024/10/01/C-in-%ED%82%A4%EC%9B%8C%EB%93%9C-%EC%A0%95%EB%A6%AC/</loc>
+        <lastmod>2024-10-01T07:54:44.542Z</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
+    </url>
+
+    <url>
         <loc>http://leafbird.github.io/devnote/2024/09/21/%ED%95%9C-%EB%B2%88-%EB%8D%94-%EB%82%98%EC%97%90%EA%B2%8C-%EC%A7%88%ED%92%8D%EA%B0%99%EC%9D%80-%EC%9A%A9%EA%B8%B0%EB%A5%BC/</loc>
         <lastmod>2024-09-21T11:02:22.111Z</lastmod>
         <changefreq>always</changefreq>
@@ -112,7 +121,7 @@
     </url>
 
     <url>
-        <loc>http://leafbird.github.io/devnote/2014/07/14/move-to-octopress/</loc>
+        <loc>http://leafbird.github.io/devnote/2013/12/30/octopress-on-windows/</loc>
         <lastmod>2023-01-07T02:18:49.828Z</lastmod>
         <changefreq>always</changefreq>
         <priority>1</priority>
@@ -130,7 +139,7 @@
     </url>
 
     <url>
-        <loc>http://leafbird.github.io/devnote/2014/07/19/google-c-plus-plus-style-guide/</loc>
+        <loc>http://leafbird.github.io/devnote/2014/07/14/move-to-octopress/</loc>
         <lastmod>2023-01-07T02:18:49.828Z</lastmod>
         <changefreq>always</changefreq>
         <priority>1</priority>
@@ -139,7 +148,7 @@
     </url>
 
     <url>
-        <loc>http://leafbird.github.io/devnote/2013/12/30/octopress-on-windows/</loc>
+        <loc>http://leafbird.github.io/devnote/2014/07/19/google-c-plus-plus-style-guide/</loc>
         <lastmod>2023-01-07T02:18:49.828Z</lastmod>
         <changefreq>always</changefreq>
         <priority>1</priority>
