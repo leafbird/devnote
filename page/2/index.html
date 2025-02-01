@@ -115,12 +115,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/devnote/archives/">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-count">40</span>
         <span class="site-state-item-name">태그</span>
       </div>
   </nav>
@@ -145,6 +145,93 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/" class="post-title-link" itemprop="url">C# 고성능 서버 - System.IO.Pipeline 도입 후기</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+
+      <time title="Post created: 2020-12-27 17:34:58" itemprop="dateCreated datePublished" datetime="2020-12-27T17:34:58+09:00">2020-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Updated at: 2025-02-01 13:58:33" itemprop="dateModified" datetime="2025-02-01T13:58:33+09:00">2025-02-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <img src="/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/00.jpg" class="">
+
+<p>2018년에 네트워크 레이어 성능을 끌어올리기 위해 도입했던 System.IO.Pipeline을 간단히 소개하고, 도입 후기를 적어본다. </p>
+<p>윈도우 OS에서 고성능을 내기 위한 소켓 프로그래밍을 할 때 IOCP 의 사용은 오래도록 변하지 않는 정답의 자리를 유지하고 있다. 여기에서 좀 더 성능에 욕심을 내고자 한다면 Windows Server 2012부터 등장한 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh997032(v=ws.11)">Registerd IO</a> 라는 새로운 선택지가 있다. 하지만 API가 C++ 로만 열려 있어서, C# 구현에서는 사용하기가 쉽지 않다. </p>
+<p>하지만 C#에도 고성능 IO를 위한 새로운 API가 추가되었다. <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ko-kr/dotnet/standard/io/pipelines">Pipeline</a> 이다.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -190,7 +277,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2025-01-15 05:12:49" itemprop="dateModified" datetime="2025-01-15T05:12:49+09:00">2025-01-15</time>
+      <time title="Updated at: 2025-02-01 13:58:33" itemprop="dateModified" datetime="2025-02-01T13:58:33+09:00">2025-02-01</time>
     </span>
 
   
@@ -274,7 +361,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2025-01-15 05:12:49" itemprop="dateModified" datetime="2025-01-15T05:12:49+09:00">2025-01-15</time>
+      <time title="Updated at: 2025-02-01 13:58:33" itemprop="dateModified" datetime="2025-02-01T13:58:33+09:00">2025-02-01</time>
     </span>
 
   
@@ -358,7 +445,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2025-01-15 05:12:49" itemprop="dateModified" datetime="2025-01-15T05:12:49+09:00">2025-01-15</time>
+      <time title="Updated at: 2025-02-01 13:58:33" itemprop="dateModified" datetime="2025-02-01T13:58:33+09:00">2025-02-01</time>
     </span>
 
   
@@ -441,7 +528,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2025-01-15 05:12:49" itemprop="dateModified" datetime="2025-01-15T05:12:49+09:00">2025-01-15</time>
+      <time title="Updated at: 2025-02-01 13:58:33" itemprop="dateModified" datetime="2025-02-01T13:58:33+09:00">2025-02-01</time>
     </span>
 
   
@@ -527,7 +614,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2025-01-15 05:12:49" itemprop="dateModified" datetime="2025-01-15T05:12:49+09:00">2025-01-15</time>
+      <time title="Updated at: 2025-02-01 13:58:33" itemprop="dateModified" datetime="2025-02-01T13:58:33+09:00">2025-02-01</time>
     </span>
 
   
@@ -614,7 +701,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2025-01-15 05:12:49" itemprop="dateModified" datetime="2025-01-15T05:12:49+09:00">2025-01-15</time>
+      <time title="Updated at: 2025-02-01 13:58:33" itemprop="dateModified" datetime="2025-02-01T13:58:33+09:00">2025-02-01</time>
     </span>
 
   
@@ -701,7 +788,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2025-01-15 05:12:49" itemprop="dateModified" datetime="2025-01-15T05:12:49+09:00">2025-01-15</time>
+      <time title="Updated at: 2025-02-01 13:58:33" itemprop="dateModified" datetime="2025-02-01T13:58:33+09:00">2025-02-01</time>
     </span>
 
   
@@ -784,7 +871,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2025-01-15 05:12:49" itemprop="dateModified" datetime="2025-01-15T05:12:49+09:00">2025-01-15</time>
+      <time title="Updated at: 2025-02-01 13:58:33" itemprop="dateModified" datetime="2025-02-01T13:58:33+09:00">2025-02-01</time>
     </span>
 
   
@@ -868,7 +955,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2025-01-15 05:12:49" itemprop="dateModified" datetime="2025-01-15T05:12:49+09:00">2025-01-15</time>
+      <time title="Updated at: 2025-02-01 13:58:33" itemprop="dateModified" datetime="2025-02-01T13:58:33+09:00">2025-02-01</time>
     </span>
 
   
@@ -888,89 +975,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/devnote/2014/07/16/the-benz-programmer/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2014/07/13/move-to-octopress/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/devnote/images/avatar.gif">
-      <meta itemprop="name" content="leafbird">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leafbird/devnote">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | leafbird/devnote">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/devnote/2014/07/13/move-to-octopress/" class="post-title-link" itemprop="url">move to octopress!</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">작성일</span>
-
-      <time title="Post created: 2014-07-13 15:24:24" itemprop="dateCreated datePublished" datetime="2014-07-13T15:24:24+09:00">2014-07-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2025-01-15 05:12:49" itemprop="dateModified" datetime="2025-01-15T05:12:49+09:00">2025-01-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>기존에 티스토리에서 운영 중이던 <a target="_blank" rel="noopener" href="http://devnote.tistory.com/">프로그래밍 관련 블로그(devnote.tistory.com)</a>를 Octopress로 이사합니다. 사실 운영이라고 말하기도 뭣할 만큼 오랫동안 방치되어 있었는데, 다시금 분위기를 쇄신하고자 환경을 바꿔볼까 합니다. </p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/devnote/2014/07/13/move-to-octopress/#more" rel="contents">
                 더 읽어보기 &raquo;
               </a>
             </div>
