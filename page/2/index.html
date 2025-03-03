@@ -114,12 +114,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/devnote/archives/">
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-count">44</span>
         <span class="site-state-item-name">태그</span>
       </div>
   </nav>
@@ -144,6 +144,92 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2021/08/08/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%8B%A8%ED%8E%B8%ED%99%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/devnote/2021/08/08/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%8B%A8%ED%8E%B8%ED%99%94/" class="post-title-link" itemprop="url">C# 고성능 서버 - 메모리 단편화</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+
+      <time title="Post created: 2021-08-08 21:44:20" itemprop="dateCreated datePublished" datetime="2021-08-08T21:44:20+09:00">2021-08-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Updated at: 2025-03-03 15:38:03" itemprop="dateModified" datetime="2025-03-03T15:38:03+09:00">2025-03-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <img src="/devnote/2021/08/08/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%8B%A8%ED%8E%B8%ED%99%94/00.jpg" class="">
+
+<p>이제 닷넷의 GC는 꽤나 쓸만하게 발전하여, 웬만한 경우는 프로그래머가 메모리 관리를 굳이 신경쓰지 않고 코딩할 수 있게 도와준다. 그리고 그것이 C++ 대신 C#을 선택하는 큰 이유이기도 하다. 하지만 C# 게임서버로도 성능에 욕심을 내고자 한다면, 짧은 순간 대량의 TPS를 낼 수 있는 네트워크 IO를 구현하려고 한다면 어느정도 메모리 운용에 대한 이해가 필요하다.</p>
+<p>이번 포스팅에서는 네트워크 IO의 부하가 가중될 때 겪을 수 있는 메모리 단편화 현상에 대해서 정리해본다. </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/devnote/2021/08/08/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%8B%A8%ED%8E%B8%ED%99%94/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -189,7 +275,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2025-03-03 15:12:01" itemprop="dateModified" datetime="2025-03-03T15:12:01+09:00">2025-03-03</time>
+      <time title="Updated at: 2025-03-03 15:38:03" itemprop="dateModified" datetime="2025-03-03T15:38:03+09:00">2025-03-03</time>
     </span>
 
   
@@ -274,7 +360,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2025-03-03 15:12:01" itemprop="dateModified" datetime="2025-03-03T15:12:01+09:00">2025-03-03</time>
+      <time title="Updated at: 2025-03-03 15:38:03" itemprop="dateModified" datetime="2025-03-03T15:38:03+09:00">2025-03-03</time>
     </span>
 
   
@@ -361,7 +447,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2025-03-03 15:12:01" itemprop="dateModified" datetime="2025-03-03T15:12:01+09:00">2025-03-03</time>
+      <time title="Updated at: 2025-03-03 15:38:03" itemprop="dateModified" datetime="2025-03-03T15:38:03+09:00">2025-03-03</time>
     </span>
 
   
@@ -445,7 +531,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2025-03-03 15:12:01" itemprop="dateModified" datetime="2025-03-03T15:12:01+09:00">2025-03-03</time>
+      <time title="Updated at: 2025-03-03 15:38:03" itemprop="dateModified" datetime="2025-03-03T15:38:03+09:00">2025-03-03</time>
     </span>
 
   
@@ -529,7 +615,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2025-03-03 15:12:01" itemprop="dateModified" datetime="2025-03-03T15:12:01+09:00">2025-03-03</time>
+      <time title="Updated at: 2025-03-03 15:38:03" itemprop="dateModified" datetime="2025-03-03T15:38:03+09:00">2025-03-03</time>
     </span>
 
   
@@ -612,7 +698,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2025-03-03 15:12:01" itemprop="dateModified" datetime="2025-03-03T15:12:01+09:00">2025-03-03</time>
+      <time title="Updated at: 2025-03-03 15:38:03" itemprop="dateModified" datetime="2025-03-03T15:38:03+09:00">2025-03-03</time>
     </span>
 
   
@@ -698,7 +784,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2025-03-03 15:12:01" itemprop="dateModified" datetime="2025-03-03T15:12:01+09:00">2025-03-03</time>
+      <time title="Updated at: 2025-03-03 15:38:03" itemprop="dateModified" datetime="2025-03-03T15:38:03+09:00">2025-03-03</time>
     </span>
 
   
@@ -785,7 +871,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2025-03-03 15:12:01" itemprop="dateModified" datetime="2025-03-03T15:12:01+09:00">2025-03-03</time>
+      <time title="Updated at: 2025-03-03 15:38:03" itemprop="dateModified" datetime="2025-03-03T15:38:03+09:00">2025-03-03</time>
     </span>
 
   
@@ -872,7 +958,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2025-03-03 15:12:01" itemprop="dateModified" datetime="2025-03-03T15:12:01+09:00">2025-03-03</time>
+      <time title="Updated at: 2025-03-03 15:38:03" itemprop="dateModified" datetime="2025-03-03T15:38:03+09:00">2025-03-03</time>
     </span>
 
   
@@ -889,90 +975,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/devnote/2014/07/20/octopress-tips-on-windows/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2014/07/18/google-c-plus-plus-style-guide/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/devnote/images/avatar.gif">
-      <meta itemprop="name" content="leafbird">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="leafbird/devnote">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | leafbird/devnote">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/devnote/2014/07/18/google-c-plus-plus-style-guide/" class="post-title-link" itemprop="url">google c++ style guide</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">작성일</span>
-
-      <time title="Post created: 2014-07-19 02:12:37" itemprop="dateCreated datePublished" datetime="2014-07-19T02:12:37+09:00">2014-07-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2025-03-03 15:12:01" itemprop="dateModified" datetime="2025-03-03T15:12:01+09:00">2025-03-03</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>지금 참여중인 프로젝트에서 얼마전에 코딩 컨벤션을 통일하는 작업이 있었습니다.<br>본격적으로 컨벤션을 통일하고 이제 한 서너달? 정도 지난 것 같네요. </p>
-<p>처음에는 팀원 대다수가 많이 혼란스러워 했지만 이제 어느 정도 시간이 지나고 나니 팀 내 프로그래머 모두가 거의 유사한 스타일의 코드를 작성하게 됐습니다. 이렇게 되니 전보다 코드 가독성이 좋아지고 협업을 할 때 이런 저런 많은 도움이 됩니다. </p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/devnote/2014/07/18/google-c-plus-plus-style-guide/#more" rel="contents">
                 더 읽어보기 &raquo;
               </a>
             </div>
