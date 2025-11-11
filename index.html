@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/devnote/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/devnote/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/devnote/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/devnote/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/devnote/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Noto+Sans+KR:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js"></script>
+
+    <meta property="og:type" content="website">
+<meta property="og:title" content="leafbird&#x2F;devnote">
+<meta property="og:url" content="http://leafbird.github.io/devnote/index.html">
+<meta property="og:site_name" content="leafbird&#x2F;devnote">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:author" content="leafbird">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://leafbird.github.io/devnote/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"ko","comments":"","permalink":"","path":"index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>leafbird/devnote</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54KKVRTET0"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/devnote/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/devnote/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/devnote/rss2.xml" title="leafbird/devnote" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/devnote/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">leafbird/devnote</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="검색" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">leafbird</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/devnote/archives/">
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">45</span>
+        <span class="site-state-item-name">태그</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/leafbird" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leafbird" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/leafbird_tw" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;leafbird_tw" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2025/11/11/the-best-choice-of-the-year/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/devnote/2025/11/11/the-best-choice-of-the-year/" class="post-title-link" itemprop="url">the best choice of the year</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+
+      <time title="Post created: 2025-11-11 11:30:24" itemprop="dateCreated datePublished" datetime="2025-11-11T11:30:24+09:00">2025-11-11</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          
+
+<span id="more"></span>
+
+
+<p>올 해에 가장 잘 했던 기술적 선택을 꼽으라고 한다면<br>연초에 서비스 환경을 리눅스로 전환하겠다고 결정한 점이다.</p>
+<img src="/devnote/2025/11/11/the-best-choice-of-the-year/image.png" class="">
+
+<!--more-->
+
+
+<p>그동안은 MMO 프로젝트를 하면서 윈도우 커널이 제공하는 컴퓨팅 환경을 바닥까지 쥐어짜서 쓰는 고수님들의 실력에 감탄하고 동경했다. 스레드 컨텍스트 스위칭 하나, cpu 캐시미스 하나까지 절약하는 핵고수님들을 따라가려면 나는 주제넘게 여러 분야 건드리지 말고 하나 만이라도 잘 따라가자는 생각이 있었던 것 같다.</p>
+<p>이제는 상황이 변했고, 생각도 조금 바뀌었다. 지금은 단일스팟(&#x3D;단일 윈도우 머신)에서 벌어지는 많은 유저들의 인터랙션을 처리하는 것이 고민의 주제가 아니게 되었고, 인터랙션이 거의 없거나 아예 없는 개별 트래픽들을 보다 쉽고 유연하게 대응하는 것이 더 중요한 상황이 되었다.</p>
+<p>리눅스의 개발 생태계, 가상화를 통해 얻게 되는 새로운 관점의 변화들은 너무 신선하다. 이제까지 내가 생각하지 못했던 방법들로 사고할 수 있게 된다. 훨씬 많은 개발자들과 선례들이 남긴 방대한 자료들이 인터넷에 가득하다. 약간 과장하자면 갈라파고스 섬에 살다가 뉴욕 맨하튼 거리로 나온 느낌.</p>
+<p>이제 갓 일년차 수준이니 아직은 미숙하고 서툰 부분이 많지만, 앞으로 더 배우고 경험하고 놀라워 할 일이 많다는 점도 즐겁다. 연초에 리눅스 전환을 결정하지 않았다면 이 만큼의 새로운 자극이나 만족감이 있었을까.</p>
+<p>이번 프로젝트는 개발 도중에 리눅스 환경 도입을 결정한 케이스이지만, 만약 지금 시점에 신규 프로젝트의 기술스택을 결정하고 아키텍처를 짜야 한다면… 이제까지의 프로젝트들과 얼마나 유사할 것인가. 아마 꽤나 다른 결정을 하게 될 것이다. 좀 다르게 말하면.. 꽤나 다른 결정도 이제는 할 수 있게 되었고, 여러가지 선택지를 마련해서 보다 적합한 솔루션을 고민해 고를 수 있게 되었고. 그 말은 내가 할 수 있는 것이 전보다는 좀 더 많아졌다는 말도 되지 않을까. 너무 논리적인 비약인가.</p>
+<img src="/devnote/2025/11/11/the-best-choice-of-the-year/minipc.png" class="">
+
+<p>리눅스 생태계는 개발자 장난감(?)으로도 꽤나 재미가 있다. 지금 내 방에 띄워둔 vm 하이퍼바이저만 2대가 된다. 홈 네트워크, 홈 서버, 터미널 개발환경들 모든 것이 재미있다. 비 개발자들도 집에서 취미로 반려서버를 많이 가꾸신다는데. 그야말로 세상 건전한 취미가 아닌가.</p>
+<p>아무튼 다시 생각해봐도 올 해의 최고의 결정이었다. </p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2025/03/03/%EC%9A%94%EC%A6%98%EC%9D%98-%EC%B7%A8%EB%AF%B8-%ED%84%B0%EB%AF%B8%EB%84%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/devnote/2025/03/03/%EC%9A%94%EC%A6%98%EC%9D%98-%EC%B7%A8%EB%AF%B8-%ED%84%B0%EB%AF%B8%EB%84%90/" class="post-title-link" itemprop="url">요즘의 취미 - 터미널?</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+
+      <time title="Post created: 2025-03-03 15:34:59" itemprop="dateCreated datePublished" datetime="2025-03-03T15:34:59+09:00">2025-03-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <img src="/devnote/2025/03/03/%EC%9A%94%EC%A6%98%EC%9D%98-%EC%B7%A8%EB%AF%B8-%ED%84%B0%EB%AF%B8%EB%84%90/screenshot.png" class="">
+
+<p>아니, 정말로요. 빈 말이 아니고요. </p>
+<p>만약에 요즘에 누군가와 사교적인 말하기를 하다가 취미가 무엇이냐는 질문을 받는다면, </p>
+<blockquote>
+<p>요즘 터미널 꾸미는 것에 빠져있어요.</p>
+</blockquote>
+<p>라고 대답할 것 같아요.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/devnote/2025/03/03/%EC%9A%94%EC%A6%98%EC%9D%98-%EC%B7%A8%EB%AF%B8-%ED%84%B0%EB%AF%B8%EB%84%90/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/" class="post-title-link" itemprop="url">[slackbot] 빌드머신 점검하다가 문득 봇을 짜보았다</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+
+      <time title="Post created: 2025-02-02 14:24:14" itemprop="dateCreated datePublished" datetime="2025-02-02T14:24:14+09:00">2025-02-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Updated at: 2025-03-03 09:55:48" itemprop="dateModified" datetime="2025-03-03T09:55:48+09:00">2025-03-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>회사에서 빌드머신으로 사용중인 맥미니 장비들은 주기적으로 몇가지 관리가 필요하다.</p>
+<p>최근에 유니티6로 엔진 업데이트한 이후 빌드머신에 갖가지 이슈들이 생기면서 디스크 용량 체크를 해보던 중이었다.</p>
+<img src="/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/bot_00.png" class="" width="500">
+
+<p><code>이거 코드 작업 조금만 하면 만들 수 있겠다</code>는 생각이 들었고, 미루면 아마 영영 실천으로 옮기지 않게 될 것 같아 생각난 김에 바로 만들었다.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2025/02/01/pwsh-PsFzf%EA%B0%80-%ED%94%84%EB%A1%9C%ED%95%84-%EB%A1%9C%EB%94%A9%EC%9D%84-%EB%84%88%EB%AC%B4-%EB%8A%90%EB%A6%AC%EA%B2%8C-%EB%A7%8C%EB%93%A0%EB%8B%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/devnote/2025/02/01/pwsh-PsFzf%EA%B0%80-%ED%94%84%EB%A1%9C%ED%95%84-%EB%A1%9C%EB%94%A9%EC%9D%84-%EB%84%88%EB%AC%B4-%EB%8A%90%EB%A6%AC%EA%B2%8C-%EB%A7%8C%EB%93%A0%EB%8B%A4/" class="post-title-link" itemprop="url">[pwsh] PsFzf가 프로필 로딩을 너무 느리게 만든다</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+
+      <time title="Post created: 2025-02-01 13:45:31" itemprop="dateCreated datePublished" datetime="2025-02-01T13:45:31+09:00">2025-02-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Updated at: 2025-03-03 09:55:48" itemprop="dateModified" datetime="2025-03-03T09:55:48+09:00">2025-03-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <img src="/devnote/2025/02/01/pwsh-PsFzf%EA%B0%80-%ED%94%84%EB%A1%9C%ED%95%84-%EB%A1%9C%EB%94%A9%EC%9D%84-%EB%84%88%EB%AC%B4-%EB%8A%90%EB%A6%AC%EA%B2%8C-%EB%A7%8C%EB%93%A0%EB%8B%A4/psfzf_00.png" class="">
+
+<p>매번 터미널을 열 때마다 2 ~ 3초가 걸리는 것은 부담스럽다. </p>
+<p>방법을 찾아야 한다.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/devnote/2025/02/01/pwsh-PsFzf%EA%B0%80-%ED%94%84%EB%A1%9C%ED%95%84-%EB%A1%9C%EB%94%A9%EC%9D%84-%EB%84%88%EB%AC%B4-%EB%8A%90%EB%A6%AC%EA%B2%8C-%EB%A7%8C%EB%93%A0%EB%8B%A4/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2024/10/01/C-in-%ED%82%A4%EC%9B%8C%EB%93%9C-%EC%A0%95%EB%A6%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/devnote/2024/10/01/C-in-%ED%82%A4%EC%9B%8C%EB%93%9C-%EC%A0%95%EB%A6%AC/" class="post-title-link" itemprop="url">C# in 키워드 정리</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+
+      <time title="Post created: 2024-10-01 16:45:38" itemprop="dateCreated datePublished" datetime="2024-10-01T16:45:38+09:00">2024-10-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Updated at: 2025-03-03 09:55:48" itemprop="dateModified" datetime="2025-03-03T09:55:48+09:00">2025-03-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>C#에서 메서드를 정의할 때 <code>in</code> 키워드를 사용하면 call by value 가 아닌 call by reference로 동작하게 만들어줍니다. 그래서 주로 구조체(value type)를 복사 없이 참조로 넘길 때 유용하지요. </p>
+<p>참조 타입의 매개변수에 in 키워드를 쓰는 건 어떤 효과가 있을까요? generic parameter를 정의할 때도 in 키워드가 붙는 경우도 있던데 어떤 의미일까요?<br>이참에 한 번 정리해 보겠습니다. </p>
+<img src="/devnote/2024/10/01/C-in-%ED%82%A4%EC%9B%8C%EB%93%9C-%EC%A0%95%EB%A6%AC/image.png" class="">
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/devnote/2024/10/01/C-in-%ED%82%A4%EC%9B%8C%EB%93%9C-%EC%A0%95%EB%A6%AC/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2024/09/21/%ED%95%9C-%EB%B2%88-%EB%8D%94-%EB%82%98%EC%97%90%EA%B2%8C-%EC%A7%88%ED%92%8D%EA%B0%99%EC%9D%80-%EC%9A%A9%EA%B8%B0%EB%A5%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/devnote/2024/09/21/%ED%95%9C-%EB%B2%88-%EB%8D%94-%EB%82%98%EC%97%90%EA%B2%8C-%EC%A7%88%ED%92%8D%EA%B0%99%EC%9D%80-%EC%9A%A9%EA%B8%B0%EB%A5%BC/" class="post-title-link" itemprop="url">한 번 더 나에게 질풍같은 용기를</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+
+      <time title="Post created: 2024-09-21 19:17:16" itemprop="dateCreated datePublished" datetime="2024-09-21T19:17:16+09:00">2024-09-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Updated at: 2025-03-03 09:55:48" itemprop="dateModified" datetime="2025-03-03T09:55:48+09:00">2025-03-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>23년 9월부터 24년 5월까지, 8개월 정도 열심히 커밋을 남겼습니다.<br>그러고는 한참 손을 놓고 있었는데, 다시 한 번 시작해보려고 합니다. </p>
+<img src="/devnote/2024/09/21/%ED%95%9C-%EB%B2%88-%EB%8D%94-%EB%82%98%EC%97%90%EA%B2%8C-%EC%A7%88%ED%92%8D%EA%B0%99%EC%9D%80-%EC%9A%A9%EA%B8%B0%EB%A5%BC/github_streak.png" class="">
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/devnote/2024/09/21/%ED%95%9C-%EB%B2%88-%EB%8D%94-%EB%82%98%EC%97%90%EA%B2%8C-%EC%A7%88%ED%92%8D%EA%B0%99%EC%9D%80-%EC%9A%A9%EA%B8%B0%EB%A5%BC/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2024/05/02/hexo%EC%97%90-PR%EC%9D%84-%EB%B3%B4%EB%83%88%EC%8A%B5%EB%8B%88%EB%8B%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/devnote/2024/05/02/hexo%EC%97%90-PR%EC%9D%84-%EB%B3%B4%EB%83%88%EC%8A%B5%EB%8B%88%EB%8B%A4/" class="post-title-link" itemprop="url">hexo에 PR을 보냈습니다</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+
+      <time title="Post created: 2024-05-02 13:34:55" itemprop="dateCreated datePublished" datetime="2024-05-02T13:34:55+09:00">2024-05-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Updated at: 2025-03-03 09:55:48" itemprop="dateModified" datetime="2025-03-03T09:55:48+09:00">2025-03-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>그리고 이번 <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/releases/tag/v7.2.0">7.2.0 릴리즈</a>에 제가 보낸 수정사항도 반영 되었습니다</p>
+<img src="/devnote/2024/05/02/hexo%EC%97%90-PR%EC%9D%84-%EB%B3%B4%EB%83%88%EC%8A%B5%EB%8B%88%EB%8B%A4/screenshot0.png" class="">
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/devnote/2024/05/02/hexo%EC%97%90-PR%EC%9D%84-%EB%B3%B4%EB%83%88%EC%8A%B5%EB%8B%88%EB%8B%A4/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2023/11/09/%EC%B2%98%EC%9D%8C%EC%9C%BC%EB%A1%9C-%EC%A0%91%ED%95%9C-%EA%B9%83%ED%97%99-%EC%95%A1%EC%85%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/devnote/2023/11/09/%EC%B2%98%EC%9D%8C%EC%9C%BC%EB%A1%9C-%EC%A0%91%ED%95%9C-%EA%B9%83%ED%97%99-%EC%95%A1%EC%85%98/" class="post-title-link" itemprop="url">처음으로 접한 깃헙 액션</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+
+      <time title="Post created: 2023-11-09 13:38:49" itemprop="dateCreated datePublished" datetime="2023-11-09T13:38:49+09:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Updated at: 2025-03-03 09:55:48" itemprop="dateModified" datetime="2025-03-03T09:55:48+09:00">2025-03-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <img src="/devnote/2023/11/09/%EC%B2%98%EC%9D%8C%EC%9C%BC%EB%A1%9C-%EC%A0%91%ED%95%9C-%EA%B9%83%ED%97%99-%EC%95%A1%EC%85%98/actions-graph.png" class="">
+
+<p>github actions 그거 뭐 별거냐고 대수롭지 않게 생각했었다.<br>근데 조금 들여다보니 자유도가 꽤나 높아서, 사람들이 정말 다양하게 활용하고 있다는 것을 알고는 흥미가 생겼다.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/devnote/2023/11/09/%EC%B2%98%EC%9D%8C%EC%9C%BC%EB%A1%9C-%EC%A0%91%ED%95%9C-%EA%B9%83%ED%97%99-%EC%95%A1%EC%85%98/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2023/10/19/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/devnote/2023/10/19/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/" class="post-title-link" itemprop="url">oh-my-posh로 파워쉘 꾸미기</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+
+      <time title="Post created: 2023-10-19 08:54:03" itemprop="dateCreated datePublished" datetime="2023-10-19T08:54:03+09:00">2023-10-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Updated at: 2025-03-03 09:55:48" itemprop="dateModified" datetime="2025-03-03T09:55:48+09:00">2025-03-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <img src="/devnote/2023/10/19/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/win_terminal.png" class="">
+
+<p>지난번에 <a href="/devnote/2023/10/09/iTerm2-%EC%97%86%EC%9D%B4-%EB%A7%A5-%EA%B8%B0%EB%B3%B8-%ED%84%B0%EB%AF%B8%EB%84%90-%EA%BE%B8%EB%AF%B8%EA%B8%B0/" title="iTerm2 없이 맥 기본 터미널 꾸미기">zsh을 꾸미고 나니</a>, pwsh이 너무 허접해 보였다. 이런 것을 역체감이라고 하나.<br>어쩔 수 없지. 파워쉘도 꾸며줄 수 밖에.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/devnote/2023/10/19/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2023/10/12/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%B0%98%EC%9D%91%ED%98%95-%EB%94%94%EC%9E%90%EC%9D%B8%ED%95%98%EA%B8%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/devnote/2023/10/12/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%B0%98%EC%9D%91%ED%98%95-%EB%94%94%EC%9E%90%EC%9D%B8%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">웹페이지 반응형 디자인하기</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+
+      <time title="Post created: 2023-10-12 13:19:34" itemprop="dateCreated datePublished" datetime="2023-10-12T13:19:34+09:00">2023-10-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Updated at: 2025-03-03 09:55:48" itemprop="dateModified" datetime="2025-03-03T09:55:48+09:00">2025-03-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <img src="/devnote/2023/10/12/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%B0%98%EC%9D%91%ED%98%95-%EB%94%94%EC%9E%90%EC%9D%B8%ED%95%98%EA%B8%B0/before_after.png" class="">
+
+<p>모바일에서 볼 때 왼쪽같이 보이던 페이지를 오른쪽처럼 변경했다. 지금은 블록 여백 등도 조금 더 정리해서 일단락 지었다. 실제 페이지는 <a href="https://leafbird.github.io/">https://leafbird.github.io</a> 에서 확인 가능하다. </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/devnote/2023/10/12/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%B0%98%EC%9D%91%ED%98%95-%EB%94%94%EC%9E%90%EC%9D%B8%ED%95%98%EA%B8%B0/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/devnote/page/2/">2</a><a class="page-number" href="/devnote/page/3/">3</a><a class="extend next" rel="next" title="다음 페이지" aria-label="다음 페이지" href="/devnote/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">leafbird</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/devnote/js/comments.js"></script><script src="/devnote/js/utils.js"></script><script src="/devnote/js/sidebar.js"></script><script src="/devnote/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"leafbird","repo":"devnote","client_id":"27d8b6b6501ea8561848","client_secret":"86181a3464a298b3cbce1b1aadd362004ca5494f","admin_user":"leafbird","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"e403d9d28f9306e7b19500d3194dc179"}</script>
+<script src="/devnote/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
