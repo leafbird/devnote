@@ -12,7 +12,7 @@ tags:
 
 ## 들어가며
 
-{% post_link Understanding-the-Actor-Pattern "지난 글" %}에서는 POSA 2의 동시성 패턴들 — Reactor, Proactor, Actor — 을 간단하게 소개하고 살펴보았습니다. 이론적 배경을 이해했으니, 이제 실전으로 넘어갈 차례입니다.
+지난 글({% post_link Understanding-the-Actor-Pattern "링크" %})에서는 POSA 2의 동시성 패턴들 — Reactor, Proactor, Actor — 을 간단하게 소개하고 살펴보았습니다. 이론적 배경을 이해했으니, 이제 실전으로 넘어갈 차례입니다.
 
 > **근데 이제.. 실제 게임 만들 때 Actor 모델을 어떻게 적용한다는 건가?**
 
