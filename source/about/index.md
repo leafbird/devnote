@@ -3,7 +3,7 @@ title: About
 date: 2026-02-03 09:00:00
 ---
 
-<img src="https://leafbird.github.io/image/profile_new.jpg" alt="leafbird" style="width: 120px; border-radius: 8px; float: right; margin-left: 20px; margin-bottom: 10px;">
+<img src="https://leafbird.github.io/image/profile_new.jpg" alt="leafbird" style="width: 250px; border-radius: 8px;">
 
 ## leafbird
 
@@ -22,7 +22,7 @@ date: 2026-02-03 09:00:00
 
 - **Languages:** C#, C++
 - **Domains:** Game Server, High-Performance Network I/O, Concurrency
-- **Interests:** Actor Pattern, System.IO.Pipelines, Async/Await Internals, Kubernetes, Docker
+- **Interests:** Actor Pattern, System.IO.Pipelines, Async/Await Internals, k8s, Docker
 
 ---
 
