@@ -4,6 +4,33 @@
 
 
     <url>
+        <loc>http://leafbird.github.io/devnote/2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/</loc>
+        <lastmod>2026-02-07T07:17:54.131Z</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
+    </url>
+
+    <url>
+        <loc>http://leafbird.github.io/devnote/2026/01/29/Implementing-Lightweight-Actor-in-CSharp-Part1/</loc>
+        <lastmod>2026-02-07T07:17:54.131Z</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
+    </url>
+
+    <url>
+        <loc>http://leafbird.github.io/devnote/2026/01/21/Understanding-the-Actor-Pattern/</loc>
+        <lastmod>2026-01-27T13:36:00.329Z</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
+    </url>
+
+    <url>
         <loc>http://leafbird.github.io/devnote/2025/11/11/the-best-choice-of-the-year/</loc>
         <lastmod>2025-11-11T02:34:08.257Z</lastmod>
         <changefreq>always</changefreq>
@@ -157,7 +184,7 @@
     </url>
 
     <url>
-        <loc>http://leafbird.github.io/devnote/2014/09/17/cleanup-cpp-project-2nd/</loc>
+        <loc>http://leafbird.github.io/devnote/2014/09/30/cleanup-cpp-project-3rd/</loc>
         <lastmod>2025-03-03T00:55:48.180Z</lastmod>
         <changefreq>always</changefreq>
         <priority>1</priority>
@@ -166,7 +193,7 @@
     </url>
 
     <url>
-        <loc>http://leafbird.github.io/devnote/2014/09/30/cleanup-cpp-project-3rd/</loc>
+        <loc>http://leafbird.github.io/devnote/2014/09/17/cleanup-cpp-project-2nd/</loc>
         <lastmod>2025-03-03T00:55:48.180Z</lastmod>
         <changefreq>always</changefreq>
         <priority>1</priority>
@@ -184,7 +211,7 @@
     </url>
 
     <url>
-        <loc>http://leafbird.github.io/devnote/2014/07/16/the-benz-programmer/</loc>
+        <loc>http://leafbird.github.io/devnote/2014/07/14/move-to-octopress/</loc>
         <lastmod>2025-03-03T00:55:48.179Z</lastmod>
         <changefreq>always</changefreq>
         <priority>1</priority>
@@ -202,7 +229,16 @@
     </url>
 
     <url>
-        <loc>http://leafbird.github.io/devnote/2014/07/14/move-to-octopress/</loc>
+        <loc>http://leafbird.github.io/devnote/2014/07/19/google-c-plus-plus-style-guide/</loc>
+        <lastmod>2025-03-03T00:55:48.179Z</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
+    </url>
+
+    <url>
+        <loc>http://leafbird.github.io/devnote/2014/07/16/the-benz-programmer/</loc>
         <lastmod>2025-03-03T00:55:48.179Z</lastmod>
         <changefreq>always</changefreq>
         <priority>1</priority>
@@ -212,15 +248,6 @@
 
     <url>
         <loc>http://leafbird.github.io/devnote/2014/07/21/octopress-tips-on-windows/</loc>
-        <lastmod>2025-03-03T00:55:48.179Z</lastmod>
-        <changefreq>always</changefreq>
-        <priority>1</priority>
-    
-    
-    </url>
-
-    <url>
-        <loc>http://leafbird.github.io/devnote/2014/07/19/google-c-plus-plus-style-guide/</loc>
         <lastmod>2025-03-03T00:55:48.179Z</lastmod>
         <changefreq>always</changefreq>
         <priority>1</priority>

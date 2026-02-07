@@ -4,7 +4,12 @@
 
     <sitemap>
         <loc>http://leafbird.github.io/devnote/post-sitemap.xml</loc>
-        <lastmod>2025-11-11T02:34:08.257Z</lastmod>
+        <lastmod>2026-02-07T07:17:54.131Z</lastmod>
+    </sitemap>
+
+    <sitemap>
+        <loc>http://leafbird.github.io/devnote/page-sitemap.xml</loc>
+        <lastmod>2026-02-07T07:17:54.143Z</lastmod>
     </sitemap>
 
 </sitemapindex>
