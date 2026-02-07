@@ -14,9 +14,9 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Noto+Sans+KR:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"a11y-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js" defer></script>
 
     <meta name="description" content="이전 포스트 ‘C++ 코드 정리 자동화 - 1. 불필요한 #include 찾기 上‘ 에서 이어진다. 지워도 되는 인클루드를 찾아냈다개별 파일 하나씩을 컴파일 할 수 있다면 이제 모든 인클루드를 하나씩 삭제하면서 컴파일 가능 여부를 확인해보면 된다. 이 부분은 간단한 file seeking과 string 처리 작업일 뿐이니 굳이 부연 설명은 필요 없다. 카페">
 <meta property="og:type" content="article">
@@ -26,8 +26,8 @@
 <meta property="og:description" content="이전 포스트 ‘C++ 코드 정리 자동화 - 1. 불필요한 #include 찾기 上‘ 에서 이어진다. 지워도 되는 인클루드를 찾아냈다개별 파일 하나씩을 컴파일 할 수 있다면 이제 모든 인클루드를 하나씩 삭제하면서 컴파일 가능 여부를 확인해보면 된다. 이 부분은 간단한 file seeking과 string 처리 작업일 뿐이니 굳이 부연 설명은 필요 없다. 카페">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="http://leafbird.github.io/devnote/images/140917_00.PNG">
-<meta property="article:published_time" content="2014-09-17T11:30:24.000Z">
-<meta property="article:modified_time" content="2025-03-03T00:55:48.180Z">
+<meta property="article:published_time" content="2014-09-17T02:30:24.000Z">
+<meta property="article:modified_time" content="2026-02-07T07:24:04.680Z">
 <meta property="article:author" content="leafbird">
 <meta property="article:tag" content="c++">
 <meta name="twitter:card" content="summary">
@@ -44,10 +44,27 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-54KKVRTET0"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false,"measure_protocol_api_secret":null}</script>
-  <script src="/devnote/js/third-party/analytics/google-analytics.js"></script>
+  <script src="/devnote/js/third-party/analytics/google-analytics.js" defer></script>
 
 
 
+
+
+
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/devnote/js/utils.js" defer></script><script src="/devnote/js/sidebar.js" defer></script><script src="/devnote/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
 
 
 
@@ -201,14 +218,14 @@
       </span>
       <span class="post-meta-item-text">작성일</span>
 
-      <time title="Post created: 2014-09-17 20:30:24" itemprop="dateCreated datePublished" datetime="2014-09-17T20:30:24+09:00">2014-09-17</time>
+      <time title="Post created: 2014-09-17 11:30:24" itemprop="dateCreated datePublished" datetime="2014-09-17T11:30:24+09:00">2014-09-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2025-03-03 09:55:48" itemprop="dateModified" datetime="2025-03-03T09:55:48+09:00">2025-03-03</time>
+      <time title="Updated at: 2026-02-07 16:24:04" itemprop="dateModified" datetime="2026-02-07T16:24:04+09:00">2026-02-07</time>
     </span>
 
   
@@ -263,7 +280,7 @@
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/devnote/2014/09/30/cleanup-cpp-project-3rd/" rel="next" title="C++ 코드 정리 자동화 - 3. pch 사이즈 확인, #include 순서정리">
+                <a href="/devnote/2014/09/29/cleanup-cpp-project-3rd/" rel="next" title="C++ 코드 정리 자동화 - 3. pch 사이즈 확인, #include 순서정리">
                   C++ 코드 정리 자동화 - 3. pch 사이즈 확인, #include 순서정리 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
@@ -314,28 +331,10 @@
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
 </noscript>
-
-
-  
-  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/devnote/js/comments.js"></script><script src="/devnote/js/utils.js"></script><script src="/devnote/js/sidebar.js"></script><script src="/devnote/js/next-boot.js"></script>
-
-  
-
-
-
-
-
-
-  
-
-
-
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"leafbird","repo":"devnote","client_id":"27d8b6b6501ea8561848","client_secret":"86181a3464a298b3cbce1b1aadd362004ca5494f","admin_user":"leafbird","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"39d6b718b6bcc31f09b495f4daebe631"}</script>
-<script src="/devnote/js/third-party/comments/gitalk.js"></script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"leafbird","repo":"devnote","client_id":"27d8b6b6501ea8561848","client_secret":"86181a3464a298b3cbce1b1aadd362004ca5494f","admin_user":"leafbird","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"body":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"39d6b718b6bcc31f09b495f4daebe631"}</script>
+<script src="/devnote/js/third-party/comments/gitalk.js" defer></script>
 
 </body>
 </html>
