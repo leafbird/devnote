@@ -262,4 +262,4 @@ Actor는 위치 투명성을 가지므로, 이론적으로 여러 서버에 걸�
 
 ---
 
-*다음 글: C#으로 구현하는 경량 Actor (예정)*
+다음 글: {% post_link "Implementing-Lightweight-Actor-in-CSharp-Part1" %} 

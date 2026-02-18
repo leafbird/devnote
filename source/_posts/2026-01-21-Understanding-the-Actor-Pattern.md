@@ -217,4 +217,4 @@ Reactor와 Proactor가 "이벤트를 어떻게 효율적으로 감지할 것인�
 
 ---
 
-*다음 글: 게임서버를 위한 경량 액터모델 구현기 (예정)*
+다음 글: {% post_link Applying-the-Actor-Pattern-to-MMO-Servers "Actor 패턴 적용 예시: MMO 서버 구현"%} 
