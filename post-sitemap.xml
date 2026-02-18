@@ -4,6 +4,24 @@
 
 
     <url>
+        <loc>http://leafbird.github.io/devnote/2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/</loc>
+        <lastmod>2026-02-18T07:24:25.821Z</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
+    </url>
+
+    <url>
+        <loc>http://leafbird.github.io/devnote/2026/01/21/Understanding-the-Actor-Pattern/</loc>
+        <lastmod>2026-02-18T07:18:38.773Z</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
+    </url>
+
+    <url>
         <loc>http://leafbird.github.io/devnote/2026/02/18/openclaw%EC%97%90-PR%EC%97%86%EC%9D%B4-%EB%B2%84%EA%B7%B8%EC%A0%9C%EB%B3%B4%EB%A7%8C-%EC%98%AC%EB%A6%B0-%EC%8D%B0-%ED%91%BC%EB%8B%A4/</loc>
         <lastmod>2026-02-18T06:41:24.683Z</lastmod>
         <changefreq>always</changefreq>
@@ -15,24 +33,6 @@
     <url>
         <loc>http://leafbird.github.io/devnote/2026/01/29/Implementing-Lightweight-Actor-in-CSharp-Part1/</loc>
         <lastmod>2026-02-18T05:02:58.488Z</lastmod>
-        <changefreq>always</changefreq>
-        <priority>1</priority>
-    
-    
-    </url>
-
-    <url>
-        <loc>http://leafbird.github.io/devnote/2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/</loc>
-        <lastmod>2026-02-18T05:02:58.488Z</lastmod>
-        <changefreq>always</changefreq>
-        <priority>1</priority>
-    
-    
-    </url>
-
-    <url>
-        <loc>http://leafbird.github.io/devnote/2026/01/21/Understanding-the-Actor-Pattern/</loc>
-        <lastmod>2026-01-30T13:41:10.004Z</lastmod>
         <changefreq>always</changefreq>
         <priority>1</priority>
     
