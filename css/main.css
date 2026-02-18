@@ -186,7 +186,7 @@ body {
   background: var(--body-bg-color);
   box-sizing: border-box;
   color: var(--text-color);
-  font-family: Nanum Gothic, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-size: 1em;
   line-height: 2;
   min-height: 100%;
@@ -199,7 +199,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Noto Sans KR, Nanum Gothic, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-weight: bold;
   line-height: 1.5;
   margin: 30px 0 15px;
@@ -1079,7 +1079,7 @@ pre code {
   color: var(--brand-hover-color);
 }
 .site-title {
-  font-family: Lato, Nanum Gothic, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-size: 1.375em;
   font-weight: normal;
   line-height: 1.5;
@@ -1220,7 +1220,7 @@ pre code {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #af5bdd;
+  background: #f25c55;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -1842,7 +1842,7 @@ pre code {
   width: 4px;
 }
 .post-body {
-  font-family: Nanum Gothic, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
   overflow-wrap: break-word;
 }
 @media (min-width: 1200px) {
@@ -2031,7 +2031,7 @@ pre code {
 }
 .posts-expand .post-meta-container {
   color: #999;
-  font-family: Nanum Gothic, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-size: 0.75em;
   margin-top: 3px;
 }
@@ -2620,4 +2620,34 @@ header.header {
 }
 .sub-menu .menu-item {
   display: inline-block;
+}
+:root {
+  --font-weight-body: 400;
+  --font-weight-heading: 600;
+  --font-weight-bold: 700;
+  --font-weight-code: 400;
+}
+body {
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-weight: var(--font-weight-body);
+  font-size: 1.05em;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.post-title,
+.site-title {
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  font-weight: var(--font-weight-heading);
+}
+strong,
+b {
+  font-weight: var(--font-weight-bold);
+}
+code,
+pre {
+  font-weight: var(--font-weight-code);
 }
