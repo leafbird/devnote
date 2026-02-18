@@ -12,11 +12,11 @@
 
 <link rel="stylesheet" href="/devnote/css/main.css">
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CNoto+Sans+KR:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Noto+Sans+KR:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"a11y-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js" defer></script>
 
     <meta name="description" content="C++에서 가장 기본적으로 사용했던 __FILE__, __LINE__, __FUNCTION__ 등의 매크로와 유사한 효과를 내는 방법에 대해 적어본다. 이와 함께 나에게는 생소했던 string interning 개념에 대해서도 살짝 소개해본다. 자바 같은 managed 언어를 깊이 다뤄본 적이 없는 네이티브 개발자에게는 생소한 개념일 것이다.UI가 없는 서">
 <meta property="og:type" content="article">
@@ -41,7 +41,6 @@
 <link rel="canonical" href="http://leafbird.github.io/devnote/2020/12/26/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-FILE-LINE-%EB%8C%80%EC%B2%B4%EC%A0%9C/">
 
 
-
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"http://leafbird.github.io/devnote/2020/12/26/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-FILE-LINE-%EB%8C%80%EC%B2%B4%EC%A0%9C/","path":"2020/12/26/C-고성능-서버-FILE-LINE-대체제/","title":"C# 고성능 서버 - __FILE__, __LINE__ 대체제"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
@@ -49,10 +48,27 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-54KKVRTET0"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false,"measure_protocol_api_secret":null}</script>
-  <script src="/devnote/js/third-party/analytics/google-analytics.js"></script>
+  <script src="/devnote/js/third-party/analytics/google-analytics.js" defer></script>
 
 
 
+
+
+
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/devnote/js/utils.js" defer></script><script src="/devnote/js/sidebar.js" defer></script><script src="/devnote/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
 
 
 
@@ -72,6 +88,9 @@
       <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
@@ -92,6 +111,10 @@
 
 
 
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/devnote/" rel="section"><i class="fa fa-home fa-fw"></i>홈</a></li><li class="menu-item menu-item-about"><a href="/devnote/about/" rel="section"><i class="fa fa-user fa-fw"></i>정보</a></li><li class="menu-item menu-item-archives"><a href="/devnote/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>아카이브</a></li>
+  </ul>
+</nav>
 
 
 
@@ -127,12 +150,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/devnote/archives/">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-count">51</span>
         <span class="site-state-item-name">태그</span>
       </div>
   </nav>
@@ -140,6 +163,9 @@
   <div class="links-of-author animated">
       <span class="links-of-author-item">
         <a href="https://github.com/leafbird" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leafbird" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/leafbird" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;leafbird" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</a>
       </span>
       <span class="links-of-author-item">
         <a href="https://twitter.com/leafbird_tw" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;leafbird_tw" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
@@ -256,7 +282,7 @@
 <li>C# - <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ko-kr/dotnet/api/system.string.intern?view=net-5.0">String Intern()</a></li>
 </ul>
 <p>사용법은 간단하다. 풀링하고 싶은 문자열을 사용할 때 <code>string.Intern()</code> 메소드를 한 번 더 감싸주면 된다. 현재 회사에서 실제 사용중인 모듈의 인터페이스 부분만 보면 아래처럼 되어있다. </p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.IO;</span><br><span class="line"><span class="keyword">using</span> System.Runtime.CompilerServices;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">Log</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Debug</span>(<span class="params"><span class="built_in">string</span> message, [CallerFilePath] <span class="built_in">string</span> file = <span class="string">&quot;&quot;</span>, [CallerLineNumber] <span class="built_in">int</span> line = <span class="number">0</span></span>)</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// ... 중략...</span></span><br><span class="line">    provider.Debug(<span class="string">$&quot;<span class="subst">&#123;message&#125;</span> (<span class="subst">&#123;BuildTag(file, line)&#125;</span>)&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="built_in">string</span> <span class="title">BuildTag</span>(<span class="params"><span class="built_in">string</span> file, <span class="built_in">int</span> line</span>)</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">string</span>.Intern(<span class="string">$&quot;<span class="subst">&#123;Path.GetFileName(file)&#125;</span>:<span class="subst">&#123;line.ToString()&#125;</span>&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.IO;</span><br><span class="line"><span class="keyword">using</span> System.Runtime.CompilerServices;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">Log</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Debug</span>(<span class="params"><span class="built_in">string</span> message, [CallerFilePath] <span class="built_in">string</span> <span class="keyword">file</span> = <span class="string">&quot;&quot;</span>, [CallerLineNumber] <span class="built_in">int</span> line = <span class="number">0</span></span>)</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// ... 중략...</span></span><br><span class="line">    provider.Debug(<span class="string">$&quot;<span class="subst">&#123;message&#125;</span> (<span class="subst">&#123;BuildTag(<span class="keyword">file</span>, line)&#125;</span>)&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="built_in">string</span> <span class="title">BuildTag</span>(<span class="params"><span class="built_in">string</span> <span class="keyword">file</span>, <span class="built_in">int</span> line</span>)</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">string</span>.Intern(<span class="string">$&quot;<span class="subst">&#123;Path.GetFileName(<span class="keyword">file</span>)&#125;</span>:<span class="subst">&#123;line.ToString()&#125;</span>&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>전달받은 파일명을 바로 사용하지 않고 string.Intern()으로 한 번 감싸서 사용한다. 로그를 출력하면 아래처럼 찍힌다. </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2020-12-21 12:08:02.144 [Debug] [ConnectionMonitor] add uid:1 #connection:1 (ConnectionMonitor.cs:32)</span><br><span class="line">2020-12-21 12:08:02.145 [Info] [Send] [20017] kREGISTER_GAME_SERVER_REQ actionId:3 (SerializableExt.cs:92)</span><br><span class="line">2020-12-21 12:08:02.205 [Info] db connection Initialized. type:Auth server:localhost count:16 (DbPool.cs:40)</span><br><span class="line">2020-12-21 12:08:02.221 [Info] db connection Initialized. type:Contents server:localhost count:16 (DbPool.cs:40)</span><br><span class="line">2020-12-21 12:08:02.238 [Info] db connection Initialized. type:Game server:localhost count:16 (DbPool.cs:40)</span><br></pre></td></tr></table></figure>
@@ -317,7 +343,7 @@
 
   <div class="copyright">
     &copy; 
-    <span itemprop="copyrightYear">2024</span>
+    <span itemprop="copyrightYear">2026</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
@@ -345,28 +371,10 @@
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
 </noscript>
-
-
-  
-  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/devnote/js/comments.js"></script><script src="/devnote/js/utils.js"></script><script src="/devnote/js/sidebar.js"></script><script src="/devnote/js/next-boot.js"></script>
-
-  
-
-
-
-
-
-
-  
-
-
-
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
 <script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"leafbird","repo":"devnote","client_id":"27d8b6b6501ea8561848","client_secret":"86181a3464a298b3cbce1b1aadd362004ca5494f","admin_user":"leafbird","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"c13571434a55b0404cbfb7659cb66500"}</script>
-<script src="/devnote/js/third-party/comments/gitalk.js"></script>
+<script src="/devnote/js/third-party/comments/gitalk.js" defer></script>
 
 </body>
 </html>

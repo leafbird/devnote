@@ -4,8 +4,80 @@
 
 
     <url>
+        <loc>http://leafbird.github.io/devnote/2026/02/18/openclaw%EC%97%90-PR%EC%97%86%EC%9D%B4-%EB%B2%84%EA%B7%B8%EC%A0%9C%EB%B3%B4%EB%A7%8C-%EC%98%AC%EB%A6%B0-%EC%8D%B0-%ED%91%BC%EB%8B%A4/</loc>
+        <lastmod>2026-02-18T06:04:29.931Z</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
+    </url>
+
+    <url>
+        <loc>http://leafbird.github.io/devnote/2026/01/29/Implementing-Lightweight-Actor-in-CSharp-Part1/</loc>
+        <lastmod>2026-02-18T05:02:58.488Z</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
+    </url>
+
+    <url>
+        <loc>http://leafbird.github.io/devnote/2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/</loc>
+        <lastmod>2026-02-18T05:02:58.488Z</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
+    </url>
+
+    <url>
+        <loc>http://leafbird.github.io/devnote/2026/01/21/Understanding-the-Actor-Pattern/</loc>
+        <lastmod>2026-01-30T13:41:10.004Z</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
+    </url>
+
+    <url>
+        <loc>http://leafbird.github.io/devnote/2025/11/11/the-best-choice-of-the-year/</loc>
+        <lastmod>2026-01-30T13:41:09.960Z</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
+    </url>
+
+    <url>
+        <loc>http://leafbird.github.io/devnote/2025/03/03/%EC%9A%94%EC%A6%98%EC%9D%98-%EC%B7%A8%EB%AF%B8-%ED%84%B0%EB%AF%B8%EB%84%90/</loc>
+        <lastmod>2025-04-06T09:10:40.355Z</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
+    </url>
+
+    <url>
+        <loc>http://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/</loc>
+        <lastmod>2025-02-02T05:45:34.762Z</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
+    </url>
+
+    <url>
+        <loc>http://leafbird.github.io/devnote/2025/02/01/pwsh-PsFzf%EA%B0%80-%ED%94%84%EB%A1%9C%ED%95%84-%EB%A1%9C%EB%94%A9%EC%9D%84-%EB%84%88%EB%AC%B4-%EB%8A%90%EB%A6%AC%EA%B2%8C-%EB%A7%8C%EB%93%A0%EB%8B%A4/</loc>
+        <lastmod>2025-02-02T01:38:37.393Z</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    
+    
+    </url>
+
+    <url>
         <loc>http://leafbird.github.io/devnote/2024/10/01/C-in-%ED%82%A4%EC%9B%8C%EB%93%9C-%EC%A0%95%EB%A6%AC/</loc>
-        <lastmod>2024-10-01T07:54:44.542Z</lastmod>
+        <lastmod>2024-10-12T11:40:53.592Z</lastmod>
         <changefreq>always</changefreq>
         <priority>1</priority>
     
@@ -121,7 +193,7 @@
     </url>
 
     <url>
-        <loc>http://leafbird.github.io/devnote/2013/12/30/octopress-on-windows/</loc>
+        <loc>http://leafbird.github.io/devnote/2014/07/14/move-to-octopress/</loc>
         <lastmod>2023-01-07T02:18:49.828Z</lastmod>
         <changefreq>always</changefreq>
         <priority>1</priority>
@@ -139,7 +211,7 @@
     </url>
 
     <url>
-        <loc>http://leafbird.github.io/devnote/2014/07/14/move-to-octopress/</loc>
+        <loc>http://leafbird.github.io/devnote/2013/12/30/octopress-on-windows/</loc>
         <lastmod>2023-01-07T02:18:49.828Z</lastmod>
         <changefreq>always</changefreq>
         <priority>1</priority>
@@ -148,7 +220,7 @@
     </url>
 
     <url>
-        <loc>http://leafbird.github.io/devnote/2014/07/19/google-c-plus-plus-style-guide/</loc>
+        <loc>http://leafbird.github.io/devnote/2014/08/19/yoda-notation/</loc>
         <lastmod>2023-01-07T02:18:49.828Z</lastmod>
         <changefreq>always</changefreq>
         <priority>1</priority>
@@ -175,7 +247,7 @@
     </url>
 
     <url>
-        <loc>http://leafbird.github.io/devnote/2014/08/19/yoda-notation/</loc>
+        <loc>http://leafbird.github.io/devnote/2014/09/17/cleanup-cpp-project-2nd/</loc>
         <lastmod>2023-01-07T02:18:49.828Z</lastmod>
         <changefreq>always</changefreq>
         <priority>1</priority>
@@ -184,7 +256,7 @@
     </url>
 
     <url>
-        <loc>http://leafbird.github.io/devnote/2014/09/17/cleanup-cpp-project-2nd/</loc>
+        <loc>http://leafbird.github.io/devnote/2014/07/19/google-c-plus-plus-style-guide/</loc>
         <lastmod>2023-01-07T02:18:49.828Z</lastmod>
         <changefreq>always</changefreq>
         <priority>1</priority>

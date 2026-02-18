@@ -12,11 +12,11 @@
 
 <link rel="stylesheet" href="/devnote/css/main.css">
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CNoto+Sans+KR:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Noto+Sans+KR:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"a11y-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js" defer></script>
 
     <meta name="description" content="프로그래밍에서 각 스레드별로 고유한 상태를 설정할 수 있는 공간을 Thread Local Storage (이하 TLS. transport layer security 아님) 라고 한다. VC++에서는 __declspec(thread) 키워드를 이용해서 tls 변수를 선언할 수 있다.  C#에도 ThreadLocal&lt;T&gt; 라는 클래스를 이용해 tls">
 <meta property="og:type" content="article">
@@ -43,7 +43,6 @@
 <link rel="canonical" href="http://leafbird.github.io/devnote/2021/01/01/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-Thread-Local-Storage/">
 
 
-
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"http://leafbird.github.io/devnote/2021/01/01/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-Thread-Local-Storage/","path":"2021/01/01/C-고성능-서버-Thread-Local-Storage/","title":"C# 고성능 서버 - Thread Local Storage"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
@@ -51,10 +50,27 @@
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-54KKVRTET0"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false,"measure_protocol_api_secret":null}</script>
-  <script src="/devnote/js/third-party/analytics/google-analytics.js"></script>
+  <script src="/devnote/js/third-party/analytics/google-analytics.js" defer></script>
 
 
 
+
+
+
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/devnote/js/utils.js" defer></script><script src="/devnote/js/sidebar.js" defer></script><script src="/devnote/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
 
 
 
@@ -74,6 +90,9 @@
       <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
@@ -94,6 +113,10 @@
 
 
 
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/devnote/" rel="section"><i class="fa fa-home fa-fw"></i>홈</a></li><li class="menu-item menu-item-about"><a href="/devnote/about/" rel="section"><i class="fa fa-user fa-fw"></i>정보</a></li><li class="menu-item menu-item-archives"><a href="/devnote/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>아카이브</a></li>
+  </ul>
+</nav>
 
 
 
@@ -129,12 +152,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/devnote/archives/">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-count">51</span>
         <span class="site-state-item-name">태그</span>
       </div>
   </nav>
@@ -142,6 +165,9 @@
   <div class="links-of-author animated">
       <span class="links-of-author-item">
         <a href="https://github.com/leafbird" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leafbird" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/leafbird" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;leafbird" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</a>
       </span>
       <span class="links-of-author-item">
         <a href="https://twitter.com/leafbird_tw" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;leafbird_tw" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
@@ -272,7 +298,7 @@
 
 <p>작업 요청 후에는 <code>RestoreFlow</code> 를 불러 복구해주면 되는데, <code>SuppressFlow</code> 메서드가 IDisposable인  <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/api/system.threading.asyncflowcontrol?view=net-5.0">AsyncFlowControl</a> 객체를 반환하니까 예시처럼 using을 쓰면 좀 더 심플하게 처리할 수 있다.</p>
 <p>네트워크 구현부에도 수정이 필요하다. <code>SocketAsyncEventArgs</code> 객체를 사용해 비동기 요청을 수행하는 모든 곳에도 <code>RestoreFlow</code> 를 불러준다. (<code>SocketAsyncEventArgs</code>는 win32의 <code>OVERLAPPED</code> 구조체를 거의 그대로 랩핑해둔 클래스다.) 예시로 하나만 옮겨보면 아래처럼 된다. </p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">ConnectionBase</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ConnectAsync</span>(<span class="params">IPAddress ip, <span class="built_in">int</span> port</span>)</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">var</span> args = <span class="keyword">new</span> SocketAsyncEventArgs();</span><br><span class="line">    args.Completed += <span class="keyword">this</span>.OnConnectCompleted; <span class="comment">// 이 메서드가 새로운 스레드에서 불리게 될 것이다.</span></span><br><span class="line">    args.RemoteEndPoint = <span class="keyword">new</span> IPEndPoint(ip, port);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">var</span> control = ExecutionContext.SuppressFlow(); <span class="comment">// 이걸 넣어주어야 콜백 스레드로 AsyncLocal을 복사하지 않는다.</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.socket.ConnectAsync(args))</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">this</span>.OnConnectCompleted(<span class="keyword">this</span>.socket, args);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">ConnectionBase</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ConnectAsync</span>(<span class="params">IPAddress ip, <span class="built_in">int</span> port</span>)</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="keyword">args</span> = <span class="keyword">new</span> SocketAsyncEventArgs();</span><br><span class="line">    <span class="keyword">args</span>.Completed += <span class="keyword">this</span>.OnConnectCompleted; <span class="comment">// 이 메서드가 새로운 스레드에서 불리게 될 것이다.</span></span><br><span class="line">    <span class="keyword">args</span>.RemoteEndPoint = <span class="keyword">new</span> IPEndPoint(ip, port);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">var</span> control = ExecutionContext.SuppressFlow(); <span class="comment">// 이걸 넣어주어야 콜백 스레드로 AsyncLocal을 복사하지 않는다.</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.socket.ConnectAsync(<span class="keyword">args</span>))</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">this</span>.OnConnectCompleted(<span class="keyword">this</span>.socket, <span class="keyword">args</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>이런식으로 SendAsync, RecvAsync 등도 다 막아주어야 일반적인 iocp 콜백 사용 방식과 동일해진다. 다른 코드상에서 아무데도 <code>AsyncLocal&lt;T&gt;</code>을 사용중이지 않다면 굳이 SuppressFlow 호출이 없어도 동작에는 문제가 없다. 그래도 어차피 사용하지도 않을 암묵적인 실행 컨텍스트간 연결 동작은 그냥 끊어두는 것이 성능상 조금이라도 이득일 듯한 기분이 든다. </p>
 <h2 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h2><ul>
@@ -331,7 +357,7 @@
 
   <div class="copyright">
     &copy; 
-    <span itemprop="copyrightYear">2024</span>
+    <span itemprop="copyrightYear">2026</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
@@ -359,28 +385,10 @@
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
 </noscript>
-
-
-  
-  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/devnote/js/comments.js"></script><script src="/devnote/js/utils.js"></script><script src="/devnote/js/sidebar.js"></script><script src="/devnote/js/next-boot.js"></script>
-
-  
-
-
-
-
-
-
-  
-
-
-
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
 <script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"leafbird","repo":"devnote","client_id":"27d8b6b6501ea8561848","client_secret":"86181a3464a298b3cbce1b1aadd362004ca5494f","admin_user":"leafbird","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"0a2575c94c6b1bb5800c79002f74d3f6"}</script>
-<script src="/devnote/js/third-party/comments/gitalk.js"></script>
+<script src="/devnote/js/third-party/comments/gitalk.js" defer></script>
 
 </body>
 </html>

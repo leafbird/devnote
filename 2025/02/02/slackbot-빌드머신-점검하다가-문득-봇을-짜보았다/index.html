@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/devnote/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/devnote/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/devnote/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/devnote/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/devnote/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Noto+Sans+KR:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"a11y-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js" defer></script>
+
+    <meta name="description" content="회사에서 빌드머신으로 사용중인 맥미니 장비들은 주기적으로 몇가지 관리가 필요하다. 최근에 유니티6로 엔진 업데이트한 이후 빌드머신에 갖가지 이슈들이 생기면서 디스크 용량 체크를 해보던 중이었다.   이거 코드 작업 조금만 하면 만들 수 있겠다는 생각이 들었고, 미루면 아마 영영 실천으로 옮기지 않게 될 것 같아 생각난 김에 바로 만들었다.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[slackbot] 빌드머신 점검하다가 문득 봇을 짜보았다">
+<meta property="og:url" content="http://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/index.html">
+<meta property="og:site_name" content="leafbird&#x2F;devnote">
+<meta property="og:description" content="회사에서 빌드머신으로 사용중인 맥미니 장비들은 주기적으로 몇가지 관리가 필요하다. 최근에 유니티6로 엔진 업데이트한 이후 빌드머신에 갖가지 이슈들이 생기면서 디스크 용량 체크를 해보던 중이었다.   이거 코드 작업 조금만 하면 만들 수 있겠다는 생각이 들었고, 미루면 아마 영영 실천으로 옮기지 않게 될 것 같아 생각난 김에 바로 만들었다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/bot_00.png">
+<meta property="og:image" content="http://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/bot_01.png">
+<meta property="og:image" content="http://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/bot_02.png">
+<meta property="og:image" content="http://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/bot_00.png">
+<meta property="og:image" content="http://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/ansible_logo.png">
+<meta property="og:image" content="http://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/bot_03.png">
+<meta property="article:published_time" content="2025-02-02T05:24:14.000Z">
+<meta property="article:modified_time" content="2025-02-02T05:45:34.762Z">
+<meta property="article:author" content="leafbird">
+<meta property="article:tag" content="slackbot">
+<meta property="article:tag" content="ssh">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/bot_00.png">
+
+
+<link rel="canonical" href="http://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"http://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/","path":"2025/02/02/slackbot-빌드머신-점검하다가-문득-봇을-짜보았다/","title":"[slackbot] 빌드머신 점검하다가 문득 봇을 짜보았다"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[slackbot] 빌드머신 점검하다가 문득 봇을 짜보았다 | leafbird/devnote</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54KKVRTET0"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/devnote/js/third-party/analytics/google-analytics.js" defer></script>
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/devnote/js/utils.js" defer></script><script src="/devnote/js/sidebar.js" defer></script><script src="/devnote/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/devnote/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/devnote/rss2.xml" title="leafbird/devnote" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/devnote/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">leafbird/devnote</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="검색" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/devnote/" rel="section"><i class="fa fa-home fa-fw"></i>홈</a></li><li class="menu-item menu-item-about"><a href="/devnote/about/" rel="section"><i class="fa fa-user fa-fw"></i>정보</a></li><li class="menu-item menu-item-archives"><a href="/devnote/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>아카이브</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#powershell"><span class="nav-number">1.</span> <span class="nav-text">powershell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slackbot"><span class="nav-number">2.</span> <span class="nav-text">slackbot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ansible%EC%9D%84-%EC%93%B0%EB%A9%B4-%EC%A2%80-%EB%8D%94-%EC%A2%8B%EC%95%98%EC%9D%84%EA%B9%8C"><span class="nav-number">3.</span> <span class="nav-text">ansible을 쓰면 좀 더 좋았을까?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Know-how"><span class="nav-number">4.</span> <span class="nav-text">Know-how</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">leafbird</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/devnote/archives/">
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">태그</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/leafbird" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leafbird" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/leafbird" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;leafbird" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/leafbird_tw" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;leafbird_tw" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[slackbot] 빌드머신 점검하다가 문득 봇을 짜보았다 | leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [slackbot] 빌드머신 점검하다가 문득 봇을 짜보았다
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+      
+
+      <time title="Post created: 2025-02-02 14:24:14 / Updated at: 14:45:34" itemprop="dateCreated datePublished" datetime="2025-02-02T14:24:14+09:00">2025-02-02</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>회사에서 빌드머신으로 사용중인 맥미니 장비들은 주기적으로 몇가지 관리가 필요하다.</p>
+<p>최근에 유니티6로 엔진 업데이트한 이후 빌드머신에 갖가지 이슈들이 생기면서 디스크 용량 체크를 해보던 중이었다.</p>
+<img src="/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/bot_00.png" class="" width="500">
+
+<p><code>이거 코드 작업 조금만 하면 만들 수 있겠다</code>는 생각이 들었고, 미루면 아마 영영 실천으로 옮기지 않게 될 것 같아 생각난 김에 바로 만들었다.</p>
+<span id="more"></span>
+
+<h2 id="powershell"><a href="#powershell" class="headerlink" title="powershell"></a>powershell</h2><p>처음엔 ssh 연결로 커맨드를 실행해서 장비마다 <code>df -h</code> 결과를 받아오고 있었다. 그러다 세 대 쯤하다보니, 서버 주소만 다르고 동일한 커맨드를 반복 실행하고 있길래, 파워쉘에서 loop를 돌아 output을 수집하도록 스크립트를 작성해 돌렸다. </p>
+<img src="/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/bot_01.png" class="">
+
+<p>그리고는 내가 이걸 눈으로 읽어서 엑셀에 수작업으로 정리해 팀원들에게 공유했다.<br>다음에 동일한 작업을 해야 할 때, 파워쉘 스크립트를 재사용할 수 있도록 정리해서 vcs에 올렸다. </p>
+<p>근데 만약 다음에 디스크 공간 확인을 해야 할 때, 다른 멤버가 이 스크립트를 사용하려면 ssh 키 설정도 되어 있어야 하고, 스크립트 실행 환경도 잘 맞아야 하고. 혹시 제대로 실행되지 않으면 디버깅도 해야 할거고.. 뭔가 매끄럽지 않을 것 같은 생각이 들었다. 그리고 프로그래머가 아니면 애초에 엄두도 못 낼 일이다. 그래서 그냥 누구나 확인할 수 있게 팀 내 메신저로 쓰는 슬랙에 기능으로 만들어 붙이면 좋겠다고 생각했다.</p>
+<h2 id="slackbot"><a href="#slackbot" class="headerlink" title="slackbot"></a>slackbot</h2><p>slack bot은 이슈트래커 연동 등 이미 다른 용도로 만들어 사용중인 실행파일이 있다. 새로운 기능 추가도 용이하도록 어느정도 준비도 되어 있다. <code>필요한 건 의지 뿐이다. 지금 마음 먹었을 때 바로 해야 한다.</code> 오늘이 지나기 전에 기능을 완성해서 릴리즈 하고 싶었다. </p>
+<p>슬랙봇이 떠있는 장비에서 ssh 키를 생성해 모든 빌드머신에 등록해주었다. 슬랙봇은 윈도우 2019에서 실행중인데, 이번에 여기에도 openssh 서버를 열고 ssh로 접속해서 설정을 진행했다. 나중엔 슬랙봇 실행 os 자체도 linux로 변경하면 좋겠다. </p>
+<p>ssh 명령으로 <code>df -h | grep -e ....</code>를 실행하고 결과를 파싱하는 건 어렵지 않게 진행됐다. C# 참 좋은 언어인데, 사람들이 많이 모르는 것 같다. </p>
+<p>그리고 markup? 출력은 몇 번의 삽질 끝에, 최종의 형태로 다듬었다. 이런 작업도 참 재미있다. 나는 서버 말고 클라이언트 개발을 했어도 참 잘했을거야. 아무도 칭찬 해주지 않으니까 이럴 때 내가 실컷 칭찬해준다. 잘한다 아주.</p>
+<img src="/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/bot_02.png" class="" width="500">
+
+<p>최종 형태도 조금 아쉽긴 하다. 오와 열이 딱 맞지 않아. slack api의 block kit에서 테이블 형태 레이아웃을 지원해주면 좋을텐데 그런게 없다.<br>나름대로 지금 표현할 수 있는 수준에서 최선을 다해 보았다.<br>머신별로 서로 다른 디스크의 전체 크기가 눈으로 쉽게 들어오게 하고 싶었고, 용량 대비 사용량이 어느 정도인지도 한 눈에 들어오게 하고 싶었다.</p>
+<p>다시 한 번 감상해보는 최종 결과물. </p>
+<img src="/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/bot_00.png" class="" width="500">
+
+<h2 id="ansible을-쓰면-좀-더-좋았을까"><a href="#ansible을-쓰면-좀-더-좋았을까" class="headerlink" title="ansible을 쓰면 좀 더 좋았을까?"></a>ansible을 쓰면 좀 더 좋았을까?</h2><img src="/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/ansible_logo.png" class="" width="500">
+
+<p>최근데 linux 진영의 생태계를 뒤늦게 살펴보고 있다. 이런 식으로 여러 장비에 수행하는 공통 작업은 주로 ansible을 통해 처리하는 듯 하다. ansible은 알게 된지 얼마 되지 않아 조만간 좀 더 깊이 공부할 생각이다. </p>
+<p>ansible을 썼다면 결과물이 좀 더 좋았을까. </p>
+<p>아니라는 생각이 들어서 슬랙봇으로 작업을 했다. ansible이 정확히 어디까지 지원해줄 수 있을지는 모르지만, 프로그래머가 아닌 직군의 팀원들도 명령을 수행하고 결과를 확인하기에는 슬랙봇으로 붙여두는 것보다 더 좋을 수 없다고 생각했다. 혹여나 ansibble 공부해보고 개선될만한 여지가 있다면 그 때 다시 수정하는 것도 나쁘지 않겠다. </p>
+<h2 id="Know-how"><a href="#Know-how" class="headerlink" title="Know-how"></a>Know-how</h2><p>요즘은 기능을 구현하는 방법을 알아내는 것은 아주 쉬운 일이 되었다. 유튜브도 GPT도 원하는 질문의 대답을 너무 빠르게 친절하게 알려준다. </p>
+<p><code>어떻게 하면 만들 수 있지?</code>하는 호기심은 실천의 원동력을 제공해준다. 모르는 것을 알고 싶다는 마음이 의지를 만들고, 그 때문에 책과 자료를 찾으며 공부를 하게 된다. </p>
+<p>하지만 요즘은 그 해답에 너무나 빠르게 접근한다. 방법을 알아내는 동안 얻게되는 부수적인 지식도 없고, 이 산인지 저 산인지 몰라 일단 헤딩해보는 여러가지 다른 삽질들도 없다. GPT는 (거의) 정확한 정답을 알려주고, 질문만 잘하면 거의 바로 쓸 수 있는 코드도 작성해준다. </p>
+<p>방법을 알아내고 나면 동기가 갑자기 떨어진다. <code>아~ 나 그거 할 줄 알아. 요래요래 하는거지?</code> 그럼 더이상 뭔가를 알고 싶다는 흥미는 급격히 떨어지고, 다시 유튜브와 인스타를 열고 무한 도파민의 세상으로 다이브 하게된다. 여기가 프로그래머 성장을 막는 중요한 고비라는 생각이 든다. </p>
+<p>머리에서 원리를 깨우친 것과, 실제로 손끝에서 코드를 만들어 결과물을 내는 것에는 엄청난 차이가 있다. 막상 해보고 나서야 현실과 생각이 다르다는 것을 깨닫는 경우도 많이 있다. 돌아가는 코드를 직접 만들어 보기 전에는 내 생각을 완벽히 검증할 방법이 달리 있을까. </p>
+<img src="/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/bot_03.png" class="">
+
+<p>그래서 만들었다. 오늘이 지나기 전에 만들어야 한다고 생각했다. 아무도 시키는 사람 없었지만 해야 한다고 생각했다. 하루가 넘긴 했지만 (완성 스샷을 보면 시간이 12:34…) 그래도 만들었다.</p>
+<p>눈에 띄는 변화는 없을지 모르지만. 나는 오늘 다시 조금 성장했다고 생각한다. </p>
+<p>잘했다. 아주.<br>You did a great job.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/devnote/tags/slackbot/" rel="tag"># slackbot</a>
+              <a href="/devnote/tags/ssh/" rel="tag"># ssh</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/devnote/2025/02/01/pwsh-PsFzf%EA%B0%80-%ED%94%84%EB%A1%9C%ED%95%84-%EB%A1%9C%EB%94%A9%EC%9D%84-%EB%84%88%EB%AC%B4-%EB%8A%90%EB%A6%AC%EA%B2%8C-%EB%A7%8C%EB%93%A0%EB%8B%A4/" rel="prev" title="[pwsh] PsFzf가 프로필 로딩을 너무 느리게 만든다">
+                  <i class="fa fa-angle-left"></i> [pwsh] PsFzf가 프로필 로딩을 너무 느리게 만든다
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/devnote/2025/03/03/%EC%9A%94%EC%A6%98%EC%9D%98-%EC%B7%A8%EB%AF%B8-%ED%84%B0%EB%AF%B8%EB%84%90/" rel="next" title="요즘의 취미 - 터미널?">
+                  요즘의 취미 - 터미널? <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">leafbird</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"leafbird","repo":"devnote","client_id":"27d8b6b6501ea8561848","client_secret":"86181a3464a298b3cbce1b1aadd362004ca5494f","admin_user":"leafbird","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"d9e12cff2cd685edf7a121ef9ca9a3ba"}</script>
+<script src="/devnote/js/third-party/comments/gitalk.js" defer></script>
+
+</body>
+</html>
