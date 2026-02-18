@@ -19,7 +19,7 @@ minify: false
 # Define custom file paths.
 # Create your custom files in site directory `source/_data` and uncomment needed files below.
 custom_file_path:
-  #head: source/_data/head.njk
+  head: source/_data/head.njk
   #header: source/_data/header.njk
   #sidebar: source/_data/sidebar.njk
   #postMeta: source/_data/post-meta.njk
@@ -28,7 +28,7 @@ custom_file_path:
   #bodyEnd: source/_data/body-end.njk
   #variable: source/_data/variables.styl
   #mixin: source/_data/mixins.styl
-  #style: source/_data/styles.styl
+  style: source/_data/styles.styl
 
 
 # ---------------------------------------------------------------
@@ -412,7 +412,9 @@ github_banner:
 # ---------------------------------------------------------------
 
 font:
-  enable: true
+  # Pretendard 폰트는 source/_data/head.njk와 styles.styl에서 로드
+  # 굵기 조절: source/_data/styles.styl의 :root 변수 수정
+  enable: false
 
   # Uri of fonts host, e.g. https://fonts.googleapis.com (Default).
   host:
@@ -425,19 +427,19 @@ font:
   # Global font settings used for all elements inside <body>.
   global:
     external: true
-    family: Nanum Gothic
+    family:
     size:
 
   # Font settings for site title (.site-title).
   title:
     external: true
-    family: Lato
+    family:
     size:
 
   # Font settings for headlines (<h1> to <h6>).
   headings:
     external: true
-    family: Noto Sans KR
+    family:
     size:
 
   # Font settings for posts (.post-body).
