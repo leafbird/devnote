@@ -1,6 +1,6 @@
 ---
 title: Implementing Lightweight Actor in C# (2) - 생명주기 제어 및 언어적 특성들
-date: 2026-03-01 10:00:00
+date: 2026-00-00 10:00:00
 tags:
 - actor
 - multithread
@@ -114,54 +114,13 @@ Extension Method 형태로 제공되기 때문에, `IActor`를 구현한 어떤 
 
 분산 Actor 시스템에서 메시지는 네트워크를 넘어갑니다. Node A의 Actor가 Node B의 Actor에게 메시지를 보내려면, 그 메시지를 바이트 스트림으로 직렬화해서 전송하고, 상대편에서 역직렬화해야 합니다.
 
-<div style="text-align:center; margin:30px 0;">
-<svg viewBox="0 0 560 280" style="max-width:560px; width:100%; height:auto; font-family:sans-serif;">
-  <defs>
-    <marker id="seq-arrow" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="10" markerHeight="7" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#415a77"/>
-    </marker>
-  </defs>
-
-  <!-- Lifeline boxes -->
-  <rect x="60" y="10" width="120" height="36" rx="6" fill="#1b263b" stroke="none"/>
-  <text x="120" y="34" text-anchor="middle" font-size="21" font-weight="bold" fill="#fff">Node A</text>
-
-  <rect x="380" y="10" width="120" height="36" rx="6" fill="#1b263b" stroke="none"/>
-  <text x="440" y="34" text-anchor="middle" font-size="21" font-weight="bold" fill="#fff">Node B</text>
-
-  <!-- Lifelines -->
-  <line x1="120" y1="46" x2="120" y2="260" stroke="#778da9" stroke-width="1.5" stroke-dasharray="5 3"/>
-  <line x1="440" y1="46" x2="440" y2="260" stroke="#778da9" stroke-width="1.5" stroke-dasharray="5 3"/>
-
-  <!-- Message 1: Actor.Tell (self) -->
-  <line x1="124" y1="80" x2="155" y2="80" stroke="#415a77" stroke-width="1.5"/>
-  <line x1="155" y1="80" x2="155" y2="100" stroke="#415a77" stroke-width="1.5"/>
-  <line x1="155" y1="100" x2="124" y2="100" stroke="#415a77" stroke-width="1.5" marker-end="url(#seq-arrow)"/>
-  <text x="162" y="94" font-size="18" fill="#1b263b">Actor.Tell(message)</text>
-
-  <!-- Message 2: Serialize (self) -->
-  <line x1="124" y1="120" x2="155" y2="120" stroke="#415a77" stroke-width="1.5"/>
-  <line x1="155" y1="120" x2="155" y2="140" stroke="#415a77" stroke-width="1.5"/>
-  <line x1="155" y1="140" x2="124" y2="140" stroke="#415a77" stroke-width="1.5" marker-end="url(#seq-arrow)"/>
-  <text x="162" y="134" font-size="18" fill="#1b263b">Serialize(message)</text>
-
-  <!-- Message 3: Network Transfer (A -> B) -->
-  <line x1="120" y1="170" x2="438" y2="170" stroke="#415a77" stroke-width="1.5" marker-end="url(#seq-arrow)"/>
-  <text x="280" y="163" text-anchor="middle" font-size="18" fill="#1b263b">Network Transfer</text>
-
-  <!-- Message 4: Deserialize (self on B) -->
-  <line x1="436" y1="200" x2="405" y2="200" stroke="#415a77" stroke-width="1.5"/>
-  <line x1="405" y1="200" x2="405" y2="220" stroke="#415a77" stroke-width="1.5"/>
-  <line x1="405" y1="220" x2="436" y2="220" stroke="#415a77" stroke-width="1.5" marker-end="url(#seq-arrow)"/>
-  <text x="398" y="214" text-anchor="end" font-size="18" fill="#1b263b">Deserialize(message)</text>
-
-  <!-- Message 5: Actor.Receive (self on B) -->
-  <line x1="436" y1="238" x2="405" y2="238" stroke="#415a77" stroke-width="1.5"/>
-  <line x1="405" y1="238" x2="405" y2="258" stroke="#415a77" stroke-width="1.5"/>
-  <line x1="405" y1="258" x2="436" y2="258" stroke="#415a77" stroke-width="1.5" marker-end="url(#seq-arrow)"/>
-  <text x="398" y="252" text-anchor="end" font-size="18" fill="#1b263b">Actor.Receive(message)</text>
-</svg>
-</div>
+```
+[Node A]                            [Node B]
+Actor.Tell(message)
+    → Serialize(message)
+    → Network Transfer  ─────────→ Deserialize(message)
+                                    → Actor.Receive(message)
+```
 
 그런데 람다는 직렬화할 수 없습니다. 람다가 캡처하는 것들을 생각해보면:
 
@@ -206,73 +165,28 @@ Actor를 생각해보면, 단순히 메모리만 정리하면 되는 게 아닙�
 
 흐름을 정리하면 다음과 같습니다:
 
-<div style="text-align:center; margin:30px 0;">
-<svg viewBox="0 0 680 780" style="max-width:680px; width:100%; height:auto; font-family:sans-serif;">
-  <defs>
-    <marker id="fc-arrow" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="10" markerHeight="7" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#415a77"/>
-    </marker>
-  </defs>
-
-  <!-- Node: Actor 생성 -->
-  <rect x="40" y="10" width="250" height="50" rx="25" fill="#1b263b" stroke="none"/>
-  <text x="165" y="42" text-anchor="middle" font-size="20" font-weight="bold" fill="#fff">Actor 생성</text>
-
-  <line x1="165" y1="60" x2="165" y2="85" stroke="#415a77" stroke-width="1.5" marker-end="url(#fc-arrow)"/>
-
-  <!-- Node: refCount = 1 -->
-  <rect x="30" y="88" width="270" height="50" rx="8" fill="#eef1f5" stroke="#415a77" stroke-width="1.5"/>
-  <text x="165" y="120" text-anchor="middle" font-size="18" fill="#1b263b">refCount = 1 (초기 소유권)</text>
-
-  <line x1="165" y1="138" x2="165" y2="163" stroke="#415a77" stroke-width="1.5" marker-end="url(#fc-arrow)"/>
-
-  <!-- Node: 사용 중 -->
-  <rect x="50" y="166" width="230" height="50" rx="8" fill="#eef1f5" stroke="#415a77" stroke-width="1.5"/>
-  <text x="165" y="198" text-anchor="middle" font-size="18" fill="#1b263b">사용 중</text>
-
-  <!-- Loop arrow on right side -->
-  <line x1="280" y1="191" x2="320" y2="191" stroke="#778da9" stroke-width="1.5"/>
-  <line x1="320" y1="191" x2="320" y2="155" stroke="#778da9" stroke-width="1.5"/>
-  <line x1="320" y1="155" x2="280" y2="155" stroke="#778da9" stroke-width="1.5" marker-end="url(#fc-arrow)"/>
-  <text x="340" y="165" font-size="15" fill="#778da9">Guard() / 메시지 생성</text>
-  <text x="340" y="185" font-size="15" fill="#778da9">→ refCount++</text>
-
-  <line x1="165" y1="216" x2="165" y2="241" stroke="#415a77" stroke-width="1.5" marker-end="url(#fc-arrow)"/>
-
-  <!-- Node: 비활성화 요청 -->
-  <rect x="30" y="244" width="270" height="55" rx="8" fill="#eef1f5" stroke="#415a77" stroke-width="1.5"/>
-  <text x="165" y="270" text-anchor="middle" font-size="18" fill="#1b263b">비활성화 요청</text>
-  <text x="165" y="290" text-anchor="middle" font-size="15" fill="#778da9">Deactivate() → refCount--</text>
-
-  <line x1="165" y1="299" x2="165" y2="324" stroke="#415a77" stroke-width="1.5" marker-end="url(#fc-arrow)"/>
-
-  <!-- Node: 참조 해제 -->
-  <rect x="10" y="327" width="310" height="55" rx="8" fill="#eef1f5" stroke="#415a77" stroke-width="1.5"/>
-  <text x="165" y="353" text-anchor="middle" font-size="18" fill="#1b263b">참조 해제</text>
-  <text x="165" y="373" text-anchor="middle" font-size="15" fill="#778da9">Dispose() / 메시지 완료 → refCount--</text>
-
-  <line x1="165" y1="382" x2="165" y2="407" stroke="#415a77" stroke-width="1.5" marker-end="url(#fc-arrow)"/>
-
-  <!-- Diamond: refCount == 0? -->
-  <polygon points="165,410 260,455 165,500 70,455" fill="#fff" stroke="#0d1b2a" stroke-width="2"/>
-  <text x="165" y="450" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d1b2a">refCount</text>
-  <text x="165" y="470" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d1b2a">== 0 ?</text>
-
-  <line x1="165" y1="500" x2="165" y2="535" stroke="#415a77" stroke-width="1.5" marker-end="url(#fc-arrow)"/>
-  <text x="180" y="523" font-size="16" fill="#778da9">Yes</text>
-
-  <!-- Node: OnZeroReferenceAsync -->
-  <rect x="10" y="538" width="310" height="55" rx="8" fill="#eef1f5" stroke="#1b263b" stroke-width="2"/>
-  <text x="165" y="563" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b263b">OnZeroReferenceAsync()</text>
-  <text x="165" y="583" text-anchor="middle" font-size="15" fill="#778da9">리소스 정리</text>
-
-  <line x1="165" y1="593" x2="165" y2="628" stroke="#415a77" stroke-width="1.5" marker-end="url(#fc-arrow)"/>
-
-  <!-- Node: GC 대기 -->
-  <rect x="40" y="631" width="250" height="50" rx="25" fill="#0d1b2a" stroke="none"/>
-  <text x="165" y="662" text-anchor="middle" font-size="20" font-weight="bold" fill="#fff">GC 대기 · 메모리 수거</text>
-</svg>
-</div>
+```
+[Actor 생성]
+    ↓
+referenceCount = 1 (초기 소유권)
+    ↓
+[사용 중]
+LifeGuard.Guard() → AddReference() → refCount++
+메시지 생성 → AddReference() → refCount++
+    ↓
+[비활성화 요청]
+Deactivate() → ReleaseReference() → refCount--
+    ↓
+[참조 해제]
+LifeGuard.Dispose() → ReleaseReference() → refCount--
+메시지 실행 완료 → ReleaseReference() → refCount--
+    ↓
+[refCount == 0]
+OnZeroReferenceAsync() 호출 → 리소스 정리
+    ↓
+[GC 대기]
+남은 Strong Reference 모두 해제 → GC 메모리 수거
+```
 
 핵심은 참조 카운트의 **증감 시점**입니다. **누군가 이 Actor를 사용하려 할 때** 카운트를 올리고, **사용이 끝나면** 내립니다. 카운트가 0이 되는 순간은 곧 "더 이상 아무도 이 Actor를 필요로 하지 않는다"는 뜻이고, 그때 정리 작업이 시작됩니다.
 
@@ -485,61 +399,25 @@ public interface IActor<T> : IActor where T : class
 
 `IActor`는 Actor로서의 능력을 나타내는 인터페이스입니다. 실제 동작은 `ActorImplementor`가 수행합니다. `IActor<T>`는 여기에 타입 안전한 메시지 전달을 위한 `JobOwner`를 추가합니다. `T`는 자기 자신의 타입으로, C++의 CRTP(Curiously Recurring Template Pattern)와 유사한 패턴입니다.
 
-<div style="text-align:center; margin:30px 0;">
-<svg viewBox="0 0 600 420" style="max-width:600px; width:100%; height:auto; font-family:sans-serif;">
-  <defs>
-    <marker id="arrow-solid" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="10" markerHeight="7" orient="auto-start-reverse">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#415a77"/>
-    </marker>
-    <marker id="arrow-open" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="10" markerHeight="7" orient="auto-start-reverse">
-      <polyline points="0 0, 10 3.5, 0 7" fill="none" stroke="#415a77" stroke-width="1.2"/>
-    </marker>
-  </defs>
-
-  <!-- Row 1: Interfaces -->
-  <rect x="20" y="20" width="200" height="60" rx="8" fill="none" stroke="#415a77" stroke-width="2" stroke-dasharray="6 3"/>
-  <text x="120" y="46" text-anchor="middle" font-size="21" font-weight="bold" fill="#1b263b">IActor&lt;T&gt;</text>
-  <text x="120" y="66" text-anchor="middle" font-size="16.5" fill="#778da9">«interface»</text>
-
-  <rect x="380" y="20" width="200" height="60" rx="8" fill="none" stroke="#415a77" stroke-width="2" stroke-dasharray="6 3"/>
-  <text x="480" y="46" text-anchor="middle" font-size="21" font-weight="bold" fill="#1b263b">IActorImplementor</text>
-  <text x="480" y="66" text-anchor="middle" font-size="16.5" fill="#778da9">«interface»</text>
-
-  <!-- Arrow: IActor -> IActorImplementor (uses) -->
-  <line x1="220" y1="50" x2="378" y2="50" stroke="#415a77" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
-  <text x="300" y="43" text-anchor="middle" font-size="16.5" fill="#778da9">uses</text>
-
-  <!-- Row 2: Concrete classes -->
-  <rect x="20" y="180" width="200" height="60" rx="8" fill="#eef1f5" stroke="#1b263b" stroke-width="2"/>
-  <text x="120" y="206" text-anchor="middle" font-size="21" font-weight="bold" fill="#1b263b">MyGameObject</text>
-  <text x="120" y="226" text-anchor="middle" font-size="16.5" fill="#778da9">구상 클래스</text>
-
-  <rect x="380" y="180" width="200" height="60" rx="8" fill="#eef1f5" stroke="#1b263b" stroke-width="2"/>
-  <text x="480" y="206" text-anchor="middle" font-size="21" font-weight="bold" fill="#1b263b">ActorImplementor</text>
-  <text x="480" y="226" text-anchor="middle" font-size="16.5" fill="#778da9">실제 구현체</text>
-
-  <!-- Arrow: MyGameObject -> ActorImplementor (has-a) -->
-  <line x1="220" y1="210" x2="378" y2="210" stroke="#1b263b" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
-  <text x="300" y="203" text-anchor="middle" font-size="16.5" fill="#778da9">has-a</text>
-
-  <!-- Arrow: MyGameObject -.-> IActor (implements, dashed) -->
-  <line x1="120" y1="180" x2="120" y2="82" stroke="#415a77" stroke-width="1.5" stroke-dasharray="6 3" marker-end="url(#arrow-open)"/>
-  <text x="108" y="138" text-anchor="end" font-size="16.5" fill="#778da9">implements</text>
-
-  <!-- Arrow: ActorImplementor -.-> IActorImplementor (implements, dashed) -->
-  <line x1="480" y1="180" x2="480" y2="82" stroke="#415a77" stroke-width="1.5" stroke-dasharray="6 3" marker-end="url(#arrow-open)"/>
-  <text x="468" y="138" text-anchor="end" font-size="16.5" fill="#778da9">implements</text>
-
-  <!-- Row 3: Base class -->
-  <rect x="20" y="340" width="200" height="60" rx="8" fill="#e0e1dd" stroke="#0d1b2a" stroke-width="2"/>
-  <text x="120" y="366" text-anchor="middle" font-size="21" font-weight="bold" fill="#0d1b2a">GameObject</text>
-  <text x="120" y="386" text-anchor="middle" font-size="16.5" fill="#778da9">기존 부모</text>
-
-  <!-- Arrow: MyGameObject -> GameObject (extends, solid with open arrow) -->
-  <line x1="120" y1="240" x2="120" y2="338" stroke="#0d1b2a" stroke-width="1.5" marker-end="url(#arrow-open)"/>
-  <text x="108" y="296" text-anchor="end" font-size="16.5" fill="#778da9">extends</text>
-</svg>
-</div>
+```
+┌─────────────────┐         ┌──────────────────────┐
+│   IActor<T>     │────────>│ IActorImplementor    │
+│  (인터페이스)    │         │  (구현 위임)          │
+└─────────────────┘         └──────────────────────┘
+         △                            △
+         │                            │
+┌─────────────────┐  has-a  ┌──────────────────────┐
+│  MyGameObject   │ ──────> │ ActorImplementor     │
+│ (구상 클래스)    │         │  (실제 구현체)        │
+└─────────────────┘         └──────────────────────┘
+         │
+    extends
+         ▼
+┌─────────────────┐
+│   GameObject    │
+│  (기존 부모)     │
+└─────────────────┘
+```
 
 이제 기존 상속 구조를 건드리지 않고 Actor 기능을 추가할 수 있습니다:
 
