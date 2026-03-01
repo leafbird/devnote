@@ -130,3 +130,8 @@ robotstxt:
   allow:
     - /
   sitemap: https://leafbird.github.io/devnote/sitemap.xml
+# Live reload (hexo-browser-reloader-websocket)
+browser_reloader_websocket:
+  enable: true
+  server:
+    port: 4001
