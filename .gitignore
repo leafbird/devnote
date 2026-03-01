@@ -8,3 +8,4 @@ public/
 *.swp
 CLAUDE.md
 .claude/.npmrc
+.npmrc
