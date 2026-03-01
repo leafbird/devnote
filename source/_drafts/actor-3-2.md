@@ -12,7 +12,7 @@ tags:
 
 ## 들어가며
 
-지난 글({% post_link 2026-01-29-Implementing-Lightweight-Actor-in-CSharp-Part1 "링크" %})에서는 경량 Actor 구현체의 핵심 구조를 살펴보았습니다. `JobDispatcher`를 중심으로 스레드가 어떻게 운용되는지, `readyQueue`로 Starvation을 어떻게 방지하는지, 그리고 `async/await`와 어떻게 통합되는지를 다루었습니다.
+지난 글({% post_link Implementing-Lightweight-Actor-in-CSharp-Part1 "링크" %})에서는 경량 Actor 구현체의 핵심 구조를 살펴보았습니다. `JobDispatcher`를 중심으로 스레드가 어떻게 운용되는지, `readyQueue`로 Starvation을 어떻게 방지하는지, 그리고 `async/await`와 어떻게 통합되는지를 다루었습니다.
 
 이번 글에서는 실제로 이 구조를 사용하는 과정에서 은근히 고민하게 만들었던 세부적인 주제들을 다루어 보겠습니다. C++에서 C#으로 이식하면서 마주친 언어적 차이, 그리고 그 차이를 어떻게 풀어냈는지에 대한 이야기입니다.
 
@@ -612,4 +612,4 @@ internal sealed class WeakSync : IWeakMessage
 
 ---
 
-*이전 글: {% post_link 2026-01-29-Implementing-Lightweight-Actor-in-CSharp-Part1 "C#으로 구현하는 경량 Actor (1) - 기본 구조와 스케줄링" %}*
+*이전 글: {% post_link Implementing-Lightweight-Actor-in-CSharp-Part1 "C#으로 구현하는 경량 Actor (1) - 기본 구조와 스케줄링" %}*
