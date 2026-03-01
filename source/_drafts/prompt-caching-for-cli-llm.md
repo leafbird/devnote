@@ -31,51 +31,37 @@ Anthropic API의 프롬프트 캐싱은 이 문제를 해결합니다. 이전 �
 
 핵심은 간단합니다:
 
-<div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin:25px 0;">
-  <div style="background:#eef1f5; padding:20px; border-radius:12px; border:2px solid #415a77;">
-    <h4 style="margin:0 0 10px; text-align:center; color:#415a77;">캐시 활성 (Warm)</h4>
-    <div style="text-align:center; font-size:36px;">💚</div>
-    <p style="text-align:center; font-weight:bold; color:#415a77; font-size:24px; margin:10px 0;">$0.05/호출</p>
-    <p style="font-size:14px; color:#555; text-align:center;">이전 대화를 캐시에서 읽음<br>입력 비용 1/10</p>
-  </div>
-  <div style="background:#f2f4f7; padding:20px; border-radius:12px; border:2px solid #778da9;">
-    <h4 style="margin:0 0 10px; text-align:center; color:#1b263b;">캐시 만료 (Cold)</h4>
-    <div style="text-align:center; font-size:36px;">🔥</div>
-    <p style="text-align:center; font-weight:bold; color:#1b263b; font-size:24px; margin:10px 0;">$0.62/호출</p>
-    <p style="font-size:14px; color:#555; text-align:center;">전체 대화를 캐시에 다시 기록<br>12배 더 비쌈</p>
-  </div>
-</div>
+{% compare %}
+{% option "캐시 활성 (Warm)" "💚" %}
+**$0.05/호출**
+
+이전 대화를 캐시에서 읽음
+입력 비용 1/10
+{% endoption %}
+{% option "캐시 만료 (Cold)" "🔥" %}
+**$0.62/호출**
+
+전체 대화를 캐시에 다시 기록
+12배 더 비쌈
+{% endoption %}
+{% endcompare %}
 
 ## 컨텍스트 윈도우 ≠ 프롬프트 캐시
 
 여기서 많은 분들이 헷갈리는 부분이 있습니다. **컨텍스트 윈도우와 프롬프트 캐시는 별개**입니다.
 
-<div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin:25px 0;">
-  <div style="border:2px solid #415a77; border-radius:12px; overflow:hidden;">
-    <div style="background:#415a77; padding:12px 15px;">
-      <h4 style="margin:0; color:#fff; font-size:16px;">컨텍스트 윈도우</h4>
-    </div>
-    <div style="padding:15px;">
-      <p style="font-size:14px; color:#555; margin:0; line-height:1.8;">
-        API 요청의 messages 배열<br>
-        세션 내내 유지 (<code>/new</code> 하면 초기화)<br>
-        <b>역할:</b> 대화 맥락 유지
-      </p>
-    </div>
-  </div>
-  <div style="border:2px solid #1b263b; border-radius:12px; overflow:hidden;">
-    <div style="background:#1b263b; padding:12px 15px;">
-      <h4 style="margin:0; color:#fff; font-size:16px;">프롬프트 캐시</h4>
-    </div>
-    <div style="padding:15px;">
-      <p style="font-size:14px; color:#555; margin:0; line-height:1.8;">
-        Anthropic 서버 인프라<br>
-        마지막 사용 후 <b>~5분</b> (TTL 기반)<br>
-        <b>역할:</b> 입력 토큰 비용 90% 절감
-      </p>
-    </div>
-  </div>
-</div>
+{% cards 2 %}
+{% card "컨텍스트 윈도우" %}
+API 요청의 messages 배열
+세션 내내 유지 (`/new` 하면 초기화)
+**역할:** 대화 맥락 유지
+{% endcard %}
+{% card "프롬프트 캐시" %}
+Anthropic 서버 인프라
+마지막 사용 후 **~5분** (TTL 기반)
+**역할:** 입력 토큰 비용 90% 절감
+{% endcard %}
+{% endcards %}
 
 컨텍스트 윈도우는 "뭘 기억하고 있느냐"이고, 프롬프트 캐시는 "기억하는 걸 얼마나 싸게 보내느냐"입니다. 세션을 이어가고 있어도 5분 이상 조용하면 캐시는 사라집니다.
 
@@ -87,16 +73,10 @@ Anthropic API의 프롬프트 캐싱은 이 문제를 해결합니다. 이전 �
 
 여기서 눈에 띄는 건, **캐시가 날아간 두 번의 사건**이 전체 비용의 40%를 차지했다는 점입니다.
 
-<div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; margin:25px 0;">
-  <div style="background:#f2f4f7; padding:15px; border-radius:8px; border-left:4px solid #778da9;">
-    <b>💥 사건 1: Context Compaction (11:37)</b>
-    <p style="font-size:13px; margin:5px 0 0; color:#555;">컨텍스트가 143k→21k로 압축됨. 프롬프트 구조가 바뀌어 캐시 전량 miss. 직후 호출 비용 $0.26 (평소의 5배)</p>
-  </div>
-  <div style="background:#e8ebef; padding:15px; border-radius:8px; border-left:4px solid #0d1b2a;">
-    <b>💥 사건 2: 점심시간 2.5시간 (14:32)</b>
-    <p style="font-size:13px; margin:5px 0 0; color:#555;">5분 TTL 초과로 캐시 완전 만료. ~97k 토큰을 Cache Write로 재전송. 직후 호출 비용 $0.62, $0.77</p>
-  </div>
-</div>
+{% accents 2 %}
+{% accent "💥 사건 1: Context Compaction (11:37)" %}컨텍스트가 143k→21k로 압축됨. 프롬프트 구조가 바뀌어 캐시 전량 miss. 직후 호출 비용 $0.26 (평소의 5배){% endaccent %}
+{% accent "💥 사건 2: 점심시간 2.5시간 (14:32)" %}5분 TTL 초과로 캐시 완전 만료. ~97k 토큰을 Cache Write로 재전송. 직후 호출 비용 $0.62, $0.77{% endaccent %}
+{% endaccents %}
 
 이 두 사건에서만 **$10.39** — 전체의 40%가 날아갔습니다. 캐시가 warm 상태였다면 $3~4 수준이었을 겁니다.
 
@@ -117,14 +97,11 @@ Claude Opus 4 기준 단가를 보면 이해가 됩니다:
 
 여기가 이 글에서 제일 중요한 부분입니다.
 
-<div style="background:#e8ebef; border:2px solid #0d1b2a; border-radius:12px; padding:20px; margin:25px 0;">
-  <h4 style="margin:0 0 10px; color:#0d1b2a;">⚠️ "컨텍스트가 채워져 있으니 이어서 하자"는 함정</h4>
-  <p style="margin:0; font-size:14px; line-height:1.8;">
-    점심 먹고 돌아왔는데 캐시는 이미 만료. 하지만 컨텍스트 윈도우에는 지금까지의 작업이 가득 차 있습니다.<br><br>
-    "다행이다, 맥락이 살아있으니 이어서 하자" — <b>이 순간이 가장 비쌉니다.</b><br><br>
-    가득 찬 컨텍스트(~156k 토큰) 전체를 캐시에 다시 써야 하기 때문입니다.
-  </p>
-</div>
+{% alert warning 17 %}"컨텍스트가 채워져 있으니 이어서 하자"는 함정|점심 먹고 돌아왔는데 캐시는 이미 만료. 하지만 컨텍스트 윈도우에는 지금까지의 작업이 가득 차 있습니다.
+
+"다행이다, 맥락이 살아있으니 이어서 하자" — **이 순간이 가장 비쌉니다.**
+
+가득 찬 컨텍스트(~156k 토큰) 전체를 캐시에 다시 써야 하기 때문입니다.{% endalert %}
 
 비용 비교:
 
@@ -141,43 +118,22 @@ Claude Opus 4 기준 단가를 보면 이해가 됩니다:
 
 {% asset_img vibe-coding-2026-02-27-slide4-v2.jpg 프롬프트 캐싱 절약 팁 %}
 
-<div style="display:grid; grid-template-columns:repeat(2,1fr); gap:15px; margin:25px 0;">
-  <div style="background:#eef1f5; padding:15px; border-radius:8px; border-left:4px solid #415a77;">
-    <b>1. 세션을 오래 유지하기</b>
-    <p style="font-size:13px; margin:5px 0 0; color:#555;">자주 <code>/new</code>로 초기화하지 말 것. 대화가 길어져도 캐시가 warm이면 추가 비용은 미미합니다. 리셋할 때마다 캐시도 날아갑니다.</p>
-  </div>
-  <div style="background:#eef1f5; padding:15px; border-radius:8px; border-left:4px solid #415a77;">
-    <b>2. 자리 비우기 전 킵얼라이브</b>
-    <p style="font-size:13px; margin:5px 0 0; color:#555;">화장실, 커피 타임 전에 가벼운 요청 한 마디. "현재 상태 요약해줘" 같은 거면 충분합니다. 캐시 TTL이 5분 연장됩니다.</p>
-  </div>
-  <div style="background:#eaecf0; padding:15px; border-radius:8px; border-left:4px solid #1b263b;">
-    <b>3. 요청을 모아서 보내기</b>
-    <p style="font-size:13px; margin:5px 0 0; color:#555;">작은 수정 3번 = $0.15. 한번에 모아서 = $0.07. 여러 변경사항을 한 턴에 묶어서 요청하면 API 호출 횟수가 줄어듭니다.</p>
-  </div>
-  <div style="background:#f2f4f7; padding:15px; border-radius:8px; border-left:4px solid #778da9;">
-    <b>4. 캐시 만료 후엔 /new 고려</b>
-    <p style="font-size:13px; margin:5px 0 0; color:#555;">캐시가 죽은 상태에서 컨텍스트가 가득 차 있다면? 기존 맥락이 꼭 필요한 게 아니면 <code>/new</code>로 새로 시작하는 게 10배 저렴합니다.</p>
-  </div>
-</div>
+{% accents 2 %}
+{% accent "1. 세션을 오래 유지하기" %}자주 `/new`로 초기화하지 말 것. 대화가 길어져도 캐시가 warm이면 추가 비용은 미미합니다. 리셋할 때마다 캐시도 날아갑니다.{% endaccent %}
+{% accent "2. 자리 비우기 전 킵얼라이브" %}화장실, 커피 타임 전에 가벼운 요청 한 마디. "현재 상태 요약해줘" 같은 거면 충분합니다. 캐시 TTL이 5분 연장됩니다.{% endaccent %}
+{% accent "3. 요청을 모아서 보내기" %}작은 수정 3번 = $0.15. 한번에 모아서 = $0.07. 여러 변경사항을 한 턴에 묶어서 요청하면 API 호출 횟수가 줄어듭니다.{% endaccent %}
+{% accent "4. 캐시 만료 후엔 /new 고려" %}캐시가 죽은 상태에서 컨텍스트가 가득 차 있다면? 기존 맥락이 꼭 필요한 게 아니면 `/new`로 새로 시작하는 게 10배 저렴합니다.{% endaccent %}
+{% endaccents %}
 
 ## 캐시가 무효화되는 3가지 경우
 
 정리하면, 프롬프트 캐시가 날아가는 경우는 딱 세 가지입니다:
 
-<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:15px; margin:20px 0;">
-  <div style="border:1px solid #0d1b2a; border-radius:8px; padding:15px; background:#e8ebef;">
-    <h5 style="margin:0 0 8px; color:#0d1b2a;">⏰ TTL 만료</h5>
-    <p style="font-size:13px; color:#666; margin:0;">5분 이상 API 호출이 없으면 캐시 소멸</p>
-  </div>
-  <div style="border:1px solid #778da9; border-radius:8px; padding:15px; background:#f2f4f7;">
-    <h5 style="margin:0 0 8px; color:#1b263b;">🔄 Context Compaction</h5>
-    <p style="font-size:13px; color:#666; margin:0;">컨텍스트가 한계에 도달해 압축되면 프롬프트 구조가 변경</p>
-  </div>
-  <div style="border:1px solid #1b263b; border-radius:8px; padding:15px; background:#eaecf0;">
-    <h5 style="margin:0 0 8px; color:#1b263b;">🆕 세션 리셋</h5>
-    <p style="font-size:13px; color:#666; margin:0;"><code>/new</code>, <code>/reset</code>으로 대화를 초기화하면 프롬프트가 완전히 바뀜</p>
-  </div>
-</div>
+{% minicards %}
+{% mini "⏰ TTL 만료" %}5분 이상 API 호출이 없으면 캐시 소멸{% endmini %}
+{% mini "🔄 Context Compaction" %}컨텍스트가 한계에 도달해 압축되면 프롬프트 구조가 변경{% endmini %}
+{% mini "🆕 세션 리셋" %}`/new`, `/reset`으로 대화를 초기화하면 프롬프트가 완전히 바뀜{% endmini %}
+{% endminicards %}
 
 ## 마무리
 

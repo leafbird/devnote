@@ -12,6 +12,7 @@
     "version": "8.1.1"
   },
   "dependencies": {
+    "@leafbird/hexo-design-cards": "^0.1.0",
     "hexo": "^8.1.1",
     "hexo-browser-reloader-websocket": "^1.1.1",
     "hexo-deployer-git": "^4.0.0",
