@@ -8,7 +8,7 @@
     "deploy": "hexo deploy",
     "server": "hexo server",
     "dev:plugin": "cd ../hexo-design-cards && npm link && cd ../devnote && npm link hexo-design-cards && npx hexo clean && npx hexo server",
-    "dev:plugin:reset": "npm unlink hexo-design-cards && npm install"
+    "dev:plugin:reset": "npm install"
   },
   "hexo": {
     "version": "8.1.1"
