@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/devnote/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/devnote/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/devnote/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/devnote/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/devnote/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"a11y-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js" defer></script>
+
+    <meta name="description" content="어제는 뜬금없이 제가, npm 레지스트리에 패키지를 하나 올리게 되었습니다.    hexo 블로그 엔진으로 글을 쓸 때, 디자인 요소를 추가하는 태그 정의를 플러그인으로 만들었어요.저의 개인비서 오픈클로와 함께 정리해서 배포했습니다.제 깃헙 repo에, 순수 javascript로만 작성된 첫 프로젝트가 되었습니다 :) npm : https:&#x2F;&#x2F;www.npm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo-design-cards 플러그인 테스트">
+<meta property="og:url" content="http://leafbird.github.io/devnote/2026/03/01/hexo-design-cards-test/index.html">
+<meta property="og:site_name" content="leafbird&#x2F;devnote">
+<meta property="og:description" content="어제는 뜬금없이 제가, npm 레지스트리에 패키지를 하나 올리게 되었습니다.    hexo 블로그 엔진으로 글을 쓸 때, 디자인 요소를 추가하는 태그 정의를 플러그인으로 만들었어요.저의 개인비서 오픈클로와 함께 정리해서 배포했습니다.제 깃헙 repo에, 순수 javascript로만 작성된 첫 프로젝트가 되었습니다 :) npm : https:&#x2F;&#x2F;www.npm">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://leafbird.github.io/devnote/2026/03/01/hexo-design-cards-test/npm-readme.png">
+<meta property="article:published_time" content="2026-03-01T15:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-02T06:27:19.587Z">
+<meta property="article:author" content="leafbird">
+<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="plugin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://leafbird.github.io/devnote/2026/03/01/hexo-design-cards-test/npm-readme.png">
+
+
+<link rel="canonical" href="http://leafbird.github.io/devnote/2026/03/01/hexo-design-cards-test/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"http://leafbird.github.io/devnote/2026/03/01/hexo-design-cards-test/","path":"2026/03/01/hexo-design-cards-test/","title":"hexo-design-cards 플러그인 테스트"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>hexo-design-cards 플러그인 테스트 | leafbird/devnote</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54KKVRTET0"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/devnote/js/third-party/analytics/google-analytics.js" defer></script>
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/devnote/js/utils.js" defer></script><script src="/devnote/js/sidebar.js" defer></script><script src="/devnote/js/next-boot.js" defer></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@11.10.1/dist/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/devnote/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+
+  <noscript>
+    <link rel="stylesheet" href="/devnote/css/noscript.css">
+  </noscript>
+
+<style data-hexo-design-cards>
+.dc-flow{display:flex;align-items:center;justify-content:center;gap:12px;margin:20px 0;flex-wrap:wrap}
+.dc-flow-step{color:#fff;padding:12px 20px;border-radius:8px;text-align:center}
+.dc-flow-step b{display:block}
+.dc-flow-step span{font-size:12px}
+.dc-flow-step.dc-highlight{border-width:3px;border-style:solid}
+.dc-flow-arrow{font-size:24px}
+.dc-flow-caption{text-align:center;font-size:13px;margin:0 0 10px}
+
+.dc-cards{display:grid;gap:20px;margin:25px 0}
+.dc-card{border-width:2px;border-style:solid;border-radius:12px;overflow:hidden}
+.dc-card-header{padding:12px 15px}
+.dc-card-header h4{margin:0;color:#fff;font-size:18px}
+.dc-card-body{padding:15px}
+.dc-card-body p{font-size:15px;color:#555;margin:0 0 10px}
+.dc-card-body code{background:var(--dc-c5);padding:2px 6px;border-radius:4px;font-size:13px}
+
+.dc-accents{display:grid;gap:15px;margin:25px 0}
+.dc-accent{padding:15px;border-radius:8px;border-left:5px solid}
+.dc-accent b{display:block;margin-bottom:4px}
+.dc-accent p{font-size:15px;margin:5px 0 0;color:#555}
+
+.dc-compare{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:20px 0}
+.dc-compare-option{padding:20px;border-radius:12px;border-width:3px;border-style:solid}
+.dc-compare-option.dc-recommended{border-width:4px}
+.dc-compare-option h4{margin:0 0 10px;text-align:center}
+.dc-compare-option .dc-emoji{text-align:center;font-size:40px}
+.dc-compare-body{text-align:center}
+.dc-compare-body p{font-size:15px;color:#555;line-height:1.6}
+.dc-compare-body p strong{font-size:24px;display:block;margin:10px 0}
+
+.dc-quotes{border-width:3px;border-style:solid;border-radius:12px;padding:20px;margin:25px 0}
+.dc-quotes h4{margin:0 0 15px}
+.dc-quote{border-left:3px solid;padding-left:15px;margin-bottom:15px}
+.dc-quote p{margin:0;font-size:14px;font-style:italic}
+.dc-quote cite{display:block;margin:5px 0 0;font-size:12px;font-style:normal}
+
+.dc-alert{border-width:2px;border-style:solid;border-radius:12px;padding:20px;margin:25px 0}
+.dc-alert h4{margin:0 0 10px}
+.dc-alert p,.dc-alert div{margin:0;line-height:1.8}
+
+.dc-minicards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:20px 0}
+.dc-mini{border-width:3px;border-style:solid;border-radius:8px;padding:15px}
+.dc-mini h5{margin:0 0 8px}
+.dc-mini p{font-size:13px;color:#555;margin:0}
+.dc-mini code{background:rgba(0,0,0,0.06);padding:1px 5px;border-radius:3px;font-size:0.85em}
+
+.dc-banner{color:#fff;padding:15px 20px;border-radius:8px;margin:60px 0 20px}
+.dc-banner h2{margin:0;font-size:20px;font-weight:bold}
+
+@media(max-width:768px){
+  .dc-cards,.dc-accents{grid-template-columns:1fr!important}
+  .dc-compare{grid-template-columns:1fr}
+  .dc-minicards{grid-template-columns:1fr}
+  .dc-flow{flex-direction:column}
+  .dc-flow-arrow{transform:rotate(90deg)}
+}
+</style>
+<link rel="alternate" href="/devnote/rss2.xml" title="leafbird/devnote" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/devnote/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">leafbird/devnote</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="검색" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/devnote/" rel="section"><i class="fa fa-home fa-fw"></i>홈</a></li><li class="menu-item menu-item-about"><a href="/devnote/about/" rel="section"><i class="fa fa-user fa-fw"></i>정보</a></li><li class="menu-item menu-item-archives"><a href="/devnote/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>아카이브</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%84%A4%EC%B9%98"><span class="nav-number">1.</span> <span class="nav-text">설치</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%83%9C%EA%B7%B8-%EC%86%8C%EA%B0%9C"><span class="nav-number">2.</span> <span class="nav-text">태그 소개</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%B0%B0%EB%84%88-Banner"><span class="nav-number">2.1.</span> <span class="nav-text">배너 : Banner</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">Section 1: Getting Started</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%B9%B4%EB%93%9C-Cards"><span class="nav-number">3.1.</span> <span class="nav-text">카드 : Cards</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.1.1.</span> <span class="nav-text">Title A</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.1.2.</span> <span class="nav-text">Title B</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%95%A1%EC%84%BC%ED%8A%B8-%EC%B9%B4%EB%93%9C-Accent-Cards"><span class="nav-number">3.2.</span> <span class="nav-text">액센트 카드 : Accent Cards</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%B9%84%EA%B5%90-Compare"><span class="nav-number">3.3.</span> <span class="nav-text">비교 : Compare</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.3.1.</span> <span class="nav-text">Option A</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.3.2.</span> <span class="nav-text">Option B</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%95%8C%EB%A6%BC-Alert"><span class="nav-number">3.4.</span> <span class="nav-text">알림 : Alert</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.4.1.</span> <span class="nav-text">ℹ️ Title</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.4.2.</span> <span class="nav-text">⚠️ Warning title</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.4.3.</span> <span class="nav-text">💡 Tip title</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%9D%B8%EC%9A%A9-Quotes"><span class="nav-number">3.5.</span> <span class="nav-text">인용 : Quotes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.5.1.</span> <span class="nav-text">Section Title</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%AF%B8%EB%8B%88-%EC%B9%B4%EB%93%9C-Mini-Cards"><span class="nav-number">3.6.</span> <span class="nav-text">미니 카드 : Mini Cards</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link"><span class="nav-number">3.6.1.</span> <span class="nav-text">Item A</span></a></li><li class="nav-item nav-level-5"><a class="nav-link"><span class="nav-number">3.6.2.</span> <span class="nav-text">Item B</span></a></li><li class="nav-item nav-level-5"><a class="nav-link"><span class="nav-number">3.6.3.</span> <span class="nav-text">Item C</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%94%8C%EB%A1%9C%EC%9A%B0-Flow"><span class="nav-number">3.7.</span> <span class="nav-text">플로우 : Flow</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%BB%A4%EC%8A%A4%ED%84%B0%EB%A7%88%EC%9D%B4%EC%A7%95"><span class="nav-number">4.</span> <span class="nav-text">커스터마이징</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%8F%B0%ED%8A%B8-%EC%82%AC%EC%9D%B4%EC%A6%88-Font-Size"><span class="nav-number">4.1.</span> <span class="nav-text">폰트 사이즈 : Font Size</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%BB%AC%EB%9F%AC%EC%9B%A8%EC%9D%B4-Colorway"><span class="nav-number">4.2.</span> <span class="nav-text">컬러웨이 : Colorway</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">leafbird</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/devnote/archives/">
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">카테고리</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-name">태그</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/leafbird" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leafbird" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/leafbird" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;leafbird" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/leafbird_tw" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;leafbird_tw" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2026/03/01/hexo-design-cards-test/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="hexo-design-cards 플러그인 테스트 | leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          hexo-design-cards 플러그인 테스트
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+      
+
+      <time title="Post created: 2026-03-02 00:00:00 / Updated at: 15:27:19" itemprop="dateCreated datePublished" datetime="2026-03-02T00:00:00+09:00">2026-03-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/devnote/categories/blog/" itemprop="url" rel="index"><span itemprop="name">blog</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>어제는 뜬금없이 제가, npm 레지스트리에 패키지를 하나 올리게 되었습니다. </p>
+<img src="/devnote/2026/03/01/hexo-design-cards-test/npm-readme.png" class="" title="hexo-design-cards">
+
+<p>hexo 블로그 엔진으로 글을 쓸 때, 디자인 요소를 추가하는 태그 정의를 플러그인으로 만들었어요.<br>저의 개인비서 오픈클로와 함께 정리해서 배포했습니다.<br>제 깃헙 repo에, 순수 javascript로만 작성된 첫 프로젝트가 되었습니다 :)</p>
+<p>npm : <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/hexo-design-cards">https://www.npmjs.com/package/hexo-design-cards</a><br>github : <a target="_blank" rel="noopener" href="https://github.com/leafbird/hexo-design-cards">https://github.com/leafbird/hexo-design-cards</a></p>
+<span id="more"></span>
+
+<hr>
+<p>플러그인을 설치할 때 추가적으로 제공하는 태그는 7개 입니다. 5가지 컬러 팔레트가 기본으로 들어있고, 포스팅을 만들 떄마다 프론트매터에서 색상 테마를 변경할 수 있어서, 글의 분위기에 맞는 컬러를 골라 사용할 수 있습니다.</p>
+<h2 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-design-cards</span><br></pre></td></tr></table></figure>
+
+<p>설치하면 별도 설정 없이 바로 사용할 수 있습니다. CSS는 자동으로 주입돼요.</p>
+<h2 id="태그-소개"><a href="#태그-소개" class="headerlink" title="태그 소개"></a>태그 소개</h2><h3 id="배너-Banner"><a href="#배너-Banner" class="headerlink" title="배너 : Banner"></a>배너 : Banner</h3><p>섹션 구분용 배너입니다. 글이 길 때 파트를 나누기 좋아요.</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% banner &quot;Section 1: Getting Started&quot; %&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="dc-banner" style="background:#283618"><h2>Section 1: Getting Started</h2></div>
+
+<h3 id="카드-Cards"><a href="#카드-Cards" class="headerlink" title="카드 : Cards"></a>카드 : Cards</h3><p>컬러 헤더가 있는 카드 그리드입니다. 첫 번째 인자는 세로로 만들어질 컬럼(열) 수예요.</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;% cards 2 %&#125;</span><br><span class="line">  &#123;% card &quot;Title A&quot; %&#125;</span><br><span class="line">  Description with <span class="strong">**markdown**</span> support. <span class="code">`code snippets`</span> work too.</span><br><span class="line">  &#123;% endcard %&#125;</span><br><span class="line">  &#123;% card &quot;Title B&quot; %&#125;Another card&#x27;s content.&#123;% endcard %&#125;</span><br><span class="line">&#123;% endcards %&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="dc-cards" style="grid-template-columns:repeat(2,1fr)">
+  <div class="dc-card" style="border-color:#bc6c25"><div class="dc-card-header" style="background:#bc6c25"><h4>Title A</h4></div><div class="dc-card-body"><p>Description with <strong>markdown</strong> support. <code>code snippets</code> work too.</p>
+</div></div>
+  <div class="dc-card" style="border-color:#606c38"><div class="dc-card-header" style="background:#606c38"><h4>Title B</h4></div><div class="dc-card-body"><p>Another card’s content.</p>
+</div></div>
+</div>
+
+<h3 id="액센트-카드-Accent-Cards"><a href="#액센트-카드-Accent-Cards" class="headerlink" title="액센트 카드 : Accent Cards"></a>액센트 카드 : Accent Cards</h3><p>왼쪽에 색띠가 붙는 카드입니다. 핵심 포인트 정리에 적합해요.</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;% accents 2 %&#125;</span><br><span class="line">  &#123;% accent &quot;Point 1&quot; %&#125;Description of the first point&#123;% endaccent %&#125;</span><br><span class="line">  &#123;% accent &quot;Point 2&quot; %&#125;Description of the second point&#123;% endaccent %&#125;</span><br><span class="line">  &#123;% accent &quot;Point 3&quot; %&#125;Third point here&#123;% endaccent %&#125;</span><br><span class="line">  &#123;% accent &quot;Point 4&quot; %&#125;Fourth point here&#123;% endaccent %&#125;</span><br><span class="line">&#123;% endaccents %&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="dc-accents" style="grid-template-columns:repeat(2,1fr)">
+  <div class="dc-accent" style="background:rgba(188,108,37,0.1);border-left-color:#bc6c25"><b>Point 1</b><div><p>Description of the first point</p>
+</div></div>
+  <div class="dc-accent" style="background:rgba(40,54,24,0.1);border-left-color:#283618"><b>Point 2</b><div><p>Description of the second point</p>
+</div></div>
+  <div class="dc-accent" style="background:rgba(221,161,94,0.1);border-left-color:#dda15e"><b>Point 3</b><div><p>Third point here</p>
+</div></div>
+  <div class="dc-accent" style="background:rgba(96,108,56,0.1);border-left-color:#606c38"><b>Point 4</b><div><p>Fourth point here</p>
+</div></div>
+</div>
+
+<h3 id="비교-Compare"><a href="#비교-Compare" class="headerlink" title="비교 : Compare"></a>비교 : Compare</h3><p>두 가지를 나란히 비교할 때 사용합니다. 비교 옵션중 더 추천하고 싶은 항목에 <code>recomended</code> 를 적으면 테두리를 더 두껍게 표시하여 시각적으로 강조를 더해줍니다.</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;% compare %&#125;</span><br><span class="line">  &#123;% option &quot;Option A&quot; &quot;🔧&quot; %&#125;Description of option A.&#123;% endoption %&#125;</span><br><span class="line">  &#123;% option &quot;Option B&quot; &quot;🚀&quot; recommended %&#125;</span><br><span class="line"><span class="code">    Description of option B. This one is **recommended**.</span></span><br><span class="line"><span class="code">  &#123;% endoption %&#125;</span></span><br><span class="line"><span class="code">&#123;% endcompare %&#125;</span></span><br></pre></td></tr></table></figure>
+
+<div class="dc-compare">
+  <div class="dc-compare-option" style="background:rgba(188,108,37,0.08);border-color:#bc6c25"><h4 style="color:#bc6c25">Option A</h4><div class="dc-emoji">🔧</div><div class="dc-compare-body"><p>Description of option A.</p>
+</div></div>
+  <div class="dc-compare-option dc-recommended" style="background:rgba(188,108,37,0.08);border-color:#bc6c25"><h4 style="color:#bc6c25">Option B</h4><div class="dc-emoji">🚀</div><div class="dc-compare-body"><p>Description of option B. This one is <strong>recommended</strong>.
+  </p>
+</div></div>
+</div>
+
+<h3 id="알림-Alert"><a href="#알림-Alert" class="headerlink" title="알림 : Alert"></a>알림 : Alert</h3><p>정보, 경고, 팁 박스입니다. <code>|</code>로 제목과 본문을 구분해요.</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% alert info %&#125;Title|Body text with <span class="strong">**markdown**</span>&#123;% endalert %&#125;</span><br><span class="line">&#123;% alert warning %&#125;Warning title|Warning body&#123;% endalert %&#125;</span><br><span class="line">&#123;% alert tip %&#125;Tip title|Tip body&#123;% endalert %&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="dc-alert" style="background:rgba(188,108,37,0.08);border-color:#bc6c25"><h4 style="color:#bc6c25">ℹ️ Title</h4><div><p>Body text with <strong>markdown</strong></p>
+</div></div>
+
+<div class="dc-alert" style="background:rgba(96,108,56,0.08);border-color:#606c38"><h4 style="color:#606c38">⚠️ Warning title</h4><div><p>Warning body</p>
+</div></div>
+
+<div class="dc-alert" style="background:rgba(221,161,94,0.08);border-color:#dda15e"><h4 style="color:#dda15e">💡 Tip title</h4><div><p>Tip body</p>
+</div></div>
+
+<h3 id="인용-Quotes"><a href="#인용-Quotes" class="headerlink" title="인용 : Quotes"></a>인용 : Quotes</h3><p>인용 모음입니다. 출처별로 정리할 수 있어요.</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;% quotes &quot;Section Title&quot; %&#125;</span><br><span class="line">  &#123;% dcquote &quot;Source 1&quot; %&#125;Quote text here&#123;% enddcquote %&#125;</span><br><span class="line">  &#123;% dcquote &quot;Source 2&quot; %&#125;Another quote&#123;% enddcquote %&#125;</span><br><span class="line">&#123;% endquotes %&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="dc-quotes" style="background:#fefae0;border-color:#dda15e"><h4 style="color:#283618">Section Title</h4>
+  <div class="dc-quote" style="border-left-color:#bc6c25"><p>Quote text here</p><cite style="color:#dda15e">— Source 1</cite></div>
+  <div class="dc-quote" style="border-left-color:#606c38"><p>Another quote</p><cite style="color:#dda15e">— Source 2</cite></div>
+</div>
+
+<h3 id="미니-카드-Mini-Cards"><a href="#미니-카드-Mini-Cards" class="headerlink" title="미니 카드 : Mini Cards"></a>미니 카드 : Mini Cards</h3><p>3열 미니 카드입니다. 짧은 항목을 나열할 때 유용해요.</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;% minicards %&#125;</span><br><span class="line">  &#123;% mini &quot;Item A&quot; %&#125;Short description&#123;% endmini %&#125;</span><br><span class="line">  &#123;% mini &quot;Item B&quot; %&#125;Short description&#123;% endmini %&#125;</span><br><span class="line">  &#123;% mini &quot;Item C&quot; %&#125;Short description&#123;% endmini %&#125;</span><br><span class="line">&#123;% endminicards %&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="dc-minicards">
+  <div class="dc-mini" style="border-color:#283618;background:#fefae0"><h5 style="color:#606c38">Item A</h5><p>Short description</p>
+</div>
+  <div class="dc-mini" style="border-color:#606c38;background:#fefae0"><h5 style="color:#606c38">Item B</h5><p>Short description</p>
+</div>
+  <div class="dc-mini" style="border-color:#bc6c25;background:#fefae0"><h5 style="color:#606c38">Item C</h5><p>Short description</p>
+</div>
+</div>
+
+<h3 id="플로우-Flow"><a href="#플로우-Flow" class="headerlink" title="플로우 : Flow"></a>플로우 : Flow</h3><p>수평 플로우 다이어그램입니다. <code>*</code>을 붙이면 강조 스텝이 돼요.</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% flow &quot;Step A|description&quot; &quot;<span class="emphasis">*Step B|description&quot; &quot;Step C|description&quot; %&#125;</span></span><br></pre></td></tr></table></figure>
+
+<div class="dc-flow"><div class="dc-flow-step" style="background:#bc6c25"><b>Step A</b><span>description</span></div><span class="dc-flow-arrow" style="color:#dda15e">→</span><div class="dc-flow-step dc-highlight" style="background:#283618;border:3px solid #dda15e"><b>Step B</b><span>description</span></div><span class="dc-flow-arrow" style="color:#dda15e">→</span><div class="dc-flow-step" style="background:#283618"><b>Step C</b><span>description</span></div></div>
+
+<p>캡션을 추가하려면 <code>|</code> 뒤에 텍스트를 넣으면 됩니다:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% flow &quot;Request&quot; &quot;<span class="emphasis">*Process&quot; &quot;Response&quot; | Data flow overview %&#125;</span></span><br></pre></td></tr></table></figure>
+
+<div class="dc-flow"><div class="dc-flow-step" style="background:#bc6c25"><b>Request</b></div><span class="dc-flow-arrow" style="color:#dda15e">→</span><div class="dc-flow-step dc-highlight" style="background:#283618;border:3px solid #dda15e"><b>Process</b></div><span class="dc-flow-arrow" style="color:#dda15e">→</span><div class="dc-flow-step" style="background:#283618"><b>Response</b></div></div><p class="dc-flow-caption" style="color:#dda15e">Data flow overview</p>
+
+
+<h2 id="커스터마이징"><a href="#커스터마이징" class="headerlink" title="커스터마이징"></a>커스터마이징</h2><h3 id="폰트-사이즈-Font-Size"><a href="#폰트-사이즈-Font-Size" class="headerlink" title="폰트 사이즈 : Font Size"></a>폰트 사이즈 : Font Size</h3><p>대부분의 태그에서 마지막 숫자 인자로 폰트 사이즈(px)를 지정할 수 있습니다. 디자인 요소의 본문에 해당하는 글씨의 크기만 조정합니다. 자신의 블로그 기본 크기에 어울리도록 조절해 사용할 수 있어요. </p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;% cards 2 15 %&#125;...&#123;% endcards %&#125;       → 2 columns, 15px body text</span><br><span class="line">&#123;% accents 2 14 %&#125;...&#123;% endaccents %&#125;   → 2 columns, 14px body text</span><br><span class="line">&#123;% compare 16 %&#125;...&#123;% endcompare %&#125;     → 16px body text</span><br><span class="line">&#123;% alert warning 17 %&#125;...&#123;% endalert %&#125; → 17px body text</span><br></pre></td></tr></table></figure>
+
+<h3 id="컬러웨이-Colorway"><a href="#컬러웨이-Colorway" class="headerlink" title="컬러웨이 : Colorway"></a>컬러웨이 : Colorway</h3><p>5가지 내장 컬러웨이가 있습니다. 포스팅 문서 제일 앞 front matter에서 글별로 지정할 수 있어요.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">&quot;my awsome blah blah posting&quot;</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2026-03-02</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">hexo</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">plugin</span></span><br><span class="line"><span class="attr">colorway:</span> <span class="string">fiery-ocean</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Colorway</th>
+<th>Vibe</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>olive-garden</code> (default)</td>
+<td>Warm olive-gold</td>
+</tr>
+<tr>
+<td><code>deep-sea</code></td>
+<td>Calm blue-grey</td>
+</tr>
+<tr>
+<td><code>fiery-ocean</code></td>
+<td>Bold red-blue contrast</td>
+</tr>
+<tr>
+<td><code>rustic-earth</code></td>
+<td>Natural earth tones</td>
+</tr>
+<tr>
+<td><code>sunny-beach</code></td>
+<td>Vivid orange-teal</td>
+</tr>
+</tbody></table>
+<p>Color palettes from <a target="_blank" rel="noopener" href="https://coolors.co/">Coolors.co</a>.</p>
+<hr>
+<p>소스코드: <a target="_blank" rel="noopener" href="https://github.com/leafbird/hexo-design-cards">GitHub</a> · 라이선스: MIT</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/devnote/tags/hexo/" rel="tag"># hexo</a>
+              <a href="/devnote/tags/plugin/" rel="tag"># plugin</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/devnote/2026/02/18/openclaw%EC%97%90-PR%EC%97%86%EC%9D%B4-%EB%B2%84%EA%B7%B8%EC%A0%9C%EB%B3%B4%EB%A7%8C-%EC%98%AC%EB%A6%B0-%EC%8D%B0-%ED%91%BC%EB%8B%A4/" rel="prev" title="openclaw에 PR없이 버그제보만 올린 썰 푼다">
+                  <i class="fa fa-angle-left"></i> openclaw에 PR없이 버그제보만 올린 썰 푼다
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">leafbird</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"leafbird","repo":"devnote","client_id":"27d8b6b6501ea8561848","client_secret":"86181a3464a298b3cbce1b1aadd362004ca5494f","admin_user":"leafbird","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"body":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"db0ab24cb4b1395d41d539ef204c7ea1"}</script>
+<script src="/devnote/js/third-party/comments/gitalk.js" defer></script>
+
+</body>
+</html>
