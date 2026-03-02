@@ -69,6 +69,65 @@
   <noscript>
     <link rel="stylesheet" href="/devnote/css/noscript.css">
   </noscript>
+
+<style data-hexo-design-cards>
+.dc-flow{display:flex;align-items:center;justify-content:center;gap:12px;margin:20px 0;flex-wrap:wrap}
+.dc-flow-step{color:#fff;padding:12px 20px;border-radius:8px;text-align:center}
+.dc-flow-step b{display:block}
+.dc-flow-step span{font-size:12px}
+.dc-flow-step.dc-highlight{border-width:3px;border-style:solid}
+.dc-flow-arrow{font-size:24px}
+.dc-flow-caption{text-align:center;font-size:13px;margin:0 0 10px}
+
+.dc-cards{display:grid;gap:20px;margin:25px 0}
+.dc-card{border-width:2px;border-style:solid;border-radius:12px;overflow:hidden}
+.dc-card-header{padding:12px 15px}
+.dc-card-header h4{margin:0;color:#fff;font-size:18px}
+.dc-card-body{padding:15px}
+.dc-card-body p{font-size:15px;color:#555;margin:0 0 10px}
+.dc-card-body code{background:var(--dc-c5);padding:2px 6px;border-radius:4px;font-size:13px}
+
+.dc-accents{display:grid;gap:15px;margin:25px 0}
+.dc-accent{padding:15px;border-radius:8px;border-left:5px solid}
+.dc-accent b{display:block;margin-bottom:4px}
+.dc-accent p{font-size:15px;margin:5px 0 0;color:#555}
+
+.dc-compare{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:20px 0}
+.dc-compare-option{padding:20px;border-radius:12px;border-width:3px;border-style:solid}
+.dc-compare-option.dc-recommended{border-width:4px}
+.dc-compare-option h4{margin:0 0 10px;text-align:center}
+.dc-compare-option .dc-emoji{text-align:center;font-size:40px}
+.dc-compare-body{text-align:center}
+.dc-compare-body p{font-size:15px;color:#555;line-height:1.6}
+.dc-compare-body p strong{font-size:24px;display:block;margin:10px 0}
+
+.dc-quotes{border-width:3px;border-style:solid;border-radius:12px;padding:20px;margin:25px 0}
+.dc-quotes h4{margin:0 0 15px}
+.dc-quote{border-left:3px solid;padding-left:15px;margin-bottom:15px}
+.dc-quote p{margin:0;font-size:14px;font-style:italic}
+.dc-quote cite{display:block;margin:5px 0 0;font-size:12px;font-style:normal}
+
+.dc-alert{border-width:2px;border-style:solid;border-radius:12px;padding:20px;margin:25px 0}
+.dc-alert h4{margin:0 0 10px}
+.dc-alert p,.dc-alert div{margin:0;line-height:1.8}
+
+.dc-minicards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:20px 0}
+.dc-mini{border-width:3px;border-style:solid;border-radius:8px;padding:15px}
+.dc-mini h5{margin:0 0 8px}
+.dc-mini p{font-size:13px;color:#555;margin:0}
+.dc-mini code{background:rgba(0,0,0,0.06);padding:1px 5px;border-radius:3px;font-size:0.85em}
+
+.dc-banner{color:#fff;padding:15px 20px;border-radius:8px;margin:60px 0 20px}
+.dc-banner h2{margin:0;font-size:20px;font-weight:bold}
+
+@media(max-width:768px){
+  .dc-cards,.dc-accents{grid-template-columns:1fr!important}
+  .dc-compare{grid-template-columns:1fr}
+  .dc-minicards{grid-template-columns:1fr}
+  .dc-flow{flex-direction:column}
+  .dc-flow-arrow{transform:rotate(90deg)}
+}
+</style>
 <link rel="alternate" href="/devnote/rss2.xml" title="leafbird/devnote" type="application/rss+xml">
 </head>
 
@@ -187,7 +246,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2026/03/01/hexo-design-cards-test/">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2026/03/01/hexo-design-cards/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/devnote/images/avatar.gif">
@@ -205,7 +264,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/devnote/2026/03/01/hexo-design-cards-test/" class="post-title-link" itemprop="url">hexo-design-cards 플러그인 테스트</a>
+          <a href="/devnote/2026/03/01/hexo-design-cards/" class="post-title-link" itemprop="url">hexo-design-cards 플러그인</a>
         </h2>
 
         <div class="post-meta-container">
@@ -217,7 +276,7 @@
       <span class="post-meta-item-text">작성일</span>
       
 
-      <time title="Post created: 2026-03-02 00:00:00 / Updated at: 15:27:19" itemprop="dateCreated datePublished" datetime="2026-03-02T00:00:00+09:00">2026-03-02</time>
+      <time title="Post created: 2026-03-02 00:00:00 / Updated at: 20:56:11" itemprop="dateCreated datePublished" datetime="2026-03-02T00:00:00+09:00">2026-03-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -239,14 +298,13 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>어제는 뜬금없이 제가, npm 레지스트리에 패키지를 하나 올리게 되었습니다. </p>
-<img src="/devnote/2026/03/01/hexo-design-cards-test/npm-readme.png" class="" title="hexo-design-cards">
+          <p>기술 블로그에 글을 적으려다 보니까, 내용 중간에 간단한 플로우 차트나 다이어그램을 곁들여서 설명을 보강하면 좋겠다는 생각이 들었습니다. 예를 들면 이런거요.</p>
+<div class="dc-flow"><div class="dc-flow-step" style="background:#bc6c25"><b>글을 적자</b><span>나는 hexo로 만든 블로그가 있잖아</span></div><span class="dc-flow-arrow" style="color:#dda15e">→</span><div class="dc-flow-step" style="background:#606c38"><b>글재주가 없어</b><span>야 요고 정말 좋은건데.. 말로 설명이 안되네;</span></div><span class="dc-flow-arrow" style="color:#dda15e">→</span><div class="dc-flow-step" style="background:#283618"><b>그림을 그려</b><span>...무슨 수로?</span></div></div>
 
-<p>hexo 블로그 엔진으로 글을 쓸 때, 디자인 요소를 추가하는 태그 정의를 플러그인으로 만들었어요.<br>저의 개인비서 오픈클로와 함께 정리해서 배포했습니다.<br>제 깃헙 repo에, 순수 javascript로만 작성된 첫 프로젝트가 되었습니다 :)</p>
-<p>npm : <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/hexo-design-cards">https://www.npmjs.com/package/hexo-design-cards</a><br>github : <a target="_blank" rel="noopener" href="https://github.com/leafbird/hexo-design-cards">https://github.com/leafbird/hexo-design-cards</a></p>
+<p>이런거 좀 내맘같이 쉽게 처리해주는 플러그인이 없을까 해서 잠시 찾아보았는데, 잘 안 보이더라고요.<br>그래서 어제~오늘 ai랑 같이 작업해서 조그만 플러그인으로 정리해 공개했습니다.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/devnote/2026/03/01/hexo-design-cards-test/#more" rel="contents">
+              <a class="btn" href="/devnote/2026/03/01/hexo-design-cards/#more" rel="contents">
                 더 읽어보기 &raquo;
               </a>
             </div>
@@ -313,7 +371,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2026-03-02 15:27:19" itemprop="dateModified" datetime="2026-03-02T15:27:19+09:00">2026-03-02</time>
+      <time title="Updated at: 2026-03-02 20:56:11" itemprop="dateModified" datetime="2026-03-02T20:56:11+09:00">2026-03-02</time>
     </span>
 
   
@@ -399,7 +457,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2026-03-02 15:27:19" itemprop="dateModified" datetime="2026-03-02T15:27:19+09:00">2026-03-02</time>
+      <time title="Updated at: 2026-03-02 20:56:11" itemprop="dateModified" datetime="2026-03-02T20:56:11+09:00">2026-03-02</time>
     </span>
 
   
@@ -491,7 +549,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2026-03-02 15:27:19" itemprop="dateModified" datetime="2026-03-02T15:27:19+09:00">2026-03-02</time>
+      <time title="Updated at: 2026-03-02 20:56:11" itemprop="dateModified" datetime="2026-03-02T20:56:11+09:00">2026-03-02</time>
     </span>
 
   
@@ -580,7 +638,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2026-03-02 15:27:19" itemprop="dateModified" datetime="2026-03-02T15:27:19+09:00">2026-03-02</time>
+      <time title="Updated at: 2026-03-02 20:56:11" itemprop="dateModified" datetime="2026-03-02T20:56:11+09:00">2026-03-02</time>
     </span>
 
   
@@ -666,7 +724,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2026-03-02 15:27:19" itemprop="dateModified" datetime="2026-03-02T15:27:19+09:00">2026-03-02</time>
+      <time title="Updated at: 2026-03-02 20:56:11" itemprop="dateModified" datetime="2026-03-02T20:56:11+09:00">2026-03-02</time>
     </span>
 
   
@@ -750,7 +808,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2026-03-02 15:27:19" itemprop="dateModified" datetime="2026-03-02T15:27:19+09:00">2026-03-02</time>
+      <time title="Updated at: 2026-03-02 20:56:11" itemprop="dateModified" datetime="2026-03-02T20:56:11+09:00">2026-03-02</time>
     </span>
 
   
@@ -840,7 +898,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2026-03-02 15:27:19" itemprop="dateModified" datetime="2026-03-02T15:27:19+09:00">2026-03-02</time>
+      <time title="Updated at: 2026-03-02 20:56:11" itemprop="dateModified" datetime="2026-03-02T20:56:11+09:00">2026-03-02</time>
     </span>
 
   
@@ -927,7 +985,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2026-03-02 15:27:19" itemprop="dateModified" datetime="2026-03-02T15:27:19+09:00">2026-03-02</time>
+      <time title="Updated at: 2026-03-02 20:56:11" itemprop="dateModified" datetime="2026-03-02T20:56:11+09:00">2026-03-02</time>
     </span>
 
   
@@ -1013,7 +1071,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2026-03-02 15:27:19" itemprop="dateModified" datetime="2026-03-02T15:27:19+09:00">2026-03-02</time>
+      <time title="Updated at: 2026-03-02 20:56:11" itemprop="dateModified" datetime="2026-03-02T20:56:11+09:00">2026-03-02</time>
     </span>
 
   

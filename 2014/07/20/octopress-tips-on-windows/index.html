@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://leafbird.github.io/devnote/images/140721_01.PNG">
 <meta property="og:image" content="http://leafbird.github.io/devnote/images/140721_02.PNG">
 <meta property="article:published_time" content="2014-07-20T22:44:48.000Z">
-<meta property="article:modified_time" content="2026-03-02T06:27:19.458Z">
+<meta property="article:modified_time" content="2026-03-02T11:56:11.760Z">
 <meta property="article:author" content="leafbird">
 <meta property="article:tag" content="octopress">
 <meta property="article:tag" content="windows">
@@ -139,7 +139,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%9C%88%EB%8F%84%EC%9A%B0-%EC%8B%A4%ED%96%89-Windows-R-%EC%B0%BD%EC%97%90%EC%84%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%8C%A8%EC%8A%A4%EB%A1%9C-%EB%B0%94%EB%A1%9C-%EC%9D%B4%EB%8F%99-%ED%95%98%EA%B8%B0"><span class="nav-number">1.</span> <span class="nav-text">윈도우 실행 (Windows + R) 창에서 블로그 패스로 바로 이동 하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#blogpath-%EC%9D%B4%EC%99%B8%EC%97%90-%EC%9E%90%EC%A3%BC-%EC%A0%91%EA%B7%BC%ED%95%98%EB%8A%94-%EA%B2%BD%EB%A1%9C%EB%8A%94-%EB%B0%94%EB%A1%9C%EA%B0%80%EA%B8%B0%EB%A5%BC-%EB%A7%8C%EB%93%A0%EB%8B%A4"><span class="nav-number">2.</span> <span class="nav-text">%blogpath% 이외에 자주 접근하는 경로는 바로가기를 만든다</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%9E%90%EC%A3%BC-%EC%93%B0%EB%8A%94-%EB%8F%99%EC%9E%91%EB%93%A4%EC%9D%80-%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EB%A1%9C-%EC%9E%90%EB%8F%99%ED%99%94%ED%95%9C%EB%8B%A4"><span class="nav-number">3.</span> <span class="nav-text">자주 쓰는 동작들은 스크립트로 자동화한다</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%9E%90%EB%8F%99%ED%99%94-%EC%98%88%EC%8B%9C-%EC%83%88%EA%B8%80-%EC%9E%91%EC%84%B1%EC%9D%84-%EA%B0%84%ED%8E%B8%ED%95%98%EA%B2%8C"><span class="nav-number">3.1.</span> <span class="nav-text">자동화 예시 : 새글 작성을 간편하게</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-conflict-%EC%97%AC%EB%9F%AC-%EB%A8%B8%EC%8B%A0%EC%97%90%EC%84%9C-%ED%95%98%EB%82%98%EC%9D%98-%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%97%90-%EB%B2%88%EA%B0%88%EC%95%84-%ED%8F%AC%EC%8A%A4%ED%8C%85-%ED%95%98%EB%8A%94-%EA%B2%BD%EC%9A%B0"><span class="nav-number">4.</span> <span class="nav-text">git conflict : 여러 머신에서 하나의 블로그에 번갈아 포스팅 하는 경우</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%9C%88%EB%8F%84%EC%9A%B0-%EC%8B%A4%ED%96%89-Windows-R-%EC%B0%BD%EC%97%90%EC%84%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%8C%A8%EC%8A%A4%EB%A1%9C-%EB%B0%94%EB%A1%9C-%EC%9D%B4%EB%8F%99-%ED%95%98%EA%B8%B0"><span class="nav-text">윈도우 실행 (Windows + R) 창에서 블로그 패스로 바로 이동 하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#blogpath-%EC%9D%B4%EC%99%B8%EC%97%90-%EC%9E%90%EC%A3%BC-%EC%A0%91%EA%B7%BC%ED%95%98%EB%8A%94-%EA%B2%BD%EB%A1%9C%EB%8A%94-%EB%B0%94%EB%A1%9C%EA%B0%80%EA%B8%B0%EB%A5%BC-%EB%A7%8C%EB%93%A0%EB%8B%A4"><span class="nav-text">%blogpath% 이외에 자주 접근하는 경로는 바로가기를 만든다</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%9E%90%EC%A3%BC-%EC%93%B0%EB%8A%94-%EB%8F%99%EC%9E%91%EB%93%A4%EC%9D%80-%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EB%A1%9C-%EC%9E%90%EB%8F%99%ED%99%94%ED%95%9C%EB%8B%A4"><span class="nav-text">자주 쓰는 동작들은 스크립트로 자동화한다</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%9E%90%EB%8F%99%ED%99%94-%EC%98%88%EC%8B%9C-%EC%83%88%EA%B8%80-%EC%9E%91%EC%84%B1%EC%9D%84-%EA%B0%84%ED%8E%B8%ED%95%98%EA%B2%8C"><span class="nav-text">자동화 예시 : 새글 작성을 간편하게</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-conflict-%EC%97%AC%EB%9F%AC-%EB%A8%B8%EC%8B%A0%EC%97%90%EC%84%9C-%ED%95%98%EB%82%98%EC%9D%98-%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%97%90-%EB%B2%88%EA%B0%88%EC%95%84-%ED%8F%AC%EC%8A%A4%ED%8C%85-%ED%95%98%EB%8A%94-%EA%B2%BD%EC%9A%B0"><span class="nav-text">git conflict : 여러 머신에서 하나의 블로그에 번갈아 포스팅 하는 경우</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -235,7 +235,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2026-03-02 15:27:19" itemprop="dateModified" datetime="2026-03-02T15:27:19+09:00">2026-03-02</time>
+      <time title="Updated at: 2026-03-02 20:56:11" itemprop="dateModified" datetime="2026-03-02T20:56:11+09:00">2026-03-02</time>
     </span>
 
   

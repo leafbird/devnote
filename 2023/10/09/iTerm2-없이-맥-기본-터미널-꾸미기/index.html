@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://leafbird.github.io/devnote/2023/10/09/iTerm2-%EC%97%86%EC%9D%B4-%EB%A7%A5-%EA%B8%B0%EB%B3%B8-%ED%84%B0%EB%AF%B8%EB%84%90-%EA%BE%B8%EB%AF%B8%EA%B8%B0/vscode_setting.png">
 <meta property="og:image" content="http://leafbird.github.io/devnote/2023/10/09/iTerm2-%EC%97%86%EC%9D%B4-%EB%A7%A5-%EA%B8%B0%EB%B3%B8-%ED%84%B0%EB%AF%B8%EB%84%90-%EA%BE%B8%EB%AF%B8%EA%B8%B0/vscode.png">
 <meta property="article:published_time" content="2023-10-09T11:14:20.000Z">
-<meta property="article:modified_time" content="2026-03-02T06:27:19.465Z">
+<meta property="article:modified_time" content="2026-03-02T11:56:11.769Z">
 <meta property="article:author" content="leafbird">
 <meta property="article:tag" content="agnoster">
 <meta property="article:tag" content="iTerm2">
@@ -143,7 +143,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%B0%B1%EC%97%85%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%84%A4%EC%A0%95-%EB%82%B4%EC%9A%A9-%EA%B0%84%EB%8B%A8-%EC%A0%95%EB%A6%AC"><span class="nav-number">1.</span> <span class="nav-text">백업을 위한 설정 내용 간단 정리</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#oh-my-zsh%EC%9D%98-%ED%85%8C%EB%A7%88-%EB%B3%80%EA%B2%BD"><span class="nav-number">1.1.</span> <span class="nav-text">oh-my-zsh의 테마 변경</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%84%B0%EB%AF%B8%EB%84%90-%EC%BB%AC%EB%9F%AC-%ED%85%8C%EB%A7%88-%EB%B3%80%EA%B2%BD"><span class="nav-number">1.2.</span> <span class="nav-text">터미널 컬러 테마 변경</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zsh-%ED%94%8C%EB%9F%AC%EA%B7%B8%EC%9D%B8-%EC%84%A4%EC%B9%98"><span class="nav-number">1.3.</span> <span class="nav-text">zsh 플러그인 설치</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#agnoster-%ED%85%8C%EB%A7%88%ED%8C%8C%EC%9D%BC%EC%9D%84-%EC%97%B4%EC%96%B4%EC%84%9C-%ED%84%B0%EB%AF%B8%EB%84%90-%EC%9E%85%EB%A0%A5-%EC%9C%84%EC%B9%98%EC%97%90-%EA%B0%9C%ED%96%89-%EC%B6%94%EA%B0%80"><span class="nav-number">1.4.</span> <span class="nav-text">agnoster 테마파일을 열어서 터미널 입력 위치에 개행 추가</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vscode-%EC%97%90-hack-%ED%8F%B0%ED%8A%B8-%EC%A7%80%EC%A0%95"><span class="nav-number">1.5.</span> <span class="nav-text">vscode 에 hack 폰트 지정</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%B0%B1%EC%97%85%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%84%A4%EC%A0%95-%EB%82%B4%EC%9A%A9-%EA%B0%84%EB%8B%A8-%EC%A0%95%EB%A6%AC"><span class="nav-text">백업을 위한 설정 내용 간단 정리</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#oh-my-zsh%EC%9D%98-%ED%85%8C%EB%A7%88-%EB%B3%80%EA%B2%BD"><span class="nav-text">oh-my-zsh의 테마 변경</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%84%B0%EB%AF%B8%EB%84%90-%EC%BB%AC%EB%9F%AC-%ED%85%8C%EB%A7%88-%EB%B3%80%EA%B2%BD"><span class="nav-text">터미널 컬러 테마 변경</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zsh-%ED%94%8C%EB%9F%AC%EA%B7%B8%EC%9D%B8-%EC%84%A4%EC%B9%98"><span class="nav-text">zsh 플러그인 설치</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#agnoster-%ED%85%8C%EB%A7%88%ED%8C%8C%EC%9D%BC%EC%9D%84-%EC%97%B4%EC%96%B4%EC%84%9C-%ED%84%B0%EB%AF%B8%EB%84%90-%EC%9E%85%EB%A0%A5-%EC%9C%84%EC%B9%98%EC%97%90-%EA%B0%9C%ED%96%89-%EC%B6%94%EA%B0%80"><span class="nav-text">agnoster 테마파일을 열어서 터미널 입력 위치에 개행 추가</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vscode-%EC%97%90-hack-%ED%8F%B0%ED%8A%B8-%EC%A7%80%EC%A0%95"><span class="nav-text">vscode 에 hack 폰트 지정</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -239,7 +239,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2026-03-02 15:27:19" itemprop="dateModified" datetime="2026-03-02T15:27:19+09:00">2026-03-02</time>
+      <time title="Updated at: 2026-03-02 20:56:11" itemprop="dateModified" datetime="2026-03-02T20:56:11+09:00">2026-03-02</time>
     </span>
 
   
