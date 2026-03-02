@@ -6,7 +6,9 @@
     "build": "hexo generate",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
-    "server": "hexo server"
+    "server": "hexo server",
+    "dev:plugin": "cd ../hexo-design-cards && npm link && cd ../devnote && npm link hexo-design-cards && npx hexo clean && npx hexo server",
+    "dev:plugin:reset": "npm unlink hexo-design-cards && npm install"
   },
   "hexo": {
     "version": "8.1.1"
@@ -15,7 +17,6 @@
     "hexo": "^8.1.1",
     "hexo-browser-reloader-websocket": "^1.1.1",
     "hexo-deployer-git": "^4.0.0",
-    "hexo-design-cards": "^0.1.0",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-better-sitemap": "^1.0.8",
     "hexo-generator-category": "^2.0.0",
