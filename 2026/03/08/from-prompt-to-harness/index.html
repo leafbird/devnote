@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/devnote/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/devnote/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/devnote/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/devnote/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/devnote/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"a11y-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js" defer></script>
+
+    <meta name="description" content="프롬프트 엔지니어링, 컨텍스트 엔지니어링, 하네스 엔지니어링. AI를 활용한 개발이 어떻게 진화하고 있는지, 세 가지 키워드로 정리해봅니다.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="프롬프트에서 하네스까지 — AI와 함께 개발한다는 것">
+<meta property="og:url" content="http://leafbird.github.io/devnote/2026/03/08/from-prompt-to-harness/index.html">
+<meta property="og:site_name" content="leafbird&#x2F;devnote">
+<meta property="og:description" content="프롬프트 엔지니어링, 컨텍스트 엔지니어링, 하네스 엔지니어링. AI를 활용한 개발이 어떻게 진화하고 있는지, 세 가지 키워드로 정리해봅니다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://leafbird.github.io/devnote/2026/03/08/from-prompt-to-harness/slide4_developer_evolution.webp">
+<meta property="og:image" content="http://leafbird.github.io/devnote/2026/03/08/from-prompt-to-harness/slide1_prompt_engineering.webp">
+<meta property="og:image" content="http://leafbird.github.io/devnote/2026/03/08/from-prompt-to-harness/slide2_context_engineering.webp">
+<meta property="og:image" content="http://leafbird.github.io/devnote/2026/03/08/from-prompt-to-harness/slide3_harness_engineering.webp">
+<meta property="og:image" content="http://leafbird.github.io/devnote/2026/03/08/from-prompt-to-harness/antigravity.png">
+<meta property="og:image" content="http://leafbird.github.io/devnote/2026/03/08/from-prompt-to-harness/slide4_developer_evolution.webp">
+<meta property="article:published_time" content="2026-03-08T05:27:42.000Z">
+<meta property="article:modified_time" content="2026-03-08T14:27:42.057Z">
+<meta property="article:author" content="leafbird">
+<meta property="article:tag" content="ai">
+<meta property="article:tag" content="context-engineering">
+<meta property="article:tag" content="development">
+<meta property="article:tag" content="harness-engineering">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://leafbird.github.io/devnote/2026/03/08/from-prompt-to-harness/slide4_developer_evolution.webp">
+
+
+<link rel="canonical" href="http://leafbird.github.io/devnote/2026/03/08/from-prompt-to-harness/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"http://leafbird.github.io/devnote/2026/03/08/from-prompt-to-harness/","path":"2026/03/08/from-prompt-to-harness/","title":"프롬프트에서 하네스까지 — AI와 함께 개발한다는 것"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>프롬프트에서 하네스까지 — AI와 함께 개발한다는 것 | leafbird/devnote</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54KKVRTET0"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/devnote/js/third-party/analytics/google-analytics.js" defer></script>
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/devnote/js/utils.js" defer></script><script src="/devnote/js/sidebar.js" defer></script><script src="/devnote/js/next-boot.js" defer></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@11.10.1/dist/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/devnote/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+
+  <noscript>
+    <link rel="stylesheet" href="/devnote/css/noscript.css">
+  </noscript>
+
+<style data-hexo-design-cards>
+.dc-flow{display:flex;align-items:center;justify-content:center;gap:12px;margin:20px 0;flex-wrap:wrap}
+.dc-flow-step{color:#fff;padding:12px 20px;border-radius:8px;text-align:center}
+.dc-flow-step b{display:block}
+.dc-flow-step span{font-size:12px}
+.dc-flow-step.dc-highlight{border-width:3px;border-style:solid}
+.dc-flow-arrow{font-size:24px}
+.dc-flow-caption{text-align:center;font-size:13px;margin:0 0 10px}
+
+.dc-cards{display:grid;gap:20px;margin:25px 0}
+.dc-card{border-width:2px;border-style:solid;border-radius:12px;overflow:hidden}
+.dc-card-header{padding:12px 15px}
+.dc-card-header h4{margin:0;color:#fff;font-size:18px}
+.dc-card-body{padding:15px}
+.dc-card-body p{font-size:15px;color:#555;margin:0 0 10px}
+.dc-card-body code{background:var(--dc-c5);padding:2px 6px;border-radius:4px;font-size:13px}
+
+.dc-accents{display:grid;gap:15px;margin:25px 0}
+.dc-accent{padding:15px;border-radius:8px;border-left:5px solid}
+.dc-accent b{display:block;margin-bottom:4px}
+.dc-accent p{font-size:15px;margin:5px 0 0;color:#555}
+
+.dc-compare{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:20px 0}
+.dc-compare-option{padding:20px;border-radius:12px;border-width:3px;border-style:solid}
+.dc-compare-option.dc-recommended{border-width:4px}
+.dc-compare-option h4{margin:0 0 10px;text-align:center}
+.dc-compare-option .dc-emoji{text-align:center;font-size:40px}
+.dc-compare-body{text-align:center}
+.dc-compare-body p{font-size:15px;color:#555;line-height:1.6}
+.dc-compare-body p strong{font-size:24px;display:block;margin:10px 0}
+
+.dc-quotes{border-width:3px;border-style:solid;border-radius:12px;padding:20px;margin:25px 0}
+.dc-quotes h4{margin:0 0 15px}
+.dc-quote{border-left:3px solid;padding-left:15px;margin-bottom:15px}
+.dc-quote p{margin:0;font-size:14px;font-style:italic}
+.dc-quote cite{display:block;margin:5px 0 0;font-size:12px;font-style:normal}
+
+.dc-alert{border-width:2px;border-style:solid;border-radius:12px;padding:20px;margin:25px 0}
+.dc-alert h4{margin:0 0 10px}
+.dc-alert p,.dc-alert div{margin:0;line-height:1.8}
+
+.dc-minicards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:20px 0}
+.dc-mini{border-width:3px;border-style:solid;border-radius:8px;padding:15px}
+.dc-mini h5{margin:0 0 8px}
+.dc-mini p{font-size:13px;color:#555;margin:0}
+.dc-mini code{background:rgba(0,0,0,0.06);padding:1px 5px;border-radius:3px;font-size:0.85em}
+
+.dc-banner{color:#fff;padding:15px 20px;border-radius:8px;margin:60px 0 20px}
+.dc-banner h2{margin:0;font-size:20px;font-weight:bold}
+
+@media(max-width:768px){
+  .dc-cards,.dc-accents{grid-template-columns:1fr!important}
+  .dc-compare{grid-template-columns:1fr}
+  .dc-minicards{grid-template-columns:1fr}
+  .dc-flow{flex-direction:column}
+  .dc-flow-arrow{transform:rotate(90deg)}
+}
+</style>
+<link rel="alternate" href="/devnote/rss2.xml" title="leafbird/devnote" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/devnote/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">leafbird/devnote</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="검색" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/devnote/" rel="section"><i class="fa fa-home fa-fw"></i>홈</a></li><li class="menu-item menu-item-about"><a href="/devnote/about/" rel="section"><i class="fa fa-user fa-fw"></i>정보</a></li><li class="menu-item menu-item-archives"><a href="/devnote/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>아카이브</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%ED%94%84%EB%A1%AC%ED%94%84%ED%8A%B8-%EC%97%94%EC%A7%80%EB%8B%88%EC%96%B4%EB%A7%81-ai%EC%97%90%EA%B2%8C-%EC%9E%98-%EB%AC%BC%EC%96%B4%EB%B3%B4%EB%8A%94-%EA%B8%B0%EC%88%A0"><span class="nav-text">1. 프롬프트 엔지니어링 — AI에게 잘 물어보는 기술</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8-%EC%97%94%EC%A7%80%EB%8B%88%EC%96%B4%EB%A7%81-ai%EC%97%90%EA%B2%8C-%EB%A7%A5%EB%9D%BD%EC%9D%84-%EC%A3%BC%EB%8A%94-%EA%B8%B0%EC%88%A0"><span class="nav-text">2. 컨텍스트 엔지니어링 — AI에게 맥락을 주는 기술</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%ED%95%98%EB%84%A4%EC%8A%A4-%EC%97%94%EC%A7%80%EB%8B%88%EC%96%B4%EB%A7%81-ai%EA%B0%80-%EC%9D%BC%ED%95%98%EB%8A%94-%ED%99%98%EA%B2%BD%EC%9D%84-%EC%84%A4%EA%B3%84%ED%95%98%EB%8A%94-%EA%B8%B0%EC%88%A0"><span class="nav-text">3. 하네스 엔지니어링 — AI가 일하는 환경을 설계하는 기술</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%95%98%EB%84%A4%EC%8A%A4%EB%9E%80"><span class="nav-text">하네스란?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%95%98%EB%84%A4%EC%8A%A4%EC%9D%98-%EC%84%B8-%EA%B8%B0%EB%91%A5"><span class="nav-text">하네스의 세 기둥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%8B%A4%EC%A0%9C-%EC%84%B1%EA%B3%BC"><span class="nav-text">실제 성과</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Google-Antigravity-%E2%80%94-%ED%95%98%EB%84%A4%EC%8A%A4%EA%B0%80-IDE%EC%97%90-%EB%85%B9%EC%95%84%EB%93%A4%EB%8B%A4"><span class="nav-text">Google Antigravity — 하네스가 IDE에 녹아들다</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EA%B0%9C%EB%B0%9C%EC%9E%90%EC%9D%98-%EC%97%AD%ED%95%A0-%EB%B3%80%ED%99%94"><span class="nav-text">개발자의 역할 변화</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%84%B8-%EA%B0%80%EC%A7%80%EB%8A%94-%EB%A0%88%EC%9D%B4%EC%96%B4%EB%8B%A4"><span class="nav-text">세 가지는 레이어다</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%9A%B0%EB%A6%AC-%ED%8C%80%EC%97%90%EC%84%9C-%EC%8B%9C%EC%9E%91%ED%95%A0-%EC%88%98-%EC%9E%88%EB%8A%94-%EA%B2%83"><span class="nav-text">우리 팀에서 시작할 수 있는 것</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%B0%B8%EA%B3%A0-%EC%9E%90%EB%A3%8C"><span class="nav-text">참고 자료</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">leafbird</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/devnote/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">카테고리</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">태그</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/leafbird" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leafbird" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/leafbird" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;leafbird" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/leafbird_tw" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;leafbird_tw" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2026/03/08/from-prompt-to-harness/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/devnote/images/avatar.gif">
+      <meta itemprop="name" content="leafbird">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="프롬프트에서 하네스까지 — AI와 함께 개발한다는 것 | leafbird/devnote">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          프롬프트에서 하네스까지 — AI와 함께 개발한다는 것
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">작성일</span>
+      
+
+      <time title="Post created: 2026-03-08 14:27:42 / Updated at: 23:27:42" itemprop="dateCreated datePublished" datetime="2026-03-08T14:27:42+09:00">2026-03-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/devnote/categories/dev/" itemprop="url" rel="index"><span itemprop="name">dev</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><img src="/devnote/2026/03/08/from-prompt-to-harness/slide4_developer_evolution.webp" class="">
+
+<p>프롬프트 엔지니어링, 컨텍스트 엔지니어링, 하네스 엔지니어링. AI를 활용한 개발이 어떻게 진화하고 있는지, 세 가지 키워드로 정리해봅니다.</p>
+<span id="more"></span>
+
+<p>2025년 초, Andrej Karpathy가 <code>Vibe Coding</code> 이라는 말을 만들었습니다. AI에게 대충 시키고, 돌아가면 OK. 코드를 직접 읽지 않고 “분위기”로 개발하는 방식이었죠.</p>
+<p>재미있는 실험이었지만, 현실은 좀 달랐습니다. 프로젝트가 커지면 AI는 맥락을 잃고, 같은 실수를 반복하고, 아키텍처를 무시한 코드를 쏟아냈습니다. “AI가 코드를 잘 짜게 하려면 뭐가 필요한 거지?”라는 질문이 자연스럽게 따라왔어요.</p>
+<p>업계는 이 질문에 답하면서 <strong>세 단계의 진화</strong>를 거쳐왔습니다.</p>
+<div class="dc-minicards">
+  <div class="dc-mini" style="border-color:#283618;background:#fefae0"><h5 style="color:#606c38">프롬프트 엔지니어링</h5><p>AI에게 말 거는 기술</p>
+</div>
+  <div class="dc-mini" style="border-color:#606c38;background:#fefae0"><h5 style="color:#606c38">컨텍스트 엔지니어링</h5><p>AI에게 맥락을 주는 기술</p>
+</div>
+  <div class="dc-mini" style="border-color:#bc6c25;background:#fefae0"><h5 style="color:#606c38">하네스 엔지니어링</h5><p>AI가 일하는 환경을 설계하는 기술</p>
+</div>
+</div>
+
+
+<div class="dc-banner" style="background:#283618"><h2 id="1-프롬프트-엔지니어링-ai에게-잘-물어보는-기술">1. 프롬프트 엔지니어링 — AI에게 잘 물어보는 기술</h2></div>
+
+<img src="/devnote/2026/03/08/from-prompt-to-harness/slide1_prompt_engineering.webp" class="">
+
+<p><strong>프롬프트 엔지니어링</strong>은 AI 모델에 입력하는 자연어 지시(프롬프트)를 정교하게 설계하는 것입니다. 같은 모델이라도 질문을 어떻게 하느냐에 따라 결과가 극적으로 달라지거든요.</p>
+<div class="dc-alert" style="background:rgba(96,108,56,0.08);border-color:#606c38"><h4 style="color:#606c38">⚠️ ❌ 대충 시키기</h4><div><p><em>“이거 고쳐줘”</em> → AI가 뭘 고쳐야 하는지 모릅니다. 엉뚱한 곳을 건드리기 일쑤예요.</p>
+</div></div>
+
+<div class="dc-alert" style="background:rgba(221,161,94,0.08);border-color:#dda15e"><h4 style="color:#dda15e">💡 ✅ 구체적으로 시키기</h4><div><p><em>“SRP 원칙에 따라 에러 핸들링을 추가해서, 기존 테스트가 통과하도록 리팩토링해줘”</em> → 원칙, 요구사항, 제약조건이 있으니 AI가 훨씬 정확하게 동작합니다.</p>
+</div></div>
+
+<p>대표적인 기법들도 있습니다.</p>
+<table>
+<thead>
+<tr>
+<th>기법</th>
+<th>설명</th>
+<th>비유</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Zero-shot</strong></td>
+<td>예시 없이 바로 지시</td>
+<td>“알아서 해봐”</td>
+</tr>
+<tr>
+<td><strong>Few-shot</strong></td>
+<td>몇 가지 예시를 함께 제공</td>
+<td>“이런 식으로 해”</td>
+</tr>
+<tr>
+<td><strong>Chain-of-Thought</strong></td>
+<td>단계별로 생각하게 유도</td>
+<td>“하나씩 풀어봐”</td>
+</tr>
+<tr>
+<td><strong>Role Prompting</strong></td>
+<td>역할을 부여</td>
+<td>“너는 시니어 개발자야”</td>
+</tr>
+</tbody></table>
+<p>프롬프트 엔지니어링은 확실히 효과적이었습니다. 하지만 한계도 분명했어요. 프롬프트가 아무리 정교해도, AI는 우리 프로젝트의 아키텍처, 코딩 컨벤션, 변경 히스토리를 모릅니다. 매번 “우리 프로젝트는 이런 구조고, 이런 규칙이 있고…” 하고 설명해줄 수도 없는 노릇이죠.</p>
+<p>비유하자면, 아무리 똑똑한 신입에게 한 줄짜리 업무 지시만 주는 것과 같습니다. “질문을 잘 하는 것”만으로는 부족했어요. AI가 “알아야 할 것”을 체계적으로 알려줄 방법이 필요했습니다.</p>
+<div class="dc-banner" style="background:#283618"><h2 id="2-컨텍스트-엔지니어링-ai에게-맥락을-주는-기술">2. 컨텍스트 엔지니어링 — AI에게 맥락을 주는 기술</h2></div>
+
+<img src="/devnote/2026/03/08/from-prompt-to-harness/slide2_context_engineering.webp" class="">
+
+<p>2025년, MIT Technology Review는 이런 제목의 기사를 냈습니다: <em>“From vibe coding to context engineering”</em>. 느슨한 vibe coding이 <strong>컨텍스트를 체계적으로 관리하는 방식</strong>으로 전환되고 있다는 거였어요.</p>
+<p><strong>컨텍스트 엔지니어링</strong>은 프롬프트를 넘어서, AI가 참조해야 할 <strong>모든 맥락</strong> — 문서, 코드, 히스토리, 규칙 — 을 체계적으로 관리하는 것입니다.</p>
+<div class="dc-accents" style="grid-template-columns:repeat(2,1fr)">
+  <div class="dc-accent" style="background:rgba(188,108,37,0.1);border-left-color:#bc6c25"><b>프롬프트 엔지니어링</b><div><ul>
+<li>범위: 한 번의 질문</li>
+<li>성격: 정적, 단발성</li>
+<li>비유: 신입에게 업무 지시 한 줄</li>
+</ul>
+</div></div>
+  <div class="dc-accent" style="background:rgba(40,54,24,0.1);border-left-color:#283618"><b>컨텍스트 엔지니어링</b><div><ul>
+<li>범위: AI가 보는 세계 전체</li>
+<li>성격: 동적, 시스템적</li>
+<li>비유: 신입에게 위키, 가이드, 아키텍처 문서를 미리 읽혀놓기</li>
+</ul>
+</div></div>
+</div>
+
+<p>구체적으로 어떤 수단들이 쓰이냐면요.</p>
+<ul>
+<li><strong>AGENTS.md &#x2F; CLAUDE.md</strong> — 프로젝트 규칙과 컨벤션을 AI가 매 세션 읽을 수 있도록 파일로 명시</li>
+<li><strong>RAG (Retrieval-Augmented Generation)</strong> — 필요한 문서를 검색해서 AI 컨텍스트에 자동 주입</li>
+<li><strong>Memory 시스템</strong> — 이전 대화, 결정 사항, 학습 내용을 기억하게 하는 장치</li>
+<li><strong>MCP (Model Context Protocol)</strong> — 외부 도구와 데이터 소스를 AI에 표준 방식으로 연결하는 프로토콜</li>
+</ul>
+<p>핵심은 이거예요. <strong>프롬프트는 컨텍스트의 일부일 뿐입니다.</strong> 아무리 질문을 잘 해도, AI가 프로젝트에 대해 아무것도 모르면 소용이 없어요. 반대로 적절한 컨텍스트가 갖춰져 있으면, 대충 물어봐도 꽤 좋은 결과가 나옵니다.</p>
+<p>비유를 바꿔보면, 맥락 없는 AI는 <strong>첫날 출근한 신입</strong>이고, 맥락이 풍부한 AI는 <strong>3년차 팀원</strong>입니다. 차이는 능력이 아니라 정보예요.</p>
+<div class="dc-banner" style="background:#283618"><h2 id="3-하네스-엔지니어링-ai가-일하는-환경을-설계하는-기술">3. 하네스 엔지니어링 — AI가 일하는 환경을 설계하는 기술</h2></div>
+
+<img src="/devnote/2026/03/08/from-prompt-to-harness/slide3_harness_engineering.webp" class="">
+
+<p>2026년 2월, OpenAI Codex 팀이 흥미로운 실험 결과를 발표했습니다.</p>
+<ul>
+<li>5개월간 프로덕션 애플리케이션을 개발</li>
+<li>최종 코드량: <strong>100만 줄 이상</strong></li>
+<li>인간이 직접 작성한 코드: <strong>0줄</strong></li>
+<li>모든 코드를 AI 에이전트가 작성, 테스트, 배포까지 수행</li>
+</ul>
+<p>엔지니어들은 뭘 했을까요? <strong>코드를 쓰지 않았습니다.</strong> 대신, AI가 올바른 코드를 쓸 수 있는 <strong>환경</strong>을 설계했어요. 이 환경 — 제약, 피드백 루프, 검증 시스템, 문서 — 을 업계에서는 <code>하네스(Harness)</code>라고 부르기 시작했습니다.</p>
+<h3 id="하네스란"><a href="#하네스란" class="headerlink" title="하네스란?"></a>하네스란?</h3><p>“하네스”는 말(Horse)에게 채우는 장구에서 온 말입니다. 고삐, 안장, 재갈 — 강하고 빠른 말을 원하는 방향으로 이끄는 장비 일체를 뜻해요.</p>
+<table>
+<thead>
+<tr>
+<th>비유</th>
+<th>대응</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🐴 <strong>말</strong></td>
+<td>AI 모델</td>
+<td>강력하지만, 혼자서는 어디로 갈지 모릅니다</td>
+</tr>
+<tr>
+<td>🔧 <strong>하네스</strong></td>
+<td>인프라</td>
+<td>제약, 가드레일, 피드백 루프로 방향을 잡아줍니다</td>
+</tr>
+<tr>
+<td>🧑 <strong>기수</strong></td>
+<td>개발자</td>
+<td>방향을 정하고, 직접 뛰지는 않습니다</td>
+</tr>
+</tbody></table>
+<h3 id="하네스의-세-기둥"><a href="#하네스의-세-기둥" class="headerlink" title="하네스의 세 기둥"></a>하네스의 세 기둥</h3><div class="dc-cards" style="grid-template-columns:repeat(3,1fr)">
+  <div class="dc-card" style="border-color:#bc6c25"><div class="dc-card-header" style="background:#bc6c25"><h4>🔍 컨텍스트</h4></div><div class="dc-card-body"><p>에이전트가 알아야 할 것을 제공</p>
+</div></div>
+  <div class="dc-card" style="border-color:#606c38"><div class="dc-card-header" style="background:#606c38"><h4>🏗️ 아키텍처 제약</h4></div><div class="dc-card-body"><p>좋은 코드를 기계적으로 강제</p>
+</div></div>
+  <div class="dc-card" style="border-color:#dda15e"><div class="dc-card-header" style="background:#dda15e"><h4>🔄 엔트로피 관리</h4></div><div class="dc-card-body"><p>시간이 지나며 쌓이는 혼란을 자동 정리</p>
+</div></div>
+</div>
+
+<ul>
+<li><strong>컨텍스트</strong> — AGENTS.md, 아키텍처 문서, 디렉토리 맵, 옵저버빌리티 데이터</li>
+<li><strong>아키텍처 제약</strong> — 린터, CI 검증, 의존성 규칙, pre-commit 훅</li>
+<li><strong>엔트로피 관리</strong> — 문서 일관성 검사, 패턴 위반 스캔, 데드코드 제거 에이전트</li>
+</ul>
+<p>중요한 건, “AI에게 좋은 코드를 짜라고 말하는 것”과 “좋은 코드만 나올 수밖에 없는 환경을 만드는 것”은 완전히 다른 문제라는 거예요. 프롬프트로 “클린 코드를 작성해줘”라고 하는 건 전자이고, 린터와 CI가 위반을 자동으로 잡아내는 건 후자입니다.</p>
+<h3 id="실제-성과"><a href="#실제-성과" class="headerlink" title="실제 성과"></a>실제 성과</h3><div class="dc-accents" style="grid-template-columns:repeat(2,1fr)">
+  <div class="dc-accent" style="background:rgba(188,108,37,0.1);border-left-color:#bc6c25"><b>LangChain</b><div><p>모델 변경 없이 하네스만 개선해서 벤치마크 Top 30 → <strong>Top 5</strong>로 점프. 자기 검증 루프, 컨텍스트 매핑, 반복 감지를 추가했을 뿐이에요.</p>
+</div></div>
+  <div class="dc-accent" style="background:rgba(40,54,24,0.1);border-left-color:#283618"><b>Stripe</b><div><p>내부 에이전트 “Minion”이 주당 <strong>1,000개 이상의 PR</strong>을 자동 머지. 개발자는 Slack에 태스크를 올리고, 결과 PR만 리뷰합니다.</p>
+</div></div>
+</div>
+
+<h3 id="Google-Antigravity-—-하네스가-IDE에-녹아들다"><a href="#Google-Antigravity-—-하네스가-IDE에-녹아들다" class="headerlink" title="Google Antigravity — 하네스가 IDE에 녹아들다"></a>Google Antigravity — 하네스가 IDE에 녹아들다</h3><img src="/devnote/2026/03/08/from-prompt-to-harness/antigravity.png" class="" title="Google Antigravity">
+
+<p>흥미로운 건, 이런 하네스의 개념이 개발자가 직접 구축하는 것을 넘어 <strong>도구 자체에 내장되는 방향</strong>으로도 진화하고 있다는 점입니다.</p>
+<p>대표적인 사례가 <a target="_blank" rel="noopener" href="https://antigravity.google/">Google Antigravity</a>예요. 2025년 11월 Gemini 3와 함께 발표된 “에이전트 퍼스트 IDE”인데, 기존 IDE와 접근이 근본적으로 다릅니다.</p>
+<div class="dc-flow"><div class="dc-flow-step" style="background:#bc6c25"><b>🔧 기존 IDE + AI 보조</b><span>사람이 코드를 쓰고, AI가 제안</span></div><span class="dc-flow-arrow" style="color:#dda15e">→</span><div class="dc-flow-step dc-highlight" style="background:#283618;border:3px solid #dda15e"><b>🚀 에이전트 퍼스트 IDE</b><span>AI가 작업하고, 사람이 검증</span></div></div>
+
+<ul>
+<li><strong>기존 방식:</strong> 에디터 안에서 코드 자동완성. 결과는 사람이 직접 확인.</li>
+<li><strong>Antigravity:</strong> 에디터 + 터미널 + 브라우저를 에이전트가 자율적으로 넘나들며, 자기 검증 루프(Self-improvement)가 기본 탑재.</li>
+</ul>
+<p>Google은 Antigravity를 <strong>Trust(신뢰), Autonomy(자율), Feedback(피드백), Self-improvement(자기 개선)</strong> 네 가지 원칙으로 설계했다고 밝혔는데, 이 네 가지는 사실상 하네스 엔지니어링의 핵심 요소들이에요.</p>
+<p>아직 직접 깊이 써본 건 아니지만, 이런 도구가 나오고 있다는 것 자체가 시사적이에요. **”하네스를 직접 만드는 시대”에서 “하네스가 내장된 도구를 고르는 시대”**로 가고 있다는 뜻이니까요.</p>
+<h3 id="개발자의-역할-변화"><a href="#개발자의-역할-변화" class="headerlink" title="개발자의 역할 변화"></a>개발자의 역할 변화</h3><div class="dc-flow"><div class="dc-flow-step" style="background:#bc6c25"><b>코드 작성</b><span>전통적 개발의 본업</span></div><span class="dc-flow-arrow" style="color:#dda15e">→</span><div class="dc-flow-step dc-highlight" style="background:#283618;border:3px solid #dda15e"><b>환경 설계</b><span>하네스 엔지니어링의 핵심</span></div><span class="dc-flow-arrow" style="color:#dda15e">→</span><div class="dc-flow-step" style="background:#283618"><b>결과 검증</b><span>에이전트 출력 리뷰</span></div></div>
+
+<div class="dc-cards" style="grid-template-columns:repeat(2,1fr)">
+  <div class="dc-card" style="border-color:#bc6c25"><div class="dc-card-header" style="background:#bc6c25"><h4>전통적 개발</h4></div><div class="dc-card-body"><ul>
+<li>코드 작성이 본업</li>
+<li>문서 작성은 부수적</li>
+<li>디버깅은 코드를 읽고 추적</li>
+<li>테스트를 직접 작성</li>
+<li>PR 리뷰는 코드 리뷰</li>
+</ul>
+</div></div>
+  <div class="dc-card" style="border-color:#606c38"><div class="dc-card-header" style="background:#606c38"><h4>하네스 엔지니어링</h4></div><div class="dc-card-body"><ul>
+<li>코드 작성 안 함</li>
+<li>문서 작성이 핵심 인프라</li>
+<li>에이전트 행동 패턴을 분석</li>
+<li>에이전트가 실행할 테스트 전략을 설계</li>
+<li>에이전트 출력 + 하네스 효과 리뷰</li>
+</ul>
+</div></div>
+</div>
+
+
+<div class="dc-banner" style="background:#283618"><h2 id="세-가지는-레이어다">세 가지는 레이어다</h2></div>
+
+<img src="/devnote/2026/03/08/from-prompt-to-harness/slide4_developer_evolution.webp" class="">
+
+<p>여기서 중요한 점이 있습니다. 프롬프트 엔지니어링이 “구식”이 된 게 아니에요. 컨텍스트 엔지니어링이 프롬프트를 대체한 것도 아닙니다.</p>
+<p><strong>세 가지는 누적되는 레이어입니다.</strong></p>
+<div class="dc-accents" style="grid-template-columns:repeat(3,1fr)">
+  <div class="dc-accent" style="background:rgba(188,108,37,0.1);border-left-color:#bc6c25"><b>🟠 프롬프트</b><div><p>잘 물어보기 — 여전히 중요해요</p>
+</div></div>
+  <div class="dc-accent" style="background:rgba(40,54,24,0.1);border-left-color:#283618"><b>🟢 컨텍스트</b><div><p>잘 알려주기 — 프롬프트를 감싸는 더 큰 틀</p>
+</div></div>
+  <div class="dc-accent" style="background:rgba(221,161,94,0.1);border-left-color:#dda15e"><b>🟣 하네스</b><div><p>잘 일하게 만들기 — 컨텍스트를 포함한 전체 시스템</p>
+</div></div>
+</div>
+
+<p>안쪽이 사라지는 게 아니라, 바깥이 감싸는 겁니다. 프롬프트를 잘 쓰는 건 여전히 기본기이고, 컨텍스트를 잘 관리하는 건 그 위의 역량이며, 하네스를 설계하는 건 그 전체를 아우르는 시스템 사고예요.</p>
+<p>결국 이건 <strong>“코드를 잘 짜는 개발자”에서 “AI가 코드를 잘 짜도록 만드는 개발자”로의 전환</strong>입니다.</p>
+<div class="dc-banner" style="background:#283618"><h2 id="우리-팀에서-시작할-수-있는-것">우리 팀에서 시작할 수 있는 것</h2></div>
+
+<p>당장 거창한 하네스 시스템을 만들 필요는 없습니다. 작은 것부터 시작할 수 있어요.</p>
+<ul>
+<li>✅ <strong>AGENTS.md 작성</strong> — 프로젝트의 아키텍처, 컨벤션, 주의사항을 AI가 읽을 수 있는 파일로 정리</li>
+<li>✅ <strong>코딩 컨벤션 문서화</strong> — 암묵적으로 공유하던 규칙을 명시적인 문서로. AI뿐 아니라 새 팀원에게도 도움이 됩니다</li>
+<li>✅ <strong>CI 파이프라인 강화</strong> — 린터, 포맷터, 구조 테스트를 추가해서 “좋은 코드”를 기계적으로 보장</li>
+</ul>
+<p>AI 도구는 계속 좋아질 겁니다. 하지만 도구가 좋아질수록 “도구를 어떻게 쓸 것인가”가 더 중요해집니다. 프롬프트를 잘 쓰고, 컨텍스트를 잘 관리하고, 하네스를 잘 설계하는 것 — 이 세 가지가 AI 시대 개발자의 핵심 역량이 될 거라 생각합니다.</p>
+<hr>
+<h3 id="참고-자료"><a href="#참고-자료" class="headerlink" title="참고 자료"></a>참고 자료</h3><ul>
+<li>MIT Technology Review — <em>“From vibe coding to context engineering: 2025 in software development”</em> (2025.11)</li>
+<li>OpenAI Codex Team — Harness Engineering 사례 발표 (2026.02)</li>
+<li>Thoughtworks Technology Radar Vol.33 (2025.11)</li>
+<li>LangChain — Terminal Bench 2.0 하네스 최적화 사례</li>
+<li>NxCode — <em>“Harness Engineering: The Complete Guide”</em> (2026.03)</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/devnote/tags/ai/" rel="tag"># ai</a>
+              <a href="/devnote/tags/development/" rel="tag"># development</a>
+              <a href="/devnote/tags/harness-engineering/" rel="tag"># harness-engineering</a>
+              <a href="/devnote/tags/context-engineering/" rel="tag"># context-engineering</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/devnote/2026/03/01/hexo-design-cards/" rel="prev" title="hexo-design-cards 플러그인">
+                  <i class="fa fa-angle-left"></i> hexo-design-cards 플러그인
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">leafbird</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"leafbird","repo":"devnote","client_id":"27d8b6b6501ea8561848","client_secret":"86181a3464a298b3cbce1b1aadd362004ca5494f","admin_user":"leafbird","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"body":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"81e2e937421f8d9dd1a8fb44307048cd"}</script>
+<script src="/devnote/js/third-party/comments/gitalk.js" defer></script>
+
+</body>
+</html>

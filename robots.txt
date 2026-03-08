@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://leafbird.github.io/devnote/sitemap.xml

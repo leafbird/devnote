@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/devnote/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/devnote/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/devnote/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/devnote/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/devnote/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"leafbird.github.io","root":"/devnote/","images":"/devnote/images","scheme":"Mist","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"a11y-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/devnote/js/config.js" defer></script>
+
+    <meta name="description" content="leafbirdDesigning systems that survive production. Online Game Server EngineerBuilding scalable, production-grade backend systems.  대규모 온라인 게임 서버 아키텍처를 설계하고 운영해온 개발자입니다.MMO 서버 구조, 동시성 모델, 네트워크 I&amp;#x2">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About">
+<meta property="og:url" content="http://leafbird.github.io/devnote/about/index.html">
+<meta property="og:site_name" content="leafbird&#x2F;devnote">
+<meta property="og:description" content="leafbirdDesigning systems that survive production. Online Game Server EngineerBuilding scalable, production-grade backend systems.  대규모 온라인 게임 서버 아키텍처를 설계하고 운영해온 개발자입니다.MMO 서버 구조, 동시성 모델, 네트워크 I&amp;#x2">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://leafbird.github.io/image/profile_new.jpg">
+<meta property="article:published_time" content="2026-02-03T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-01T07:30:20.777Z">
+<meta property="article:author" content="leafbird">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leafbird.github.io/image/profile_new.jpg">
+
+
+<link rel="canonical" href="http://leafbird.github.io/devnote/about/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"ko","comments":true,"permalink":"http://leafbird.github.io/devnote/about/index.html","path":"about/index.html","title":"About"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>About | leafbird/devnote
+</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54KKVRTET0"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-54KKVRTET0","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/devnote/js/third-party/analytics/google-analytics.js" defer></script>
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/devnote/js/utils.js" defer></script><script src="/devnote/js/sidebar.js" defer></script><script src="/devnote/js/next-boot.js" defer></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@11.10.1/dist/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/devnote/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+
+  <noscript>
+    <link rel="stylesheet" href="/devnote/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/devnote/rss2.xml" title="leafbird/devnote" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/devnote/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">leafbird/devnote</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="검색" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/devnote/" rel="section"><i class="fa fa-home fa-fw"></i>홈</a></li><li class="menu-item menu-item-about"><a href="/devnote/about/" rel="section"><i class="fa fa-user fa-fw"></i>정보</a></li><li class="menu-item menu-item-archives"><a href="/devnote/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>아카이브</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#leafbird"><span class="nav-text">leafbird</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Focus-Areas"><span class="nav-text">Focus Areas</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Selected-Technical-Writing"><span class="nav-text">Selected Technical Writing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#In-this-Blog"><span class="nav-text">In this Blog</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Philosophy"><span class="nav-text">Philosophy</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">leafbird</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/devnote/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">카테고리</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">태그</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/leafbird" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leafbird" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/leafbird" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;leafbird" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/leafbird_tw" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;leafbird_tw" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner page posts-expand">
+
+
+    
+    
+    
+    <div class="post-block" lang="ko"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">About
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <img src="https://leafbird.github.io/image/profile_new.jpg" alt="leafbird" style="width: 250px; border-radius: 8px;">
+
+<h2 id="leafbird"><a href="#leafbird" class="headerlink" title="leafbird"></a>leafbird</h2><p>Designing systems that survive production.</p>
+<p><strong>Online Game Server Engineer</strong><br>Building scalable, production-grade backend systems.</p>
+<hr>
+<p>대규모 온라인 게임 서버 아키텍처를 설계하고 운영해온 개발자입니다.<br>MMO 서버 구조, 동시성 모델, 네트워크 I&#x2F;O, 그리고 라이브 환경에서의 안정성을 중심으로 일해왔습니다.</p>
+<p>새로운 기술을 탐구하는 것도 좋아하지만, <strong>실제 서비스에서 오래 살아남는 구조</strong>를 만드는 것이 더 중요하다고 믿습니다.<br>최근에는 서버 플랫폼과 아키텍처를 더 깊게 다듬고 개선하는 방향에 집중하고 있으며,<br>AI를 활용한 엔지니어링 생산성 향상에도 관심을 두고 있습니다.</p>
+<hr>
+<h2 id="Focus-Areas"><a href="#Focus-Areas" class="headerlink" title="Focus Areas"></a>Focus Areas</h2><ul>
+<li>Distributed Game Server Architecture  </li>
+<li>High-throughput Network &amp; Concurrency  </li>
+<li>Actor Model &amp; Async Systems  </li>
+<li>Production Stability &amp; Live Operations  </li>
+<li>Server Platform Evolution</li>
+</ul>
+<hr>
+<h2 id="Selected-Technical-Writing"><a href="#Selected-Technical-Writing" class="headerlink" title="Selected Technical Writing"></a>Selected Technical Writing</h2><ul>
+<li><a href="https://leafbird.github.io/devnote/2026/01/21/Understanding-the-Actor-Pattern/">Understanding the Actor Pattern</a></li>
+<li><a href="https://leafbird.github.io/devnote/2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/">Applying the Actor Pattern to MMO Servers</a></li>
+<li><a href="https://leafbird.github.io/devnote/2026/01/29/Implementing-Lightweight-Actor-in-CSharp-Part1/">Implementing Lightweight Actor in C#</a></li>
+<li><a href="https://leafbird.github.io/devnote/2021/08/08/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%8B%A8%ED%8E%B8%ED%99%94/">C# 고성능 서버 - 메모리 단편화</a></li>
+<li><a href="https://leafbird.github.io/devnote/2020/12/27/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-System-IO-Pipeline-%EB%8F%84%EC%9E%85-%ED%9B%84%EA%B8%B0/">C# 고성능 서버 - System.IO.Pipeline 도입 후기</a></li>
+</ul>
+<hr>
+<h2 id="In-this-Blog"><a href="#In-this-Blog" class="headerlink" title="In this Blog"></a>In this Blog</h2><p>이 블로그에서는 게임 서버 개발 경험을 바탕으로:</p>
+<ul>
+<li>Actor 패턴과 동시성 설계  </li>
+<li>고성능 C# 서버 구현  </li>
+<li>운영 환경에서의 아키텍처 결정  </li>
+<li>실제 적용 사례와 트레이드오프</li>
+</ul>
+<p>를 기록하고 공유합니다.</p>
+<hr>
+<h2 id="Philosophy"><a href="#Philosophy" class="headerlink" title="Philosophy"></a>Philosophy</h2><p>뛰어난 실적과 결과를 내는 것도 중요하지만, 하루하루 결과물을 빚어나가는 과정 자체가 즐겁고 재미있기를 꿈꿉니다. 나와 우리 동료 모두들에게.</p>
+<blockquote>
+<p>가슴 뛰는 일을 하라. 그것이 당신이 이 세상에 온 이유이자 목적이다.<br>— Darryl Anka</p>
+</blockquote>
+<blockquote>
+<p>필자에게 <strong>왜 프로그래밍을 하느냐고 묻는다면, 주저없이 ‘재미(fun)’라고 답할 것이다.</strong><br>— 마이크로소프트웨어 잡지 특집 컬럼, 이만용 리눅스 코리아 CTO</p>
+</blockquote>
+
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">leafbird</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"leafbird","repo":"devnote","client_id":"27d8b6b6501ea8561848","client_secret":"86181a3464a298b3cbce1b1aadd362004ca5494f","admin_user":"leafbird","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"body":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"52ca6ba0f2762ba50160d6d879cd70c9"}</script>
+<script src="/devnote/js/third-party/comments/gitalk.js" defer></script>
+
+</body>
+</html>
