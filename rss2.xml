@@ -9,7 +9,7 @@
     <atom:link href="http://leafbird.github.io/devnote/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Mon, 06 Apr 2026 12:38:19 GMT</pubDate>
+    <pubDate>Thu, 16 Apr 2026 12:56:56 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -239,9 +239,9 @@
       
       <category domain="http://leafbird.github.io/devnote/tags/terminal/">terminal</category>
       
-      <category domain="http://leafbird.github.io/devnote/tags/zsh/">zsh</category>
-      
       <category domain="http://leafbird.github.io/devnote/tags/powershell/">powershell</category>
+      
+      <category domain="http://leafbird.github.io/devnote/tags/zsh/">zsh</category>
       
       <category domain="http://leafbird.github.io/devnote/tags/neovim/">neovim</category>
       
