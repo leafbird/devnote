@@ -21,14 +21,14 @@
     <meta name="description" content="프로그래밍에서 각 스레드별로 고유한 상태를 설정할 수 있는 공간을 Thread Local Storage (이하 TLS. transport layer security 아님) 라고 한다. VC++에서는 __declspec(thread) 키워드를 이용해서 tls 변수를 선언할 수 있다.  C#에도 ThreadLocal&lt;T&gt; 라는 클래스를 이용해 tls">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C# 고성능 서버 - Thread Local Storage">
-<meta property="og:url" content="http://leafbird.github.io/devnote/2021/01/01/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-Thread-Local-Storage/index.html">
+<meta property="og:url" content="https://leafbird.github.io/devnote/2021/01/01/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-Thread-Local-Storage/index.html">
 <meta property="og:site_name" content="leafbird&#x2F;devnote">
 <meta property="og:description" content="프로그래밍에서 각 스레드별로 고유한 상태를 설정할 수 있는 공간을 Thread Local Storage (이하 TLS. transport layer security 아님) 라고 한다. VC++에서는 __declspec(thread) 키워드를 이용해서 tls 변수를 선언할 수 있다.  C#에도 ThreadLocal&lt;T&gt; 라는 클래스를 이용해 tls">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:image" content="http://leafbird.github.io/devnote/2021/01/01/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-Thread-Local-Storage/00.png">
-<meta property="og:image" content="http://leafbird.github.io/devnote/2021/01/01/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-Thread-Local-Storage/02.png">
+<meta property="og:image" content="https://leafbird.github.io/devnote/2021/01/01/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-Thread-Local-Storage/00.png">
+<meta property="og:image" content="https://leafbird.github.io/devnote/2021/01/01/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-Thread-Local-Storage/02.png">
 <meta property="article:published_time" content="2021-01-01T07:00:49.000Z">
-<meta property="article:modified_time" content="2026-10-02T00:15:25.026Z">
+<meta property="article:modified_time" content="2026-10-06T15:12:17.740Z">
 <meta property="article:author" content="leafbird">
 <meta property="article:tag" content="AsyncLocal">
 <meta property="article:tag" content="TLS">
@@ -37,13 +37,13 @@
 <meta property="article:tag" content="게임서버">
 <meta property="article:tag" content="고성능">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://leafbird.github.io/devnote/2021/01/01/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-Thread-Local-Storage/00.png">
+<meta name="twitter:image" content="https://leafbird.github.io/devnote/2021/01/01/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-Thread-Local-Storage/00.png">
 
 
-<link rel="canonical" href="http://leafbird.github.io/devnote/2021/01/01/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-Thread-Local-Storage/">
+<link rel="canonical" href="https://leafbird.github.io/devnote/2021/01/01/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-Thread-Local-Storage/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"http://leafbird.github.io/devnote/2021/01/01/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-Thread-Local-Storage/","path":"2021/01/01/C-고성능-서버-Thread-Local-Storage/","title":"C# 고성능 서버 - Thread Local Storage"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"https://leafbird.github.io/devnote/2021/01/01/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-Thread-Local-Storage/","path":"2021/01/01/C-고성능-서버-Thread-Local-Storage/","title":"C# 고성능 서버 - Thread Local Storage"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>C# 고성능 서버 - Thread Local Storage | leafbird/devnote</title>
@@ -202,7 +202,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2021/01/01/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-Thread-Local-Storage/">
+    <link itemprop="mainEntityOfPage" href="https://leafbird.github.io/devnote/2021/01/01/C-%EA%B3%A0%EC%84%B1%EB%8A%A5-%EC%84%9C%EB%B2%84-Thread-Local-Storage/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/devnote/images/avatar.gif">
@@ -238,7 +238,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2026-10-02 09:15:25" itemprop="dateModified" datetime="2026-10-02T09:15:25+09:00">2026-10-02</time>
+      <time title="Updated at: 2026-10-07 00:12:17" itemprop="dateModified" datetime="2026-10-07T00:12:17+09:00">2026-10-07</time>
     </span>
 
   

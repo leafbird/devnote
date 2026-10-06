@@ -21,24 +21,24 @@
     <meta name="description" content="C#에서 메서드를 정의할 때 in 키워드를 사용하면 call by value 가 아닌 call by reference로 동작하게 만들어줍니다. 그래서 주로 구조체(value type)를 복사 없이 참조로 넘길 때 유용하지요.  참조 타입의 매개변수에 in 키워드를 쓰는 건 어떤 효과가 있을까요? generic parameter를 정의할 때도 in 키워드가">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C# in 키워드 정리">
-<meta property="og:url" content="http://leafbird.github.io/devnote/2024/10/01/C-in-%ED%82%A4%EC%9B%8C%EB%93%9C-%EC%A0%95%EB%A6%AC/index.html">
+<meta property="og:url" content="https://leafbird.github.io/devnote/2024/10/01/C-in-%ED%82%A4%EC%9B%8C%EB%93%9C-%EC%A0%95%EB%A6%AC/index.html">
 <meta property="og:site_name" content="leafbird&#x2F;devnote">
 <meta property="og:description" content="C#에서 메서드를 정의할 때 in 키워드를 사용하면 call by value 가 아닌 call by reference로 동작하게 만들어줍니다. 그래서 주로 구조체(value type)를 복사 없이 참조로 넘길 때 유용하지요.  참조 타입의 매개변수에 in 키워드를 쓰는 건 어떤 효과가 있을까요? generic parameter를 정의할 때도 in 키워드가">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:image" content="http://leafbird.github.io/devnote/2024/10/01/C-in-%ED%82%A4%EC%9B%8C%EB%93%9C-%EC%A0%95%EB%A6%AC/image.png">
+<meta property="og:image" content="https://leafbird.github.io/devnote/2024/10/01/C-in-%ED%82%A4%EC%9B%8C%EB%93%9C-%EC%A0%95%EB%A6%AC/image.png">
 <meta property="article:published_time" content="2024-10-01T07:45:38.000Z">
-<meta property="article:modified_time" content="2026-10-02T00:15:25.039Z">
+<meta property="article:modified_time" content="2026-10-06T15:12:17.759Z">
 <meta property="article:author" content="leafbird">
 <meta property="article:tag" content=".NET">
 <meta property="article:tag" content="C#">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://leafbird.github.io/devnote/2024/10/01/C-in-%ED%82%A4%EC%9B%8C%EB%93%9C-%EC%A0%95%EB%A6%AC/image.png">
+<meta name="twitter:image" content="https://leafbird.github.io/devnote/2024/10/01/C-in-%ED%82%A4%EC%9B%8C%EB%93%9C-%EC%A0%95%EB%A6%AC/image.png">
 
 
-<link rel="canonical" href="http://leafbird.github.io/devnote/2024/10/01/C-in-%ED%82%A4%EC%9B%8C%EB%93%9C-%EC%A0%95%EB%A6%AC/">
+<link rel="canonical" href="https://leafbird.github.io/devnote/2024/10/01/C-in-%ED%82%A4%EC%9B%8C%EB%93%9C-%EC%A0%95%EB%A6%AC/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"http://leafbird.github.io/devnote/2024/10/01/C-in-%ED%82%A4%EC%9B%8C%EB%93%9C-%EC%A0%95%EB%A6%AC/","path":"2024/10/01/C-in-키워드-정리/","title":"C# in 키워드 정리"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"https://leafbird.github.io/devnote/2024/10/01/C-in-%ED%82%A4%EC%9B%8C%EB%93%9C-%EC%A0%95%EB%A6%AC/","path":"2024/10/01/C-in-키워드-정리/","title":"C# in 키워드 정리"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>C# in 키워드 정리 | leafbird/devnote</title>
@@ -197,7 +197,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2024/10/01/C-in-%ED%82%A4%EC%9B%8C%EB%93%9C-%EC%A0%95%EB%A6%AC/">
+    <link itemprop="mainEntityOfPage" href="https://leafbird.github.io/devnote/2024/10/01/C-in-%ED%82%A4%EC%9B%8C%EB%93%9C-%EC%A0%95%EB%A6%AC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/devnote/images/avatar.gif">
@@ -233,7 +233,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2026-10-02 09:15:25" itemprop="dateModified" datetime="2026-10-02T09:15:25+09:00">2026-10-02</time>
+      <time title="Updated at: 2026-10-07 00:12:17" itemprop="dateModified" datetime="2026-10-07T00:12:17+09:00">2026-10-07</time>
     </span>
 
   

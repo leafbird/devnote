@@ -21,28 +21,28 @@
     <meta name="description" content="지난번에 zsh을 꾸미고 나니, pwsh이 너무 허접해 보였다. 이런 것을 역체감이라고 하나.어쩔 수 없지. 파워쉘도 꾸며줄 수 밖에.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="oh-my-posh로 파워쉘 꾸미기">
-<meta property="og:url" content="http://leafbird.github.io/devnote/2023/10/18/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/index.html">
+<meta property="og:url" content="https://leafbird.github.io/devnote/2023/10/18/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/index.html">
 <meta property="og:site_name" content="leafbird&#x2F;devnote">
 <meta property="og:description" content="지난번에 zsh을 꾸미고 나니, pwsh이 너무 허접해 보였다. 이런 것을 역체감이라고 하나.어쩔 수 없지. 파워쉘도 꾸며줄 수 밖에.">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:image" content="http://leafbird.github.io/devnote/2023/10/18/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/win_terminal.png">
-<meta property="og:image" content="http://leafbird.github.io/devnote/2023/10/18/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/pwsh_in_macos.png">
-<meta property="og:image" content="http://leafbird.github.io/devnote/2023/10/18/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/wt_font_broken.png">
-<meta property="og:image" content="http://leafbird.github.io/devnote/2023/10/18/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/wt_font_fine.png">
-<meta property="og:image" content="http://leafbird.github.io/devnote/2023/10/18/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/windows_vscode_font.png">
+<meta property="og:image" content="https://leafbird.github.io/devnote/2023/10/18/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/win_terminal.png">
+<meta property="og:image" content="https://leafbird.github.io/devnote/2023/10/18/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/pwsh_in_macos.png">
+<meta property="og:image" content="https://leafbird.github.io/devnote/2023/10/18/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/wt_font_broken.png">
+<meta property="og:image" content="https://leafbird.github.io/devnote/2023/10/18/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/wt_font_fine.png">
+<meta property="og:image" content="https://leafbird.github.io/devnote/2023/10/18/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/windows_vscode_font.png">
 <meta property="article:published_time" content="2023-10-18T23:54:03.000Z">
-<meta property="article:modified_time" content="2026-10-02T00:15:25.035Z">
+<meta property="article:modified_time" content="2026-10-06T15:12:17.752Z">
 <meta property="article:author" content="leafbird">
 <meta property="article:tag" content="oh-my-posh">
 <meta property="article:tag" content="pwsh">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://leafbird.github.io/devnote/2023/10/18/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/win_terminal.png">
+<meta name="twitter:image" content="https://leafbird.github.io/devnote/2023/10/18/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/win_terminal.png">
 
 
-<link rel="canonical" href="http://leafbird.github.io/devnote/2023/10/18/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/">
+<link rel="canonical" href="https://leafbird.github.io/devnote/2023/10/18/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"http://leafbird.github.io/devnote/2023/10/18/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/","path":"2023/10/18/oh-my-posh로-파워쉘-꾸미기/","title":"oh-my-posh로 파워쉘 꾸미기"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"https://leafbird.github.io/devnote/2023/10/18/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/","path":"2023/10/18/oh-my-posh로-파워쉘-꾸미기/","title":"oh-my-posh로 파워쉘 꾸미기"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>oh-my-posh로 파워쉘 꾸미기 | leafbird/devnote</title>
@@ -201,7 +201,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2023/10/18/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/">
+    <link itemprop="mainEntityOfPage" href="https://leafbird.github.io/devnote/2023/10/18/oh-my-posh%EB%A1%9C-%ED%8C%8C%EC%9B%8C%EC%89%98-%EA%BE%B8%EB%AF%B8%EA%B8%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/devnote/images/avatar.gif">
@@ -237,7 +237,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2026-10-02 09:15:25" itemprop="dateModified" datetime="2026-10-02T09:15:25+09:00">2026-10-02</time>
+      <time title="Updated at: 2026-10-07 00:12:17" itemprop="dateModified" datetime="2026-10-07T00:12:17+09:00">2026-10-07</time>
     </span>
 
   

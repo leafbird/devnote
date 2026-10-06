@@ -21,29 +21,29 @@
     <meta name="description" content="들어가며지난 글(링크)에서는 POSA 2의 동시성 패턴들 — Reactor, Proactor, Actor — 을 간단하게 소개하고 살펴보았습니다. 이론적 배경을 이해했으니, 이제 실전으로 넘어갈 차례입니다.  근데 이제.. 실제 게임 만들 때 Actor 모델을 어떻게 적용한다는 건가?  이 질문에 정해진 답은 없습니다. 하지만 Actor의 적용 범위에">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Applying the Actor Pattern to MMO Servers">
-<meta property="og:url" content="http://leafbird.github.io/devnote/2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/index.html">
+<meta property="og:url" content="https://leafbird.github.io/devnote/2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/index.html">
 <meta property="og:site_name" content="leafbird&#x2F;devnote">
 <meta property="og:description" content="들어가며지난 글(링크)에서는 POSA 2의 동시성 패턴들 — Reactor, Proactor, Actor — 을 간단하게 소개하고 살펴보았습니다. 이론적 배경을 이해했으니, 이제 실전으로 넘어갈 차례입니다.  근데 이제.. 실제 게임 만들 때 Actor 모델을 어떻게 적용한다는 건가?  이 질문에 정해진 답은 없습니다. 하지만 Actor의 적용 범위에">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:image" content="http://leafbird.github.io/devnote/2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/actor_mmo.png">
-<meta property="og:image" content="http://leafbird.github.io/devnote/2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/aion.png">
-<meta property="og:image" content="http://leafbird.github.io/devnote/2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/diagram_00.png">
-<meta property="og:image" content="http://leafbird.github.io/devnote/2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/diagram_01.png">
+<meta property="og:image" content="https://leafbird.github.io/devnote/2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/actor_mmo.png">
+<meta property="og:image" content="https://leafbird.github.io/devnote/2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/aion.png">
+<meta property="og:image" content="https://leafbird.github.io/devnote/2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/diagram_00.png">
+<meta property="og:image" content="https://leafbird.github.io/devnote/2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/diagram_01.png">
 <meta property="article:published_time" content="2026-01-27T02:25:23.000Z">
-<meta property="article:modified_time" content="2026-10-02T00:15:25.096Z">
+<meta property="article:modified_time" content="2026-10-06T15:12:17.840Z">
 <meta property="article:author" content="leafbird">
 <meta property="article:tag" content="actor">
 <meta property="article:tag" content="gameserver">
 <meta property="article:tag" content="mmo">
 <meta property="article:tag" content="multithread">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://leafbird.github.io/devnote/2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/actor_mmo.png">
+<meta name="twitter:image" content="https://leafbird.github.io/devnote/2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/actor_mmo.png">
 
 
-<link rel="canonical" href="http://leafbird.github.io/devnote/2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/">
+<link rel="canonical" href="https://leafbird.github.io/devnote/2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"http://leafbird.github.io/devnote/2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/","path":"2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/","title":"Applying the Actor Pattern to MMO Servers"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"https://leafbird.github.io/devnote/2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/","path":"2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/","title":"Applying the Actor Pattern to MMO Servers"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>Applying the Actor Pattern to MMO Servers | leafbird/devnote</title>
@@ -202,7 +202,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/">
+    <link itemprop="mainEntityOfPage" href="https://leafbird.github.io/devnote/2026/01/27/Applying-the-Actor-Pattern-to-MMO-Servers/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/devnote/images/avatar.gif">
@@ -238,7 +238,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2026-10-02 09:15:25" itemprop="dateModified" datetime="2026-10-02T09:15:25+09:00">2026-10-02</time>
+      <time title="Updated at: 2026-10-07 00:12:17" itemprop="dateModified" datetime="2026-10-07T00:12:17+09:00">2026-10-07</time>
     </span>
 
   

@@ -21,24 +21,24 @@
     <meta name="description" content="들어가며동시성 프로그래밍은 현대 소프트웨어 개발에서 피할 수 없는 주제입니다. 멀티코어 프로세서가 보편화되고, 분산 시스템이 일상이 된 지금, 효율적이고 안전한 동시성 처리는 더 이상 선택이 아닌 필수가 되었습니다. 이 글에서는 현재 프로젝트에서 직접 작성해 사용하고 있는 C# Actor 구현체를 소개하기에 앞서, 먼저 Actor 패턴의 이론적 배경을">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Prologue - Understanding the Actor Pattern">
-<meta property="og:url" content="http://leafbird.github.io/devnote/2026/01/21/Understanding-the-Actor-Pattern/index.html">
+<meta property="og:url" content="https://leafbird.github.io/devnote/2026/01/21/Understanding-the-Actor-Pattern/index.html">
 <meta property="og:site_name" content="leafbird&#x2F;devnote">
 <meta property="og:description" content="들어가며동시성 프로그래밍은 현대 소프트웨어 개발에서 피할 수 없는 주제입니다. 멀티코어 프로세서가 보편화되고, 분산 시스템이 일상이 된 지금, 효율적이고 안전한 동시성 처리는 더 이상 선택이 아닌 필수가 되었습니다. 이 글에서는 현재 프로젝트에서 직접 작성해 사용하고 있는 C# Actor 구현체를 소개하기에 앞서, 먼저 Actor 패턴의 이론적 배경을">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:image" content="http://leafbird.github.io/devnote/2026/01/21/Understanding-the-Actor-Pattern/actor_prologue.png">
+<meta property="og:image" content="https://leafbird.github.io/devnote/2026/01/21/Understanding-the-Actor-Pattern/actor_prologue.png">
 <meta property="article:published_time" content="2026-01-21T01:09:02.000Z">
-<meta property="article:modified_time" content="2026-10-02T00:15:25.089Z">
+<meta property="article:modified_time" content="2026-10-06T15:12:17.831Z">
 <meta property="article:author" content="leafbird">
 <meta property="article:tag" content="actor">
 <meta property="article:tag" content="multithread">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://leafbird.github.io/devnote/2026/01/21/Understanding-the-Actor-Pattern/actor_prologue.png">
+<meta name="twitter:image" content="https://leafbird.github.io/devnote/2026/01/21/Understanding-the-Actor-Pattern/actor_prologue.png">
 
 
-<link rel="canonical" href="http://leafbird.github.io/devnote/2026/01/21/Understanding-the-Actor-Pattern/">
+<link rel="canonical" href="https://leafbird.github.io/devnote/2026/01/21/Understanding-the-Actor-Pattern/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"http://leafbird.github.io/devnote/2026/01/21/Understanding-the-Actor-Pattern/","path":"2026/01/21/Understanding-the-Actor-Pattern/","title":"Prologue - Understanding the Actor Pattern"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"https://leafbird.github.io/devnote/2026/01/21/Understanding-the-Actor-Pattern/","path":"2026/01/21/Understanding-the-Actor-Pattern/","title":"Prologue - Understanding the Actor Pattern"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>Prologue - Understanding the Actor Pattern | leafbird/devnote</title>
@@ -197,7 +197,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2026/01/21/Understanding-the-Actor-Pattern/">
+    <link itemprop="mainEntityOfPage" href="https://leafbird.github.io/devnote/2026/01/21/Understanding-the-Actor-Pattern/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/devnote/images/avatar.gif">
@@ -233,7 +233,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2026-10-02 09:15:25" itemprop="dateModified" datetime="2026-10-02T09:15:25+09:00">2026-10-02</time>
+      <time title="Updated at: 2026-10-07 00:12:17" itemprop="dateModified" datetime="2026-10-07T00:12:17+09:00">2026-10-07</time>
     </span>
 
   

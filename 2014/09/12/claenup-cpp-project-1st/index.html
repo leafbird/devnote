@@ -21,23 +21,23 @@
     <meta name="description" content="지워도 되는 헤더 인클루드를 색출하고 싶다매우 느리게 찔끔찔끔 진행하는 토이 프로젝트가 있는데, 오늘 처음으로 무언가 그럴싸한 아웃풋이 나오게 되어 스냅샷을 하는 느낌으로 간단히 포스팅. cpp 프로젝트 규모가 점점 커지게 되면 빌드 시간 때문에 많은 고통을 겪는다. 이때문에 increadi build 같은 분산 빌드 솔루션도 쓰는거고 unity build">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++ 코드 정리 자동화 - 1. 불필요한 #include 찾기 上">
-<meta property="og:url" content="http://leafbird.github.io/devnote/2014/09/12/claenup-cpp-project-1st/index.html">
+<meta property="og:url" content="https://leafbird.github.io/devnote/2014/09/12/claenup-cpp-project-1st/index.html">
 <meta property="og:site_name" content="leafbird&#x2F;devnote">
 <meta property="og:description" content="지워도 되는 헤더 인클루드를 색출하고 싶다매우 느리게 찔끔찔끔 진행하는 토이 프로젝트가 있는데, 오늘 처음으로 무언가 그럴싸한 아웃풋이 나오게 되어 스냅샷을 하는 느낌으로 간단히 포스팅. cpp 프로젝트 규모가 점점 커지게 되면 빌드 시간 때문에 많은 고통을 겪는다. 이때문에 increadi build 같은 분산 빌드 솔루션도 쓰는거고 unity build">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:image" content="http://leafbird.github.io/devnote/images/140912_00.png">
+<meta property="og:image" content="https://leafbird.github.io/devnote/images/140912_00.png">
 <meta property="article:published_time" content="2014-09-12T02:26:14.000Z">
-<meta property="article:modified_time" content="2026-10-02T00:15:25.025Z">
+<meta property="article:modified_time" content="2026-10-06T15:12:17.738Z">
 <meta property="article:author" content="leafbird">
 <meta property="article:tag" content="c++">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://leafbird.github.io/devnote/images/140912_00.png">
+<meta name="twitter:image" content="https://leafbird.github.io/devnote/images/140912_00.png">
 
 
-<link rel="canonical" href="http://leafbird.github.io/devnote/2014/09/12/claenup-cpp-project-1st/">
+<link rel="canonical" href="https://leafbird.github.io/devnote/2014/09/12/claenup-cpp-project-1st/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"http://leafbird.github.io/devnote/2014/09/12/claenup-cpp-project-1st/","path":"2014/09/12/claenup-cpp-project-1st/","title":"C++ 코드 정리 자동화 - 1. 불필요한 #include 찾기 上"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"https://leafbird.github.io/devnote/2014/09/12/claenup-cpp-project-1st/","path":"2014/09/12/claenup-cpp-project-1st/","title":"C++ 코드 정리 자동화 - 1. 불필요한 #include 찾기 上"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>C++ 코드 정리 자동화 - 1. 불필요한 #include 찾기 上 | leafbird/devnote</title>
@@ -196,7 +196,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2014/09/12/claenup-cpp-project-1st/">
+    <link itemprop="mainEntityOfPage" href="https://leafbird.github.io/devnote/2014/09/12/claenup-cpp-project-1st/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/devnote/images/avatar.gif">
@@ -232,7 +232,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2026-10-02 09:15:25" itemprop="dateModified" datetime="2026-10-02T09:15:25+09:00">2026-10-02</time>
+      <time title="Updated at: 2026-10-07 00:12:17" itemprop="dateModified" datetime="2026-10-07T00:12:17+09:00">2026-10-07</time>
     </span>
 
   

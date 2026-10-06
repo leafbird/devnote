@@ -21,29 +21,29 @@
     <meta name="description" content="회사에서 빌드머신으로 사용중인 맥미니 장비들은 주기적으로 몇가지 관리가 필요하다. 최근에 유니티6로 엔진 업데이트한 이후 빌드머신에 갖가지 이슈들이 생기면서 디스크 용량 체크를 해보던 중이었다.   이거 코드 작업 조금만 하면 만들 수 있겠다는 생각이 들었고, 미루면 아마 영영 실천으로 옮기지 않게 될 것 같아 생각난 김에 바로 만들었다.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[slackbot] 빌드머신 점검하다가 문득 봇을 짜보았다">
-<meta property="og:url" content="http://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/index.html">
+<meta property="og:url" content="https://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/index.html">
 <meta property="og:site_name" content="leafbird&#x2F;devnote">
 <meta property="og:description" content="회사에서 빌드머신으로 사용중인 맥미니 장비들은 주기적으로 몇가지 관리가 필요하다. 최근에 유니티6로 엔진 업데이트한 이후 빌드머신에 갖가지 이슈들이 생기면서 디스크 용량 체크를 해보던 중이었다.   이거 코드 작업 조금만 하면 만들 수 있겠다는 생각이 들었고, 미루면 아마 영영 실천으로 옮기지 않게 될 것 같아 생각난 김에 바로 만들었다.">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:image" content="http://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/bot_00.png">
-<meta property="og:image" content="http://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/bot_01.png">
-<meta property="og:image" content="http://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/bot_02.png">
-<meta property="og:image" content="http://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/bot_00.png">
-<meta property="og:image" content="http://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/ansible_logo.png">
-<meta property="og:image" content="http://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/bot_03.png">
+<meta property="og:image" content="https://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/bot_00.png">
+<meta property="og:image" content="https://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/bot_01.png">
+<meta property="og:image" content="https://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/bot_02.png">
+<meta property="og:image" content="https://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/bot_00.png">
+<meta property="og:image" content="https://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/ansible_logo.png">
+<meta property="og:image" content="https://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/bot_03.png">
 <meta property="article:published_time" content="2025-02-02T05:24:14.000Z">
-<meta property="article:modified_time" content="2026-10-02T00:15:25.040Z">
+<meta property="article:modified_time" content="2026-10-06T15:12:17.760Z">
 <meta property="article:author" content="leafbird">
 <meta property="article:tag" content="slackbot">
 <meta property="article:tag" content="ssh">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/bot_00.png">
+<meta name="twitter:image" content="https://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/bot_00.png">
 
 
-<link rel="canonical" href="http://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/">
+<link rel="canonical" href="https://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"http://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/","path":"2025/02/02/slackbot-빌드머신-점검하다가-문득-봇을-짜보았다/","title":"[slackbot] 빌드머신 점검하다가 문득 봇을 짜보았다"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"ko","comments":true,"permalink":"https://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/","path":"2025/02/02/slackbot-빌드머신-점검하다가-문득-봇을-짜보았다/","title":"[slackbot] 빌드머신 점검하다가 문득 봇을 짜보았다"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>[slackbot] 빌드머신 점검하다가 문득 봇을 짜보았다 | leafbird/devnote</title>
@@ -202,7 +202,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/">
+    <link itemprop="mainEntityOfPage" href="https://leafbird.github.io/devnote/2025/02/02/slackbot-%EB%B9%8C%EB%93%9C%EB%A8%B8%EC%8B%A0-%EC%A0%90%EA%B2%80%ED%95%98%EB%8B%A4%EA%B0%80-%EB%AC%B8%EB%93%9D-%EB%B4%87%EC%9D%84-%EC%A7%9C%EB%B3%B4%EC%95%98%EB%8B%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/devnote/images/avatar.gif">
@@ -238,7 +238,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Updated at: 2026-10-02 09:15:25" itemprop="dateModified" datetime="2026-10-02T09:15:25+09:00">2026-10-02</time>
+      <time title="Updated at: 2026-10-07 00:12:17" itemprop="dateModified" datetime="2026-10-07T00:12:17+09:00">2026-10-07</time>
     </span>
 
   
