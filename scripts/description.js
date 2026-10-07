@@ -28,6 +28,6 @@ const openGraph = hexo.extend.helper.get('open_graph');
 hexo.extend.helper.register('open_graph', function(options = {}) {
   const { page } = this;
   if (options.description || page.description) return openGraph.call(this, options);
-  const summary = summarize(page.excerpt || '') || summarize(page.content || '');
+  const summary = page.summary || summarize(page.excerpt || '') || summarize(page.content || '');
   return openGraph.call(this, summary ? { ...options, description: summary } : options);
 });

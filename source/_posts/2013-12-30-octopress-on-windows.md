@@ -4,6 +4,7 @@ title: "octopress on windows"
 date: 2013-12-30 23:06:15 +0900
 comments: true
 tags: [octopress, windows, encoding]
+summary: "윈도우에서 Octopress 블로그를 세팅하는 과정을 정리했다. Ruby와 DevKit 설치, rake 버전 충돌 해결, GitHub Pages 설정, chcp 65001로 한글 인코딩 오류를 푸는 방법까지 다룬다."
 ---
 
 {% img center /images/octopress.jpeg %}

@@ -8,6 +8,7 @@ tags:
 categories:
   - dev
 date: 2026-03-08 14:27:42
+summary: "AI 활용 개발의 진화를 프롬프트, 컨텍스트, 하네스 엔지니어링 세 단계로 정리합니다. AGENTS.md, MCP, Codex 팀 사례, Google Antigravity를 다루고 세 가지는 누적 레이어라고 봅니다."
 ---
 
 

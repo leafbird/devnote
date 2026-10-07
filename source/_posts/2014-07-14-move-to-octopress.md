@@ -4,6 +4,7 @@ title: "move to octopress!"
 date: 2014-07-14 00:24:24 +0900
 comments: true
 tags: octopress
+summary: "티스토리에서 운영하던 개발 블로그를 Octopress로 이사한다는 공지입니다. feedburner 구독 주소 안내와 함께 vim 작성, 마크다운 로컬 보관 등 Octopress가 마음에 든 이유를 적었습니다."
 ---
 
 기존에 티스토리에서 운영 중이던 [프로그래밍 관련 블로그(devnote.tistory.com)](http://devnote.tistory.com)를 Octopress로 이사합니다. 사실 운영이라고 말하기도 뭣할 만큼 오랫동안 방치되어 있었는데, 다시금 분위기를 쇄신하고자 환경을 바꿔볼까 합니다. 

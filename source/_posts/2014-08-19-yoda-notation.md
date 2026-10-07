@@ -4,6 +4,7 @@ title: "Yoda Notation"
 date: 2014-08-19 17:08:44 +0900
 comments: true
 tags: [c++, coding convention]
+summary: "'읽기 좋은 코드가 좋은 코드다'에서 접한 요다 표기법(Yoda Conditions)을 소개합니다. 조건문에서 상수를 앞에 두는 이유와, 컴파일러 경고 C4706으로 이제는 필요 없다는 결론을 적었습니다."
 ---
 {% img center /images/yoda1.jpg %}
 

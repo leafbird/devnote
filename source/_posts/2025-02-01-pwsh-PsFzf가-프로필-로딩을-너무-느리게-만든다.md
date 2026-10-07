@@ -4,6 +4,7 @@ date: 2025-02-01 13:45:31
 tags:
 - powershell
 - fzf
+summary: "PsFzf 때문에 pwsh 터미널이 열릴 때마다 2~3초씩 걸리던 문제를 다룬다. 원인은 PsFzf 모듈의 암시적 임포트였고, fzf 설정을 Enable-Fzf 함수로 묶어 필요할 때만 불러 쓰는 방식으로 타협했다."
 ---
 
 

@@ -6,6 +6,7 @@ tags:
 - multithread
 - csharp
 - gameserver
+summary: "C# 경량 Actor 구현 1편. Akka.NET 대신 직접 만든 이유와 Symmetric 스레드 모델, JobDispatcher와 readyQueue 스케줄링, 동기/비동기 메시지 분리를 코드로 설명합니다."
 ---
 
 {% asset_img header.png %}

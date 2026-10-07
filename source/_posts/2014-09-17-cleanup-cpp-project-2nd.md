@@ -4,6 +4,7 @@ title: "C++ 코드 정리 자동화 - 2. 불필요한 #include 찾기 下"
 date: 2014-09-17 20:30:24 +0900
 comments: true
 tags: c++
+summary: "C++ 코드 정리 자동화 2편. include를 하나씩 지워 컴파일하며 불필요한 #include를 찾는 C# 툴을 완성했다. 솔루션 단위 검사를 추가하고 멀티스레드로 약 4배 빨라졌다."
 ---
 이전 포스트 '{% post_link claenup-cpp-project-1st %}' 에서 이어진다.
 

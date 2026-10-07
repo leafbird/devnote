@@ -4,6 +4,7 @@ title: "Octopress Tips on windows"
 date: 2014-07-21 16:44:48 +0900
 comments: true
 tags: [octopress, windows]
+summary: "윈도우에서 Octopress를 쓰며 모은 팁 정리. 환경변수와 바로가기로 블로그 경로 이동, PowerShell과 batch로 새 글 작성 자동화, 여러 머신에서 _deploy 폴더 git 충돌 해결법을 다룬다."
 ---
 
 개인적으로 Octopress를 윈도우에서 사용하도록 구성하면서 도움이 되었던 팁들을 몇가지 정리해 보려고 합니다. 

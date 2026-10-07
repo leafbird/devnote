@@ -4,6 +4,7 @@ title: "C++ 코드 정리 자동화 - 3. pch 사이즈 확인, #include 순서�
 date: 2014-09-30 15:17:15 +0900
 comments: true
 tags: c++
+summary: "C++ 코드 정리 자동화 3편. MSBuild 출력의 /Fp 경로로 pch 파일 크기를 확인하는 기능과, 구글 C++ 스타일 가이드 순서대로 #include를 자동 정렬하는 기능을 만들어 jenkins에 물려 쓴다."
 ---
 
 ## pch 파일 사이즈

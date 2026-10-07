@@ -4,6 +4,7 @@ title: "google c++ style guide"
 date: 2014-07-19 11:12:37 +0900
 comments: true
 tags: [coding convention, c++] 
+summary: "팀에서 구글 C++ 스타일 가이드를 도입해 코딩 컨벤션 통일에 성공한 경험과 팀이 만든 한글 번역본을 소개합니다. 주요 규칙 예시와 vs2013 서식 설정, AStyle 활용 팁도 담았습니다."
 ---
 
 지금 참여중인 프로젝트에서 얼마전에 코딩 컨벤션을 통일하는 작업이 있었습니다. 

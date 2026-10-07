@@ -2,6 +2,7 @@
 title: C# 고성능 서버 - Thread Local Storage
 date: 2021-01-01 16:00:49
 tags: [c#, 고성능, 게임서버, Thread, AsyncLocal, TLS]
+summary: "C# 서버의 TLS 사용법. await 뒤 스레드가 바뀌어 AsyncLocal이 필요하지만, 소켓 콜백과 Task.Run에도 값이 복사되므로 ExecutionContext.SuppressFlow로 막아야 한다."
 ---
 
 프로그래밍에서 각 스레드별로 고유한 상태를 설정할 수 있는 공간을 [Thread Local Storage](https://en.wikipedia.org/wiki/Thread-local_storage) (이하 TLS. transport layer security 아님) 라고 한다. VC++에서는 `__declspec(thread)` 키워드를 이용해서 tls 변수를 선언할 수 있다. 

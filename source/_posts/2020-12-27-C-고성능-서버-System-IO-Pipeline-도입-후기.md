@@ -2,6 +2,7 @@
 title: C# 고성능 서버 - System.IO.Pipeline 도입 후기
 date: 2020-12-27 17:34:58
 tags: [c#, 고성능, 게임서버, Network, Socket, Pipeline]
+summary: "C# 게임서버의 System.IO.Pipeline 도입 후기. 복사 제거와 가변 버퍼는 좋았지만 소켓마다 대기하는 Task 탓에 10만 동접 테스트에서 성능이 떨어져 ZeroCopyBuffer를 직접 만들었다."
 ---
 {% asset_img 00.jpg %}
 

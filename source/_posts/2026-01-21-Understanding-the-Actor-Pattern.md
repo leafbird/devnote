@@ -4,6 +4,7 @@ date: 2026-01-21 10:09:02
 tags:
 - actor
 - multithread
+summary: "C# Actor 구현 시리즈 프롤로그입니다. POSA 2의 동시성 패턴인 Reactor, Proactor, Active Object(Actor)를 IOCP 등의 예시로 비교하고 Actor 패턴의 장점을 정리합니다."
 ---
 
 {% asset_img actor_prologue.png %}

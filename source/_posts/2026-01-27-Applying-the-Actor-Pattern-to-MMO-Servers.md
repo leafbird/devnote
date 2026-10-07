@@ -6,6 +6,7 @@ tags:
 - multithread
 - mmo
 - gameserver
+summary: "Actor 패턴 시리즈 2편. MMO 전투 시나리오로 Zone 단위 Coarse-grained와 Object 단위 Fine-grained Actor를 비교하고 멀티코어 활용, 일관성, 확장성의 장단점을 정리합니다."
 ---
 
 {% asset_img actor_mmo.png %}

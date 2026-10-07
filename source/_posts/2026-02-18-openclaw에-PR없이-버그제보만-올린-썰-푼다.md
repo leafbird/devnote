@@ -5,6 +5,7 @@ tags:
   - github
   - contributor
   - ai
+summary: "openclaw 대시보드 권한 오류를 AI와 함께 추적해 원인을 찾고 고쳤지만, PR 대신 수정 방향을 담은 이슈만 올린 이야기. 직접 고쳤던 hexo PR과 비교하며 AI가 고친 버그를 내 기여로 볼지 고민했다."
 ---
 
 {% asset_img issue_up.webp %}

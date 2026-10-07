@@ -2,6 +2,7 @@
 title: 'C# 고성능 서버 - __FILE__, __LINE__ 대체제'
 date: 2020-12-26 11:11:05
 tags: [c#, 고성능, 게임서버, 메모리, string interning]
+summary: "C# 서버 로그에서 __FILE__, __LINE__을 대체하는 법. StackFrame보다 CallerFilePath 같은 어트리뷰트가 빠르고, 반복 파일명은 string.Intern으로 힙 할당을 줄인다."
 ---
 
 C++에서 가장 기본적으로 사용했던 `__FILE__, __LINE__, __FUNCTION__` 등의 매크로와 유사한 효과를 내는 방법에 대해 적어본다. 이와 함께 나에게는 생소했던 string interning 개념에 대해서도 살짝 소개해본다. 자바 같은 managed 언어를 깊이 다뤄본 적이 없는 네이티브 개발자에게는 생소한 개념일 것이다. 
